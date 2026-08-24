@@ -1,0 +1,520 @@
+/**
+ * SuccessCircles theme behaviour.
+ *
+ * Progressive enhancement only — every section renders and reads correctly
+ * with JavaScript disabled.
+ */
+( function () {
+	'use strict';
+
+	var reduceMotion = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+
+	/**
+	 * Remove the loader curtain from the accessibility tree and the paint
+	 * pipeline once its animation has finished.
+	 */
+	function initLoader() {
+		var loader = document.querySelector( '[data-sc-loader]' );
+
+		if ( ! loader ) {
+			return;
+		}
+
+		if ( reduceMotion ) {
+			loader.remove();
+			return;
+		}
+
+		var remove = function () {
+			if ( loader.parentNode ) {
+				loader.parentNode.removeChild( loader );
+			}
+		};
+
+		loader.addEventListener( 'animationend', function ( event ) {
+			if ( event.animationName === 'scCurtain' ) {
+				remove();
+			}
+		} );
+
+		// Safety net in case the animationend event never fires.
+		window.setTimeout( remove, 3000 );
+	}
+
+	/**
+	 * Mobile navigation drawer.
+	 */
+	function initMenu() {
+		var toggle = document.querySelector( '[data-sc-menu-toggle]' );
+		var drawer = document.querySelector( '[data-sc-menu]' );
+
+		if ( ! toggle || ! drawer ) {
+			return;
+		}
+
+		var setOpen = function ( open ) {
+			drawer.classList.toggle( 'is-open', open );
+			toggle.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
+		};
+
+		toggle.addEventListener( 'click', function () {
+			setOpen( toggle.getAttribute( 'aria-expanded' ) !== 'true' );
+		} );
+
+		drawer.addEventListener( 'click', function ( event ) {
+			if ( event.target.closest( 'a' ) ) {
+				setOpen( false );
+			}
+		} );
+
+		document.addEventListener( 'keydown', function ( event ) {
+			if ( event.key === 'Escape' && toggle.getAttribute( 'aria-expanded' ) === 'true' ) {
+				setOpen( false );
+				toggle.focus();
+			}
+		} );
+
+		// Collapse the drawer when we cross back into the desktop layout.
+		// Must match the breakpoint in main.css.
+		var wide = window.matchMedia( '(min-width: 1180px)' );
+		var onChange = function ( event ) {
+			if ( event.matches ) {
+				setOpen( false );
+			}
+		};
+
+		if ( typeof wide.addEventListener === 'function' ) {
+			wide.addEventListener( 'change', onChange );
+		}
+	}
+
+	/**
+	 * Click-to-play facade for the member story video. Keeps the Vimeo player
+	 * (and its cookies) off the page until the visitor asks for it.
+	 */
+	function initStoryVideo() {
+		var triggers = document.querySelectorAll( '[data-sc-video]' );
+
+		Array.prototype.forEach.call( triggers, function ( trigger ) {
+			trigger.addEventListener( 'click', function () {
+				var frame = trigger.parentNode;
+				var src = trigger.getAttribute( 'data-sc-video' );
+				var title = trigger.getAttribute( 'data-sc-video-title' ) || '';
+
+				if ( ! src ) {
+					return;
+				}
+
+				var iframe = document.createElement( 'iframe' );
+				iframe.setAttribute( 'src', src );
+				iframe.setAttribute( 'title', title );
+				iframe.setAttribute( 'allow', 'autoplay; fullscreen; picture-in-picture' );
+				iframe.setAttribute( 'allowfullscreen', 'allowfullscreen' );
+				iframe.setAttribute( 'loading', 'lazy' );
+
+				frame.replaceChild( iframe, trigger );
+				iframe.focus();
+			} );
+		} );
+	}
+
+	/**
+	 * Long-form article behaviour: a contents rail built from the headings the
+	 * editor actually wrote, and a reading-progress hairline under the header.
+	 *
+	 * Both are enhancements. Without JavaScript the rail stays hidden and the
+	 * prose takes the measure on its own.
+	 */
+	function initArticle() {
+		var article = document.querySelector( '[data-sc-article]' );
+
+		if ( ! article ) {
+			return;
+		}
+
+		initContents( article );
+		initProgress( article );
+	}
+
+	/**
+	 * Turn the article's own h2/h3 structure into a sticky contents list.
+	 *
+	 * @param {HTMLElement} article The article element.
+	 */
+	function initContents( article ) {
+		var toc = article.querySelector( '[data-sc-toc]' );
+		var list = article.querySelector( '[data-sc-toc-list]' );
+		var prose = article.querySelector( '.sc-prose--article' );
+
+		if ( ! toc || ! list || ! prose ) {
+			return;
+		}
+
+		var headings = Array.prototype.slice.call( prose.querySelectorAll( 'h2, h3' ) );
+
+		// Below three sections a contents list is noise, not navigation.
+		if ( headings.length < 3 ) {
+			return;
+		}
+
+		var used = {};
+		var links = [];
+
+		headings.forEach( function ( heading, index ) {
+			if ( ! heading.id ) {
+				heading.id = slug( heading.textContent, used, index );
+			}
+
+			var item = document.createElement( 'li' );
+			var link = document.createElement( 'a' );
+
+			if ( heading.tagName === 'H3' ) {
+				item.className = 'sc-toc__sub';
+			}
+
+			link.href = '#' + heading.id;
+			link.textContent = heading.textContent.trim();
+
+			item.appendChild( link );
+			list.appendChild( item );
+
+			links.push( { item: item, heading: heading } );
+		} );
+
+		toc.hidden = false;
+
+		// Open on desktop where the rail is sticky; a disclosure on small screens.
+		var wide = window.matchMedia( '(min-width: 1100px)' );
+		var sync = function ( event ) {
+			toc.open = event.matches;
+		};
+
+		sync( wide );
+
+		if ( typeof wide.addEventListener === 'function' ) {
+			wide.addEventListener( 'change', sync );
+		}
+
+		// Close the disclosure again after jumping, on small screens only.
+		list.addEventListener( 'click', function () {
+			if ( ! wide.matches ) {
+				toc.open = false;
+			}
+		} );
+
+		trackCurrent( links );
+	}
+
+	/**
+	 * Build a unique, URL-safe id from a heading's text.
+	 *
+	 * @param {string} text  Heading text.
+	 * @param {Object} used  Map of ids already taken.
+	 * @param {number} index Heading position, used as the last-resort suffix.
+	 * @return {string} The id.
+	 */
+	function slug( text, used, index ) {
+		var base = text
+			.toLowerCase()
+			.replace( /[\u2018\u2019\u201c\u201d]/g, '' )
+			.replace( /[^a-z0-9]+/g, '-' )
+			.replace( /^-+|-+$/g, '' )
+			.slice( 0, 60 );
+
+		if ( ! base ) {
+			base = 'section';
+		}
+
+		var id = base;
+
+		while ( used[ id ] || document.getElementById( id ) ) {
+			id = base + '-' + ( index + 1 );
+			index++;
+		}
+
+		used[ id ] = true;
+
+		return id;
+	}
+
+	/**
+	 * Mark the section currently being read.
+	 *
+	 * @param {Array} links Pairs of list item and heading.
+	 */
+	function trackCurrent( links ) {
+		if ( ! ( 'IntersectionObserver' in window ) ) {
+			return;
+		}
+
+		var seen = [];
+
+		var setCurrent = function () {
+			// The last heading that has crossed the reading line wins.
+			var current = null;
+
+			links.forEach( function ( entry, index ) {
+				if ( seen[ index ] ) {
+					current = entry;
+				}
+			} );
+
+			links.forEach( function ( entry ) {
+				entry.item.classList.toggle( 'is-current', entry === current );
+			} );
+		};
+
+		var observer = new IntersectionObserver(
+			function ( entries ) {
+				entries.forEach( function ( entry ) {
+					links.forEach( function ( link, index ) {
+						if ( link.heading === entry.target ) {
+							seen[ index ] = entry.boundingClientRect.top < 140;
+						}
+					} );
+				} );
+
+				setCurrent();
+			},
+			{ rootMargin: '-140px 0px -60% 0px', threshold: 0 }
+		);
+
+		links.forEach( function ( entry ) {
+			observer.observe( entry.heading );
+		} );
+	}
+
+	/**
+	 * Scale the hairline under the sticky header to reading progress.
+	 *
+	 * @param {HTMLElement} article The article element.
+	 */
+	function initProgress( article ) {
+		var bar = document.querySelector( '[data-sc-progress]' );
+
+		if ( ! bar ) {
+			return;
+		}
+
+		var ticking = false;
+
+		var update = function () {
+			ticking = false;
+
+			var start = article.getBoundingClientRect().top + window.pageYOffset;
+			var distance = article.offsetHeight - window.innerHeight;
+			var scrolled = window.pageYOffset - start;
+			var ratio = distance > 0 ? scrolled / distance : 0;
+
+			bar.style.setProperty( '--sc-progress', Math.min( 1, Math.max( 0, ratio ) ).toFixed( 4 ) );
+		};
+
+		var request = function () {
+			if ( ! ticking ) {
+				ticking = true;
+				window.requestAnimationFrame( update );
+			}
+		};
+
+		window.addEventListener( 'scroll', request, { passive: true } );
+		window.addEventListener( 'resize', request );
+		update();
+	}
+
+
+	/**
+	 * The Entrepreneur Test: one question at a time in a native <dialog>, then
+	 * a contact step, then the thank-you screen.
+	 *
+	 * Enhancement only — with JavaScript off the buttons keep their href and the
+	 * dialog is never opened.
+	 */
+	function initQuiz() {
+		var dialog = document.querySelector( '[data-sc-quiz-dialog]' );
+
+		if ( ! dialog || typeof dialog.showModal !== 'function' ) {
+			return;
+		}
+
+		var steps = Array.prototype.slice.call( dialog.querySelectorAll( '[data-sc-quiz-step]' ) );
+		var form = dialog.querySelector( '.sc-quiz__form' );
+		var error = dialog.querySelector( '[data-sc-quiz-error]' );
+		var back = dialog.querySelector( '[data-sc-quiz-back]' );
+		var track = dialog.querySelector( '[data-sc-quiz-track] span' );
+		var count = dialog.querySelector( '[data-sc-quiz-count]' );
+		var current = dialog.querySelector( '[data-sc-quiz-current]' );
+		var submit = dialog.querySelector( '[data-sc-quiz-submit]' );
+		var submitLabel = submit ? submit.textContent : '';
+		var fallback = error.getAttribute( 'data-sc-quiz-fallback' ) || 'Something went wrong. Please try again.';
+		var doneIndex = steps.length - 1;
+		var answers = {};
+		var index = 0;
+
+		var pad = function ( n ) {
+			return n < 10 ? '0' + n : String( n );
+		};
+
+		var show = function ( next ) {
+			index = Math.max( 0, Math.min( doneIndex, next ) );
+
+			steps.forEach( function ( step, i ) {
+				step.hidden = i !== index;
+			} );
+
+			var done = index === doneIndex;
+
+			back.hidden = index === 0 || done;
+			count.hidden = done;
+			current.textContent = pad( index + 1 );
+			track.style.width = ( ( done ? 1 : ( index + 1 ) / doneIndex ) * 100 ) + '%';
+
+			var heading = steps[ index ].querySelector( '.sc-quiz__question' );
+
+			if ( heading ) {
+				heading.focus();
+			}
+		};
+
+		var open = function () {
+			dialog.showModal();
+			show( 0 );
+		};
+
+		Array.prototype.forEach.call( document.querySelectorAll( '[data-sc-quiz]' ), function ( trigger ) {
+			trigger.addEventListener( 'click', function ( event ) {
+				event.preventDefault();
+				open();
+			} );
+		} );
+
+		Array.prototype.forEach.call( dialog.querySelectorAll( '[data-sc-quiz-close]' ), function ( button ) {
+			button.addEventListener( 'click', function () {
+				dialog.close();
+			} );
+		} );
+
+		back.addEventListener( 'click', function () {
+			show( index - 1 );
+		} );
+
+		// Reset on close so a second visit starts clean, unless they finished.
+		dialog.addEventListener( 'close', function () {
+			if ( index !== doneIndex ) {
+				return;
+			}
+
+			answers = {};
+			form.reset();
+			error.hidden = true;
+
+			Array.prototype.forEach.call( dialog.querySelectorAll( '.is-chosen, .is-invalid' ), function ( el ) {
+				el.classList.remove( 'is-chosen', 'is-invalid' );
+			} );
+
+			show( 0 );
+		} );
+
+		// Clicking the backdrop closes: the panel is the only child, so a click
+		// landing on the dialog itself landed outside it.
+		dialog.addEventListener( 'click', function ( event ) {
+			if ( event.target === dialog ) {
+				dialog.close();
+			}
+		} );
+
+		dialog.addEventListener( 'click', function ( event ) {
+			var option = event.target.closest( '[data-sc-quiz-answer]' );
+
+			if ( ! option ) {
+				return;
+			}
+
+			var step = option.closest( '[data-sc-quiz-step]' );
+			var chosen = option.getAttribute( 'data-sc-quiz-answer' );
+
+			answers[ step.getAttribute( 'data-sc-quiz-question' ) ] = chosen;
+
+			Array.prototype.forEach.call( step.querySelectorAll( '[data-sc-quiz-answer]' ), function ( other ) {
+				other.classList.toggle( 'is-chosen', other === option );
+			} );
+
+			// A beat so the choice registers visually before the step changes.
+			window.setTimeout( function () {
+				show( index + 1 );
+			}, reduceMotion ? 0 : 180 );
+		} );
+
+		form.addEventListener( 'submit', function ( event ) {
+			event.preventDefault();
+
+			if ( typeof window.scQuiz === 'undefined' ) {
+				return;
+			}
+
+			var body = new FormData( form );
+
+			body.append( 'action', 'sc_quiz' );
+			body.append( 'nonce', window.scQuiz.nonce );
+
+			Object.keys( answers ).forEach( function ( id ) {
+				body.append( 'answers[' + id + ']', answers[ id ] );
+			} );
+
+			submit.disabled = true;
+			submit.textContent = submit.getAttribute( 'data-sc-quiz-sending' );
+			error.hidden = true;
+
+			window.fetch( window.scQuiz.url, { method: 'POST', body: body, credentials: 'same-origin' } )
+				.then( function ( response ) {
+					return response.json().catch( function () {
+						return { success: false };
+					} );
+				} )
+				.then( function ( result ) {
+					submit.disabled = false;
+					submit.textContent = submitLabel;
+
+					if ( result && result.success ) {
+						show( doneIndex );
+						return;
+					}
+
+					var data = result && result.data ? result.data : {};
+
+					Array.prototype.forEach.call( form.querySelectorAll( '.sc-field' ), function ( field ) {
+						var input = field.querySelector( '[name]' );
+						var bad = input && data.fields && data.fields.indexOf( input.name ) !== -1;
+
+						field.classList.toggle( 'is-invalid', !! bad );
+
+						if ( input ) {
+							input.setAttribute( 'aria-invalid', bad ? 'true' : 'false' );
+						}
+					} );
+
+					error.textContent = data.message || fallback;
+					error.hidden = false;
+				} )
+				.catch( function () {
+					submit.disabled = false;
+					submit.textContent = submitLabel;
+					error.textContent = fallback;
+					error.hidden = false;
+				} );
+		} );
+	}
+
+	function init() {
+		initLoader();
+		initMenu();
+		initStoryVideo();
+		initArticle();
+		initQuiz();
+	}
+
+	if ( document.readyState !== 'loading' ) {
+		init();
+	} else {
+		document.addEventListener( 'DOMContentLoaded', init );
+	}
+}() );

@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+*~
+
+# Logs and dumps
+*.log
+error_log
+debug.log
+
+# Never needed here — this theme has no build step on purpose
+node_modules/
+package-lock.json
+vendor/
+
+# Local tooling
+.phpunit.result.cache
+.php-cs-fixer.cache

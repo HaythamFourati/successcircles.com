@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Public+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: oklch(0.975 0.012 85); color: oklch(0.19 0.012 60); -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: oklch(0.19 0.012 60); text-decoration: none; }
+  a:hover { color: oklch(0.485 0.165 47); }
+  ::selection { background: oklch(0.62 0.17 48 / 0.22); }
+  html { scroll-behavior: smooth; }
+  @keyframes scRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+  @keyframes scOrbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes scOrbitRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+  @keyframes scCurtain {
+    0%, 62% { transform: translateY(0); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    70% { border-bottom-left-radius: 60px; border-bottom-right-radius: 60px; }
+    100% { transform: translateY(-101%); border-bottom-left-radius: 60px; border-bottom-right-radius: 60px; }
+  }
+  @keyframes scLoadMark { 0% { opacity: 0; transform: scale(0.88); } 20% { opacity: 1; transform: scale(1); } 60% { opacity: 1; transform: scale(1); } 76% { opacity: 0; transform: scale(1.08); } 100% { opacity: 0; } }
+  @keyframes scDotPulse { 0%, 100% { transform: scale(0.4); } 45% { transform: scale(1); } }
+  @keyframes scMarkCore { 0%, 100% { transform: scale(0.8); } 50% { transform: scale(1.25); } }
+  @keyframes scLoadLabel { 0%, 30% { opacity: 0; } 48% { opacity: 1; } 68% { opacity: 1; } 80% { opacity: 0; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { [data-loader] { display: none !important; } }
+</style>
+</helmet>
+
+<div style="font-family: 'Public Sans', system-ui, sans-serif; background: oklch(0.975 0.012 85); color: oklch(0.19 0.012 60); overflow-x: clip;">
+
+  <div data-loader="1" aria-hidden="true" style="position: fixed; inset: 0; z-index: 200; background-color: oklch(0.19 0.012 60); background-image: radial-gradient(oklch(0.965 0.012 85 / 0.05) 1px, transparent 1.4px); background-size: 26px 26px; display: grid; place-items: center; animation: scCurtain 1.95s cubic-bezier(0.76, 0, 0.24, 1) forwards; pointer-events: none;">
+    <div style="display: grid; justify-items: center; gap: 30px;">
+      <div style="position: relative; width: min(230px, 56vw); aspect-ratio: 1; animation: scLoadMark 1.9s cubic-bezier(0.4, 0, 0.2, 1) both;">{{ loaderMark }}</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.965 0.012 85 / 0.7); animation: scLoadLabel 1.9s ease both;">Powered by Momentum OS</div>
+    </div>
+  </div>
+
+  <header style="position: sticky; top: 0; z-index: 50; background: oklch(0.975 0.012 85 / 0.65); backdrop-filter: blur(18px) saturate(170%); -webkit-backdrop-filter: blur(18px) saturate(170%); border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 12px clamp(20px, 4vw, 40px); display: flex; align-items: center; gap: clamp(16px, 3vw, 48px);">
+      <a href="#" style="display: block; flex-shrink: 0;">
+        <img src="assets/successcircles-logo.png" alt="SuccessCircles" width="195" height="78" style="display: block; width: min(170px, 44vw); height: auto;">
+      </a>
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <nav style="display: flex; align-items: center; gap: clamp(14px, 1.8vw, 30px); font-size: 14.5px; font-weight: 500; margin-left: auto; white-space: nowrap;">
+          <a href="#programs">Programs</a>
+          <a href="#system">How It Works</a>
+          <a href="#stories">Success Stories</a>
+          <a href="#podcast">Podcast</a>
+          <a href="#founder">About</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 22px;">
+          <a href="https://www.successcircles.com/member-resources/" style="font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; color: oklch(0.19 0.012 60 / 0.7); white-space: nowrap;">Member Login</a>
+          <a href="#test" style="background: oklch(0.72 0.19 47); color: oklch(0.16 0.012 60); padding: 11px 20px; border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 14.5px; font-weight: 600; letter-spacing: -0.005em; white-space: nowrap;" style-hover="background: oklch(0.645 0.185 46); color: oklch(0.16 0.012 60);">Take the Entrepreneur Test</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ compact }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-left: auto; display: flex; align-items: center; gap: 14px;">
+          <a href="#test" style="background: oklch(0.72 0.19 47); color: oklch(0.16 0.012 60); padding: 11px 18px; border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 14.5px; font-weight: 600; white-space: nowrap;" style-hover="background: oklch(0.645 0.185 46); color: oklch(0.16 0.012 60);">Take the Test</a>
+          <button type="button" onClick="{{ toggleMenu }}" aria-label="Menu" style="width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; background: transparent; border: 1px solid oklch(0.19 0.012 60 / 0.22); border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; cursor: pointer; padding: 0;">
+            <span style="display: block; width: 18px; height: 1.5px; background: oklch(0.19 0.012 60);"></span>
+            <span style="display: block; width: 18px; height: 1.5px; background: oklch(0.19 0.012 60);"></span>
+          </button>
+        </div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <nav style="border-top: 1px solid oklch(0.19 0.012 60 / 0.12); padding: 12px clamp(20px, 4vw, 40px) 26px; display: grid; gap: 2px; font-size: 18px; font-weight: 500; background: oklch(0.975 0.012 85);">
+        <a href="#programs" onClick="{{ closeMenu }}" style="padding: 13px 0; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">Programs</a>
+        <a href="#system" onClick="{{ closeMenu }}" style="padding: 13px 0; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">How It Works</a>
+        <a href="#stories" onClick="{{ closeMenu }}" style="padding: 13px 0; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">Success Stories</a>
+        <a href="#podcast" onClick="{{ closeMenu }}" style="padding: 13px 0; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">Podcast</a>
+        <a href="#founder" onClick="{{ closeMenu }}" style="padding: 13px 0; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">About</a>
+        <a href="#faq" onClick="{{ closeMenu }}" style="padding: 13px 0; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">FAQ</a>
+        <a href="#contact" onClick="{{ closeMenu }}" style="padding: 13px 0; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.1);">Contact</a>
+        <a href="#" onClick="{{ closeMenu }}" style="padding: 15px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.04em; color: oklch(0.19 0.012 60 / 0.7);">Member Login</a>
+      </nav>
+    </sc-if>
+  </header>
+
+  <section style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 100px) clamp(20px, 4vw, 40px) clamp(72px, 10vw, 130px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: clamp(64px, 7vw, 96px); align-items: center;">
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.485 0.165 47); margin-bottom: 30px; animation: scRise .7s cubic-bezier(.2,.7,.2,1) 1s both;">Peer execution system for entrepreneurs</div>
+      <h1 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(46px, 5.6vw, 82px); line-height: 1.02; letter-spacing: -0.028em; margin: 0 0 28px; animation: scRise .8s cubic-bezier(.2,.7,.2,1) 1.08s both;">Stop running your business <em style="font-style: italic;">alone.</em></h1>
+      <p style="font-size: 19.5px; line-height: 1.6; max-width: 46ch; color: oklch(0.19 0.012 60 / 0.78); margin: 0 0 40px; animation: scRise .8s cubic-bezier(.2,.7,.2,1) 1.16s both;">Information is abundant. Execution is scarce. SuccessCircles gives established business owners the peers, structure, and accountability that turn intentions into weekly momentum.</p>
+      <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; animation: scRise .8s cubic-bezier(.2,.7,.2,1) 1.24s both;">
+        <a href="#test" style="background: oklch(0.72 0.19 47); color: oklch(0.16 0.012 60); padding: 16px 28px; border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 16px; font-weight: 600;" style-hover="background: oklch(0.645 0.185 46); color: oklch(0.16 0.012 60);">Take the Entrepreneur Test</a>
+        <a href="#programs" style="padding: 16px 24px; border: 1px solid oklch(0.19 0.012 60 / 0.28); border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 16px; font-weight: 600;" style-hover="border-color: oklch(0.19 0.012 60); color: oklch(0.19 0.012 60);">Explore Momentum Buddy</a>
+      </div>
+      <div style="margin-top: 52px; padding-top: 26px; animation: scRise .8s cubic-bezier(.2,.7,.2,1) 1.32s both; border-top: 1px solid oklch(0.19 0.012 60 / 0.12); display: flex; gap: 40px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.03em; color: oklch(0.19 0.012 60 / 0.72);">
+        <span>20 years in business</span>
+        <span>Weekday huddles</span>
+        <span>Application only</span>
+      </div>
+    </div>
+    <div style="position: relative; aspect-ratio: 1; display: grid; place-items: center;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid oklch(0.19 0.012 60 / 0.1);"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; animation: scOrbit 64s linear infinite;">
+        <span style="position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: oklch(0.19 0.012 60 / 0.28);"></span>
+        <span style="position: absolute; bottom: 12%; right: -5px; width: 9px; height: 9px; border-radius: 50%; background: oklch(0.19 0.012 60 / 0.2);"></span>
+      </div>
+      <div aria-hidden="true" style="position: absolute; inset: 8%; border-radius: 50%; border: 1px dashed oklch(0.19 0.012 60 / 0.16); animation: scOrbit 90s linear infinite;"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 8%; animation: scOrbitRev 46s linear infinite;">
+        <span style="position: absolute; top: -7px; left: 62%; width: 14px; height: 14px; border-radius: 50%; background: oklch(0.72 0.19 47);"></span>
+        <span style="position: absolute; bottom: 6%; left: -6px; width: 11px; height: 11px; border-radius: 50%; background: oklch(0.72 0.19 47 / 0.5);"></span>
+      </div>
+      <div style="position: relative; width: 84%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 30px 70px -40px oklch(0.19 0.012 60 / 0.5);">
+        <img src="cc-hero-smushed-msxna2d4-pcew.jpg" alt="Two entrepreneurs in a working conversation" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+      </div>
+      <div style="position: absolute; bottom: 6%; left: 2%; background: oklch(0.19 0.012 60); color: oklch(0.965 0.012 85); padding: 14px 20px; border-radius: 2px; max-width: 60%; box-shadow: 0 18px 40px -26px oklch(0.19 0.012 60 / 0.7);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.76 0.185 48); margin-bottom: 7px;">Today's huddle</div>
+        <div style="font-size: 15px; line-height: 1.4;">One priority. One peer. Fifteen minutes.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background-color: oklch(0.19 0.012 60); background-image: radial-gradient(oklch(0.965 0.012 85 / 0.045) 1px, transparent 1.4px); background-size: 26px 26px; color: oklch(0.965 0.012 85);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 22px clamp(20px, 4vw, 40px) calc(22px + clamp(30px, 4vw, 60px)); display: flex; align-items: center; justify-content: center; gap: 14px 30px; flex-wrap: wrap;">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.76 0.185 48);">As seen in</span>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Inc._(business_magazine)_logo.svg" alt="Inc." style="display: block; height: 19px; width: auto; filter: brightness(0) invert(1);">
+      <span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.965 0.012 85 / 0.32);"></span>
+      <span style="display: flex; align-items: center; gap: 10px;">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Trustpilot_Logo_(2022).svg" alt="Trustpilot" style="display: block; height: 19px; width: auto; filter: brightness(0) invert(1);">
+        <span style="font-size: 15px; color: oklch(0.965 0.012 85 / 0.68);">Rated Excellent</span>
+      </span>
+      <span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.965 0.012 85 / 0.32);"></span>
+      <span style="font-size: 15.5px; font-weight: 500;">Michael Gerber, <span style="color: oklch(0.965 0.012 85 / 0.62);">The E-Myth</span></span>
+      <span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.965 0.012 85 / 0.32);"></span>
+      <span style="font-size: 15.5px; font-weight: 500;">Blair Singer, <span style="color: oklch(0.965 0.012 85 / 0.62);">Rich Dad Advisor</span></span>
+    </div>
+  </section>
+
+  <section style="background: oklch(0.955 0.014 85); border-radius: clamp(30px, 4vw, 60px) clamp(30px, 4vw, 60px) 0 0; margin-top: clamp(-60px, -4vw, -30px); position: relative; z-index: 1;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(88px, 10vw, 140px) clamp(20px, 4vw, 40px) clamp(72px, 9vw, 130px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 72px;">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68); margin-bottom: 22px;"><span style="color: oklch(0.485 0.165 47);">01</span> &nbsp;/&nbsp; The problem</div>
+        <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.022em; margin: 0;">Success gets lonely <br>at the top.</h2>
+      </div>
+      <div style="display: grid; gap: 0;">
+        <div style="display: grid; grid-template-columns: 40px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.485 0.165 47); padding-top: 4px;">01</span>
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.01em;">Nobody around you is a true peer</h3>
+            <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7); max-width: 52ch;">Employees, family, and vendors can't give you objective feedback at your level. So the hardest decisions get made alone.</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 40px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.485 0.165 47); padding-top: 4px;">02</span>
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.01em;">You know what to do. It doesn't get done</h3>
+            <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7); max-width: 52ch;">The highest-leverage priority slips a week, then a quarter. Not for lack of knowledge — for lack of a forcing function.</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 40px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.485 0.165 47); padding-top: 4px;">03</span>
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.01em;">No one holds the owner accountable</h3>
+            <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7); max-width: 52ch;">You hold everyone else to a standard. Your own commitments are the only ones with no deadline and no witness.</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 40px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14); border-bottom: 1px solid oklch(0.19 0.012 60 / 0.14);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.485 0.165 47); padding-top: 4px;">04</span>
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.01em;">Everything is urgent, so nothing compounds</h3>
+            <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7); max-width: 52ch;">Busy is easy. Progress is the thing you can name at the end of the week — and most weeks, you can't.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="system" style="background-color: oklch(0.19 0.012 60); background-image: radial-gradient(oklch(0.965 0.012 85 / 0.05) 1px, transparent 1.4px); background-size: 26px 26px; color: oklch(0.965 0.012 85);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(80px, 10vw, 140px) clamp(20px, 4vw, 40px);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 72px; align-items: end; margin-bottom: 72px;">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.965 0.012 85 / 0.65); margin-bottom: 22px;"><span style="color: oklch(0.76 0.185 48);">02</span> &nbsp;/&nbsp; The system</div>
+          <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.022em; margin: 0;">Powered by <br><span style="color: oklch(0.76 0.185 48);">Momentum OS</span></h2>
+        </div>
+        <p style="font-size: 19px; line-height: 1.6; color: oklch(0.965 0.012 85 / 0.72); margin: 0; max-width: 48ch;">Momentum OS is the repeatable loop our members run every week. It's not a course or a framework you read once — it's the operating rhythm that peers, structure, and repetition make possible.</p>
+      </div>
+
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 18px 26px; padding: 34px 0; border-top: 1px solid oklch(0.965 0.012 85 / 0.16); border-bottom: 1px solid oklch(0.965 0.012 85 / 0.16); margin-bottom: 64px; font-family: 'Newsreader', Georgia, serif; font-size: clamp(20px, 2vw, 29px); letter-spacing: -0.015em;">
+        <span>Peers</span><span style="color: oklch(0.76 0.185 48); font-family: 'Public Sans', sans-serif; font-size: 20px;">+</span>
+        <span>Structure</span><span style="color: oklch(0.76 0.185 48); font-family: 'Public Sans', sans-serif; font-size: 20px;">+</span>
+        <span>Accountability</span><span style="color: oklch(0.76 0.185 48); font-family: 'Public Sans', sans-serif; font-size: 20px;">+</span>
+        <span>Repetition</span>
+        <span style="color: oklch(0.76 0.185 48); font-family: 'JetBrains Mono', monospace; font-size: 18px; margin: 0 6px;">→</span>
+        <span style="color: oklch(0.76 0.185 48); font-style: italic;">Momentum</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 0; border-top: 1px solid oklch(0.965 0.012 85 / 0.16); border-left: 1px solid oklch(0.965 0.012 85 / 0.16);">
+        <div style="border-right: 1px solid oklch(0.965 0.012 85 / 0.16); border-bottom: 1px solid oklch(0.965 0.012 85 / 0.16); padding: 30px 22px 34px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.76 0.185 48);"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: oklch(0.965 0.012 85 / 0.65);">01</span></div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 23px; margin: 0 0 10px; letter-spacing: -0.015em;">Clarify</h3>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: oklch(0.965 0.012 85 / 0.6);">Name the one priority that actually moves the business this week.</p>
+        </div>
+        <div style="border-right: 1px solid oklch(0.965 0.012 85 / 0.16); border-bottom: 1px solid oklch(0.965 0.012 85 / 0.16); padding: 30px 22px 34px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.16 50 / 0.8);"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: oklch(0.965 0.012 85 / 0.65);">02</span></div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 23px; margin: 0 0 10px; letter-spacing: -0.015em;">Commit</h3>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: oklch(0.965 0.012 85 / 0.6);">Say it out loud to a peer who will ask you about it by name.</p>
+        </div>
+        <div style="border-right: 1px solid oklch(0.965 0.012 85 / 0.16); border-bottom: 1px solid oklch(0.965 0.012 85 / 0.16); padding: 30px 22px 34px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.16 50 / 0.65);"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: oklch(0.965 0.012 85 / 0.65);">03</span></div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 23px; margin: 0 0 10px; letter-spacing: -0.015em;">Huddle</h3>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: oklch(0.965 0.012 85 / 0.6);">A short structured conversation on a weekday rhythm you keep.</p>
+        </div>
+        <div style="border-right: 1px solid oklch(0.965 0.012 85 / 0.16); border-bottom: 1px solid oklch(0.965 0.012 85 / 0.16); padding: 30px 22px 34px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.16 50 / 0.5);"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: oklch(0.965 0.012 85 / 0.65);">04</span></div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 23px; margin: 0 0 10px; letter-spacing: -0.015em;">Execute</h3>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: oklch(0.965 0.012 85 / 0.6);">Do the work between huddles, with the deadline already public.</p>
+        </div>
+        <div style="border-right: 1px solid oklch(0.965 0.012 85 / 0.16); border-bottom: 1px solid oklch(0.965 0.012 85 / 0.16); padding: 30px 22px 34px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.16 50 / 0.35);"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: oklch(0.965 0.012 85 / 0.65);">05</span></div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 23px; margin: 0 0 10px; letter-spacing: -0.015em;">Reflect</h3>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: oklch(0.965 0.012 85 / 0.6);">What worked, what didn't, and what the evidence says to change.</p>
+        </div>
+        <div style="border-right: 1px solid oklch(0.965 0.012 85 / 0.16); border-bottom: 1px solid oklch(0.965 0.012 85 / 0.16); padding: 30px 22px 34px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.16 50 / 0.2);"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: oklch(0.965 0.012 85 / 0.65);">06</span></div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 23px; margin: 0 0 10px; letter-spacing: -0.015em;">Compound</h3>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: oklch(0.965 0.012 85 / 0.6);">Run it again. The loop is where momentum stops being a mood.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="programs" style="background: oklch(0.975 0.012 85); border-radius: clamp(30px, 4vw, 60px) clamp(30px, 4vw, 60px) 0 0; margin-top: clamp(-60px, -4vw, -30px); position: relative; z-index: 1;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 11vw, 150px) clamp(20px, 4vw, 40px) clamp(80px, 10vw, 140px);">
+    <div style="margin-bottom: 56px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68); margin-bottom: 26px;"><span style="color: oklch(0.485 0.165 47);">03</span> &nbsp;/&nbsp; Programs</div>
+      <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(38px, 4.6vw, 66px); line-height: 1.04; letter-spacing: -0.026em; margin: 0 0 40px; max-width: 24ch;">Two ways in. Same <br>operating rhythm.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 0 72px; border-top: 1px solid oklch(0.19 0.012 60 / 0.14); padding-top: 26px;">
+        <span></span>
+        <p style="font-size: 19px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.72); margin: 0; max-width: 48ch;">One is a peer who knows your business by name. The other is a room of operators who've solved your problem before. Most members start with one and add the other.</p>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 1px; background: oklch(0.19 0.012 60 / 0.14); border: 1px solid oklch(0.19 0.012 60 / 0.14);">
+      <div style="background: oklch(0.972 0.022 72); padding: clamp(32px, 3.5vw, 52px); box-shadow: inset 0 3px 0 0 oklch(0.72 0.19 47);">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 26px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.485 0.165 47); white-space: nowrap;">One-to-one</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.19 0.012 60 / 0.72);">{{ buddyPrice }}/mo</span>
+        </div>
+        <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 14px;">Momentum Braintrust Buddy</h3>
+        <p style="font-size: 17px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.72); margin: 0 0 30px; max-width: 40ch;"><span style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.485 0.165 47); margin-bottom: 12px;">Most members start here</span>Structured one-to-one peer accountability. Matched intentionally, huddling on weekdays, in roughly two-week cycles so you meet a range of strong peers over time.</p>
+        <ul style="list-style: none; margin: 0 0 34px; padding: 0; display: grid; gap: 12px;">
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.72 0.19 47); margin-top: 8px;"></span>Intentional peer matching</li>
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.72 0.19 47); margin-top: 8px;"></span>Recurring weekday huddles</li>
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.72 0.19 47); margin-top: 8px;"></span>Priorities, commitments, course correction</li>
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.72 0.19 47); margin-top: 8px;"></span>Full SuccessCircles community access</li>
+        </ul>
+        <a href="https://peersc.com/applyscsite" style="display: inline-block; background: oklch(0.72 0.19 47); color: oklch(0.16 0.012 60); padding: 14px 26px; border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 15.5px; font-weight: 600;" style-hover="background: oklch(0.645 0.185 46); color: oklch(0.16 0.012 60);">Apply for Momentum Buddy</a>
+      </div>
+      <div style="background: oklch(0.975 0.012 85); padding: clamp(32px, 3.5vw, 52px);" style-hover="background: oklch(0.955 0.014 85);">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 26px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68);">Group</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.19 0.012 60 / 0.72);">{{ labsPrice }}/mo</span>
+        </div>
+        <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 14px;">Momentum Labs</h3>
+        <p style="font-size: 17px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.72); margin: 0 0 30px; max-width: 40ch;">Group execution and collaborative peer intelligence. Group huddles, strategic sprints, and a braintrust of operators who bring perspectives you don't have.</p>
+        <ul style="list-style: none; margin: 0 0 34px; padding: 0; display: grid; gap: 12px;">
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.19 0.012 60 / 0.4); margin-top: 8px;"></span>Group huddles</li>
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.19 0.012 60 / 0.4); margin-top: 8px;"></span>Strategic sprints</li>
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.19 0.012 60 / 0.4); margin-top: 8px;"></span>Collaborative problem solving</li>
+          <li style="display: grid; grid-template-columns: 16px 1fr; gap: 12px; font-size: 16px; line-height: 1.5;"><span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.19 0.012 60 / 0.4); margin-top: 8px;"></span>Community and shared resources</li>
+        </ul>
+        <a href="https://momentumhuddle.com/" style="display: inline-block; padding: 14px 26px; border: 1px solid oklch(0.19 0.012 60 / 0.3); border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 15.5px; font-weight: 600;" style-hover="border-color: oklch(0.19 0.012 60); color: oklch(0.19 0.012 60);">Join Momentum Labs</a>
+      </div>
+    </div>
+    <p style="margin: 22px 0 0; font-size: 15px; color: oklch(0.19 0.012 60 / 0.7);">Not sure which fits? <a href="#test" style="color: oklch(0.485 0.165 47); text-decoration: underline; text-underline-offset: 3px;">The Entrepreneur Test</a> points you to one in about five minutes.</p>
+
+    <div style="margin-top: clamp(56px, 6vw, 84px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+      <div style="padding: 30px 32px 30px 0; border-right: 1px solid oklch(0.19 0.012 60 / 0.12);">
+        <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 25px; letter-spacing: -0.018em; margin: 0 0 10px;">Every membership includes</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7);">Immediate access to $10,000 in member resources on peak performance, energy management, delegation, focus, and automation.</p>
+      </div>
+      <div style="padding: 30px 32px; border-right: 1px solid oklch(0.19 0.012 60 / 0.12);">
+        <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 25px; letter-spacing: -0.018em; margin: 0 0 10px;">Your cadence, your call</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7);">Huddle every weekday morning, or three days a week on Mondays, Wednesdays, and Fridays. Faith-based matching on request.</p>
+      </div>
+      <div style="padding: 30px 0 30px 32px;">
+        <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 25px; letter-spacing: -0.018em; margin: 0 0 10px;">30-day guarantee</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7);">Two full partnership cycles. If you're unhappy with your results for any reason, we refund your investment.</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid oklch(0.19 0.012 60 / 0.1); background: oklch(0.955 0.014 85);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(72px, 9vw, 130px) clamp(20px, 4vw, 40px);">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68); margin-bottom: 22px;"><span style="color: oklch(0.485 0.165 47);">04</span> &nbsp;/&nbsp; How it works</div>
+      <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.022em; margin: 0 0 64px; max-width: 22ch;">From application to compounding progress.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 40px; position: relative;">
+        <div style="position: relative; padding-top: 34px; border-top: 1px solid oklch(0.19 0.012 60 / 0.16);">
+          <span style="position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: oklch(0.72 0.19 47);"></span>
+          <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">Tell us the goal</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7);">A brief application, then a facilitator reaches out to confirm this is the right fit before anything starts.</p>
+        </div>
+        <div style="position: relative; padding-top: 34px; border-top: 1px solid oklch(0.19 0.012 60 / 0.16);">
+          <span style="position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: oklch(0.62 0.17 48 / 0.75);"></span>
+          <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">Get matched</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7);">A short intro questionnaire on your situation, strengths, and 90-day goals drives the match. Buddies rotate every two weeks, four at most.</p>
+        </div>
+        <div style="position: relative; padding-top: 34px; border-top: 1px solid oklch(0.19 0.012 60 / 0.16);">
+          <span style="position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: oklch(0.62 0.17 48 / 0.5);"></span>
+          <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">Huddle and execute</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7);">Weekday huddles keep the priority named, the commitment public, and the week honest.</p>
+        </div>
+        <div style="position: relative; padding-top: 34px; border-top: 1px solid oklch(0.19 0.012 60 / 0.16);">
+          <span style="position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: oklch(0.62 0.17 48 / 0.28);"></span>
+          <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">Compound momentum</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7);">Cycles repeat, peers rotate, and the standard you hold yourself to keeps moving up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stories" style="max-width: 1280px; margin: 0 auto; padding: clamp(80px, 10vw, 140px) clamp(20px, 4vw, 40px);">
+    <div style="display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 56px; flex-wrap: wrap;">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68); margin-bottom: 22px;"><span style="color: oklch(0.485 0.165 47);">05</span> &nbsp;/&nbsp; Success stories</div>
+        <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(36px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -0.022em; margin: 0; max-width: 24ch;">Members who stopped <br>deciding alone.</h2>
+      </div>
+      <div style="display: flex; gap: 28px; flex-wrap: wrap;">
+        <a href="https://www.successcircles.com/testimonials/" style="font-size: 15.5px; font-weight: 600; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.3); padding-bottom: 3px; transition: color .22s ease, border-color .22s ease;" style-hover="border-color: oklch(0.485 0.165 47); color: oklch(0.485 0.165 47);">See all success stories</a>
+        <a href="https://www.successcircles.com/weekly-wins/" style="font-size: 15.5px; font-weight: 600; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.3); padding-bottom: 3px; transition: color .22s ease, border-color .22s ease;" style-hover="border-color: oklch(0.485 0.165 47); color: oklch(0.485 0.165 47);">Momentum Buzz — member wins</a>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 56px; align-items: start; padding-bottom: clamp(40px, 4vw, 60px);">
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 16 / 9; background: oklch(0.19 0.012 60); position: relative;">
+          <sc-if value="{{ storyPlaying }}" hint-placeholder-val="{{ false }}">
+            <iframe src="https://player.vimeo.com/video/870306260?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1" title="Success Circles member story" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="allowfullscreen" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block;"></iframe>
+          </sc-if>
+          <sc-if value="{{ storyIdle }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ playStory }}" aria-label="Play: Dare to play a bigger game" style="position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; display: block;" style-hover="opacity: 1;">
+              <img src="assets/story-poster.png" alt="Joseph Varghese, founder of SuccessCircles" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;" />
+              <span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, oklch(0.19 0.012 60 / 0.42), oklch(0.19 0.012 60 / 0.04) 55%);"></span>
+              <span aria-hidden="true" style="position: absolute; top: 50%; left: 50%; width: 92px; height: 92px; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid oklch(0.965 0.012 85 / 0.55);"></span>
+              <span aria-hidden="true" style="position: absolute; top: 50%; left: 50%; width: 66px; height: 66px; transform: translate(-50%, -50%); border-radius: 50%; background: oklch(0.72 0.19 47); display: grid; place-items: center; box-shadow: 0 14px 34px -14px oklch(0.19 0.012 60 / 0.7);">
+                <span style="display: block; width: 0; height: 0; margin-left: 5px; border-left: 17px solid oklch(0.16 0.012 60); border-top: 11px solid transparent; border-bottom: 11px solid transparent;"></span>
+              </span>
+              <span aria-hidden="true" style="position: absolute; bottom: 18px; left: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.965 0.012 85 / 0.85);">Watch &nbsp;/&nbsp; 2 min</span>
+            </button>
+          </sc-if>
+        </div>
+        <figcaption style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: oklch(0.19 0.012 60 / 0.7); margin-top: 18px;">Dare to play a bigger game &nbsp;/&nbsp; 2 min</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <blockquote style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-size: clamp(21px, 2vw, 27px); line-height: 1.38; letter-spacing: -0.014em; text-wrap: pretty;">I just had my breakthrough VIP session with Joseph. Learning about Success Circles was very exciting to me. They have created something unique and affordable that brings tremendous value to business owners. Joseph was so generous and giving of his time that I signed up without him ever asking me to join. This was exactly what I was looking for.</blockquote>
+        <figcaption style="margin-top: 22px; display: flex; align-items: center; gap: 12px;">
+            <span aria-hidden="true" style="width: 22px; height: 1px; background: oklch(0.72 0.19 47);"></span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.05em;">H. William Song</span>
+            <span style="font-size: 14px; color: oklch(0.19 0.012 60 / 0.6);">Member</span>
+          </figcaption>
+      </figure>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); column-gap: clamp(40px, 4vw, 64px); row-gap: 0;">
+      <figure style="margin: 0; padding: clamp(36px, 4vw, 52px) 0 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+        <blockquote style="margin: 0; font-size: 17.5px; line-height: 1.62; color: oklch(0.19 0.012 60 / 0.85); text-wrap: pretty;">Success Circles is an amazing experience like no other. I found out things about myself that I did not know, by simply talking my self to my buddy. Having an accountability buddy gets you in the right momentum to succeed. What an incredible program and experience.</blockquote>
+        <figcaption style="margin-top: 22px; display: flex; align-items: center; gap: 12px;">
+            <span aria-hidden="true" style="width: 22px; height: 1px; background: oklch(0.72 0.19 47);"></span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.05em;">Andy Zapata</span>
+            <span style="font-size: 14px; color: oklch(0.19 0.012 60 / 0.6);">Member</span>
+          </figcaption>
+      </figure>
+      <figure style="margin: 0; padding: clamp(36px, 4vw, 52px) 0 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+        <blockquote style="margin: 0; font-size: 17.5px; line-height: 1.62; color: oklch(0.19 0.012 60 / 0.85); text-wrap: pretty;">Being a part of the Success Circles community is sooo amazing! I am so appreciative of what Joseph and the Success Circles Team are doing! As a subject matter expert in the small business space, it is critical that I have someone to hold me accountable in MY daily activities. I am honored and blessed to be connected with such a dynamic community!!!</blockquote>
+        <figcaption style="margin-top: 22px; display: flex; align-items: center; gap: 12px;">
+            <span aria-hidden="true" style="width: 22px; height: 1px; background: oklch(0.72 0.19 47);"></span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.05em;">Robin Haynes</span>
+            <span style="font-size: 14px; color: oklch(0.19 0.012 60 / 0.6);">Small business expert</span>
+          </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="test" style="background-color: oklch(0.19 0.012 60); background-image: radial-gradient(oklch(0.965 0.012 85 / 0.05) 1px, transparent 1.4px); background-size: 26px 26px; color: oklch(0.965 0.012 85); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -20%; right: -8%; width: 46%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.72 0.16 50 / 0.28);"></div>
+    <div style="position: absolute; top: -6%; right: 4%; width: 26%; aspect-ratio: 1; border-radius: 50%; border: 1px dashed oklch(0.965 0.012 85 / 0.16);"></div>
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(80px, 10vw, 130px) clamp(20px, 4vw, 40px); position: relative;">
+      <div style="max-width: min(100%, 720px);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.76 0.185 48); margin-bottom: 26px;">06 &nbsp;/&nbsp; The Entrepreneur Test</div>
+        <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(38px, 4.4vw, 62px); line-height: 1.06; letter-spacing: -0.025em; margin: 0 0 24px;">Are you running your business—or is it running you?</h2>
+        <p style="font-size: 19px; line-height: 1.6; color: oklch(0.965 0.012 85 / 0.72); margin: 0 0 36px; max-width: 50ch;">A serious diagnostic for established owners. Twelve questions on ownership, focus, and execution — then a straight read on where the leak is and which program addresses it.</p>
+        <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+          <a href="#" style="background: oklch(0.72 0.19 47); color: oklch(0.16 0.012 60); padding: 16px 28px; border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 16px; font-weight: 600;" style-hover="background: oklch(0.79 0.175 50); color: oklch(0.16 0.012 60);">Take the Entrepreneur Test</a>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.965 0.012 85 / 0.68);">5 minutes<br></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="founder" style="background: oklch(0.975 0.012 85); border-radius: clamp(30px, 4vw, 60px) clamp(30px, 4vw, 60px) 0 0; margin-top: clamp(-60px, -4vw, -30px); position: relative; z-index: 1;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 11vw, 150px) clamp(20px, 4vw, 40px) clamp(80px, 10vw, 140px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 72px; align-items: center;">
+    <div style="position: relative; padding: 26px 26px 0 0;">
+      <div aria-hidden="true" style="position: absolute; top: 0; right: 0; width: 46%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.19 0.012 60 / 0.16);"></div>
+      <div aria-hidden="true" style="position: absolute; bottom: 8%; left: -22px; width: 26%; aspect-ratio: 1; border-radius: 50%; border: 1px dashed oklch(0.72 0.19 47 / 0.4); animation: scOrbitRev 70s linear infinite;"></div>
+      <div style="aspect-ratio: 4 / 5; background: oklch(0.955 0.02 74); position: relative; overflow: hidden;">
+        <div aria-hidden="true" style="position: absolute; left: 50%; bottom: -30%; width: 108%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: oklch(0.972 0.022 72);"></div>
+        <img src="https://www.successcircles.com/wp-content/uploads/2023/12/2021-Joseph-Varghese-transparent.png" alt="Joseph Varghese, founder of Success Circles" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; display: block;">
+      </div>
+      <div aria-hidden="true" style="position: absolute; top: 26px; right: 0; width: 13px; height: 13px; border-radius: 50%; background: oklch(0.72 0.19 47);"></div>
+      <div aria-hidden="true" style="position: absolute; top: 46%; right: 6px; width: 9px; height: 9px; border-radius: 50%; background: oklch(0.19 0.012 60 / 0.32);"></div>
+    </div>
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68); margin-bottom: 22px;"><span style="color: oklch(0.485 0.165 47);">07</span> &nbsp;/&nbsp; Founder</div>
+      <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(34px, 3.6vw, 50px); line-height: 1.08; letter-spacing: -0.022em; margin: 0 0 24px;">Joseph JV Varghese</h2>
+      <p style="font-size: 18.5px; line-height: 1.65; color: oklch(0.19 0.012 60 / 0.78); margin: 0 0 20px; max-width: 50ch;">Joseph started SuccessCircles in 2005 on a simple observation: the owners who kept their commitments weren't more disciplined — they were less alone. An engineer by training, he built the structure around that.</p>
+      <p style="font-size: 17px; line-height: 1.65; color: oklch(0.19 0.012 60 / 0.65); margin: 0 0 32px; max-width: 50ch;">Two decades later, Momentum OS is what came out of it — and a community of owners who run it, not a coaching practice of one.</p>
+      <img src="https://www.successcircles.com/wp-content/uploads/2020/12/jsign.png" alt="Signature of Joseph Varghese" style="display: block; width: 190px; max-width: 60%; height: auto; margin: 0 0 30px; filter: invert(1) brightness(0.25);">
+      <div style="display: flex; gap: 28px; align-items: center; flex-wrap: wrap;">
+        <a href="https://www.successcircles.com/about-joseph-varghese/" style="font-size: 15.5px; font-weight: 600; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.3); padding-bottom: 3px; transition: color .22s ease, border-color .22s ease;" style-hover="border-color: oklch(0.485 0.165 47); color: oklch(0.485 0.165 47);">Meet Joseph</a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="podcast" style="border-top: 1px solid oklch(0.19 0.012 60 / 0.1); background: oklch(0.955 0.014 85);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(72px, 9vw, 120px) clamp(20px, 4vw, 40px);">
+      <div style="display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 48px; flex-wrap: wrap;">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68); margin-bottom: 22px;"><span style="color: oklch(0.485 0.165 47);">08</span> &nbsp;/&nbsp; Rules for Success</div>
+          <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(32px, 3.2vw, 46px); line-height: 1.1; letter-spacing: -0.022em; margin: 0;">Success leaves clues.</h2>
+        </div>
+        <a href="https://www.successcircles.com/blog/" style="font-size: 15.5px; font-weight: 600; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.3); padding-bottom: 3px; transition: color .22s ease, border-color .22s ease;" style-hover="border-color: oklch(0.485 0.165 47); color: oklch(0.485 0.165 47);">All episodes</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 40px;">
+        <a href="https://www.successcircles.com/rules-for-success-taylor-jacobson/" style="display: block;">
+          <img src="https://www.successcircles.com/wp-content/uploads/2026/07/Rules-for-Success-with-Taylor-Jacobson-Blog.png" alt="Rules for Success with Taylor Jacobson" style="aspect-ratio: 16 / 10; width: 100%; object-fit: cover; display: block; margin-bottom: 18px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; color: oklch(0.485 0.165 47); margin-bottom: 10px;">Founder &amp; CEO, Focusmate</div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; margin: 0;">Rules for Success with Taylor Jacobson</h3>
+        </a>
+        <a href="https://www.successcircles.com/rules-for-success-adam-gilad/" style="display: block;">
+          <img src="https://www.successcircles.com/wp-content/uploads/2026/07/Rules-for-Success-with-Adam-Gilad-Blog.png" alt="Rules for Success with Adam Gilad" style="aspect-ratio: 16 / 10; width: 100%; object-fit: cover; display: block; margin-bottom: 18px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; color: oklch(0.485 0.165 47); margin-bottom: 10px;">Founder, Epicenter Group</div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; margin: 0;">Rules for Success with Adam Gilad</h3>
+        </a>
+        <a href="https://www.successcircles.com/rules-for-success-chris-nolte-operational-alpha/" style="display: block;">
+          <img src="https://www.successcircles.com/wp-content/uploads/2026/07/Rules-for-Success-with-Chris-Nolte-and-David-Vogel-Blog.png" alt="Rules for Success with Chris Nolte and David Vogel" style="aspect-ratio: 16 / 10; width: 100%; object-fit: cover; display: block; margin-bottom: 18px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; color: oklch(0.485 0.165 47); margin-bottom: 10px;">Founder &amp; CEO, Kayana</div>
+          <h3 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; margin: 0;">Rules for Success with Chris Nolte about Operational Alpha</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="max-width: 1280px; margin: 0 auto; padding: clamp(80px, 10vw, 130px) clamp(20px, 4vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 72px; align-items: start;">
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.19 0.012 60 / 0.68); margin-bottom: 22px;"><span style="color: oklch(0.485 0.165 47);">09</span> &nbsp;/&nbsp; Questions</div>
+      <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(34px, 3.6vw, 50px); line-height: 1.08; letter-spacing: -0.022em; margin: 0 0 26px; max-width: 20ch;">The ones owners <br>actually ask.</h2>
+      <a href="https://www.successcircles.com/faq/" style="font-size: 15.5px; font-weight: 600; border-bottom: 1px solid oklch(0.19 0.012 60 / 0.3); padding-bottom: 3px; transition: color .22s ease, border-color .22s ease;" style-hover="border-color: oklch(0.485 0.165 47); color: oklch(0.485 0.165 47);">Read the full FAQ</a>
+    </div>
+    <div>
+      <div style="padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+        <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">How often do I get a new buddy?</h3>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.72); max-width: 54ch;">Buddies are assigned bi-monthly, with a maximum of two cycles — four weeks — with the same partner. Fresh feedback from different peers is what breaks the plateau.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+        <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">How do you know my buddy is the right fit?</h3>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.72); max-width: 54ch;">We match on goals and strengths: if another member is strong where you want to grow, or has already reached the goal you're aiming at, we pair you. Members rate each experience and can request a specific buddy.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14);">
+        <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">Why peers instead of a coach?</h3>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.72); max-width: 54ch;">Because a peer is on the same playing field. You stay autonomous in your decisions, and you contribute as much as you receive. Research points to peer accountability as the strongest driver of performance.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid oklch(0.19 0.012 60 / 0.14); border-bottom: 1px solid oklch(0.19 0.012 60 / 0.14);">
+        <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em;">What if it doesn't work for me?</h3>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.72); max-width: 54ch;">You have a 30-day trial — two partnership cycles. Unhappy with your results for any reason, and we refund your investment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top: 1px solid oklch(0.19 0.012 60 / 0.1); overflow: hidden;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(90px, 11vw, 150px) clamp(20px, 4vw, 40px); text-align: center; position: relative;">
+      <div aria-hidden="true" style="position: absolute; top: 50%; left: 50%; width: min(620px, 78vw); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid oklch(0.19 0.012 60 / 0.09); pointer-events: none;"></div>
+      <div aria-hidden="true" style="position: absolute; top: 50%; left: 50%; width: min(420px, 56vw); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px dashed oklch(0.62 0.17 48 / 0.22); pointer-events: none;"></div>
+      <h2 style="font-family: 'Newsreader', Georgia, serif; font-optical-sizing: auto; font-weight: 400; font-size: clamp(40px, 5.4vw, 76px); line-height: 1.02; letter-spacing: -0.028em; margin: 0 auto 26px; max-width: 18ch; position: relative;">Dare to play a <em style="font-style: italic;">bigger</em> game.</h2>
+      <p style="font-size: 19px; line-height: 1.6; color: oklch(0.19 0.012 60 / 0.7); margin: 0 auto 40px; max-width: 52ch;">Start with the test. It takes five minutes and tells you which room you belong in.</p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="https://peersc.com/applyscsite" style="background: oklch(0.72 0.19 47); color: oklch(0.16 0.012 60); padding: 16px 30px; border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 16px; font-weight: 600;" style-hover="background: oklch(0.645 0.185 46); color: oklch(0.16 0.012 60);">Take the Entrepreneur Test</a>
+        <a href="#programs" style="padding: 16px 26px; border: 1px solid oklch(0.19 0.012 60 / 0.28); border-radius: 2px; transition: background-color .22s ease, color .22s ease, border-color .22s ease; font-size: 16px; font-weight: 600;" style-hover="border-color: oklch(0.19 0.012 60); color: oklch(0.19 0.012 60);">Compare the programs</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background-color: oklch(0.19 0.012 60); background-image: radial-gradient(oklch(0.965 0.012 85 / 0.045) 1px, transparent 1.4px); background-size: 26px 26px; color: oklch(0.965 0.012 85);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 72px clamp(20px, 4vw, 40px) 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 48px;">
+      <div>
+        <img src="assets/successcircles-logo.png" alt="SuccessCircles" width="195" height="78" style="display: block; width: 168px; height: auto; margin-bottom: 22px;">
+        <p style="font-size: 15px; line-height: 1.6; color: oklch(0.965 0.012 85 / 0.6); margin: 0; max-width: 34ch;">A peer execution system and advisory community for established entrepreneurs. Since 2005.</p>
+      </div>
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.965 0.012 85 / 0.65); margin-bottom: 18px;">Programs</div>
+        <div style="display: grid; gap: 11px; font-size: 15px;">
+          <a href="https://www.momentumbuddy.com" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Momentum Braintrust Buddy</a>
+          <a href="https://momentumhuddle.com/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Momentum Labs</a>
+          <a href="#" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Momentum OS</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.965 0.012 85 / 0.65); margin-bottom: 18px;">Explore</div>
+        <div style="display: grid; gap: 11px; font-size: 15px;">
+          <a href="#" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Entrepreneur Test</a>
+          <a href="https://www.successcircles.com/testimonials/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Success Stories</a>
+          <a href="https://www.successcircles.com/blog/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Rules for Success</a>
+          <a href="https://www.successcircles.com/faq/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">FAQ</a>
+          <a href="https://www.successcircles.com/weekly-wins/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Momentum Buzz</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.965 0.012 85 / 0.65); margin-bottom: 18px;">Company</div>
+        <div style="display: grid; gap: 11px; font-size: 15px;">
+          <a href="https://www.successcircles.com/about/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">About</a>
+          <a href="https://www.successcircles.com/about-joseph-varghese/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Joseph JV Varghese</a>
+          <a href="https://www.successcircles.com/contact-us/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Contact</a>
+          <a href="https://www.successcircles.com/member-resources/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Member Login</a>
+          <a href="https://ilovemomentum.com/" style="color: oklch(0.965 0.012 85 / 0.8);" style-hover="color: oklch(0.76 0.185 48);">Affiliates</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1280px; margin: 0 auto; padding: 24px clamp(20px, 4vw, 40px) 44px; border-top: 1px solid oklch(0.965 0.012 85 / 0.14); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.04em; color: oklch(0.965 0.012 85 / 0.65);">
+        <span>© 2026 SuccessCircles &nbsp;&nbsp;/&nbsp;&nbsp; <a href="https://www.successcircles.com/privacy-policy/" style="color: oklch(0.965 0.012 85 / 0.65);" style-hover="color: oklch(0.76 0.185 48);">Privacy</a> &nbsp;&nbsp;/&nbsp;&nbsp; <a href="https://www.successcircles.com/terms-conditions/" style="color: oklch(0.965 0.012 85 / 0.65);" style-hover="color: oklch(0.76 0.185 48);">Terms</a></span>
+        <span style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <a href="https://www.linkedin.com/company/successcircles" style="color: oklch(0.965 0.012 85 / 0.65);" style-hover="color: oklch(0.76 0.185 48);">LinkedIn</a>
+          <a href="https://youtube.com/successcircles" style="color: oklch(0.965 0.012 85 / 0.65);" style-hover="color: oklch(0.76 0.185 48);">YouTube</a>
+          <a href="https://facebook.com/successcircles" style="color: oklch(0.965 0.012 85 / 0.65);" style-hover="color: oklch(0.76 0.185 48);">Facebook</a>
+          <a href="https://twitter.com/successcircles" style="color: oklch(0.965 0.012 85 / 0.65);" style-hover="color: oklch(0.76 0.185 48);">X</a>
+        </span>
+        <span>Tel +1 (747) 2CIRCLE &nbsp;/&nbsp; +1 (747) 224-7253</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;buddyPrice&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;$194&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Pricing&quot;},&quot;labsPrice&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;$97&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Pricing&quot;}}">
+class Component extends DCLogic {
+  state = { compact: false, menuOpen: false, storyPlaying: false };
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 1023px)");
+    this.sync = () => this.setState({ compact: this.mq.matches, menuOpen: false });
+    this.sync();
+    this.mq.addEventListener("change", this.sync);
+  }
+  componentWillUnmount() { if (this.mq) this.mq.removeEventListener("change", this.sync); }
+  loaderMark() {
+    const R = React.createElement;
+    const rings = [
+      { n: 8,  r: 26, d: 7.5, o: 1.0,  dur: 11 },
+      { n: 12, r: 45, d: 7.0, o: 0.82, dur: 15, rev: true },
+      { n: 16, r: 64, d: 6.5, o: 0.62, dur: 19 },
+      { n: 22, r: 83, d: 6.0, o: 0.44, dur: 25, rev: true },
+      { n: 28, r: 102, d: 5.5, o: 0.28, dur: 31 }
+    ];
+    const BOX = 112; // half of the mark box, in the same units as ring.r
+    const children = rings.map((ring, k) => {
+      const dots = [];
+      for (let i = 0; i < ring.n; i++) {
+        const a = (i / ring.n) * 360;
+        const inset = (100 * (BOX - ring.r) / (2 * BOX)).toFixed(3) + "%";
+        dots.push(R("span", {
+          key: i,
+          style: {
+            position: "absolute", inset: inset,
+            transform: "rotate(" + a + "deg)"
+          }
+        }, R("span", {
+          style: {
+            position: "absolute", top: 0, left: "50%",
+            width: ring.d + "px", height: ring.d + "px",
+            marginLeft: (-ring.d / 2) + "px", marginTop: (-ring.d / 2) + "px",
+            borderRadius: "50%",
+            background: "oklch(0.76 0.185 48 / " + ring.o + ")",
+            animation: "scDotPulse 2.1s ease-in-out infinite",
+            animationDelay: ((i / ring.n) * 2.1 + k * 0.14).toFixed(3) + "s"
+          }
+        })));
+      }
+      return R("span", {
+        key: k,
+        style: {
+          position: "absolute", inset: 0,
+          animation: (ring.rev ? "scOrbitRev " : "scOrbit ") + ring.dur + "s linear infinite"
+        }
+      }, dots);
+    });
+    children.push(R("span", {
+      key: "core",
+      style: {
+        position: "absolute", top: "50%", left: "50%", width: "16px", height: "16px",
+        marginLeft: "-8px", marginTop: "-8px", borderRadius: "50%",
+        background: "oklch(0.79 0.19 49)",
+        animation: "scMarkCore 2.1s ease-in-out infinite"
+      }
+    }));
+    children.push(R("span", {
+      key: "halo",
+      style: {
+        position: "absolute", inset: "6%", borderRadius: "50%",
+        border: "1px solid oklch(0.965 0.012 85 / 0.13)"
+      }
+    }));
+    return R("span", { style: { position: "absolute", inset: 0, display: "block" } }, children);
+  }
+  renderVals() {
+    return {
+      loaderMark: this.loaderMark(),
+      wide: !this.state.compact,
+      compact: this.state.compact,
+      menuOpen: this.state.compact && this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      storyPlaying: this.state.storyPlaying,
+      storyIdle: !this.state.storyPlaying,
+      playStory: () => this.setState({ storyPlaying: true }),
+      buddyPrice: this.props.buddyPrice ?? "$194",
+      labsPrice: this.props.labsPrice ?? "$97",
+    };
+  }
+}
+</script>
+</body>
+</html>
