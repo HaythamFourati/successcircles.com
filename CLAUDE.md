@@ -103,8 +103,8 @@ header.php                     # doctype, preconnects, skip link, loader, site-h
 footer.php                     # closes main, site-footer, wp_footer
 front-page.php                 # homepage — calls the 12 home template parts in order
 page.php                       # generic page
-page-about.php                 # auto-used for slug "about"; ALSO the live Core Values
-                               #   anchor — keep id="corevalues" on the values section
+page-about.php                 # auto-used for slug "about"; keep id="corevalues" on the
+                               #   values section for inbound links to the old anchor
 page-about-joseph-varghese.php # auto-used for slug "about-joseph-varghese"
 page-testimonials.php          # auto-used for slug "testimonials"; 11 member films + 8 quotes
 page-weekly-wins.php           # auto-used for slug "weekly-wins"; the live Momentum Buzz feed
@@ -354,14 +354,17 @@ Two nav items are dropdowns, both matching the live site's own menu:
 | Parent | Children |
 | --- | --- |
 | Success Stories | Testimonials `/testimonials/` · Momentum Buzz `/weekly-wins/` |
-| About | Core Values `/about/#corevalues` · Joseph Varghese `/about-joseph-varghese/` · FAQ `/faq/` |
+| About | Core Values `/about/` · Joseph Varghese `/about-joseph-varghese/` · FAQ `/faq/` |
 
 **FAQ is no longer a top-level nav item** — it folded under About, as it is on the live
 site. `/faq/` itself is unchanged.
 
-"Core Values" is an **anchor, not a page**: the live site has no separate core-values
-URL, so it points at `/about/#corevalues` and `page-about.php` carries that id on its
-values section. Fallback links in the
+"Core Values" is **not a separate page** — the live site has no core-values URL, so the
+nav item points at plain `/about/`, where the values section is. It pointed at
+`/about/#corevalues` until 2026-08-24; the anchor was dropped from the nav because the
+URL read badly, but **`page-about.php` still carries `id="corevalues"`** so inbound links
+to the old anchor keep working. Note this makes the "Core Values" child link the same URL
+as its own "About" parent. Fallback links in the
 content tree may carry a `children` array; `successcircles_nav_list()` renders it as
 `.sc-subnav`, opened by `:hover` / `:focus-within` with **no JavaScript**, and as a plain
 indented list in the mobile drawer. `wp_nav_menu` runs at `depth => 2` so an

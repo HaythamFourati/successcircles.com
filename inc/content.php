@@ -75,7 +75,7 @@ function successcircles_content_tree() {
 				'children' => array(
 					array(
 						'label' => __( 'Core Values', 'successcircles' ),
-						'url'   => '/about/#corevalues',
+						'url'   => '/about/',
 					),
 					array(
 						'label' => __( 'Joseph Varghese', 'successcircles' ),
@@ -882,6 +882,15 @@ function successcircles_content_tree() {
 			'values'    => array(
 				'title' => __( 'Two vows, made <br>on the way in.', 'successcircles' ),
 				'lede'  => __( 'Upon joining, every member of Success Circles makes a commitment to respect and uphold the community&rsquo;s core founding values:', 'successcircles' ),
+				// The club's own core-values seal, carrying both vows around its
+				// ring — which is why it sits with the section heading rather
+				// than beside either vow.
+				'badge' => array(
+					'file'   => 'core-values.png',
+					'alt'    => __( 'SuccessCircles core values seal: make others better than you found them, and aim to be better today than yesterday. #BETTERPRINCIPLES', 'successcircles' ),
+					'width'  => 584,
+					'height' => 603,
+				),
 				'items' => array(
 					array(
 						'title' => __( 'Make Others Better Than You Found Them', 'successcircles' ),

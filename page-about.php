@@ -3,8 +3,10 @@
  * The About page.
  *
  * Automatically used for a page with the slug "about" — which is where the live
- * site's Core Values live too, at /about/#corevalues. The nav's "Core Values"
- * item points at that anchor, so the values section must keep id="corevalues".
+ * site's Core Values live too. The nav's "Core Values" item now points at plain
+ * /about/, but the values section keeps id="corevalues" on purpose: the live
+ * site published /about/#corevalues, so inbound links to that anchor still land
+ * in the right place. Keep the id even though the nav no longer needs it.
  *
  * The designed sections are
  * driven by the `about` block in inc/content.php — edit the copy there, not here.
@@ -128,13 +130,30 @@ endwhile;
 
 <section id="corevalues" class="sc-band--sand sc-band--curtain" aria-labelledby="sc-about-values-title">
 	<div class="sc-section">
-		<h2 id="sc-about-values-title" class="sc-display sc-display--lg" style="max-width:18ch">
-			<?php echo successcircles_inline( $sc_values['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</h2>
+		<div class="sc-about__values-head">
+			<div class="sc-about__values-intro">
+				<h2 id="sc-about-values-title" class="sc-display sc-display--lg sc-about__values-title">
+					<?php echo successcircles_inline( $sc_values['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</h2>
 
-		<p class="sc-lede" style="margin-top:24px">
-			<?php echo esc_html( wp_specialchars_decode( $sc_values['lede'] ) ); ?>
-		</p>
+				<p class="sc-lede sc-about__values-lede">
+					<?php echo esc_html( wp_specialchars_decode( $sc_values['lede'] ) ); ?>
+				</p>
+			</div>
+
+			<?php if ( ! empty( $sc_values['badge']['file'] ) ) : ?>
+				<?php $sc_badge = (array) $sc_values['badge']; ?>
+				<img
+					class="sc-about__values-badge"
+					src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/about/' . $sc_badge['file'] ); ?>"
+					alt="<?php echo esc_attr( wp_specialchars_decode( $sc_badge['alt'] ) ); ?>"
+					width="<?php echo esc_attr( $sc_badge['width'] ); ?>"
+					height="<?php echo esc_attr( $sc_badge['height'] ); ?>"
+					loading="lazy"
+					decoding="async"
+				>
+			<?php endif; ?>
+		</div>
 
 		<div class="sc-about__vows">
 			<?php foreach ( (array) $sc_values['items'] as $sc_item ) : ?>

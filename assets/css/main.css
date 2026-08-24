@@ -3274,6 +3274,37 @@ iframe {
 	pointer-events: none;
 }
 
+/* Values header — heading and lede left, the club's core-values seal right.
+   The seal carries BOTH vows around its ring, so it belongs to the section as
+   a whole rather than to either row below it. */
+.sc-about__values-head {
+	display: grid;
+	gap: clamp(28px, 4vw, 56px);
+	align-items: center;
+}
+
+@media (min-width: 860px) {
+	.sc-about__values-head {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+}
+
+.sc-about__values-title {
+	max-width: 18ch;
+}
+
+.sc-about__values-lede {
+	margin-top: 24px;
+}
+
+/* Sized off the seal's own geometry, not the column: it is a fixed mark, and
+   letting it stretch would break the ring's set type. */
+.sc-about__values-badge {
+	width: clamp(240px, 33vw, 372px);
+	height: auto;
+	justify-self: center;
+}
+
 /* Values — alternating full-width rows. Cards would flatten two commitments
    into two equivalent boxes; rows let them read as statements. */
 .sc-about__vows {
@@ -3328,11 +3359,20 @@ iframe {
 }
 
 /* Story — image alongside heading + prose, then the arc spanning the full band. */
+/* One of the few explicit breakpoints in this file, and deliberately so: the
+   image has to be told to fill the row only once there IS a second column to
+   match. auto-fit can size columns but cannot express "now stretch", so the
+   two states are set out separately. */
 .sc-about__story-top {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 	gap: clamp(32px, 5vw, 72px);
-	align-items: start;
+}
+
+@media (min-width: 760px) {
+	.sc-about__story-top {
+		grid-template-columns: 1fr 1fr;
+		align-items: stretch;
+	}
 }
 
 .sc-about__story-media {
@@ -3340,6 +3380,17 @@ iframe {
 	overflow: hidden;
 	background: oklch(var(--sc-cream-c) / 0.06);
 	aspect-ratio: 4 / 5;
+}
+
+/* Stacked, the portrait keeps its 4:5 crop. Side by side it drops the fixed
+   ratio and takes the height of the text beside it, so the two columns end on
+   the same line instead of leaving the image hanging short. */
+@media (min-width: 760px) {
+	.sc-about__story-media {
+		aspect-ratio: auto;
+		height: 100%;
+		min-height: 100%;
+	}
 }
 
 .sc-about__story-media img {
