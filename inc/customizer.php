@@ -89,6 +89,10 @@ function successcircles_customize_register( $wp_customize ) {
 			'label'   => __( 'Momentum Labs', 'successcircles' ),
 			'default' => successcircles_content( 'programs.cards.1.price', '$97' ),
 		),
+		'sc_team_price'  => array(
+			'label'   => __( 'Momentum Team', 'successcircles' ),
+			'default' => successcircles_content( 'programs.cards.2.price', '$797' ),
+		),
 	);
 
 	foreach ( $prices as $id => $price ) {
@@ -215,7 +219,7 @@ function successcircles_social_url( $social ) {
  * @return string
  */
 function successcircles_program_price( $index, $default = '' ) {
-	$mods = array( 0 => 'sc_buddy_price', 1 => 'sc_labs_price' );
+	$mods = array( 0 => 'sc_buddy_price', 1 => 'sc_labs_price', 2 => 'sc_team_price' );
 
 	if ( isset( $mods[ $index ] ) ) {
 		return (string) get_theme_mod( $mods[ $index ], $default );

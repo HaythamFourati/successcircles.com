@@ -150,9 +150,15 @@ Defined in `front-page.php`. Numbering matches the design's eyebrow labels.
 | 05 | `stories` | sand | Vimeo facade + large pull-quote + 2 testimonials. |
 | 06 | `test` | **dark** | Entrepreneur Test CTA band. |
 | 07 | `founder` | sand + curtain | Joseph JV Varghese, portrait + signature. |
-| 08 | `podcast` | shade + hairline | 3 "Rules for Success" cards. |
-| 09 | `faq` | sand | 4 Q&A + FAQPage JSON-LD. |
+| 08 | `faq` | **shade + hairline** | 4 Q&A + FAQPage JSON-LD. |
 | — | `cta` | sand + hairline | "Dare to play a bigger game." `id="contact"`. Primary button opens the test. |
+
+**The podcast section was removed from the homepage on 2026-08-31** (`template-parts/home/podcast.php`
+is still in the tree, just no longer included by `front-page.php`; the blog itself is
+untouched at `/rules-for-success/`). Two things had to move with it: the FAQ was renumbered
+09 → 08 so the eyebrow sequence has no gap, and the FAQ took over the **shade + hairline**
+band, because podcast carried the only tonal break between the founder band and the closing
+CTA — without it, founder / FAQ / CTA ran together as one unbroken sand field.
 
 **The band rhythm matters.** Dark sections are followed by light sections carrying
 `.sc-band--curtain`, which applies `border-radius: clamp(30px,4vw,60px) … 0 0` plus a
@@ -579,7 +585,7 @@ The quiz modal is rendered in `wp_footer` sitewide, so **every page carries 8 ex
 closed `<dialog>` (`display: none`, out of the accessibility tree) and show one at a time
 when open. Counts below are h1/h2/h3 *including* those 8:
 
-`/` 1/21/26 · `/about/` 1/17/2 · `/about-joseph-varghese/` 1/15/0 · `/testimonials/`
+`/` 1/**20**/**24** (was 1/21/26 before the homepage podcast section was removed) · `/about/` 1/17/2 · `/about-joseph-varghese/` 1/15/0 · `/testimonials/`
 1/14/0 · `/weekly-wins/` 1/12/0 (and `?wins=3`) · `/rules-for-success/` 1/19/0 ·
 `/faq/` 1/16/0 · `/contact-us/` 1/12/3 · `/?s=momentum` 1/**19**/0 · `/nope/` → 404 1/11/0.
 

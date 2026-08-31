@@ -293,7 +293,7 @@ function successcircles_schema_reviews( $item_id, $limit = 6 ) {
 }
 
 /**
- * The two programs as Service nodes with Offers.
+ * The programs as Service nodes with Offers.
  *
  * @return array<int, array<string, mixed>>
  */
@@ -518,6 +518,9 @@ function successcircles_schema_webpage() {
 	$slug = successcircles_seo_slug();
 
 	$types = array(
+		'momentum-buddy'        => 'ItemPage',
+		'momentum-labs'         => 'ItemPage',
+		'momentum-team'         => 'ItemPage',
 		'about'                 => 'AboutPage',
 		'about-joseph-varghese' => 'AboutPage',
 		'contact-us'            => 'ContactPage',

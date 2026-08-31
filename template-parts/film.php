@@ -14,6 +14,7 @@
  *     @type array<string, mixed> $film     One entry from the `testimonials.videos` content block.
  *     @type string               $play     Localised "Play" label.
  *     @type bool                 $featured Larger treatment for the opener.
+ *     @type string               $dir      Poster directory under assets/img/. Defaults to "testimonials".
  * }
  */
 
@@ -22,6 +23,7 @@ defined( 'ABSPATH' ) || exit;
 $sc_film     = (array) $args['film'];
 $sc_play     = isset( $args['play'] ) ? (string) $args['play'] : __( 'Play', 'successcircles' );
 $sc_featured = ! empty( $args['featured'] );
+$sc_dir      = isset( $args['dir'] ) ? (string) $args['dir'] : 'testimonials';
 
 $sc_embed = add_query_arg(
 	array(
@@ -47,7 +49,7 @@ $sc_label = sprintf( __( 'Play: %s', 'successcircles' ), $sc_film['name'] );
 			aria-label="<?php echo esc_attr( $sc_label ); ?>"
 		>
 			<img
-				src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/testimonials/' . $sc_film['poster'] ); ?>"
+				src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/' . $sc_dir . '/' . $sc_film['poster'] ); ?>"
 				alt=""
 				width="<?php echo esc_attr( (string) $sc_film['width'] ); ?>"
 				height="<?php echo esc_attr( (string) $sc_film['height'] ); ?>"

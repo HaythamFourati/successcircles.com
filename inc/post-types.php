@@ -127,6 +127,9 @@ function successcircles_activate() {
 		'about-joseph-varghese'  => __( 'About Joseph Varghese', 'successcircles' ),
 		'faq'                    => __( 'FAQ', 'successcircles' ),
 		'contact-us'             => __( 'Contact', 'successcircles' ),
+		'momentum-buddy'         => __( 'Momentum Braintrust Buddy', 'successcircles' ),
+		'momentum-labs'          => __( 'Momentum Labs', 'successcircles' ),
+		'momentum-team'          => __( 'Momentum Team', 'successcircles' ),
 	);
 
 	$ids = array();

@@ -40,6 +40,10 @@
 	--sc-curtain: clamp(30px, 4vw, 60px);
 	--sc-curtain-pull: clamp(-60px, -4vw, -30px);
 	--sc-radius: 2px;
+	/* Buttons are pills — the name is SuccessCircles, so the controls are round.
+	   Kept separate from --sc-radius on purpose: that one still governs inputs,
+	   cards and notices, which stay near-square. */
+	--sc-btn-radius: 999px;
 
 	/* Motion */
 	--sc-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -313,7 +317,7 @@ iframe {
 .sc-btn {
 	display: inline-block;
 	border: 0;
-	border-radius: var(--sc-radius);
+	border-radius: var(--sc-btn-radius);
 	padding: 16px 28px;
 	font-family: inherit;
 	font-size: 16px;
@@ -2890,7 +2894,8 @@ iframe {
 
 .sc-pagination .page-numbers {
 	display: inline-block;
-	padding: 6px 12px;
+	padding: 6px 13px;
+	border-radius: var(--sc-btn-radius);
 }
 
 .sc-pagination .page-numbers.current {
@@ -4338,9 +4343,9 @@ iframe {
 	align-items: center;
 	gap: 14px;
 	width: 100%;
-	padding: 17px 20px;
+	padding: 17px 24px;
 	border: 1px solid oklch(var(--sc-ink-c) / 0.16);
-	border-radius: var(--sc-radius);
+	border-radius: var(--sc-btn-radius);
 	background: transparent;
 	color: var(--sc-ink);
 	font-family: inherit;
@@ -4653,7 +4658,18 @@ html:has(.sc-quiz[open]) {
 	font-size: 11.5px;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	color: oklch(var(--sc-ink-c) / 0.5);
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+/* The facade was written for the testimonials page, which is a light band.
+   On a dark band (the Momentum Labs film) the caption inherited ink and went
+   invisible — 1:1 against the background. */
+.sc-band--dark .sc-film__name {
+	color: var(--sc-cream);
+}
+
+.sc-band--dark .sc-film__kind {
+	color: oklch(var(--sc-cream-c) / 0.6);
 }
 
 .sc-film--featured .sc-film__name {
@@ -4808,4 +4824,1973 @@ html:has(.sc-quiz[open]) {
 	aspect-ratio: 16 / 8;
 	object-fit: cover;
 	border-radius: var(--sc-radius);
+}
+
+/* --------------------------------------------------------------------------
+   Momentum Braintrust Buddy page (page-momentum-buddy.php)
+
+   The program's own page, replacing the outbound Kartra funnel. Structure
+   follows the source page's argument: promise → the five struggles → what a
+   day looks like → proof → inclusions → plans → closing.
+   -------------------------------------------------------------------------- */
+
+.sc-buddy__hero {
+	display: grid;
+	gap: clamp(36px, 5vw, 72px);
+	align-items: center;
+}
+
+@media (min-width: 900px) {
+	.sc-buddy__hero {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+	}
+}
+
+.sc-buddy__lede {
+	margin-top: clamp(20px, 2.5vw, 28px);
+	max-width: 46ch;
+}
+
+.sc-buddy__actions {
+	margin-top: clamp(28px, 3vw, 38px);
+	align-items: center;
+}
+
+.sc-buddy__cta-note {
+	margin: 0;
+	max-width: 32ch;
+	text-wrap: balance;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	line-height: 1.5;
+	letter-spacing: 0.04em;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-buddy__badge {
+	display: block;
+	width: clamp(180px, 22vw, 240px);
+	height: auto;
+	margin-top: clamp(28px, 3vw, 40px);
+}
+
+/* The member ring. The programme matches you with peers, so the peers are the
+   hero image — the twelve members quoted further down, set around the theme's
+   orbit motif. Each face is rotated out to the radius and counter-rotated back
+   so the portraits stay upright. */
+.sc-buddy__ring {
+	position: relative;
+	display: grid;
+	place-items: center;
+	justify-self: center;
+	aspect-ratio: 1;
+	width: min(100%, 440px);
+	--sc-ring-r: clamp(104px, 15.5vw, 172px);
+}
+
+.sc-buddy__ring-track {
+	position: absolute;
+	inset: calc(50% - var(--sc-ring-r));
+	border-radius: 50%;
+	border: 1px dashed oklch(var(--sc-ink-c) / 0.28);
+}
+
+.sc-buddy__faces {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	animation: scOrbit 90s linear infinite;
+}
+
+.sc-buddy__face {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: clamp(50px, 7vw, 72px);
+	height: clamp(50px, 7vw, 72px);
+	transform:
+		rotate(var(--sc-face-angle))
+		translateY(calc(var(--sc-ring-r) * -1))
+		rotate(calc(var(--sc-face-angle) * -1));
+}
+
+/* Counter-spin the portraits so they stay upright while the ring turns. */
+.sc-buddy__face img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	object-fit: cover;
+	background: var(--sc-sand-shade);
+	box-shadow: 0 2px 10px -4px oklch(var(--sc-ink-c) / 0.4);
+	animation: scOrbitRev 90s linear infinite;
+}
+
+.sc-buddy__ring-centre {
+	position: relative;
+	margin: 0;
+	max-width: 15ch;
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	line-height: 1.6;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-align: center;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sc-buddy__faces,
+	.sc-buddy__face img {
+		animation: none;
+	}
+}
+
+/* Results strip. The figures are the client's own tracked numbers, so they
+   are set large and mono — presented as measurements, not marketing. */
+.sc-buddy__stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+	gap: clamp(28px, 4vw, 56px);
+	align-items: start;
+}
+
+.sc-buddy__stat-figure {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(44px, 5.5vw, 72px);
+	line-height: 1;
+	letter-spacing: -0.03em;
+	color: var(--sc-amber);
+}
+
+.sc-buddy__stat-label {
+	margin: 12px 0 0;
+	font-size: 15.5px;
+	line-height: 1.5;
+	color: oklch(var(--sc-cream-c) / 0.72);
+}
+
+.sc-buddy__stats-note {
+	grid-column: 1 / -1;
+	margin: 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-cream-c) / 0.5);
+}
+
+.sc-buddy__problem-head {
+	display: grid;
+	gap: clamp(20px, 3vw, 36px);
+	max-width: 62ch;
+}
+
+/* The five struggles: numbered rows rather than cards. Each one is an
+   argument the reader is meant to recognise in themselves, and cards would
+   flatten five recognitions into five equivalent boxes. */
+.sc-buddy__struggles {
+	display: grid;
+	gap: clamp(28px, 3.5vw, 44px);
+	margin: clamp(44px, 5vw, 72px) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-buddy__struggle {
+	display: grid;
+	gap: 10px clamp(24px, 3vw, 48px);
+	padding-top: clamp(22px, 2.5vw, 32px);
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.16);
+}
+
+@media (min-width: 860px) {
+	.sc-buddy__struggle {
+		grid-template-columns: minmax(0, 24ch) minmax(0, 1fr);
+		align-items: baseline;
+	}
+}
+
+.sc-buddy__struggle-title {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(22px, 2.4vw, 30px);
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+.sc-buddy__struggle-text {
+	margin: 0;
+	font-size: 16.5px;
+	line-height: 1.7;
+	color: oklch(var(--sc-ink-c) / 0.74);
+}
+
+/* Shared bullet list — dash markers, matching the article prose. */
+.sc-buddy__list {
+	display: grid;
+	gap: 14px;
+	margin: clamp(24px, 3vw, 34px) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-buddy__list li {
+	position: relative;
+	padding-left: 30px;
+	font-size: 16.5px;
+	line-height: 1.65;
+}
+
+.sc-buddy__list li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.72em;
+	width: 16px;
+	height: 1px;
+	background: var(--sc-rust);
+}
+
+.sc-band--dark .sc-buddy__list li::before {
+	background: var(--sc-amber);
+}
+
+.sc-buddy__statement,
+.sc-buddy__pullquote {
+	margin: clamp(28px, 3vw, 40px) 0 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(21px, 2.3vw, 28px);
+	line-height: 1.3;
+	letter-spacing: -0.018em;
+	text-wrap: balance;
+}
+
+.sc-buddy__pullquote {
+	padding-top: clamp(24px, 3vw, 32px);
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.16);
+	color: oklch(var(--sc-ink-c) / 0.78);
+}
+
+.sc-buddy__quotes-title {
+	max-width: 20ch;
+}
+
+/* Twelve testimonials — a masonry-ish column flow so the wall reads as a
+   volume of voices rather than a tidy grid of equal boxes. */
+.sc-buddy__quotes {
+	margin-top: clamp(40px, 4.5vw, 64px);
+	columns: 3 300px;
+	column-gap: clamp(20px, 2.5vw, 32px);
+}
+
+.sc-buddy__quote {
+	break-inside: avoid;
+	margin: 0 0 clamp(20px, 2.5vw, 32px);
+	padding: clamp(24px, 2.6vw, 32px);
+	background: var(--sc-sand-shade);
+	border: 1px solid oklch(var(--sc-ink-c) / 0.1);
+	border-radius: var(--sc-radius);
+}
+
+.sc-buddy__quote blockquote {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.68;
+	color: oklch(var(--sc-ink-c) / 0.82);
+}
+
+.sc-buddy__quote-by {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-top: 22px;
+	padding-top: 18px;
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.12);
+}
+
+.sc-buddy__quote-avatar {
+	flex-shrink: 0;
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.sc-buddy__quote-name,
+.sc-buddy__quote-role {
+	display: block;
+}
+
+.sc-buddy__quote-name {
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.sc-buddy__quote-role {
+	margin-top: 3px;
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.05em;
+	line-height: 1.4;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-buddy__benefits {
+	display: grid;
+	gap: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-buddy__benefits li {
+	padding: 16px 0;
+	border-bottom: 1px solid oklch(var(--sc-ink-c) / 0.12);
+	font-size: 16.5px;
+	line-height: 1.6;
+}
+
+.sc-buddy__benefits li:first-child {
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.12);
+}
+
+.sc-buddy__pricing-head {
+	display: grid;
+	gap: 18px;
+	max-width: 54ch;
+}
+
+.sc-buddy__pricing-note {
+	margin: 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12.5px;
+	letter-spacing: 0.05em;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-buddy__plans {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+	gap: 1px;
+	margin-top: clamp(40px, 4.5vw, 64px);
+	background: oklch(var(--sc-ink-c) / 0.14);
+	border: 1px solid oklch(var(--sc-ink-c) / 0.14);
+}
+
+.sc-buddy__plan {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	padding: clamp(28px, 3vw, 44px);
+	background: var(--sc-sand);
+	transition: background-color 0.22s ease;
+}
+
+.sc-buddy__plan:hover {
+	background: var(--sc-sand-shade);
+}
+
+.sc-buddy__plan--featured {
+	background: var(--sc-sand-warm);
+}
+
+.sc-buddy__plan-name {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(24px, 2.4vw, 30px);
+	letter-spacing: -0.02em;
+}
+
+.sc-buddy__plan-cycle {
+	margin: 0;
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-buddy__plan-price {
+	margin: 14px 0 0;
+	font-family: var(--sc-font-mono);
+	font-size: clamp(30px, 3.4vw, 42px);
+	line-height: 1;
+	letter-spacing: -0.02em;
+}
+
+.sc-buddy__plan-detail {
+	margin: 0;
+	font-size: 15px;
+	color: oklch(var(--sc-ink-c) / 0.66);
+}
+
+.sc-buddy__plan-save {
+	margin: 4px 0 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	color: var(--sc-rust);
+}
+
+/* The featured plan carries no "save" line, so without this its button sat a
+   line higher than the other two. Auto margin drops every button to the card
+   floor regardless of how many lines of copy sit above it. */
+.sc-buddy__plan .sc-btn {
+	margin-top: auto;
+}
+
+.sc-buddy__closing {
+	max-width: 68ch;
+	margin-inline: auto;
+	text-align: center;
+}
+
+.sc-buddy__closing-body {
+	margin-top: clamp(24px, 3vw, 34px);
+	display: grid;
+	gap: 18px;
+	font-size: 17px;
+	line-height: 1.7;
+	color: oklch(var(--sc-ink-c) / 0.78);
+}
+
+.sc-buddy__outcomes {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+	gap: 12px 28px;
+	margin: clamp(32px, 3.5vw, 44px) 0;
+	padding: clamp(28px, 3vw, 36px) 0;
+	border-block: 1px solid oklch(var(--sc-ink-c) / 0.16);
+	list-style: none;
+	text-align: left;
+	font-size: 16px;
+	line-height: 1.55;
+}
+
+.sc-buddy__kicker {
+	margin: 0 0 clamp(28px, 3vw, 38px);
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(20px, 2.2vw, 26px);
+	line-height: 1.35;
+	letter-spacing: -0.015em;
+	text-wrap: balance;
+}
+
+/* --------------------------------------------------------------------------
+   Momentum Labs page (page-momentum-labs.php)
+
+   The source landing page is a stock-vector funnel; this rebuilds its argument
+   in the theme's own language — seal instead of banner, orbit ring instead of
+   drop shadow, numbered cells instead of icon cards.
+   -------------------------------------------------------------------------- */
+
+.sc-labs__hero {
+	display: grid;
+	gap: clamp(40px, 5vw, 80px);
+	align-items: center;
+}
+
+@media (min-width: 880px) {
+	.sc-labs__hero {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	}
+}
+
+.sc-labs__lede {
+	margin-top: clamp(20px, 2.5vw, 28px);
+	max-width: 46ch;
+}
+
+.sc-labs__price {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	margin: clamp(26px, 3vw, 34px) 0 0;
+}
+
+.sc-labs__price-figure {
+	font-family: var(--sc-font-mono);
+	font-size: clamp(32px, 3.6vw, 44px);
+	line-height: 1;
+	letter-spacing: -0.02em;
+}
+
+.sc-labs__price-note {
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-labs__hero .sc-actions {
+	margin-top: clamp(24px, 2.6vw, 32px);
+}
+
+/* The seal, set inside the theme's orbit system: a solid outer hairline, a
+   rotating dashed ring, and two counter-turning dot orbits built the same way
+   as the loader brand mark (.sc-mark__spoke / __dot). */
+.sc-labs__seal-wrap {
+	position: relative;
+	display: grid;
+	place-items: center;
+	justify-self: center;
+	aspect-ratio: 1;
+	width: min(100%, 560px);
+}
+
+.sc-labs__seal-ring {
+	position: absolute;
+	inset: 9%;
+	border-radius: 50%;
+	border: 1px dashed oklch(var(--sc-ink-c) / 0.24);
+	animation: scOrbit 64s linear infinite;
+}
+
+.sc-labs__seal-ring--outer {
+	inset: 0;
+	border: 1px solid oklch(var(--sc-ink-c) / 0.12);
+	border-style: solid;
+	animation: none;
+}
+
+/* A warm bloom behind the mark so it reads as lit rather than pasted on. */
+.sc-labs__glow-core {
+	position: absolute;
+	inset: 14%;
+	border-radius: 50%;
+	background: radial-gradient(circle, oklch(var(--sc-glow-c) / 0.14), transparent 68%);
+	filter: blur(8px);
+}
+
+.sc-labs__orbit {
+	position: absolute;
+	inset: 0;
+	animation: scOrbit 44s linear infinite;
+}
+
+.sc-labs__orbit--rev {
+	inset: 16%;
+	animation: scOrbitRev 34s linear infinite;
+}
+
+.sc-labs__spoke {
+	position: absolute;
+	inset: 0;
+	transform: rotate(var(--sc-spoke-angle, 0deg));
+}
+
+.sc-labs__dot {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 9px;
+	height: 9px;
+	margin: -4.5px 0 0 -4.5px;
+	border-radius: 50%;
+	background: var(--sc-orange);
+	animation: scDotPulse 2.4s ease-in-out infinite;
+	animation-delay: var(--sc-dot-delay, 0s);
+}
+
+.sc-labs__dot--sm {
+	width: 6px;
+	height: 6px;
+	margin: -3px 0 0 -3px;
+	background: oklch(var(--sc-glow-c) / 0.55);
+}
+
+.sc-labs__seal {
+	position: relative;
+	width: 62%;
+	height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sc-labs__seal-ring,
+	.sc-labs__orbit,
+	.sc-labs__dot {
+		animation: none;
+	}
+}
+
+.sc-labs__film {
+	max-width: 940px;
+	margin-inline: auto;
+}
+
+.sc-labs__problem {
+	display: grid;
+	gap: clamp(32px, 4vw, 64px);
+	align-items: center;
+}
+
+@media (min-width: 880px) {
+	.sc-labs__problem {
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+	}
+}
+
+.sc-labs__problem-text > * + * {
+	margin-top: clamp(20px, 2.4vw, 28px);
+}
+
+.sc-labs__problem-text .sc-lede {
+	max-width: 46ch;
+}
+
+/* The neutral-vs-momentum figure. Drawn in the theme's own ink and rust so it
+   reads as part of the page rather than an illustration dropped into it. */
+.sc-labs__figure {
+	margin: 0;
+	display: grid;
+	gap: clamp(20px, 2.4vw, 28px);
+}
+
+.sc-labs__chart {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: visible;
+}
+
+.sc-labs__chart-grid line {
+	stroke: oklch(var(--sc-ink-c) / 0.1);
+	stroke-width: 1;
+}
+
+.sc-labs__chart-axis {
+	stroke: oklch(var(--sc-ink-c) / 0.18);
+	stroke-width: 1;
+}
+
+.sc-labs__chart-flat {
+	fill: none;
+	stroke: oklch(var(--sc-ink-c) / 0.55);
+	stroke-width: 2.25;
+	stroke-linecap: round;
+	stroke-dasharray: 2 8;
+}
+
+.sc-labs__chart-curve {
+	fill: none;
+	stroke: var(--sc-rust);
+	stroke-width: 2.75;
+	stroke-linecap: round;
+}
+
+.sc-labs__chart-fill {
+	fill: url(#sc-labs-grad);
+	opacity: 0.17;
+}
+
+.sc-labs__chart-origin {
+	fill: oklch(var(--sc-ink-c) / 0.45);
+}
+
+.sc-labs__chart-end {
+	fill: var(--sc-rust);
+}
+
+.sc-labs__chart-end--flat {
+	fill: oklch(var(--sc-ink-c) / 0.35);
+}
+
+.sc-labs__figure-caption {
+	display: grid;
+	gap: 14px;
+}
+
+.sc-labs__figure-title {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(19px, 2vw, 24px);
+	letter-spacing: -0.018em;
+}
+
+.sc-labs__legend {
+	display: grid;
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-labs__legend-item {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	align-items: baseline;
+	gap: 4px 12px;
+	padding-left: 26px;
+	position: relative;
+}
+
+.sc-labs__legend-item::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.55em;
+	width: 16px;
+	height: 3px;
+	border-radius: 2px;
+}
+
+.sc-labs__legend-item--curve::before {
+	background: var(--sc-rust);
+}
+
+.sc-labs__legend-item--flat::before {
+	height: 2px;
+	background: repeating-linear-gradient(
+		90deg,
+		oklch(var(--sc-ink-c) / 0.55) 0 2px,
+		transparent 2px 8px
+	);
+}
+
+.sc-labs__legend-name {
+	font-weight: 600;
+	font-size: 15.5px;
+	white-space: nowrap;
+}
+
+.sc-labs__legend-note {
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.04em;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-labs__figure-note {
+	margin: 0;
+	padding-top: 12px;
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.14);
+	font-family: var(--sc-font-mono);
+	font-size: 11px;
+	line-height: 1.6;
+	letter-spacing: 0.04em;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+/* Second movement: the questions run the full measure, so the section reads as
+   claim-then-interrogation rather than one tall column of text. */
+/* Both halves of this section are .sc-section wrappers, which would stack two
+   full sets of block padding between them. Trim each side of the join. */
+.sc-labs__problem {
+	padding-bottom: clamp(44px, 5vw, 68px);
+}
+
+.sc-labs__ask-block {
+	margin-top: 0;
+	padding-top: clamp(40px, 4.5vw, 64px);
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.16);
+}
+
+.sc-labs__ask {
+	margin: 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--sc-rust);
+}
+
+/* A 2x2 field. Each question is a statement with its own rule above, so all
+   four land with equal weight instead of stacking into a list. */
+.sc-labs__questions {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+	gap: clamp(24px, 3vw, 44px) clamp(32px, 4vw, 72px);
+	margin: clamp(28px, 3.2vw, 42px) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-labs__questions li {
+	position: relative;
+	padding-top: clamp(18px, 2vw, 24px);
+	border-top: 2px solid var(--sc-rust);
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(20px, 2.2vw, 27px);
+	line-height: 1.28;
+	letter-spacing: -0.018em;
+	text-wrap: balance;
+}
+
+/* No rule here: a border on a measure-limited paragraph ends mid-air against
+   neither column. The block's own top border and the spacing carry it. */
+.sc-labs__answer {
+	max-width: 58ch;
+	margin: clamp(40px, 4.5vw, 60px) 0 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(20px, 2.2vw, 27px);
+	line-height: 1.35;
+	letter-spacing: -0.018em;
+	text-wrap: balance;
+	color: oklch(var(--sc-ink-c) / 0.84);
+}
+
+.sc-labs__includes-head {
+	display: grid;
+	gap: 18px;
+	max-width: 46ch;
+}
+
+/* Six inclusions as a bordered cell grid — the same device as the Momentum OS
+   section on the homepage, so the two read as one system. */
+.sc-labs__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+	gap: 1px;
+	margin: clamp(44px, 5vw, 68px) 0 0;
+	padding: 0;
+	list-style: none;
+	background: oklch(var(--sc-ink-c) / 0.14);
+	border: 1px solid oklch(var(--sc-ink-c) / 0.14);
+}
+
+.sc-labs__cell {
+	display: grid;
+	align-content: start;
+	gap: 10px;
+	padding: clamp(26px, 3vw, 40px);
+	background: var(--sc-sand);
+	transition: background-color 0.22s ease;
+}
+
+.sc-labs__cell:hover {
+	background: var(--sc-sand-shade);
+}
+
+.sc-labs__cell-title {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(21px, 2.2vw, 27px);
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+}
+
+.sc-labs__cell-text {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.65;
+	color: oklch(var(--sc-ink-c) / 0.72);
+}
+
+.sc-labs__deal {
+	display: grid;
+	gap: clamp(32px, 4vw, 64px);
+	align-items: center;
+}
+
+@media (min-width: 880px) {
+	/* Portrait leads. The two sections above both open with text on the left,
+	   so this one flips to keep the page from settling into one rhythm. */
+	.sc-labs__deal {
+		grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+	}
+}
+
+.sc-labs__deal-text .sc-lede {
+	margin-top: clamp(20px, 2.4vw, 28px);
+}
+
+/* Joseph's image is a transparent cut-out, so it gets a radial glow behind it
+   rather than a frame — same reasoning as the founder page. */
+.sc-labs__deal-media {
+	position: relative;
+	display: grid;
+	place-items: end center;
+	justify-self: center;
+	margin: 0;
+}
+
+.sc-labs__glow {
+	position: absolute;
+	inset: 8% -6% 0 -6%;
+	border-radius: 50%;
+	background: radial-gradient(circle at 50% 55%, oklch(var(--sc-glow-c) / 0.34), transparent 62%);
+	filter: blur(6px);
+}
+
+/* The cut-out has generous transparent margins baked in, so the box is much
+   wider than the figure — it needs the whole column to read at size. */
+.sc-labs__deal-media img {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.sc-labs__deal-media {
+	width: 100%;
+}
+
+/* This class shares its div with .sc-section, which carries margin-inline:auto
+   — putting a max-width here centred the whole block instead of setting a
+   measure. Constrain the children so the section keeps its own alignment. */
+/* The founder's own words, attributed. Ruled off from the section copy above
+   so it reads as a quotation rather than another paragraph. */
+.sc-labs__jv {
+	margin: clamp(30px, 3.4vw, 44px) 0 0;
+	padding-top: clamp(26px, 3vw, 34px);
+	border-top: 1px solid oklch(var(--sc-cream-c) / 0.22);
+}
+
+.sc-labs__jv-quote {
+	margin: 0;
+	max-width: 34ch;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(21px, 2.4vw, 30px);
+	line-height: 1.3;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+	color: var(--sc-cream);
+}
+
+.sc-labs__jv-quote::before {
+	content: "\201C";
+	color: var(--sc-amber);
+}
+
+.sc-labs__jv-by {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 6px 16px;
+	margin-top: clamp(18px, 2vw, 24px);
+}
+
+.sc-labs__jv-name {
+	font-weight: 600;
+	font-size: 15.5px;
+	color: var(--sc-cream);
+}
+
+.sc-labs__jv-role,
+.sc-labs__jv-link {
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.06em;
+}
+
+.sc-labs__jv-role {
+	color: oklch(var(--sc-cream-c) / 0.6);
+}
+
+.sc-labs__jv-link {
+	color: var(--sc-amber);
+	text-decoration: underline;
+	text-underline-offset: 4px;
+	text-decoration-color: oklch(var(--sc-amber-c) / 0.4);
+	transition: text-decoration-color 0.22s ease;
+}
+
+.sc-labs__jv-link:hover {
+	text-decoration-color: var(--sc-amber);
+}
+
+/* The gate. A dark plate inset on the sand band rather than a band of its own:
+   the founder band above is already dark, and the CTA below is sand — without a
+   contained object here the two sand bands ran together and this read as an
+   orphan. Centred, because everything else on the page is left-aligned; the
+   change of axis is what marks it as a threshold rather than another section. */
+.sc-labs__gate-wrap {
+	padding-block: clamp(52px, 6vw, 88px);
+}
+
+.sc-labs__gate {
+	position: relative;
+	overflow: hidden;
+	max-width: 860px;
+	margin-inline: auto;
+	padding: clamp(44px, 5.5vw, 76px) clamp(28px, 4vw, 64px);
+	border-radius: var(--sc-radius);
+	background: var(--sc-ink);
+	text-align: center;
+	isolation: isolate;
+}
+
+/* One faint ring, echoing the hero seal, so the plate is not a plain rectangle. */
+.sc-labs__gate-ring {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: -1;
+	width: min(560px, 86%);
+	aspect-ratio: 1;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	border: 1px dashed oklch(var(--sc-cream-c) / 0.12);
+	pointer-events: none;
+}
+
+.sc-labs__gate-label {
+	margin: 0 0 clamp(16px, 2vw, 22px);
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--sc-amber);
+}
+
+.sc-labs__gate-title {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(32px, 4.6vw, 60px);
+	line-height: 1.04;
+	letter-spacing: -0.03em;
+	text-wrap: balance;
+	color: var(--sc-cream);
+}
+
+.sc-labs__gate-body {
+	max-width: 52ch;
+	margin: clamp(20px, 2.4vw, 28px) auto 0;
+	font-size: 16.5px;
+	line-height: 1.7;
+	text-wrap: pretty;
+	color: oklch(var(--sc-cream-c) / 0.68);
+}
+
+/* The turn: the sentence that hands the reader to the CTA below, so it points
+   at it — the mark is a downward stroke, not a bullet. */
+.sc-labs__gate-turn {
+	position: relative;
+	max-width: 46ch;
+	margin: clamp(30px, 3.4vw, 44px) auto 0;
+	padding-top: clamp(28px, 3vw, 38px);
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(19px, 2.1vw, 25px);
+	line-height: 1.38;
+	letter-spacing: -0.016em;
+	text-wrap: pretty;
+	color: var(--sc-cream);
+}
+
+.sc-labs__gate-turn-mark {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 1px;
+	height: clamp(18px, 2vw, 24px);
+	transform: translateX(-50%);
+	background: linear-gradient(to bottom, oklch(var(--sc-amber-c) / 0.15), var(--sc-amber));
+}
+
+.sc-labs__closing-note {
+	margin: clamp(22px, 2.5vw, 30px) 0 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Momentum Team page (page-momentum-team.php)
+
+   Two deliberate departures from the theme's habits, both to avoid scaffolding:
+   no per-section eyebrows (one kicker, in the hero) and numbers only on the
+   90-day method, where the order carries real information.
+   -------------------------------------------------------------------------- */
+
+.sc-team__hero {
+	display: grid;
+	gap: clamp(36px, 5vw, 72px);
+	align-items: end;
+}
+
+@media (min-width: 920px) {
+	.sc-team__hero {
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+	}
+}
+
+.sc-team__kicker {
+	margin: 0 0 clamp(18px, 2vw, 26px);
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--sc-rust);
+}
+
+.sc-team__title {
+	max-width: 15ch;
+}
+
+.sc-team__lede {
+	margin-top: clamp(22px, 2.6vw, 30px);
+	max-width: 50ch;
+}
+
+.sc-team__actions {
+	margin-top: clamp(26px, 3vw, 36px);
+	align-items: center;
+}
+
+.sc-team__cta-note {
+	margin: 0;
+	max-width: 30ch;
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	line-height: 1.6;
+	letter-spacing: 0.05em;
+	color: oklch(var(--sc-ink-c) / 0.6);
+	text-wrap: balance;
+}
+
+/* Hero metadata as a real definition list — the facts a buyer scans for. */
+.sc-team__facts {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(50%, 120px), 1fr));
+	gap: 20px 28px;
+	margin: clamp(34px, 4vw, 48px) 0 0;
+	padding-top: clamp(26px, 3vw, 34px);
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.16);
+}
+
+.sc-team__facts dt {
+	font-family: var(--sc-font-mono);
+	font-size: 11px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-team__facts dd {
+	margin: 6px 0 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(19px, 2vw, 24px);
+	letter-spacing: -0.018em;
+}
+
+.sc-team__hero-media {
+	margin: 0;
+	overflow: hidden;
+	border-radius: var(--sc-radius);
+}
+
+.sc-team__hero-media img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.sc-team__prison-head,
+.sc-team__arsenal-head,
+.sc-team__method-head {
+	display: grid;
+	gap: 20px;
+	max-width: 58ch;
+}
+
+/* The three struggles: stacked bars that lose weight as they go, so the
+   section reads as a closing wall rather than three equivalent cards. */
+.sc-team__prison {
+	display: grid;
+	gap: 1px;
+	margin-top: clamp(44px, 5vw, 68px);
+	background: oklch(var(--sc-cream-c) / 0.16);
+}
+
+.sc-team__bar {
+	display: grid;
+	gap: 12px clamp(28px, 4vw, 56px);
+	padding: clamp(26px, 3vw, 40px) 0;
+	background: var(--sc-ink);
+}
+
+@media (min-width: 820px) {
+	.sc-team__bar {
+		grid-template-columns: minmax(0, 24ch) minmax(0, 1fr);
+		align-items: baseline;
+	}
+}
+
+.sc-team__bar-title {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(23px, 2.6vw, 32px);
+	line-height: 1.12;
+	letter-spacing: -0.022em;
+	color: var(--sc-amber);
+	text-wrap: balance;
+}
+
+.sc-team__bar-text {
+	margin: 0;
+	font-size: 16.5px;
+	line-height: 1.7;
+	color: oklch(var(--sc-cream-c) / 0.76);
+}
+
+/* Scene and method each gained an image; both are portrait crops, so they sit
+   beside the copy rather than above it. */
+.sc-team__scene-top,
+.sc-team__method-top {
+	display: grid;
+	gap: clamp(30px, 4vw, 64px);
+	align-items: center;
+}
+
+@media (min-width: 900px) {
+	.sc-team__scene-top {
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+	}
+
+	.sc-team__method-top {
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+	}
+}
+
+.sc-team__scene-media,
+.sc-team__method-media {
+	margin: 0;
+	overflow: hidden;
+	border-radius: var(--sc-radius);
+	justify-self: center;
+}
+
+.sc-team__scene-media img,
+.sc-team__method-media img {
+	display: block;
+	width: 100%;
+	max-width: 420px;
+	height: auto;
+}
+
+/* The cohort drawing is ink on paper — a warm multiply blend seats it on the
+   sand instead of leaving a white rectangle floating on the band. */
+.sc-team__scene-media img {
+	mix-blend-mode: multiply;
+}
+
+.sc-team__scene-head {
+	max-width: 64ch;
+}
+
+.sc-team__scene-lede {
+	margin: clamp(22px, 2.6vw, 30px) 0 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(21px, 2.3vw, 28px);
+	line-height: 1.42;
+	letter-spacing: -0.016em;
+	color: oklch(var(--sc-ink-c) / 0.84);
+}
+
+.sc-team__turn {
+	margin: clamp(22px, 2.4vw, 28px) 0 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--sc-rust);
+}
+
+.sc-team__shifts {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+	gap: clamp(26px, 3vw, 44px);
+	margin-top: clamp(36px, 4vw, 52px);
+}
+
+.sc-team__shift > p {
+	margin: 10px 0 0;
+	font-size: 16px;
+	line-height: 1.65;
+	color: oklch(var(--sc-ink-c) / 0.72);
+}
+
+.sc-team__shift-title {
+	margin: 0;
+	padding-top: 16px;
+	border-top: 2px solid var(--sc-rust);
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(20px, 2.1vw, 25px);
+	letter-spacing: -0.018em;
+}
+
+/* The type is set on the blockquote, not on the p inside it, so the ch-based
+   measure resolves against the display face it is actually measuring. Setting
+   font-size on the child collapsed this to 255px. */
+.sc-team__quote-big {
+	margin: clamp(48px, 5.5vw, 80px) 0 0;
+	padding: clamp(32px, 4vw, 52px) 0;
+	border-block: 1px solid oklch(var(--sc-ink-c) / 0.18);
+	max-width: 20ch;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(30px, 4.4vw, 56px);
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+}
+
+.sc-team__quote-big p {
+	margin: 0;
+	text-wrap: balance;
+}
+
+.sc-team__proof {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+	gap: 18px clamp(28px, 3vw, 48px);
+	margin: clamp(32px, 3.5vw, 44px) 0 0;
+	padding: 0;
+	list-style: none;
+	font-size: 16px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.72);
+}
+
+/* One figure, given the room a single number deserves. */
+.sc-team__stat {
+	display: grid;
+	gap: clamp(20px, 3vw, 44px);
+	align-items: center;
+}
+
+@media (min-width: 760px) {
+	.sc-team__stat {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+}
+
+.sc-team__stat-figure {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(64px, 9vw, 132px);
+	line-height: 0.9;
+	letter-spacing: -0.04em;
+	color: var(--sc-rust);
+}
+
+.sc-team__stat-label {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-size: clamp(20px, 2.2vw, 27px);
+	line-height: 1.25;
+	letter-spacing: -0.018em;
+	max-width: 24ch;
+}
+
+.sc-team__stat-note {
+	margin: 12px 0 0;
+	font-size: 15.5px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.64);
+	max-width: 46ch;
+}
+
+/* The method. The only numbered sequence on the page, and the only place a
+   left rule is used — it is a literal timeline, so the line means "elapsed". */
+.sc-team__phases {
+	display: grid;
+	gap: clamp(48px, 6vw, 88px);
+	margin: clamp(48px, 5.5vw, 76px) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-team__phase {
+	display: grid;
+	gap: clamp(24px, 3vw, 48px);
+}
+
+@media (min-width: 940px) {
+	.sc-team__phase {
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+	}
+
+	.sc-team__phase-head {
+		position: sticky;
+		top: 120px;
+		align-self: start;
+	}
+}
+
+.sc-team__phase-label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 12px;
+	margin: 0 0 14px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid oklch(var(--sc-ink-c) / 0.18);
+}
+
+.sc-team__phase-name {
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--sc-rust);
+}
+
+.sc-team__phase-days {
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-team__phase-title {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(27px, 3.2vw, 40px);
+	line-height: 1.08;
+	letter-spacing: -0.026em;
+	text-wrap: balance;
+}
+
+.sc-team__phase-intent {
+	margin: 14px 0 0;
+	font-size: 16px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.68);
+	max-width: 34ch;
+}
+
+.sc-team__focus {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+	gap: 22px clamp(24px, 3vw, 40px);
+	margin: 0;
+}
+
+.sc-team__focus dt {
+	font-weight: 600;
+	font-size: 15.5px;
+	line-height: 1.35;
+}
+
+.sc-team__focus dd {
+	margin: 6px 0 0;
+	font-size: 15px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.68);
+}
+
+.sc-team__key {
+	margin-top: clamp(28px, 3vw, 40px);
+	padding-top: clamp(22px, 2.4vw, 30px);
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.16);
+}
+
+.sc-team__key-label {
+	margin: 0 0 14px;
+	font-family: var(--sc-font-mono);
+	font-size: 11px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-team__key ul {
+	display: grid;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-team__key li {
+	position: relative;
+	padding-left: 26px;
+	font-size: 15.5px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.74);
+}
+
+.sc-team__key li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.7em;
+	width: 14px;
+	height: 1px;
+	background: var(--sc-rust);
+}
+
+/* The arsenal. Twenty inclusions would be twenty identical cards in the
+   obvious layout; grouped definition rows let the categories carry the
+   structure and keep each item a sentence, not a box. */
+.sc-team__arsenal {
+	display: grid;
+	gap: clamp(36px, 4vw, 56px);
+	margin-top: clamp(44px, 5vw, 68px);
+}
+
+.sc-team__group {
+	display: grid;
+	gap: clamp(18px, 2.4vw, 32px);
+	padding-top: clamp(22px, 2.6vw, 32px);
+	border-top: 1px solid oklch(var(--sc-cream-c) / 0.2);
+}
+
+@media (min-width: 900px) {
+	.sc-team__group {
+		grid-template-columns: minmax(0, 20ch) minmax(0, 1fr);
+	}
+}
+
+.sc-team__group-name {
+	margin: 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	line-height: 1.5;
+	color: var(--sc-amber);
+}
+
+.sc-team__group-items {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+	gap: 20px clamp(24px, 3vw, 44px);
+	margin: 0;
+}
+
+.sc-team__group-items dt {
+	font-weight: 600;
+	font-size: 15.5px;
+	line-height: 1.35;
+	color: var(--sc-cream);
+}
+
+.sc-team__group-items dd {
+	margin: 6px 0 0;
+	font-size: 15px;
+	line-height: 1.6;
+	color: oklch(var(--sc-cream-c) / 0.66);
+}
+
+.sc-team__quotes-title {
+	max-width: 18ch;
+	margin-inline: auto;
+	text-align: center;
+}
+
+/* Two columns, not three: there are exactly four quotes, and auto-fit at 320px
+   left the fourth orphaned on its own row. */
+/* The film leads the social proof, ahead of the written quotes. Its caption is
+   centred to sit under the centred heading rather than hanging off the left
+   edge of the frame. */
+.sc-team__film {
+	max-width: 880px;
+	margin: clamp(36px, 4vw, 56px) auto 0;
+}
+
+.sc-team__film .sc-film__caption {
+	justify-content: center;
+}
+
+.sc-team__quotes {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+	gap: clamp(24px, 3vw, 40px);
+	margin-top: clamp(36px, 4vw, 56px);
+}
+
+.sc-team__quote {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: clamp(26px, 3vw, 36px);
+	background: var(--sc-sand-shade);
+	border: 1px solid oklch(var(--sc-ink-c) / 0.1);
+	border-radius: var(--sc-radius);
+}
+
+.sc-team__quote blockquote {
+	margin: 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(18px, 1.9vw, 22px);
+	line-height: 1.45;
+	letter-spacing: -0.014em;
+	color: oklch(var(--sc-ink-c) / 0.88);
+}
+
+.sc-team__quote figcaption {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-top: auto;
+	padding-top: 20px;
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.12);
+}
+
+.sc-team__quote figcaption img {
+	flex-shrink: 0;
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.sc-team__quote-name,
+.sc-team__quote-role {
+	display: block;
+}
+
+.sc-team__quote-name {
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.sc-team__quote-role {
+	margin-top: 3px;
+	font-family: var(--sc-font-mono);
+	font-size: 11px;
+	letter-spacing: 0.05em;
+	line-height: 1.4;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-team__results {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+	gap: 18px clamp(28px, 3vw, 48px);
+	margin: clamp(40px, 4.5vw, 60px) 0 0;
+	padding-top: clamp(28px, 3vw, 38px);
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.16);
+	list-style: none;
+	font-size: 15.5px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.7);
+}
+
+.sc-team__results strong {
+	display: block;
+	font-weight: 600;
+	color: var(--sc-ink);
+}
+
+.sc-team__pricing-title {
+	max-width: 20ch;
+}
+
+.sc-team__plans {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+	gap: 1px;
+	margin-top: clamp(36px, 4vw, 56px);
+	background: oklch(var(--sc-ink-c) / 0.14);
+	border: 1px solid oklch(var(--sc-ink-c) / 0.14);
+}
+
+.sc-team__plan {
+	display: grid;
+	align-content: start;
+	gap: 8px;
+	padding: clamp(28px, 3.2vw, 44px);
+	background: var(--sc-sand);
+}
+
+.sc-team__plan--featured {
+	background: var(--sc-sand-warm);
+}
+
+.sc-team__plan-name {
+	margin: 0;
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-team__plan-price {
+	margin: 10px 0 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(44px, 5.5vw, 68px);
+	line-height: 1;
+	letter-spacing: -0.035em;
+}
+
+.sc-team__plan-save {
+	margin: 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	color: var(--sc-rust);
+}
+
+.sc-team__plan-text {
+	margin: 14px 0 0;
+	font-size: 15.5px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.7);
+}
+
+.sc-team__plan .sc-btn {
+	margin-top: 24px;
+	justify-self: start;
+}
+
+.sc-team__plans-note {
+	margin: clamp(20px, 2.2vw, 26px) 0 0;
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-team__compare {
+	display: grid;
+	gap: clamp(20px, 2.4vw, 30px);
+	margin: clamp(40px, 4.5vw, 60px) 0 0;
+}
+
+@media (min-width: 820px) {
+	.sc-team__compare > div {
+		display: grid;
+		grid-template-columns: minmax(0, 22ch) minmax(0, 1fr);
+		gap: clamp(24px, 3vw, 48px);
+		align-items: baseline;
+	}
+}
+
+.sc-team__compare dt {
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+.sc-team__compare dd {
+	margin: 8px 0 0;
+	font-size: 16px;
+	line-height: 1.7;
+	color: oklch(var(--sc-ink-c) / 0.76);
+}
+
+@media (min-width: 820px) {
+	.sc-team__compare dd {
+		margin: 0;
+	}
+}
+
+.sc-team__objection {
+	max-width: 62ch;
+	margin-top: clamp(40px, 4.5vw, 60px);
+	padding-top: clamp(26px, 3vw, 36px);
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.16);
+}
+
+.sc-team__objection h3 {
+	margin: 0 0 14px;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(24px, 2.6vw, 32px);
+	letter-spacing: -0.022em;
+}
+
+.sc-team__objection p {
+	margin: 0;
+	font-size: 16.5px;
+	line-height: 1.7;
+	color: oklch(var(--sc-ink-c) / 0.76);
+}
+
+/* The two paths are not equivalent, so they are not styled as equals: A
+   recedes, B is lit. The asymmetry is the argument. */
+.sc-team__paths-title {
+	max-width: 14ch;
+}
+
+.sc-team__paths {
+	display: grid;
+	gap: clamp(24px, 3vw, 40px);
+	margin-top: clamp(36px, 4vw, 56px);
+}
+
+@media (min-width: 860px) {
+	.sc-team__paths {
+		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+		align-items: start;
+	}
+}
+
+.sc-team__path {
+	padding: clamp(26px, 3vw, 40px);
+	border-radius: var(--sc-radius);
+}
+
+.sc-team__path--dim {
+	border: 1px solid oklch(var(--sc-cream-c) / 0.16);
+	color: oklch(var(--sc-cream-c) / 0.6);
+}
+
+.sc-team__path--lit {
+	background: oklch(var(--sc-cream-c) / 0.06);
+	border: 1px solid oklch(var(--sc-amber-c) / 0.4);
+}
+
+.sc-team__path-label {
+	margin: 0 0 12px;
+	font-family: var(--sc-font-mono);
+	font-size: 11.5px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.sc-team__path--dim .sc-team__path-label {
+	color: oklch(var(--sc-cream-c) / 0.58);
+}
+
+.sc-team__path--lit .sc-team__path-label {
+	color: var(--sc-amber);
+}
+
+.sc-team__path-name {
+	margin: 0 0 14px;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(24px, 2.8vw, 34px);
+	line-height: 1.1;
+	letter-spacing: -0.024em;
+	text-wrap: balance;
+}
+
+.sc-team__path--lit .sc-team__path-name {
+	color: var(--sc-cream);
+}
+
+.sc-team__path-text {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.7;
+}
+
+.sc-team__path--lit .sc-team__path-text {
+	color: oklch(var(--sc-cream-c) / 0.8);
+}
+
+.sc-team__paths-close {
+	max-width: 54ch;
+	margin: clamp(36px, 4vw, 52px) 0 0;
+	font-family: var(--sc-font-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-size: clamp(21px, 2.4vw, 29px);
+	line-height: 1.32;
+	letter-spacing: -0.02em;
+	color: oklch(var(--sc-cream-c) / 0.9);
+	text-wrap: balance;
+}
+
+.sc-team__fit {
+	display: grid;
+	gap: clamp(32px, 4vw, 64px);
+	align-items: start;
+}
+
+@media (min-width: 900px) {
+	.sc-team__fit {
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+	}
+
+	/* The list runs long and the card is short; sticking it keeps the CTA in
+	   view instead of stranding a column of empty sand beside the criteria. */
+	.sc-team__apply {
+		position: sticky;
+		top: 120px;
+	}
+}
+
+.sc-team__fit-list {
+	display: grid;
+	gap: 0;
+	margin: clamp(28px, 3vw, 40px) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-team__fit-list li {
+	padding: 15px 0;
+	border-bottom: 1px solid oklch(var(--sc-ink-c) / 0.14);
+	font-size: 16.5px;
+	line-height: 1.55;
+}
+
+.sc-team__fit-list li:first-child {
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.14);
+}
+
+.sc-team__apply {
+	padding: clamp(28px, 3.2vw, 44px);
+	background: var(--sc-sand-warm);
+	border: 1px solid oklch(var(--sc-ink-c) / 0.12);
+	border-radius: var(--sc-radius);
+}
+
+.sc-team__steps {
+	display: grid;
+	gap: 14px;
+	margin: 0 0 clamp(26px, 3vw, 34px);
+	padding-left: 1.1em;
+	font-size: 15.5px;
+	line-height: 1.6;
+	color: oklch(var(--sc-ink-c) / 0.76);
+}
+
+.sc-team__steps::marker,
+.sc-team__steps li::marker {
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	color: var(--sc-rust);
 }

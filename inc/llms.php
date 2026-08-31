@@ -43,6 +43,9 @@ function successcircles_llms_text( $text ) {
  */
 function successcircles_llms_pages() {
 	$order = array(
+		'momentum-buddy'        => __( 'Momentum Braintrust Buddy (program)', 'successcircles' ),
+		'momentum-labs'         => __( 'Momentum Labs (program)', 'successcircles' ),
+		'momentum-team'         => __( 'Momentum Team 90-day AI accelerator (program)', 'successcircles' ),
 		'about'                 => __( 'About SuccessCircles', 'successcircles' ),
 		'about-joseph-varghese' => __( 'Joseph Varghese, founder', 'successcircles' ),
 		'testimonials'          => __( 'Testimonials', 'successcircles' ),

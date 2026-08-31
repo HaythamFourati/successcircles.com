@@ -114,6 +114,9 @@ function successcircles_seo_description_paths() {
 		'successcircles_seo_descriptions',
 		array(
 			'about'                 => 'about.lede',
+			'momentum-buddy'        => 'buddy_page.lede',
+			'momentum-labs'         => 'labs_page.lede',
+			'momentum-team'         => 'team_page.lede',
 			'about-joseph-varghese' => 'founder_page.lede',
 			'testimonials'          => 'testimonials.lede',
 			'weekly-wins'           => 'buzz.lede',
