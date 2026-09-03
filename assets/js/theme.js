@@ -91,30 +91,91 @@
 	/**
 	 * Click-to-play facade for the member story video. Keeps the Vimeo player
 	 * (and its cookies) off the page until the visitor asks for it.
+	 *
+	 * Two shapes, one contract: a trigger normally swaps itself for the iframe
+	 * in place, but one carrying data-sc-video-modal opens the shared <dialog>
+	 * instead — that is the hero, whose photo has no 16/9 frame to fill.
 	 */
 	function initStoryVideo() {
 		var triggers = document.querySelectorAll( '[data-sc-video]' );
+		var dialog = document.querySelector( '[data-sc-video-dialog]' );
+		var mount = dialog ? dialog.querySelector( '[data-sc-video-mount]' ) : null;
+		var modal = !! mount && typeof dialog.showModal === 'function';
+
+		var build = function ( src, title ) {
+			var iframe = document.createElement( 'iframe' );
+			iframe.setAttribute( 'src', src );
+			iframe.setAttribute( 'title', title );
+			iframe.setAttribute( 'allow', 'autoplay; fullscreen; picture-in-picture' );
+			iframe.setAttribute( 'allowfullscreen', 'allowfullscreen' );
+			iframe.setAttribute( 'loading', 'lazy' );
+
+			return iframe;
+		};
 
 		Array.prototype.forEach.call( triggers, function ( trigger ) {
-			trigger.addEventListener( 'click', function () {
+			trigger.addEventListener( 'click', function ( event ) {
 				var frame = trigger.parentNode;
 				var src = trigger.getAttribute( 'data-sc-video' );
 				var title = trigger.getAttribute( 'data-sc-video-title' ) || '';
+				var popup = trigger.hasAttribute( 'data-sc-video-modal' );
 
 				if ( ! src ) {
 					return;
 				}
 
-				var iframe = document.createElement( 'iframe' );
-				iframe.setAttribute( 'src', src );
-				iframe.setAttribute( 'title', title );
-				iframe.setAttribute( 'allow', 'autoplay; fullscreen; picture-in-picture' );
-				iframe.setAttribute( 'allowfullscreen', 'allowfullscreen' );
-				iframe.setAttribute( 'loading', 'lazy' );
+				// No <dialog> support: leave the href alone so the click still
+				// lands on the section carrying the same film inline.
+				if ( popup && ! modal ) {
+					return;
+				}
+
+				event.preventDefault();
+
+				if ( popup ) {
+					mount.appendChild( build( src, title ) );
+					dialog.showModal();
+					return;
+				}
+
+				var iframe = build( src, title );
 
 				frame.replaceChild( iframe, trigger );
 				iframe.focus();
 			} );
+		} );
+
+		if ( ! modal ) {
+			return;
+		}
+
+		// Emptying the mount is what stops playback: there is no player API to
+		// call here, and an iframe left in the DOM keeps talking to Vimeo.
+		//
+		// Watch the open attribute rather than listening for the close event.
+		// Once the visitor has clicked into the player, focus sits inside the
+		// cross-origin Vimeo iframe, and an Escape from there closes the dialog
+		// without the close event ever reaching us — the video would go on
+		// playing behind the page. The attribute is reflected state, so this
+		// catches every close: Escape, the button, the backdrop, or script.
+		new MutationObserver( function () {
+			if ( ! dialog.open ) {
+				mount.textContent = '';
+			}
+		} ).observe( dialog, { attributes: true, attributeFilter: [ 'open' ] } );
+
+		Array.prototype.forEach.call( dialog.querySelectorAll( '[data-sc-video-close]' ), function ( button ) {
+			button.addEventListener( 'click', function () {
+				dialog.close();
+			} );
+		} );
+
+		// The panel is the only child, so a click landing on the dialog itself
+		// landed on the backdrop.
+		dialog.addEventListener( 'click', function ( event ) {
+			if ( event.target === dialog ) {
+				dialog.close();
+			}
 		} );
 	}
 
@@ -134,6 +195,109 @@
 
 		initContents( article );
 		initProgress( article );
+	}
+
+	/**
+	 * Momentum OS as a cycle: six nodes on a ring, one step in the middle, the
+	 * amber arc tracking how far round the loop we are.
+	 *
+	 * Enhancement only. Without JavaScript — and under prefers-reduced-motion,
+	 * where an auto-advancing carousel would be exactly the wrong thing — the
+	 * markup stays a plain numbered list of all six steps and the ring is not
+	 * drawn at all. A diagram nobody can drive is worth less than legible copy.
+	 *
+	 * Auto-advance runs only while the ring is on screen, and stops for good the
+	 * moment the visitor picks a step themselves.
+	 */
+	function initMomentumOs() {
+		var cycle = document.querySelector( '[data-sc-os]' );
+
+		if ( ! cycle || reduceMotion || ! ( 'IntersectionObserver' in window ) ) {
+			return;
+		}
+
+		var arc = cycle.querySelector( '[data-sc-os-arc]' );
+		var nodes = Array.prototype.slice.call( cycle.querySelectorAll( '.sc-os__node' ) );
+		var dots = Array.prototype.slice.call( cycle.querySelectorAll( '[data-sc-os-dot]' ) );
+		var steps = Array.prototype.slice.call( cycle.querySelectorAll( '[data-sc-os-step]' ) );
+
+		if ( ! arc || steps.length < 2 || dots.length !== steps.length ) {
+			return;
+		}
+
+		var length = arc.getTotalLength();
+		var index = -1;
+		var timer = null;
+		var held = false;
+
+		arc.style.strokeDasharray = length;
+		arc.style.strokeDashoffset = length;
+
+		cycle.classList.add( 'is-enhanced' );
+
+		var show = function ( next ) {
+			index = ( next + steps.length ) % steps.length;
+
+			steps.forEach( function ( step, i ) {
+				step.hidden = i !== index;
+			} );
+
+			nodes.forEach( function ( node, i ) {
+				node.classList.toggle( 'is-active', i === index );
+				node.classList.toggle( 'is-done', i < index );
+			} );
+
+			dots.forEach( function ( dot, i ) {
+				if ( i === index ) {
+					dot.setAttribute( 'aria-current', 'step' );
+				} else {
+					dot.removeAttribute( 'aria-current' );
+				}
+			} );
+
+			// Full circle on the last step, so the loop visibly closes.
+			arc.style.strokeDashoffset = length - ( length * ( index + 1 ) / steps.length );
+		};
+
+		var stop = function () {
+			window.clearInterval( timer );
+			timer = null;
+		};
+
+		var start = function () {
+			if ( timer || held ) {
+				return;
+			}
+
+			timer = window.setInterval( function () {
+				show( index + 1 );
+			}, 3200 );
+		};
+
+		dots.forEach( function ( dot, i ) {
+			dot.addEventListener( 'click', function () {
+				// The visitor is driving now; stop moving under them.
+				held = true;
+				stop();
+				show( i );
+			} );
+		} );
+
+		// Only cycle while it is actually on screen.
+		new IntersectionObserver(
+			function ( entries ) {
+				entries.forEach( function ( entry ) {
+					if ( entry.isIntersecting ) {
+						start();
+					} else {
+						stop();
+					}
+				} );
+			},
+			{ threshold: 0.35 }
+		).observe( cycle );
+
+		show( 0 );
 	}
 
 	/**
@@ -504,10 +668,84 @@
 		} );
 	}
 
+	function initReviews() {
+		var root = document.querySelector( '[data-sc-reviews]' );
+
+		if ( ! root || ! ( 'IntersectionObserver' in window ) ) {
+			return;
+		}
+
+		var slides = Array.prototype.slice.call( root.querySelectorAll( '[data-sc-reviews-slide]' ) );
+		var prevBtn = root.querySelector( '[data-sc-reviews-prev]' );
+		var nextBtn = root.querySelector( '[data-sc-reviews-next]' );
+
+		if ( slides.length < 2 ) {
+			return;
+		}
+
+		var index = 0;
+		var timer = null;
+
+		root.classList.add( 'is-enhanced' );
+
+		function show( next ) {
+			index = ( next + slides.length ) % slides.length;
+
+			slides.forEach( function ( slide, i ) {
+				slide.classList.toggle( 'is-active', i === index );
+			} );
+		}
+
+		function start() {
+			if ( timer || reduceMotion ) {
+				return;
+			}
+			timer = window.setInterval( function () {
+				show( index + 1 );
+			}, 6000 );
+		}
+
+		function stop() {
+			window.clearInterval( timer );
+			timer = null;
+		}
+
+		if ( prevBtn ) {
+			prevBtn.addEventListener( 'click', function () {
+				stop();
+				show( index - 1 );
+			} );
+		}
+
+		if ( nextBtn ) {
+			nextBtn.addEventListener( 'click', function () {
+				stop();
+				show( index + 1 );
+			} );
+		}
+
+		new IntersectionObserver(
+			function ( entries ) {
+				entries.forEach( function ( entry ) {
+					if ( entry.isIntersecting ) {
+						start();
+					} else {
+						stop();
+					}
+				} );
+			},
+			{ threshold: 0.3 }
+		).observe( root );
+
+		show( 0 );
+	}
+
 	function init() {
 		initLoader();
 		initMenu();
 		initStoryVideo();
+		initMomentumOs();
+		initReviews();
 		initArticle();
 		initQuiz();
 	}

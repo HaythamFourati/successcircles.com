@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
 
 <a class="sc-skip-link" href="#sc-main"><?php esc_html_e( 'Skip to content', 'successcircles' ); ?></a>
 
-<?php if ( is_front_page() ) : ?>
+<?php if ( is_front_page() && successcircles_home_loader_enabled() ) : ?>
 	<?php get_template_part( 'template-parts/loader' ); ?>
 <?php endif; ?>
 

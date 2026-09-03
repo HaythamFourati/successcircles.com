@@ -20,26 +20,29 @@ $sc_link = (array) $sc_faq['link'];
 
 ?>
 <section class="sc-band--shade sc-band--hairline" aria-labelledby="sc-faq-title">
-	<div id="faq" class="sc-section sc-split sc-split--narrow sc-split--top">
-		<div>
+	<div id="faq" class="sc-section sc-faq__layout">
+		<header class="sc-faq__head">
 			<?php successcircles_eyebrow( $sc_faq['index'], $sc_faq['eyebrow'] ); ?>
 
 			<h2 id="sc-faq-title" class="sc-display sc-display--md sc-faq__title">
 				<?php echo successcircles_inline( $sc_faq['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</h2>
+		</header>
 
-			<a class="sc-link-rule" href="<?php echo successcircles_url( $sc_link['url'] ); ?>">
-				<?php echo esc_html( $sc_link['label'] ); ?>
-			</a>
-		</div>
-
-		<div class="sc-rows">
-			<?php foreach ( (array) $sc_faq['items'] as $sc_item ) : ?>
-				<div class="sc-row sc-faq__item">
-					<h3 class="sc-faq__question"><?php echo esc_html( wp_specialchars_decode( $sc_item['question'] ) ); ?></h3>
+		<div class="sc-faq__items">
+			<?php foreach ( (array) $sc_faq['items'] as $sc_index => $sc_item ) : ?>
+				<details class="sc-faq__item"<?php echo 0 === $sc_index ? ' open' : ''; ?>>
+					<summary class="sc-faq__question">
+						<span><?php echo esc_html( wp_specialchars_decode( $sc_item['question'] ) ); ?></span>
+						<span class="sc-faq__toggle" aria-hidden="true"></span>
+					</summary>
 					<p class="sc-faq__answer"><?php echo esc_html( wp_specialchars_decode( $sc_item['answer'] ) ); ?></p>
-				</div>
+				</details>
 			<?php endforeach; ?>
 		</div>
+
+		<a class="sc-link-rule sc-faq__link" href="<?php echo successcircles_url( $sc_link['url'] ); ?>">
+			<?php echo esc_html( $sc_link['label'] ); ?>
+		</a>
 	</div>
 </section>

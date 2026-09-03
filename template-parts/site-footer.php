@@ -44,7 +44,7 @@ $sc_social  = (array) successcircles_content( 'footer.social', array() );
 				/* translators: %1$s: year, %2$s: site name. */
 				esc_html__( '&copy; %1$s %2$s', 'successcircles' ),
 				esc_html( gmdate( 'Y' ) ),
-				esc_html( get_bloginfo( 'name', 'display' ) )
+				esc_html( get_bloginfo( 'name', 'display' ) ) . '&trade;'
 			);
 			?>
 			<?php foreach ( $sc_legal as $sc_link ) : ?>

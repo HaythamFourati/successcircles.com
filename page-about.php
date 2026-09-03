@@ -14,7 +14,7 @@
  * useful in wp-admin without the designed sections depending on it.
  *
  * Composition: every section is shaped differently on purpose (statement + bleed,
- * dominant sentence, portrait split, alternating rows, growing arc). See the
+ * dominant sentence, portrait split, stacked vows, growing arc). See the
  * "About page" block in main.css for why, and read that before flattening any of
  * it back into a uniform two-column rhythm.
  *
@@ -66,15 +66,15 @@ while ( have_posts() ) :
 
 		<figure class="sc-about__bleed sc-rise" style="--sc-rise-delay:1.2s">
 			<img
-				src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg' ); ?>"
+				src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg?v=' . successcircles_asset_version( '/assets/img/hero-huddle.jpg' ) ); ?>"
 				alt="<?php echo esc_attr( $sc_about['bleed_alt'] ); ?>"
-				width="1267"
-				height="713"
+				width="1170"
+				height="780"
 				fetchpriority="high"
 				decoding="async"
 			>
 			<figcaption class="sc-about__bleed-note">
-				<?php esc_html_e( 'Peer to peer, since 2005', 'successcircles' ); ?>
+				<?php esc_html_e( 'Owners supporting owners, since 2005', 'successcircles' ); ?>
 			</figcaption>
 		</figure>
 
@@ -176,7 +176,7 @@ endwhile;
 			<figure class="sc-about__story-media">
 				<img
 					src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/about-story.jpg' ); ?>"
-					alt="<?php esc_attr_e( 'Joseph Varghese speaking with a peer in the early days of SuccessCircles', 'successcircles' ); ?>"
+					alt="<?php esc_attr_e( 'Joseph Varghese speaking with a peer in the early days of Success Circles', 'successcircles' ); ?>"
 					width="687"
 					height="1031"
 					loading="lazy"

@@ -136,7 +136,7 @@ function successcircles_handle_contact() {
 	$sent = wp_mail(
 		successcircles_contact_email(),
 		/* translators: %s: sender name. */
-		sprintf( __( 'SuccessCircles enquiry — %s', 'successcircles' ), $name ),
+		sprintf( __( 'Success Circles enquiry — %s', 'successcircles' ), $name ),
 		$body,
 		array( 'Reply-To: ' . $name . ' <' . $email . '>' )
 	);

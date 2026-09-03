@@ -29,7 +29,7 @@ function successcircles_content_tree() {
 	$tree = array(
 
 		'loader' => array(
-			'label' => __( 'Powered by Momentum OS', 'successcircles' ),
+			'label' => __( 'Powered by Momentum OS&trade;', 'successcircles' ),
 		),
 
 		'nav' => array(
@@ -38,7 +38,7 @@ function successcircles_content_tree() {
 				'url'      => '#programs',
 				'children' => array(
 					array(
-						'label' => __( 'Momentum Braintrust Buddy', 'successcircles' ),
+						'label' => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
 						'url'   => '/momentum-buddy/',
 					),
 					array(
@@ -98,19 +98,18 @@ function successcircles_content_tree() {
 		),
 
 		'hero' => array(
-			'eyebrow'       => __( 'Peer execution system for entrepreneurs', 'successcircles' ),
-			'title'         => __( 'Run your business<br>with <em class="sc-accent">peers</em>, not alone.', 'successcircles' ),
-			'lede'          => __( 'Information is abundant. Execution is scarce. SuccessCircles gives established business owners the peers, structure, and accountability that turn intentions into weekly momentum.', 'successcircles' ),
+			'eyebrow'       => __( 'Advisory Community for Established Entrepreneurs', 'successcircles' ),
+			'title'         => __( '<span class="sc-hero__title-line">We help business owners</span><span class="sc-hero__title-line">Turn vision into <em class="sc-accent">momentum</em></span>', 'successcircles' ),
+			'lede'          => __( 'Urgent demands can push your biggest goals aside. Success&nbsp;Circles&trade; gives you the focus, accountability, and support to follow through and make consistent progress.', 'successcircles' ),
 			'primary_cta'   => __( 'Take the Entrepreneur Test', 'successcircles' ),
-			'secondary_cta' => __( 'Explore Momentum Buddy', 'successcircles' ),
+			'secondary_cta' => __( 'Check Our Programs', 'successcircles' ),
 			'meta'          => array(
-				__( '20 years in business', 'successcircles' ),
-				__( 'Weekday huddles', 'successcircles' ),
-				__( 'Application only', 'successcircles' ),
+				__( 'Founded in 2005', 'successcircles' ),
+				__( 'Weekly accountability', 'successcircles' ),
+				__( 'Curated membership', 'successcircles' ),
 			),
-			'image_alt'     => __( 'Two entrepreneurs in a working conversation', 'successcircles' ),
-			'badge_label'   => __( 'Today&rsquo;s huddle', 'successcircles' ),
-			'badge_text'    => __( 'One priority. One peer. Fifteen minutes.', 'successcircles' ),
+			'image_alt'     => __( 'An entrepreneur joining a video call from a shared workspace', 'successcircles' ),
+			'badge_text'    => __( 'One priority. One focused call. Fifteen minutes.', 'successcircles' ),
 		),
 
 		'trust' => array(
@@ -142,39 +141,41 @@ function successcircles_content_tree() {
 		'problem' => array(
 			'index'   => '01',
 			'eyebrow' => __( 'The problem', 'successcircles' ),
-			'title'   => __( 'Success gets lonely <br>at the top.', 'successcircles' ),
+			'title'   => __( 'Big goals keep losing to <br><em class="sc-accent">urgent work</em>.', 'successcircles' ),
+			'lede'    => __( 'Without a structure that protects your priorities, the work that moves the business keeps slipping.', 'successcircles' ),
+			'quote'   => __( 'The main thing is to keep the main thing the main thing.', 'successcircles' ),
 			'items'   => array(
 				array(
-					'title' => __( 'Nobody around you is a true peer', 'successcircles' ),
-					'text'  => __( 'Employees, family, and vendors can&rsquo;t give you objective feedback at your level. So the hardest decisions get made alone.', 'successcircles' ),
+					'title' => __( 'The hardest decisions still land on you', 'successcircles' ),
+					'text'  => __( 'Your team cares, but they cannot always challenge you as another experienced owner can.', 'successcircles' ),
 				),
 				array(
-					'title' => __( 'You know what to do. It doesn&rsquo;t get done', 'successcircles' ),
-					'text'  => __( 'The highest-leverage priority slips a week, then a quarter. Not for lack of knowledge &mdash; for lack of a forcing function.', 'successcircles' ),
+					'title' => __( 'Important work keeps slipping', 'successcircles' ),
+					'text'  => __( 'The priority that could change the business slips a week, then a quarter.', 'successcircles' ),
 				),
 				array(
 					'title' => __( 'No one holds the owner accountable', 'successcircles' ),
-					'text'  => __( 'You hold everyone else to a standard. Your own commitments are the only ones with no deadline and no witness.', 'successcircles' ),
+					'text'  => __( 'You hold everyone else to a standard, while your own commitments are the easiest to move.', 'successcircles' ),
 				),
 				array(
-					'title' => __( 'Everything is urgent, so nothing compounds', 'successcircles' ),
-					'text'  => __( 'Busy is easy. Progress is the thing you can name at the end of the week &mdash; and most weeks, you can&rsquo;t.', 'successcircles' ),
+					'title' => __( 'Urgent work crowds out meaningful growth', 'successcircles' ),
+					'text'  => __( 'A full calendar can still leave the business unchanged.', 'successcircles' ),
 				),
 			),
 		),
 
 		'system' => array(
-			'index'   => '02',
+			'index'   => '03',
 			'eyebrow' => __( 'The system', 'successcircles' ),
 			'title'   => __( 'Powered by <br><span class="sc-accent">Momentum OS</span>', 'successcircles' ),
-			'lede'    => __( 'Momentum OS is the repeatable loop our members run every week. It&rsquo;s not a course or a framework you read once &mdash; it&rsquo;s the operating rhythm that peers, structure, and repetition make possible.', 'successcircles' ),
+			'lede'    => __( 'Momentum OS is the repeatable weekly operating rhythm behind Success Circles&trade;. It helps you choose the priority, commit to it, get focused feedback, take action, and review what changed. So important work keeps moving when daily demands compete for your attention.', 'successcircles' ),
 			'formula' => array(
-				__( 'Peers', 'successcircles' ),
-				__( 'Structure', 'successcircles' ),
+				__( 'Experienced owners', 'successcircles' ),
+				__( 'Clear priorities', 'successcircles' ),
 				__( 'Accountability', 'successcircles' ),
-				__( 'Repetition', 'successcircles' ),
+				__( 'Follow-through', 'successcircles' ),
 			),
-			'result'  => __( 'Momentum', 'successcircles' ),
+			'result'  => __( 'Consistent progress', 'successcircles' ),
 			'steps'   => array(
 				array(
 					'title' => __( 'Clarify', 'successcircles' ),
@@ -183,7 +184,7 @@ function successcircles_content_tree() {
 				),
 				array(
 					'title' => __( 'Commit', 'successcircles' ),
-					'text'  => __( 'Say it out loud to a peer who will ask you about it by name.', 'successcircles' ),
+					'text'  => __( 'Tell an experienced owner exactly what you will complete before the next check-in.', 'successcircles' ),
 					'alpha' => '0.8',
 				),
 				array(
@@ -203,41 +204,80 @@ function successcircles_content_tree() {
 				),
 				array(
 					'title' => __( 'Compound', 'successcircles' ),
-					'text'  => __( 'Run it again. The loop is where momentum stops being a mood.', 'successcircles' ),
+					'text'  => __( 'Repeat the cycle until steady progress becomes how you operate.', 'successcircles' ),
 					'alpha' => '0.2',
 				),
 			),
 		),
 
-		'programs' => array(
-			'index'   => '03',
-			'eyebrow' => __( 'Programs', 'successcircles' ),
-			'title'   => __( 'Three ways in. Same <br>operating rhythm.', 'successcircles' ),
-			'lede'    => __( 'One is a peer who knows your business by name. One is a room of operators who&rsquo;ve solved your problem before. One is a 90-day cohort that rebuilds how the work gets done. Most members start with one and add another.', 'successcircles' ),
-			'cards'   => array(
+		'huddle' => array(
+			'index'   => '02',
+			'eyebrow' => __( 'What is a huddle?', 'successcircles' ),
+			'title'   => __( 'A short call that keeps <br>the day <em class="sc-accent">on track</em>.', 'successcircles' ),
+			'lede'    => __( 'Every weekday, you meet a carefully matched business owner for a thirty-minute huddle. You review what moved, work through one obstacle, and commit to one high-impact action before the next call.', 'successcircles' ),
+			'items'   => array(
 				array(
-					'featured' => true,
-					'kind'     => __( 'One-to-one', 'successcircles' ),
-					'price'    => '$194',
-					'title'    => __( 'Momentum Braintrust Buddy', 'successcircles' ),
-					'flag'     => __( 'Most members start here', 'successcircles' ),
-					'text'     => __( 'Structured one-to-one peer accountability. Matched intentionally, huddling on weekdays, in roughly two-week cycles so you meet a range of strong peers over time.', 'successcircles' ),
-					'features' => array(
-						__( 'Intentional peer matching', 'successcircles' ),
-						__( 'Recurring weekday huddles', 'successcircles' ),
-						__( 'Priorities, commitments, course correction', 'successcircles' ),
-						__( 'Full SuccessCircles community access', 'successcircles' ),
-					),
-					'cta'      => __( 'Explore Momentum Buddy', 'successcircles' ),
-					'cta_url'  => '/momentum-buddy/',
+					'title' => __( 'Review', 'successcircles' ),
+					'text'  => __( 'Recognize completed work and what made it possible.', 'successcircles' ),
 				),
+				array(
+					'title' => __( 'Unblock', 'successcircles' ),
+					'text'  => __( 'Work through the one obstacle slowing your progress.', 'successcircles' ),
+				),
+				array(
+					'title' => __( 'Commit', 'successcircles' ),
+					'text'  => __( 'Choose one high-impact action to complete before the next huddle.', 'successcircles' ),
+				),
+				array(
+					'title' => __( 'Challenge', 'successcircles' ),
+					'text'  => __( 'Test assumptions before they become expensive decisions.', 'successcircles' ),
+				),
+			),
+			'quote'   => __( 'Every call turns an important goal into one clear decision and one next commitment.', 'successcircles' ),
+		),
+
+		'community' => array(
+			'index'   => '04',
+			'eyebrow' => __( 'The community', 'successcircles' ),
+			'title'   => __( 'Business owners who <br>understand the <em class="sc-accent">weight</em>.', 'successcircles' ),
+			'lede'    => __( 'Membership includes full access to the Success Circles&trade; community: a platform, a roster, and live sessions where experienced entrepreneurs help one another stay focused and follow through.', 'successcircles' ),
+			'items'   => array(
+				array(
+					'title' => __( 'Momentum Community platform', 'successcircles' ),
+					'text'  => __( 'Access the member roster and choose who you want to partner with.', 'successcircles' ),
+				),
+				array(
+					'title' => __( 'Live group huddles', 'successcircles' ),
+					'text'  => __( 'Weekly and monthly sessions: AI Pro, Time Mastery, and Week-in-Celebration.', 'successcircles' ),
+				),
+				array(
+					'title' => __( 'MomentumMate&trade; coworking', 'successcircles' ),
+					'text'  => __( 'Three virtual coworking sessions per week for distraction-free productivity.', 'successcircles' ),
+				),
+				array(
+					'title' => __( 'Candid feedback', 'successcircles' ),
+					'text'  => __( 'Experienced owners who understand the stakes and will challenge your thinking.', 'successcircles' ),
+				),
+			),
+			'link'    => array(
+				'label' => __( 'Explore the community', 'successcircles' ),
+				'url'   => '/momentum-buddy/',
+			),
+		),
+
+		'programs' => array(
+			'index'   => '05',
+			'eyebrow' => __( 'Programs', 'successcircles' ),
+			'title'   => __( 'One goal. <br>Three levels of <em class="sc-accent">support</em>.', 'successcircles' ),
+			'lede'    => __( 'Experienced peer insight, focused one-to-one accountability, or an intensive 90-day AI accelerator. Every path is designed to turn priorities into consistent follow-through.', 'successcircles' ),
+			'cards'   => array(
 				array(
 					'featured' => false,
 					'kind'     => __( 'Group', 'successcircles' ),
 					'price'    => '$97',
 					'title'    => __( 'Momentum Labs', 'successcircles' ),
 					'flag'     => '',
-					'text'     => __( 'Group execution and collaborative peer intelligence. Group huddles, strategic sprints, and a braintrust of operators who bring perspectives you don&rsquo;t have.', 'successcircles' ),
+					'text'     => __( 'Bring your toughest priorities to experienced entrepreneurs who understand the pressure of ownership. Weekly huddles and strategic sprints turn outside perspective into practical next steps.', 'successcircles' ),
 					'features' => array(
 						__( 'Group huddles', 'successcircles' ),
 						__( 'Strategic sprints', 'successcircles' ),
@@ -248,12 +288,28 @@ function successcircles_content_tree() {
 					'cta_url'  => '/momentum-labs/',
 				),
 				array(
+					'featured' => true,
+					'kind'     => __( 'One-to-one', 'successcircles' ),
+					'price'    => '$194',
+					'title'    => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
+					'flag'     => __( 'Recommended start', 'successcircles' ),
+					'text'     => __( 'Short weekday accountability calls with an experienced business owner selected around your goals. Partners rotate in focused cycles, giving you fresh perspective and a dependable reason to follow through.', 'successcircles' ),
+					'features' => array(
+						__( 'Matched with experienced business owners', 'successcircles' ),
+						__( 'Recurring weekday huddles', 'successcircles' ),
+						__( 'Priorities, commitments, course correction', 'successcircles' ),
+						__( 'Full Success Circles&trade; community access', 'successcircles' ),
+					),
+					'cta'      => __( 'Explore Momentum Buddy&trade;', 'successcircles' ),
+					'cta_url'  => '/momentum-buddy/',
+				),
+				array(
 					'featured' => false,
-					'kind'     => __( 'Cohort', 'successcircles' ),
+					'kind'     => __( '90-Day AI Accelerator', 'successcircles' ),
 					'price'    => '$797',
 					'title'    => __( 'Momentum Team', 'successcircles' ),
-					'flag'     => __( '90-day AI accelerator', 'successcircles' ),
-					'text'     => __( 'A 90-day cohort for owners moving from running the operation to leading it &mdash; an advisory board of elite entrepreneurs, weekly huddles, and AI systems that take the work off your desk.', 'successcircles' ),
+					'flag'     => __( 'AI + Strategy', 'successcircles' ),
+					'text'     => __( 'A 90-day cohort for owners ready to move from daily operator to strategic leader. Build practical systems, strengthen delegation, and complete one major goal with focused support.', 'successcircles' ),
 					'features' => array(
 						__( 'Personal advisory board of entrepreneurs', 'successcircles' ),
 						__( 'Personalised daily AI coach', 'successcircles' ),
@@ -269,6 +325,7 @@ function successcircles_content_tree() {
 				'link'   => __( 'The Entrepreneur Test', 'successcircles' ),
 				'after'  => __( 'points you to one in about five minutes.', 'successcircles' ),
 			),
+			'includes_eyebrow' => __( 'Included with every program', 'successcircles' ),
 			'includes' => array(
 				array(
 					'title' => __( 'Every membership includes', 'successcircles' ),
@@ -286,9 +343,9 @@ function successcircles_content_tree() {
 		),
 
 		'process' => array(
-			'index'   => '04',
+			'index'   => '06',
 			'eyebrow' => __( 'How it works', 'successcircles' ),
-			'title'   => __( 'From application to compounding progress.', 'successcircles' ),
+			'title'   => __( 'Choose a goal. <br>Build progress every week.', 'successcircles' ),
 			'steps'   => array(
 				array(
 					'title' => __( 'Tell us the goal', 'successcircles' ),
@@ -296,8 +353,8 @@ function successcircles_content_tree() {
 					'alpha' => '1',
 				),
 				array(
-					'title' => __( 'Get matched', 'successcircles' ),
-					'text'  => __( 'A short intro questionnaire on your situation, strengths, and 90-day goals drives the match. Buddies rotate every two weeks, four at most.', 'successcircles' ),
+					'title' => __( 'Meet your accountability partner', 'successcircles' ),
+					'text'  => __( 'A short questionnaire about your business, strengths, and 90-day goal helps us choose the right person. Partners rotate regularly so you gain useful new perspectives.', 'successcircles' ),
 					'alpha' => '0.75',
 				),
 				array(
@@ -306,46 +363,46 @@ function successcircles_content_tree() {
 					'alpha' => '0.5',
 				),
 				array(
-					'title' => __( 'Compound momentum', 'successcircles' ),
-					'text'  => __( 'Cycles repeat, peers rotate, and the standard you hold yourself to keeps moving up.', 'successcircles' ),
+					'title' => __( 'Repeat what works', 'successcircles' ),
+					'text'  => __( 'Each cycle gives you evidence, feedback, and a stronger standard for the next week.', 'successcircles' ),
 					'alpha' => '0.28',
 				),
 			),
 		),
 
 		'stories' => array(
-			'index'         => '05',
+			'index'         => '07',
 			'eyebrow'       => __( 'Success stories', 'successcircles' ),
-			'title'         => __( 'Members who stopped <br>deciding alone.', 'successcircles' ),
+			'title'         => __( 'Experienced owners <br>making <em class="sc-accent">meaningful progress</em>.', 'successcircles' ),
 			'links'         => array(
 				array(
 					'label' => __( 'See all success stories', 'successcircles' ),
 					'url'   => '/testimonials/',
 				),
 				array(
-					'label' => __( 'Momentum Buzz &mdash; member wins', 'successcircles' ),
+					'label' => __( 'Momentum Buzz', 'successcircles' ),
 					'url'   => '/weekly-wins/',
 				),
 			),
 			'video'         => array(
 				'embed_url'  => 'https://player.vimeo.com/video/870306260?title=0&byline=0&portrait=0&autoplay=1',
-				'title'      => __( 'Dare to play a bigger game', 'successcircles' ),
+				'title'      => __( 'How experienced owners turn goals into progress', 'successcircles' ),
 				'duration'   => __( '2 min', 'successcircles' ),
-				'poster_alt' => __( 'Joseph Varghese, founder of SuccessCircles', 'successcircles' ),
+				'poster_alt' => __( 'Joseph Varghese, founder of Success Circles&trade;', 'successcircles' ),
 			),
 			'feature_quote' => array(
-				'text' => __( 'I just had my breakthrough VIP session with Joseph. Learning about Success Circles was very exciting to me. They have created something unique and affordable that brings tremendous value to business owners. Joseph was so generous and giving of his time that I signed up without him ever asking me to join. This was exactly what I was looking for.', 'successcircles' ),
+				'text' => __( 'I just had my breakthrough VIP session with Joseph. Learning about Success Circles&trade; was very exciting to me. They have created something unique and affordable that brings tremendous value to business owners. Joseph was so generous and giving of his time that I signed up without him ever asking me to join. This was exactly what I was looking for.', 'successcircles' ),
 				'name' => __( 'H. William Song', 'successcircles' ),
 				'role' => __( 'Member', 'successcircles' ),
 			),
 			'quotes'        => array(
 				array(
-					'text' => __( 'Success Circles is an amazing experience like no other. I found out things about myself that I did not know, by simply talking my self to my buddy. Having an accountability buddy gets you in the right momentum to succeed. What an incredible program and experience.', 'successcircles' ),
+					'text' => __( 'Success Circles&trade; is an amazing experience like no other. I found out things about myself that I did not know, by simply talking my self to my buddy. Having an accountability buddy gets you in the right momentum to succeed. What an incredible program and experience.', 'successcircles' ),
 					'name' => __( 'Andy Zapata', 'successcircles' ),
 					'role' => __( 'Member', 'successcircles' ),
 				),
 				array(
-					'text' => __( 'Being a part of the Success Circles community is sooo amazing! I am so appreciative of what Joseph and the Success Circles Team are doing! As a subject matter expert in the small business space, it is critical that I have someone to hold me accountable in MY daily activities. I am honored and blessed to be connected with such a dynamic community!!!', 'successcircles' ),
+					'text' => __( 'Being a part of the Success Circles&trade; community is sooo amazing! I am so appreciative of what Joseph and the Success Circles&trade; Team are doing! As a subject matter expert in the small business space, it is critical that I have someone to hold me accountable in MY daily activities. I am honored and blessed to be connected with such a dynamic community!!!', 'successcircles' ),
 					'name' => __( 'Robin Haynes', 'successcircles' ),
 					'role' => __( 'Small business expert', 'successcircles' ),
 				),
@@ -353,24 +410,24 @@ function successcircles_content_tree() {
 		),
 
 		'test' => array(
-			'index'   => '06',
+			'index'   => '08',
 			'eyebrow' => __( 'The Entrepreneur Test', 'successcircles' ),
 			'title'   => __( 'Are you running your business&mdash;or is it running you?', 'successcircles' ),
-			'lede'    => __( 'A serious diagnostic for established owners. Twelve questions on ownership, focus, and execution &mdash; then a straight read on where the leak is and which program addresses it.', 'successcircles' ),
+			'lede'    => __( 'Twelve practical questions reveal where urgent demands are crowding out growth, then point you toward the level of support that fits your business.', 'successcircles' ),
 			'cta'     => __( 'Take the Entrepreneur Test', 'successcircles' ),
 			'note'    => __( '5 minutes', 'successcircles' ),
 		),
 
 		'founder' => array(
-			'index'         => '07',
+			'index'         => '09',
 			'eyebrow'       => __( 'Founder', 'successcircles' ),
 			'name'          => __( 'Joseph JV Varghese', 'successcircles' ),
 			'portrait'      => SUCCESSCIRCLES_URI . '/assets/img/founder-portrait.png',
-			'portrait_alt'  => __( 'Joseph Varghese, founder of Success Circles', 'successcircles' ),
+			'portrait_alt'  => __( 'Joseph Varghese, founder of Success Circles&trade;', 'successcircles' ),
 			'signature'     => SUCCESSCIRCLES_URI . '/assets/img/founder-signature.png',
 			'signature_alt' => __( 'Signature of Joseph Varghese', 'successcircles' ),
-			'bio'           => __( 'Joseph started SuccessCircles in 2005 on a simple observation: the owners who kept their commitments weren&rsquo;t more disciplined &mdash; they were less alone. An engineer by training, he built the structure around that.', 'successcircles' ),
-			'bio_secondary' => __( 'Two decades later, Momentum OS is what came out of it &mdash; and a community of owners who run it, not a coaching practice of one.', 'successcircles' ),
+			'bio'           => __( 'Joseph started Success Circles&trade; in 2005 after noticing that successful owners followed through more consistently when another owner knew the goal and checked back. His engineering background helped turn that insight into a repeatable structure.', 'successcircles' ),
+			'bio_secondary' => __( 'Two decades later, that structure supports a community of established entrepreneurs who help one another stay focused, make clearer decisions, and keep important work moving.', 'successcircles' ),
 			'link'          => array(
 				'label' => __( 'Meet Joseph', 'successcircles' ),
 				'url'   => '/about-joseph-varghese/',
@@ -389,7 +446,7 @@ function successcircles_content_tree() {
 		),
 
 		'faq' => array(
-			'index'   => '08',
+			'index'   => '10',
 			'eyebrow' => __( 'Questions', 'successcircles' ),
 			'title'   => __( 'The ones owners <br>actually ask.', 'successcircles' ),
 			'link'    => array(
@@ -399,19 +456,19 @@ function successcircles_content_tree() {
 			'items'   => array(
 				array(
 					'question' => __( 'How often do I get a new buddy?', 'successcircles' ),
-					'answer'   => __( 'Buddies are assigned bi-monthly, with a maximum of two cycles &mdash; four weeks &mdash; with the same partner. Fresh feedback from different peers is what breaks the plateau.', 'successcircles' ),
+					'answer'   => __( 'You usually work with the same accountability partner for two to four weeks. Regular rotation brings fresh perspective while each cycle gives you enough time to build trust and follow through.', 'successcircles' ),
 				),
 				array(
 					'question' => __( 'How do you know my buddy is the right fit?', 'successcircles' ),
 					'answer'   => __( 'We match on goals and strengths: if another member is strong where you want to grow, or has already reached the goal you&rsquo;re aiming at, we pair you. Members rate each experience and can request a specific buddy.', 'successcircles' ),
 				),
 				array(
-					'question' => __( 'Why peers instead of a coach?', 'successcircles' ),
-					'answer'   => __( 'Because a peer is on the same playing field. You stay autonomous in your decisions, and you contribute as much as you receive. Research points to peer accountability as the strongest driver of performance.', 'successcircles' ),
+					'question' => __( 'Why another business owner instead of a coach?', 'successcircles' ),
+					'answer'   => __( 'Another experienced owner understands the weight of decisions, team responsibility, and competing priorities. You keep control of your decisions while gaining honest perspective and mutual accountability.', 'successcircles' ),
 				),
 				array(
 					'question' => __( 'What if it doesn&rsquo;t work for me?', 'successcircles' ),
-					'answer'   => __( 'You have a 30-day trial &mdash; two partnership cycles. Unhappy with your results for any reason, and we refund your investment.', 'successcircles' ),
+					'answer'   => __( 'You have a 30-day trial, two partnership cycles. Unhappy with your results for any reason, and we refund your investment.', 'successcircles' ),
 				),
 			),
 		),
@@ -419,25 +476,25 @@ function successcircles_content_tree() {
 		'faq_page' => array(
 			'eyebrow' => __( 'Frequently asked questions', 'successcircles' ),
 			'title'   => __( 'Everything owners <em class="sc-accent">actually</em> ask.', 'successcircles' ),
-			'lede'    => __( 'SuccessCircles is a results-driven peer momentum, braintrust, and execution system for high-achieving entrepreneurs &mdash; a structured, and genuinely fun, way to take daily action, stay focused, and accelerate. Here is how it works, and what to expect.', 'successcircles' ),
+			'lede'    => __( 'Success Circles&trade; gives established entrepreneurs structured accountability, trusted outside perspective, and a consistent rhythm for moving important goals forward. Here is what membership looks like in practice.', 'successcircles' ),
 			'groups'  => array(
 				array(
 					'label' => __( 'The system', 'successcircles' ),
 					'items' => array(
 						array(
-							'question' => __( 'What are the benefits of joining SuccessCircles?', 'successcircles' ),
+							'question' => __( 'What are the benefits of joining Success Circles&trade;?', 'successcircles' ),
 							'answer'   => array(
 								array( 'p' => __( 'As a member, you will:', 'successcircles' ) ),
 								array(
 									'list' => array(
-										__( 'Turn action into a game &mdash; execution becomes fun when you&rsquo;re part of a system that rewards progress.', 'successcircles' ),
-										__( 'Gain unstoppable momentum &mdash; move the needle forward daily with braintrust and peer momentum.', 'successcircles' ),
-										__( 'Increase profitability and impact &mdash; consistently execute on your biggest opportunities.', 'successcircles' ),
-										__( 'Simplify your focus &mdash; stop spinning your wheels and focus on what truly matters.', 'successcircles' ),
-										__( 'Build sustainable habits &mdash; small daily improvements compound into massive long-term gains.', 'successcircles' ),
-										__( 'Never feel isolated &mdash; be part of a powerful braintrust and community that lifts you up.', 'successcircles' ),
-										__( 'Grow in confidence &mdash; from stacking positive references of success and having clarity of purpose.', 'successcircles' ),
-										__( 'Get immediate access to $10,000 in resources for peak performance, energy management, delegation, focus, and automation on joining the Momentum Braintrust Buddy Action program.', 'successcircles' ),
+										__( 'Protect time for the goals that matter most to your business.', 'successcircles' ),
+										__( 'Make clearer decisions with perspective from experienced owners.', 'successcircles' ),
+										__( 'Follow through consistently because someone will check back.', 'successcircles' ),
+										__( 'Turn large goals into practical weekly commitments.', 'successcircles' ),
+										__( 'Build habits that continue working after motivation fades.', 'successcircles' ),
+										__( 'Lead without carrying every difficult decision alone.', 'successcircles' ),
+										__( 'Gain confidence from visible, measurable progress.', 'successcircles' ),
+										__( 'Get immediate access to $10,000 in resources for peak performance, energy management, delegation, focus, and automation on joining the Momentum Braintrust Buddy&trade; Action program.', 'successcircles' ),
 									),
 								),
 							),
@@ -445,14 +502,14 @@ function successcircles_content_tree() {
 						array(
 							'question' => __( 'How does it work?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'We combine Braintrust Partnerships, daily Momentum (Braintrust) Buddy calls, and optional group huddles to help you set clear intentions and take massive action. Each call aligns your focus on wins, priorities, and course corrections &mdash; so you stay on track and keep leveling up.', 'successcircles' ) ),
-								array( 'p' => __( 'Success isn&rsquo;t a straight path; it&rsquo;s about consistently adapting and optimizing. With regular feedback and structured momentum, you reach your goals faster and with far greater ease.', 'successcircles' ) ),
+								array( 'p' => __( 'You begin each check-in by reviewing what moved, choosing the next priority, and making a specific commitment. One-to-one calls provide focused accountability, while optional group huddles add broader experience and practical feedback.', 'successcircles' ) ),
+								array( 'p' => __( 'The rhythm is simple: decide, commit, act, review, and adjust. Repeating that cycle keeps meaningful work moving even when the week becomes busy.', 'successcircles' ) ),
 							),
 						),
 						array(
-							'question' => __( 'What makes SuccessCircles sustainable?', 'successcircles' ),
+							'question' => __( 'What makes Success Circles&trade; sustainable?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'Our system is built around a proprietary question-and-answer framework that keeps you engaged and focused. Instead of passive learning, we emphasize execution and real-world results. Unlike traditional coaching or mastermind groups, this is hands-on, action-driven, and fun &mdash; where taking purposeful action is the priority.', 'successcircles' ) ),
+								array( 'p' => __( 'Every conversation follows the same focused questions, so little time is wasted deciding what to discuss. You leave with one clear commitment, complete the work, and report back. The value comes from repetition and follow-through, not more content to consume.', 'successcircles' ) ),
 							),
 						),
 						array(
@@ -461,50 +518,50 @@ function successcircles_content_tree() {
 								array( 'p' => __( 'Through our process, you&rsquo;ll:', 'successcircles' ) ),
 								array(
 									'list' => array(
-										__( 'Master delegation, focus, and time management with proven tools and strategies.', 'successcircles' ),
-										__( 'Turn distractions into clarity &mdash; cut through noise and focus on high-impact actions.', 'successcircles' ),
-										__( 'Leverage accountability for consistency &mdash; stay aligned with your top goals every day.', 'successcircles' ),
-										__( 'Create freedom through structure &mdash; the right systems let you scale without burnout.', 'successcircles' ),
+										__( 'Choose fewer priorities and finish the ones with the greatest impact.', 'successcircles' ),
+										__( 'Identify distractions before they consume another week.', 'successcircles' ),
+										__( 'Use regular check-ins to keep important commitments visible.', 'successcircles' ),
+										__( 'Build routines that create more time for leadership and growth.', 'successcircles' ),
 									),
 								),
-								array( 'p' => __( 'Instead of just being &ldquo;busy,&rdquo; you become strategically productive, moving toward your biggest outcomes.', 'successcircles' ) ),
+								array( 'p' => __( 'The goal is not a fuller calendar. It is steady movement on the work that changes the business.', 'successcircles' ) ),
 							),
 						),
 						array(
 							'question' => __( 'I think I have Attention Deficiency Disorder. Will this help?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'Before joining, many members experienced high levels of what they called ADD &mdash; difficulty focusing on one thing, trouble staying on a subject, unfinished tasks, poor follow-through, and the inability to hold a habit until it becomes consistent. If that sounds familiar, the SuccessCircles process is the ultimate means of maintaining focus &mdash; a quality that is paramount for success, and one these same members now embrace.', 'successcircles' ) ),
+								array( 'p' => __( 'Success Circles&trade; is not medical care and cannot diagnose or treat ADHD. Its structured questions, short commitments, and regular check-ins may help you organize priorities and improve follow-through. Speak with a qualified healthcare professional if attention difficulties are affecting your daily life.', 'successcircles' ) ),
 							),
 						),
 						array(
 							'question' => __( 'This sounds complicated. Does it really work?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'Yes &mdash; if you&rsquo;re committed to results over reasons, it absolutely works. Once you begin, you&rsquo;ll find the program to be genuinely simple and very supportive in streamlining how you reach your goals. We&rsquo;ve been doing this for over ten years, with hundreds of success stories around the world.', 'successcircles' ) ),
+								array( 'p' => __( 'The process is intentionally simple: choose a priority, make a specific commitment, complete the work, and review the result. It works best for owners who participate consistently and are willing to be candid about what did and did not get done.', 'successcircles' ) ),
 								array( 'p' => __( 'We&rsquo;ve been acknowledged by top leaders in entrepreneurship &mdash; Michael Gerber of the E-Myth, Blair Singer of Rich Dad Poor Dad, and Inc. Magazine, among others.', 'successcircles' ) ),
 							),
 						),
 					),
 				),
 				array(
-					'label' => __( 'Your Momentum Buddy', 'successcircles' ),
+					'label' => __( 'Your Momentum Buddy&trade;', 'successcircles' ),
 					'items' => array(
 						array(
 							'question' => __( 'What is a Momentum (Braintrust) Buddy?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'Your Momentum Braintrust Buddy is your braintrust partner, matched to your goals and strengths. They:', 'successcircles' ) ),
+								array( 'p' => __( 'Your Momentum Braintrust Buddy&trade; is another business owner selected around your goals, experience, and strengths. They help you:', 'successcircles' ) ),
 								array(
 									'list' => array(
-										__( 'Challenge you to execute at your highest level.', 'successcircles' ),
-										__( 'Help you break through roadblocks with insights and solutions.', 'successcircles' ),
-										__( 'Keep you accountable so you maintain momentum.', 'successcircles' ),
-										__( 'Encourage smart course corrections for maximum efficiency.', 'successcircles' ),
+										__( 'Choose the priority that matters most.', 'successcircles' ),
+										__( 'Think through roadblocks with an experienced outside perspective.', 'successcircles' ),
+										__( 'Follow through on the commitment you made.', 'successcircles' ),
+										__( 'Adjust quickly when the evidence changes.', 'successcircles' ),
 									),
 								),
 								array( 'p' => __( 'We pair you with someone complementary to your strengths, so both of you grow in the areas that matter.', 'successcircles' ) ),
 							),
 						),
 						array(
-							'question' => __( 'How often will I get a new Momentum Buddy?', 'successcircles' ),
+							'question' => __( 'How often will I get a new Momentum Buddy&trade;?', 'successcircles' ),
 							'answer'   => array(
 								array( 'p' => __( 'Buddies are assigned bi-monthly, with a maximum of two cycles &mdash; four weeks &mdash; with the same partner. Partnering with different members and getting fresh feedback is what breaks you through to real results. You can choose daily momentum calls each weekday morning, or three days a week (typically Monday, Wednesday, and Friday).', 'successcircles' ) ),
 								array( 'p' => __( 'Assignments are based on your chosen level of accountability, drive for growth, and time availability. You can request a faith-based partner and we&rsquo;ll do our best to match you. Working on a specific area? We&rsquo;ll aim to pair you with a member strong there, or one who has already met a goal you&rsquo;re aiming for. Regular surveys let you rate the experience and request a particular buddy.', 'successcircles' ) ),
@@ -517,13 +574,13 @@ function successcircles_content_tree() {
 							),
 						),
 						array(
-							'question' => __( 'What Peer Momentum services do you offer?', 'successcircles' ),
+							'question' => __( 'Which programs do you offer?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'SuccessCircles currently offers two primary services:', 'successcircles' ) ),
+								array( 'p' => __( 'Success Circles&trade; currently offers two primary services:', 'successcircles' ) ),
 								array(
 									'list' => array(
 										__( 'Momentum Team 90-Day AI Incubator &mdash; our program where we play the 90-Day Year.', 'successcircles' ),
-										__( 'Momentum Braintrust Buddy Action &mdash; daily accountability calls, generally one-on-one with a member a step ahead of you in an area you&rsquo;re committed to progressing.', 'successcircles' ),
+										__( 'Momentum Braintrust Buddy&trade; Action &mdash; daily accountability calls, generally one-on-one with a member a step ahead of you in an area you&rsquo;re committed to progressing.', 'successcircles' ),
 									),
 								),
 								array( 'p' => __( 'As you move through different buddies within the huddle calls, you&rsquo;ll eventually select the ones who impacted you most &mdash; your first draft picks. If they select you too, we create a quarterly Dream Team to support your top five outcomes each month. The Circle of Five is an optional component for members seeking further feedback.', 'successcircles' ) ),
@@ -537,7 +594,7 @@ function successcircles_content_tree() {
 						array(
 							'question' => __( 'I&rsquo;m not an entrepreneur. Can I still join?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'The majority of our members are entrepreneurs, but we have several who are between jobs or transitioning careers. Members who joined during a transition became significantly more engaged in their search and often credit SuccessCircles as the accelerating factor that got their career on track. We also have members who aren&rsquo;t entrepreneurs but have the flexibility to hold a consistent call three days a week.', 'successcircles' ) ),
+								array( 'p' => __( 'The majority of our members are entrepreneurs, but we have several who are between jobs or transitioning careers. Members who joined during a transition became significantly more engaged in their search and often credit Success Circles&trade; as the accelerating factor that got their career on track. We also have members who aren&rsquo;t entrepreneurs but have the flexibility to hold a consistent call three days a week.', 'successcircles' ) ),
 							),
 						),
 						array(
@@ -551,7 +608,7 @@ function successcircles_content_tree() {
 			),
 			'aside'   => array(
 				'title' => __( 'Still have a question?', 'successcircles' ),
-				'text'  => __( 'Talk to a facilitator and we&rsquo;ll help you figure out whether SuccessCircles is the right room for you.', 'successcircles' ),
+				'text'  => __( 'Talk to a facilitator and we&rsquo;ll help you figure out whether Success Circles&trade; is the right room for you.', 'successcircles' ),
 				'link'  => array(
 					'label' => __( 'Take the Entrepreneur Test', 'successcircles' ),
 					'url'   => '#test',
@@ -630,9 +687,9 @@ function successcircles_content_tree() {
 
 		'cta' => array(
 			'title'         => __( 'Dare to play a <em class="sc-accent">bigger</em> game.', 'successcircles' ),
-			'lede'          => __( 'Start with the test. It takes five minutes and tells you which room you belong in.', 'successcircles' ),
+			'lede'          => __( 'Take five minutes to identify what is blocking progress and which level of support can help you move your biggest goal forward.', 'successcircles' ),
 			'primary_cta'   => __( 'Take the Entrepreneur Test', 'successcircles' ),
-			'secondary_cta' => __( 'Compare the programs', 'successcircles' ),
+			'secondary_cta' => __( 'Check Our Programs', 'successcircles' ),
 		),
 
 		'episodes' => array(
@@ -663,18 +720,18 @@ function successcircles_content_tree() {
 			'eyebrow'  => __( 'Founder', 'successcircles' ),
 			'title'    => __( 'About Joseph <em class="sc-accent">Varghese</em>.', 'successcircles' ),
 			'roles'    => array(
-				__( 'Founder of Success Circles', 'successcircles' ),
+				__( 'Founder of Success Circles&trade;', 'successcircles' ),
 				__( 'The Breakthrough Engineer', 'successcircles' ),
 				__( 'Momentum Architect', 'successcircles' ),
 			),
-			'lede'     => __( 'Joseph John Varghese is obsessed with one idea &mdash; success leaves clues and proximity is power. If you can model the habits, systems, and mindset of someone a few steps ahead, you can shortcut years of trial and error.', 'successcircles' ),
+			'lede'     => __( 'Joseph John Varghese helps experienced entrepreneurs turn ambitious goals into clear priorities, practical systems, and consistent action. His work is built on a simple belief: the right support can save years of trial and error.', 'successcircles' ),
 			'intro'    => array(
 				__( 'That belief shaped his life&rsquo;s work.', 'successcircles' ),
-				__( 'After years as an unfulfilled process engineer, Joseph witnessed the world&rsquo;s resilience and unity after 9/11. Inspired by people stepping up to help one another, he made it his mission to build ventures that amplify human potential through connection and execution.', 'successcircles' ),
+				__( 'After years as an unfulfilled process engineer, Joseph witnessed the world&rsquo;s resilience and unity after 9/11. Inspired by people stepping up to help one another, he made it his mission to help ambitious people turn meaningful goals into consistent action.', 'successcircles' ),
 			),
 			'portrait' => array(
 				'file'   => 'jv-portrait.png',
-				'alt'    => __( 'Joseph Varghese, founder of SuccessCircles', 'successcircles' ),
+				'alt'    => __( 'Joseph Varghese, founder of Success Circles&trade;', 'successcircles' ),
 				'width'  => 1200,
 				'height' => 2000,
 			),
@@ -690,22 +747,22 @@ function successcircles_content_tree() {
 					'title' => __( 'From Engineer to Momentum Architect', 'successcircles' ),
 					'body'  => array(
 						__( 'Between 2003 and 2005, Joseph launched Metrofly, a movement that merged nightlife, purpose, and philanthropy &mdash; raising money for New York nonprofits while connecting people for something bigger than themselves. That experience sparked his fascination with crowdsourcing success.', 'successcircles' ),
-						__( 'By 2005, he founded Success Circles, a peer-momentum community built to help high level entrepreneurs stay focused, accountable, and on fire. He realized that while information was everywhere, execution was the missing link &mdash; and that accountability, structure, and rhythm could change everything.', 'successcircles' ),
-						__( 'Success Circles also became an extension of the JV Alliance family office, established in the honor of Joseph&rsquo;s late father John Varghese who passed away in 2004.', 'successcircles' ),
-						__( 'For over 20 years, Joseph has been immersed in the science of peak performance, productivity, and gamification. He calls himself The Breakthrough Engineer because he designs systems for clarity, freedom, and momentum &mdash; helping driven leaders turn vision into reality.', 'successcircles' ),
+						__( 'By 2005, he founded Success Circles&trade; to help established entrepreneurs stay focused and accountable to the goals that mattered most. He saw that owners rarely lacked information; they needed structure, honest perspective, and a dependable reason to follow through.', 'successcircles' ),
+						__( 'Success Circles&trade; also became an extension of the JV Alliance family office, established in the honor of Joseph&rsquo;s late father John Varghese who passed away in 2004.', 'successcircles' ),
+						__( 'For over 20 years, Joseph has studied performance, productivity, and the systems that help people follow through. He now applies that work to give experienced entrepreneurs clearer priorities, better operating habits, and steady progress on the goals that matter.', 'successcircles' ),
 					),
 				),
 				array(
 					'title' => __( 'Modeling Success in the AI Era', 'successcircles' ),
 					'body'  => array(
-						__( 'Today, Joseph combines his engineering background with AI-driven tools to help entrepreneurs work smarter, not harder. Through programs like the 90-Day Momentum Team&trade; Accelerator and the 3-Day AI Challenge, members learn to model others&rsquo; patterns, simplify systems, and execute consistently with the help of AI and peer support.', 'successcircles' ),
+						__( 'Today, Joseph combines his engineering background with practical AI tools that help entrepreneurs reduce routine work, simplify operations, and make more time for high-value leadership. His programs pair those tools with experienced support and consistent accountability.', 'successcircles' ),
 						__( 'Joseph is also a sought-after speaker who inspires audiences &mdash; from students to executives &mdash; to balance ambition with purpose and play. His message is simple: Momentum beats motivation.', 'successcircles' ),
 					),
 				),
 				array(
 					'title' => __( 'Mission &amp; Legacy', 'successcircles' ),
 					'body'  => array(
-						__( 'Through Success Circles, Joseph continues to connect entrepreneurs and professionals committed to growth, accountability, and impact. He calls this mission and his WHY G.I. Joseph &mdash; Generational Impact, a movement to create freedom, fulfillment, and fun for the next generation of owners and leaders.', 'successcircles' ),
+						__( 'Through Success Circles&trade;, Joseph continues to connect entrepreneurs and professionals committed to growth, accountability, and impact. He calls this mission and his WHY G.I. Joseph &mdash; Generational Impact, a movement to create freedom, fulfillment, and fun for the next generation of owners and leaders.', 'successcircles' ),
 					),
 				),
 			),
@@ -833,12 +890,12 @@ function successcircles_content_tree() {
 				array(
 					'name' => __( 'AJ Mihrzad', 'successcircles' ),
 					'role' => __( 'The Online Super Coach', 'successcircles' ),
-					'text' => __( 'Such a powerful program! I&rsquo;ve done many personal development programs in the past and this is one of the BEST! I Highly recommend Success Circles!', 'successcircles' ),
+					'text' => __( 'Such a powerful program! I&rsquo;ve done many personal development programs in the past and this is one of the BEST! I Highly recommend Success Circles&trade;!', 'successcircles' ),
 				),
 				array(
 					'name' => __( 'Stephanie Chin', 'successcircles' ),
 					'role' => __( 'Singer / Songwriter', 'successcircles' ),
-					'text' => __( 'I highly recommend working with Success Circles. Here are some of the results I experienced in my time with them: &ndash; I&rsquo;ve stepped up my game in my physical health. I&rsquo;ve been consistently practicing yoga and am already seeing a decrease in back pain. &ndash; I launched a new single and music video. I reached 1600 streams on Spotify in one week and 1500 views on youtube in one week. That&rsquo;s the most success I&rsquo;ve had to date with music. It&rsquo;s going to grow the more I learn and the more I release music.', 'successcircles' ),
+					'text' => __( 'I highly recommend working with Success Circles&trade;. Here are some of the results I experienced in my time with them: &ndash; I&rsquo;ve stepped up my game in my physical health. I&rsquo;ve been consistently practicing yoga and am already seeing a decrease in back pain. &ndash; I launched a new single and music video. I reached 1600 streams on Spotify in one week and 1500 views on youtube in one week. That&rsquo;s the most success I&rsquo;ve had to date with music. It&rsquo;s going to grow the more I learn and the more I release music.', 'successcircles' ),
 				),
 				array(
 					'name' => __( 'Jane Wilcox', 'successcircles' ),
@@ -848,17 +905,17 @@ function successcircles_content_tree() {
 				array(
 					'name' => __( 'Douglas Samuel', 'successcircles' ),
 					'role' => '',
-					'text' => __( 'Success Circles has helped me develop personally and professionally. I&rsquo;ve got much more focus, and I&rsquo;ve had the opportunity to help many other people focus on what&rsquo;s important in their life.Success Circles is a must have for anyone who wants to step up their game, especially if they have big personal or business goals they are aiming for.', 'successcircles' ),
+					'text' => __( 'Success Circles&trade; has helped me develop personally and professionally. I&rsquo;ve got much more focus, and I&rsquo;ve had the opportunity to help many other people focus on what&rsquo;s important in their life.Success Circles&trade; is a must have for anyone who wants to step up their game, especially if they have big personal or business goals they are aiming for.', 'successcircles' ),
 				),
 				array(
 					'name' => __( 'Jay', 'successcircles' ),
 					'role' => __( 'www.WeekendDating.com', 'successcircles' ),
-					'text' => __( 'Hi, just some positive words on Success Circles. I recently met someone at a networking event who was a life coach and offered me a free introductory package. After that, it was crazy money, somewhere around $1200- $1500 for an evaluation session, 4 follow up sessions and email correspondence in between. I really did not know what a life coach does. As I started going through the early phases with this person, I said, wait, I am already doing this with Success Circles. A lot of the materials presented (wheel of life, making sure to have different categories of life covered) are all things I learned through Success Circles at a fraction of what the cost would be. So kuddos to you. After one evaluation session and one follow up session, I let her know that it really was duplicative of what I was already experiencing with Peer Success. All the best!', 'successcircles' ),
+					'text' => __( 'Hi, just some positive words on Success Circles&trade;. I recently met someone at a networking event who was a life coach and offered me a free introductory package. After that, it was crazy money, somewhere around $1200- $1500 for an evaluation session, 4 follow up sessions and email correspondence in between. I really did not know what a life coach does. As I started going through the early phases with this person, I said, wait, I am already doing this with Success Circles&trade;. A lot of the materials presented (wheel of life, making sure to have different categories of life covered) are all things I learned through Success Circles at a fraction of what the cost would be. So kuddos to you. After one evaluation session and one follow up session, I let her know that it really was duplicative of what I was already experiencing with Peer Success. All the best!', 'successcircles' ),
 				),
 				array(
 					'name' => __( 'Heather Cottrell', 'successcircles' ),
 					'role' => __( 'Holistic Nutrition &amp; Lifestyle Coach', 'successcircles' ),
-					'text' => __( 'Being a part of Success Circles has made a dramatic difference in my life. Suddenly I am no longer on my own &ndash; I have a daily accountability partner who supports me to achieve my goals as I do the same for them. I created a habit of waking 4-6 hours earlier than usual creating more time each day to build my business, spend time with friends and family and practice self-care. People need people, especially heart-centered entrepreneurs who work alone putting out so much energy to help others. Start each day with a supportive partner who holds you accountable, is with you through challenges and celebrates your daily and weekly wins and discover what becomes possible in your life.', 'successcircles' ),
+					'text' => __( 'Being a part of Success Circles&trade; has made a dramatic difference in my life. Suddenly I am no longer on my own &ndash; I have a daily accountability partner who supports me to achieve my goals as I do the same for them. I created a habit of waking 4-6 hours earlier than usual creating more time each day to build my business, spend time with friends and family and practice self-care. People need people, especially heart-centered entrepreneurs who work alone putting out so much energy to help others. Start each day with a supportive partner who holds you accountable, is with you through challenges and celebrates your daily and weekly wins and discover what becomes possible in your life.', 'successcircles' ),
 				),
 				array(
 					'name' => __( 'Kay Kinder-Francis', 'successcircles' ),
@@ -874,51 +931,51 @@ function successcircles_content_tree() {
 		),
 
 		'about' => array(
-			'title'     => __( 'Twenty years of <em class="sc-accent">peers</em>, <br>not platforms.', 'successcircles' ),
-			'lede'      => __( 'Since 2005, SuccessCircles has helped thousands of entrepreneurs and business owners stay the course and win the game of work, life and play.', 'successcircles' ),
+			'title'     => __( 'Twenty years helping owners <em class="sc-accent">follow through</em>.', 'successcircles' ),
+			'lede'      => __( 'Since 2005, Success Circles&trade; has helped established entrepreneurs protect their priorities, make clearer decisions, and keep meaningful goals moving.', 'successcircles' ),
 			'meta'      => array(
 				__( 'Founded 2005', 'successcircles' ),
 				__( 'Started with 8 friends', 'successcircles' ),
 				__( 'Now an international community', 'successcircles' ),
 			),
-			'bleed_alt' => __( 'SuccessCircles members in a working huddle', 'successcircles' ),
+			'bleed_alt' => __( 'Success Circles members in a working huddle', 'successcircles' ),
 
 			'mission'   => array(
-				'title' => __( 'Our mission is simply <br>to make you <em class="sc-accent">better</em>.', 'successcircles' ),
-				'lede'  => __( 'The mission of SuccessCircles is simply to make you better. Making you better makes us better.', 'successcircles' ),
-				'body'  => __( 'We aim to always inspire our members to make 1% DAILY meaningful and measurable progress and enjoy the journey in winning the game of life, work, and play. When you get a little bit better every day, you have now tapped into exponential growth while enjoying the journey getting there.', 'successcircles' ),
+				'title' => __( 'Make meaningful progress <em class="sc-accent">every week</em>.', 'successcircles' ),
+				'lede'  => __( 'Our mission is to help experienced entrepreneurs turn important goals into clear commitments and completed work.', 'successcircles' ),
+				'body'  => __( 'Small, measurable improvements build stronger businesses when they happen consistently. We provide the structure, accountability, and community that keep those improvements from being pushed aside by urgent demands.', 'successcircles' ),
 			),
 
 			'vision'    => array(
-				'title'     => __( 'Nobody should have to <br>brave the journey alone.', 'successcircles' ),
+				'title'     => __( 'No owner should carry every important decision alone.', 'successcircles' ),
 				'image_alt' => __( 'An entrepreneur working alone at a desk', 'successcircles' ),
 				'body'      => array(
-					__( 'Create a world where entrepreneurs and business leaders no longer have to brave the journey alone.', 'successcircles' ),
-					__( 'Success Circles is a Goal Purposing System (GPS). Just as a captain needs to make continual course corrections to get to a destination, so does every entrepreneur and business leader. Success Circles provides that daily flight plan goal realignment by connecting members together in peer-to-peer partnerships, all while tracking their growth and progress while receiving consistent feedback. It&rsquo;s the ultimate blend of productivity and relationships.', 'successcircles' ),
-					__( 'We believe that to have a quality life, it helps to be asked quality questions. Quality questions establish the framework for all our Momentum &ldquo;Braintrust&rdquo; Buddy calls. It&rsquo;s our intention that each member leads an inspiring and fulfilling life full on play.', 'successcircles' ),
+					__( 'We are building a community where experienced entrepreneurs can ask for perspective, test decisions, and stay accountable without giving up their independence.', 'successcircles' ),
+					__( 'Members turn large goals into practical commitments, track what changes, and make regular course corrections with support from people who understand the realities of ownership.', 'successcircles' ),
+					__( 'Focused questions keep every conversation useful. You leave knowing what matters next, what you committed to, and when someone will check back.', 'successcircles' ),
 				),
 			),
 
 			'values'    => array(
 				'title' => __( 'Two vows, made <br>on the way in.', 'successcircles' ),
-				'lede'  => __( 'Upon joining, every member of Success Circles makes a commitment to respect and uphold the community&rsquo;s core founding values:', 'successcircles' ),
+				'lede'  => __( 'Upon joining, every member of Success Circles&trade; makes a commitment to respect and uphold the community&rsquo;s core founding values:', 'successcircles' ),
 				// The club's own core-values seal, carrying both vows around its
 				// ring — which is why it sits with the section heading rather
 				// than beside either vow.
 				'badge' => array(
 					'file'   => 'core-values.png',
-					'alt'    => __( 'SuccessCircles core values seal: make others better than you found them, and aim to be better today than yesterday. #BETTERPRINCIPLES', 'successcircles' ),
+					'alt'    => __( 'Success Circles core values seal: make others better than you found them, and aim to be better today than yesterday. #BETTERPRINCIPLES', 'successcircles' ),
 					'width'  => 584,
 					'height' => 603,
 				),
 				'items' => array(
 					array(
 						'title' => __( 'Make Others Better Than You Found Them', 'successcircles' ),
-						'text'  => __( 'You contribute as much as you receive. The call is not a service you consume &mdash; it is a room you hold open for someone else.', 'successcircles' ),
+						'text'  => __( 'You contribute as much as you receive. Every conversation should leave another owner with greater clarity, confidence, or a practical next step.', 'successcircles' ),
 					),
 					array(
 						'title' => __( 'Be BETTER Today Than Yesterday', 'successcircles' ),
-						'text'  => __( 'Not a transformation. One percent, measurable, today &mdash; then again tomorrow, until the compounding does the rest.', 'successcircles' ),
+						'text'  => __( 'Choose one measurable improvement, complete it, and build on it. Consistency matters more than dramatic promises.', 'successcircles' ),
 					),
 				),
 			),
@@ -926,10 +983,10 @@ function successcircles_content_tree() {
 			'story'     => array(
 				'title' => __( 'How it all got started.', 'successcircles' ),
 				'body'  => array(
-					__( 'The concept of Success Circles began 20 years ago in 2005 initially with 8 personal friends including Joseph J. Varghese as an extension of a family office that he began in honor of his late father John Varghese. John Varghese was a master in understanding generational impact and compound growth having invested in helping other members of the family realize their dreams.', 'successcircles' ),
-					__( 'Joseph found that all those initial 8 Success Circles members were able to continue making progress toward reaching their goals and dreams through the daily engagement of peer-to-peer momentum calls. What started as a small braintrust of unique individuals has now grown into an International community.', 'successcircles' ),
-					__( 'Success Circles pairs our members with a momentum &ldquo;huddle&rdquo; buddy who shares similar values and who is also committed to personal and professional growth and improvement. We do our best to pair you up with someone who is a few steps ahead of you in a specific area of life, or with someone who has already reached a goal you are striving for.', 'successcircles' ),
-					__( 'We rise to the quality of expectations that we establish with our peers. When you join Success Circles, you will find yourself continually leveling up simply based on how our community sees you as an extraordinary leader.', 'successcircles' ),
+					__( 'The concept of Success Circles&trade; began 20 years ago in 2005 initially with 8 personal friends including Joseph J. Varghese as an extension of a family office that he began in honor of his late father John Varghese. John Varghese was a master in understanding generational impact and compound growth having invested in helping other members of the family realize their dreams.', 'successcircles' ),
+					__( 'The original eight members made stronger progress because their goals were visible, their commitments were specific, and someone checked back. That small group grew into an international community of entrepreneurs.', 'successcircles' ),
+					__( 'Today, members are matched with accountability partners who share similar values and relevant experience. When possible, we connect you with someone who has already solved the problem or reached the goal in front of you.', 'successcircles' ),
+					__( 'The community creates a higher standard without taking control away from the owner. Honest questions, useful perspective, and regular follow-up help members make better decisions and complete important work.', 'successcircles' ),
 				),
 				'arc'   => array(
 					array(
@@ -957,9 +1014,9 @@ function successcircles_content_tree() {
 		// Testimonials, prices and the stat line are the client's own copy.
 		'buddy_page' => array(
 			'eyebrow'  => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
-			'title'    => __( 'Dare to play <em class="sc-accent">bigger</em>.', 'successcircles' ),
-			'lede'     => __( 'Transform your entrepreneurial journey with the Momentum Braintrust Buddy action program &mdash; structured one-to-one peer accountability, every weekday, with owners playing at your level.', 'successcircles' ),
-			'cta'      => __( 'I want momentum', 'successcircles' ),
+			'title'    => __( 'Stop carrying your biggest goals <em class="sc-accent">alone</em>.', 'successcircles' ),
+			'lede'     => __( 'Short weekday calls with another experienced business owner help you choose the right priority, make a clear commitment, and follow through consistently.', 'successcircles' ),
+			'cta'      => __( 'Get Consistent Accountability', 'successcircles' ),
 			'cta_note' => __( 'No commission fee or contract. You can cancel anytime.', 'successcircles' ),
 			'notice'   => __( 'Peak season in full swing. Few spots open.', 'successcircles' ),
 			// The source page's hero was a content-free blue/orange gradient — a
@@ -1007,24 +1064,24 @@ function successcircles_content_tree() {
 			'stats_note' => __( 'Yes, we track this stuff.', 'successcircles' ),
 
 			'problem'  => array(
-				'title' => __( 'The hidden struggles of <em class="sc-accent">successful</em> entrepreneurs.', 'successcircles' ),
-				'lede'  => __( 'You&rsquo;ve built a thriving business, maybe even multiple ventures. You can step away while your teams manage operations. On paper, you&rsquo;re living the entrepreneurial dream. But something&rsquo;s off, isn&rsquo;t it?', 'successcircles' ),
+				'title' => __( 'Success does not remove the pressure of <em class="sc-accent">ownership</em>.', 'successcircles' ),
+				'lede'  => __( 'You have built a capable business and people depend on your decisions. Yet the goals that matter most can still lose ground to daily demands, and there are few people you can speak with candidly about the weight of leading.', 'successcircles' ),
 				'items' => array(
 					array(
 						'title' => __( 'The isolation at the top', 'successcircles' ),
-						'text'  => __( 'Success has a price, and it&rsquo;s often paid in solitude. The higher you climb, the fewer people understand your challenges. Who can you really talk to about the weight of leadership, the constant need for innovation, the pressure to stay ahead?', 'successcircles' ),
+						'text'  => __( 'As the owner, you are expected to have the answer. That makes it difficult to test an idea, admit uncertainty, or get candid feedback from someone who understands the stakes.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'The paralysis of prioritization', 'successcircles' ),
-						'text'  => __( 'Your to-do list is endless. Every task seems crucial, every opportunity too good to pass up. But which moves will truly move the needle? The overwhelm is real, and it&rsquo;s suffocating your ability to focus on what truly matters.', 'successcircles' ),
+					'title' => __( 'Too many priorities compete for attention', 'successcircles' ),
+					'text'  => __( 'Every opportunity looks important and every issue feels urgent. Without a clear outside check, the work most likely to grow the business keeps moving to next week.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'The stagnation of success', 'successcircles' ),
-						'text'  => __( 'Remember the fire that drove you when you started? It&rsquo;s still there, but the flames are flickering. Complacency is a silent killer in business. You know you should be pushing boundaries, but finding that drive when things are &ldquo;good enough&rdquo; feels impossible.', 'successcircles' ),
+					'title' => __( 'Good results can hide stalled growth', 'successcircles' ),
+					'text'  => __( 'A stable business can make delayed decisions feel harmless. Months pass, the same bottlenecks remain, and the larger vision receives less attention than it deserves.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'The echo chamber of ideas', 'successcircles' ),
-						'text'  => __( 'You&rsquo;re surrounded by people who look up to you, who rely on your vision. But where&rsquo;s your sounding board? Where are the people who can challenge your thinking, push you to new heights? The lack of peer-level interaction is stunting your growth and critical thinking.', 'successcircles' ),
+					'title' => __( 'Your team cannot always challenge you', 'successcircles' ),
+					'text'  => __( 'Employees and advisors have their own roles and incentives. You need a trusted business owner who can question your assumptions without needing your approval.', 'successcircles' ),
 					),
 					array(
 						'title' => __( 'The fading fun factor', 'successcircles' ),
@@ -1035,54 +1092,54 @@ function successcircles_content_tree() {
 
 			'huddles'  => array(
 				'eyebrow' => __( 'Daily huddles', 'successcircles' ),
-				'title'   => __( 'Your catalyst for clarity and action.', 'successcircles' ),
-				'lede'    => __( 'Start each day with a 30-minute power session braintrust with a hand-selected peer. Use our proprietary braintrust system to:', 'successcircles' ),
+				'title'   => __( 'Thirty minutes that protect the day&rsquo;s priority.', 'successcircles' ),
+				'lede'    => __( 'Start the day with a structured conversation with a carefully matched business owner. Review what moved, work through one obstacle, and state exactly what you will complete next.', 'successcircles' ),
 				'items'   => array(
-					__( 'Celebrate victories (reigniting your passion)', 'successcircles' ),
-					__( 'Tackle challenges head-on (sharpening your problem-solving skills)', 'successcircles' ),
-					__( 'Set and crush daily goals (mastering prioritization)', 'successcircles' ),
-					__( 'Break through mental blocks (enhancing critical thinking)', 'successcircles' ),
+					__( 'Recognize completed work and what made it possible', 'successcircles' ),
+					__( 'Work through the obstacle slowing your progress', 'successcircles' ),
+					__( 'Choose one high-impact commitment for the day', 'successcircles' ),
+					__( 'Challenge assumptions before they become expensive decisions', 'successcircles' ),
 				),
-				'quote'   => __( 'Quality questions establish the framework for all our Momentum Braintrust Buddy calls.', 'successcircles' ),
+				'quote'   => __( 'Every call turns an important goal into one clear decision and one next commitment.', 'successcircles' ),
 			),
 
 			'growth'   => array(
 				'eyebrow' => __( 'Continuous growth and accountability', 'successcircles' ),
-				'title'   => __( 'Your secret weapon.', 'successcircles' ),
+				'title'   => __( 'Fresh perspective without losing control.', 'successcircles' ),
 				'items'   => array(
-					__( 'Get matched with a new Momentum Braintrust Buddy every two weeks (constant fresh perspectives)', 'successcircles' ),
-					__( 'Keep pushing your boundaries and avoid complacency (stay sharp, stay hungry)', 'successcircles' ),
-					__( 'Access $10,000 worth of resources on delegation, time management, and mindset mastery', 'successcircles' ),
-					__( 'Tap into a network of peers playing at the highest level (challenge your thinking)', 'successcircles' ),
+					__( 'Meet a new experienced business owner every two weeks for a fresh perspective', 'successcircles' ),
+					__( 'Keep important goals visible when urgent work starts taking over', 'successcircles' ),
+					__( 'Use practical resources for delegation, time management, and stronger operating habits', 'successcircles' ),
+					__( 'Ask experienced entrepreneurs to challenge your thinking and decisions', 'successcircles' ),
 				),
-				'statement' => __( 'We help business operators to become OWNERS, and business owners to become BETTER OWNERS. That&rsquo;s what Momentum Braintrust Buddy offers.', 'successcircles' ),
+				'statement' => __( 'Momentum Braintrust Buddy&trade; helps you spend less time reacting and more time leading the business forward.', 'successcircles' ),
 			),
 
 			'community' => array(
 				'eyebrow' => __( 'A community of high achievers', 'successcircles' ),
-				'title'   => __( 'Your new playground.', 'successcircles' ),
+				'title'   => __( 'A community that understands ownership.', 'successcircles' ),
 				'items'   => array(
-					__( 'Connect with fellow entrepreneurs who speak your language', 'successcircles' ),
-					__( 'Access weekly and monthly live group huddles (expanding your perspective)', 'successcircles' ),
-					__( 'Tap into a network of peers playing at the highest level (challenge your thinking)', 'successcircles' ),
+					__( 'Connect with experienced entrepreneurs who understand the weight of ownership', 'successcircles' ),
+					__( 'Join weekly and monthly group sessions for practical ideas and broader perspective', 'successcircles' ),
+					__( 'Get candid feedback from experienced owners who understand the stakes', 'successcircles' ),
 				),
-				'quote'   => __( 'Your Momentum Braintrust Buddy can see your potential &mdash; and in two weeks, you will too.', 'successcircles' ),
+				'quote'   => __( 'You leave each conversation with a clearer decision, a visible commitment, and someone expecting you to follow through.', 'successcircles' ),
 			),
 
 			'benefits' => array(
 				'eyebrow' => __( 'What&rsquo;s included', 'successcircles' ),
-				'title'   => __( 'Get these exclusive benefits.', 'successcircles' ),
-				'lede'    => __( 'Get a Momentum Braintrust Buddy. Huddle up one-to-one on weekdays with other members of Success Circles&trade; every two weeks. Every sport in life has a huddle, and you deserve an opportunity to huddle up, get daily feedback, strategize your day, and play to win.', 'successcircles' ),
+				'title'   => __( 'Everything you need to stay focused and follow through.', 'successcircles' ),
+				'lede'    => __( 'Your membership combines one-to-one weekday accountability with group sessions, practical resources, focused co-working, and a community of experienced entrepreneurs.', 'successcircles' ),
 				'items'   => array(
 					__( 'Access to weekly and monthly live group huddles &mdash; AI Pro, Time Mastery and Week-in-Celebration', 'successcircles' ),
 					__( 'Access to our Momentum Community platform and member roster. Choose who you want to partner with.', 'successcircles' ),
-					__( 'Support and encouragement from our entire community &mdash; entrepreneurs, business owners and peers playing at the highest level', 'successcircles' ),
+					__( 'Support and candid feedback from experienced entrepreneurs and business owners', 'successcircles' ),
 					__( 'MomentumMate&trade; virtual coworking sessions, three per week, for distraction-free productivity', 'successcircles' ),
 					__( 'Your personalised daily AI coach', 'successcircles' ),
-					__( '10x personal and professional results. Increased profitability and prosperity.', 'successcircles' ),
-					__( 'Higher accountability and strong value-based professional support', 'successcircles' ),
-					__( 'Improved overall productivity, effectiveness, and delegation skills', 'successcircles' ),
-					__( 'More fun, deeper levels of fulfillment, and a higher quality of living', 'successcircles' ),
+					__( 'A dependable rhythm for protecting high-value work from daily distractions', 'successcircles' ),
+					__( 'Visible commitments and regular check-ins that strengthen follow-through', 'successcircles' ),
+					__( 'Practical support for productivity, decision-making, and delegation', 'successcircles' ),
+					__( 'More clarity about where your time and attention will create the most value', 'successcircles' ),
 					__( 'Tax deductible', 'successcircles' ),
 				),
 			),
@@ -1120,16 +1177,16 @@ function successcircles_content_tree() {
 			),
 
 			'closing'  => array(
-				'title' => __( 'Dare to play bigger.', 'successcircles' ),
+				'title' => __( 'Give your biggest goals a place on the calendar.', 'successcircles' ),
 				'body'  => array(
-					__( 'You&rsquo;ve already proven you have what it takes to succeed. Now it&rsquo;s time to elevate your game even further. With Momentum Braintrust Buddy you&rsquo;re not just maintaining your success &mdash; you&rsquo;re multiplying it, while rekindling the joy that drew you to entrepreneurship in the first place.', 'successcircles' ),
-					__( 'Start writing the next successful chapter of your entrepreneurial story. Join a community of entrepreneurs from diverse industries, all experiencing transformative changes.', 'successcircles' ),
+					__( 'You have already built something valuable. Momentum Braintrust Buddy&trade; helps you protect the next important goal from daily demands and complete the work that moves it forward.', 'successcircles' ),
+					__( 'Join experienced entrepreneurs from different industries who bring honest perspective, practical support, and consistent accountability.', 'successcircles' ),
 				),
 				'items' => array(
-					__( 'Break through isolation and connect with peers who get it', 'successcircles' ),
-					__( 'Master the art of prioritization and laser-focused action', 'successcircles' ),
+					__( 'Stop making every difficult decision alone', 'successcircles' ),
+					__( 'Choose fewer priorities and complete the important ones', 'successcircles' ),
 					__( 'Reignite your passion for growth and innovation', 'successcircles' ),
-					__( 'Enhance your critical thinking with peer-level challenges', 'successcircles' ),
+					__( 'Test your thinking with experienced business owners', 'successcircles' ),
 					__( 'Inject more fun and play into your business journey', 'successcircles' ),
 					__( 'Achieve goals you never thought possible', 'successcircles' ),
 				),
@@ -1137,7 +1194,7 @@ function successcircles_content_tree() {
 					__( 'Don&rsquo;t let another day pass feeling stuck at the top. Because in the world of business, you&rsquo;re either growing or you&rsquo;re dying &mdash; so why not grow and have fun doing it?', 'successcircles' ),
 					__( 'Remember, success without fulfillment is the ultimate failure. Choose growth. Choose joy.', 'successcircles' ),
 				),
-				'kicker' => __( 'For what it would cost for a cup of your daily brew, you could have a peer coach in your life &mdash; and without the extra caffeine. Are you ready to join the huddle?', 'successcircles' ),
+				'kicker' => __( 'Ready to give your most important goal consistent attention and accountability?', 'successcircles' ),
 			),
 
 			'quotes'   => array(
@@ -1162,15 +1219,15 @@ function successcircles_content_tree() {
 		// template for which are used and why.
 		'labs_page' => array(
 			'eyebrow'  => __( 'Momentum Labs', 'successcircles' ),
-			'title'    => __( 'The secret weapon of wildly <em class="sc-accent">successful</em> entrepreneurs.', 'successcircles' ),
-			'lede'     => __( 'Designed to enhance your journey to exponential growth &mdash; group huddles, a braintrust of operators, and the AI and time systems to go with them.', 'successcircles' ),
-			'cta'      => __( 'Yes! I want exponential growth', 'successcircles' ),
+			'title'    => __( 'Solve important problems with owners who have been <em class="sc-accent">there before</em>.', 'successcircles' ),
+			'lede'     => __( 'Weekly group huddles give established entrepreneurs a place to protect priorities, challenge decisions, and turn experienced feedback into practical action.', 'successcircles' ),
+			'cta'      => __( 'Join Momentum Labs', 'successcircles' ),
 			'cta_url'  => 'https://www.successcircles.net/yesMomentumLabs',
 			'price'    => '$97',
 			'price_note' => __( 'per month', 'successcircles' ),
 			'seal'     => array(
 				'file'   => 'community-huddles.png',
-				'alt'    => __( 'Success Circles Momentum Community and Huddles seal', 'successcircles' ),
+				'alt'    => __( 'Success Circles&trade; Momentum Community and Huddles seal', 'successcircles' ),
 				'width'  => 300,
 				'height' => 300,
 			),
@@ -1186,7 +1243,7 @@ function successcircles_content_tree() {
 
 			'problem'  => array(
 				'title'     => __( 'Is your business stuck in <em class="sc-accent">neutral</em>?', 'successcircles' ),
-				'lede'      => __( 'You&rsquo;re working hard, but are you seeing the results you deserve? Imagine waking up every morning excited to tackle the day. Your business is thriving, your productivity is off the charts, and you&rsquo;re part of an elite group of entrepreneurs who are changing the game. This isn&rsquo;t a pipe dream &mdash; it&rsquo;s the reality for members of Momentum Labs.', 'successcircles' ),
+				'lede'      => __( 'A busy week can still leave the business in the same place. When every decision stays in your head and urgent work controls the calendar, the goals with the greatest long-term value keep getting delayed.', 'successcircles' ),
 				'ask'       => __( 'But first, let me ask you:', 'successcircles' ),
 				'questions' => array(
 					__( 'Do you often feel isolated, missing the energy and support of a team?', 'successcircles' ),
@@ -1194,7 +1251,7 @@ function successcircles_content_tree() {
 					__( 'Does the rapid pace of technology, especially AI, leave you feeling left behind?', 'successcircles' ),
 					__( 'Are you tired of making decisions in a vacuum, without trusted advisors to bounce ideas off?', 'successcircles' ),
 				),
-				'answer'    => __( 'If you nodded to any of these, you&rsquo;re not alone. And more importantly, there&rsquo;s a solution.', 'successcircles' ),
+				'answer'    => __( 'Momentum Labs gives those decisions and priorities a structured place to move forward each week.', 'successcircles' ),
 				// The source page's flat vector illustration was replaced with a
 				// drawn figure — see the "neutral vs momentum" SVG in
 				// page-momentum-labs.php. These are its labels.
@@ -1211,7 +1268,7 @@ function successcircles_content_tree() {
 
 			'includes' => array(
 				'eyebrow' => __( 'Here&rsquo;s what you get', 'successcircles' ),
-				'title'   => __( 'Your shortcut to exponential growth.', 'successcircles' ),
+				'title'   => __( 'Practical support for clearer decisions and steady progress.', 'successcircles' ),
 				'items'   => array(
 					array(
 						'title' => __( 'Flexible access', 'successcircles' ),
@@ -1223,26 +1280,26 @@ function successcircles_content_tree() {
 					),
 					array(
 						'title' => __( 'AI mastery', 'successcircles' ),
-						'text'  => __( 'Harness the power of AI to skyrocket your business. No tech degree required.', 'successcircles' ),
+						'text'  => __( 'Use practical AI tools to reduce routine work and create more time for high-value decisions.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'Time manipulation secrets', 'successcircles' ),
-						'text'  => __( 'Learn to bend time to your will. Get more done in less time, without the burnout.', 'successcircles' ),
+						'title' => __( 'Time and priority systems', 'successcircles' ),
+						'text'  => __( 'Plan around the work that matters, reduce avoidable distractions, and make progress without extending the workday.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'Your personal braintrust', 'successcircles' ),
-						'text'  => __( 'Tap into the collective wisdom of ambitious entrepreneurs. Solve problems faster, spot hidden opportunities, and leap over obstacles.', 'successcircles' ),
+						'title' => __( 'Experienced outside perspective', 'successcircles' ),
+						'text'  => __( 'Bring a difficult decision to entrepreneurs who can question assumptions, share relevant experience, and help you find a practical next step.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'Transformation on demand', 'successcircles' ),
-						'text'  => __( 'Turn isolation into inspiration. Every huddle is a shot of motivation, accountability, and actionable strategies.', 'successcircles' ),
+						'title' => __( 'Accountability that continues after the call', 'successcircles' ),
+						'text'  => __( 'Leave each huddle with a clear commitment, then return with evidence of what changed.', 'successcircles' ),
 					),
 				),
 			),
 
 			'deal'     => array(
 				'title'   => __( 'Success isn&rsquo;t a solo sport.', 'successcircles' ),
-				'text'    => __( 'The most successful entrepreneurs have a secret weapon &mdash; a community of peers and mentors pushing them to new heights. That&rsquo;s exactly what you&rsquo;ll find in the Momentum Community and Huddles.', 'successcircles' ),
+				'text'    => __( 'Experienced entrepreneurs still need a place where they can think out loud, receive candid feedback, and be held to the goals they set. Momentum Community and Huddles provide that structure.', 'successcircles' ),
 				// The portrait was unattributed, which is odd for a photo of a
 				// real person. The quote and role are read from `founder_page`
 				// so there is one source of truth for what Joseph actually said.
@@ -1250,7 +1307,7 @@ function successcircles_content_tree() {
 				'link_url' => '/about-joseph-varghese/',
 				'image'   => array(
 					'file'   => 'joseph.png',
-					'alt'    => __( 'Joseph Varghese, founder of SuccessCircles', 'successcircles' ),
+					'alt'    => __( 'Joseph Varghese, founder of Success Circles&trade;', 'successcircles' ),
 					'width'  => 650,
 					'height' => 800,
 				),
@@ -1262,14 +1319,14 @@ function successcircles_content_tree() {
 			'warning'  => array(
 				'label' => __( 'But fair warning', 'successcircles' ),
 				'title' => __( 'This isn&rsquo;t for everyone.', 'successcircles' ),
-				'body'  => __( 'If you&rsquo;re content with mediocrity, or if you believe success comes from luck rather than strategy and hard work, this probably isn&rsquo;t for you.', 'successcircles' ),
-				'turn'  => __( 'However, if you&rsquo;re ready to join the ranks of high-achieving entrepreneurs who are rewriting the rules of business success, then I invite you to take the next step.', 'successcircles' ),
+				'body'  => __( 'Momentum Labs requires candid participation, respect for the group, and a willingness to act on the commitments you make.', 'successcircles' ),
+				'turn'  => __( 'It is designed for established entrepreneurs who value practical feedback and want important goals to keep moving even when the business gets busy.', 'successcircles' ),
 			),
 
 			'closing'  => array(
-				'title' => __( 'Surround yourself with <em class="sc-accent">brilliance</em>.', 'successcircles' ),
-				'text'  => __( 'The most successful entrepreneurs don&rsquo;t go it alone. They surround themselves with brilliance. Isn&rsquo;t it time you did the same? Join us today and make this quarter your best yet.', 'successcircles' ),
-				'note'  => __( 'Your future self will thank you.', 'successcircles' ),
+				'title' => __( 'Give your biggest priority a room where it can <em class="sc-accent">move</em>.', 'successcircles' ),
+				'text'  => __( 'Bring the decision, obstacle, or goal that keeps being pushed aside. Leave with useful perspective, a specific commitment, and a group that will ask what happened next.', 'successcircles' ),
+				'note'  => __( 'Choose a huddle time that fits your week.', 'successcircles' ),
 			),
 		),
 
@@ -1279,7 +1336,7 @@ function successcircles_content_tree() {
 		'team_page' => array(
 			'kicker'   => __( '90-day AI accelerator', 'successcircles' ),
 			'title'    => __( 'Stop operating <em class="sc-accent">in</em> your business. Start leading from it.', 'successcircles' ),
-			'lede'     => __( 'What if you could hit your biggest goal and start the next year 10x stronger, while leveraging AI? A 90-day cohort that moves you from reactive operator to visionary leader.', 'successcircles' ),
+			'lede'     => __( 'A 90-day cohort for established owners who need to protect one major goal, reduce their role as the bottleneck, and build systems that keep the business moving without constant intervention.', 'successcircles' ),
 			'cta'      => __( 'Apply now', 'successcircles' ),
 			'cta_url'  => 'https://www.momentum.team/yes',
 			'cta_note' => __( 'Application only. Reviewed within 24 hours.', 'successcircles' ),
@@ -1297,32 +1354,32 @@ function successcircles_content_tree() {
 			),
 
 			'prison'   => array(
-				'title' => __( 'The hidden prison every successful owner lives in.', 'successcircles' ),
-				'lede'  => __( 'You started your business to create freedom. Instead you&rsquo;ve created a sophisticated prison where success feels like punishment. Here&rsquo;s your daily reality:', 'successcircles' ),
+				'title' => __( 'The business has grown, but your role has not.', 'successcircles' ),
+				'lede'  => __( 'You built the company to create opportunity and freedom. Yet too many decisions, emergencies, and approvals still depend on you, leaving little time for the work only the owner can do.', 'successcircles' ),
 				'items' => array(
 					array(
 						'title' => __( 'You&rsquo;re trapped in your own success', 'successcircles' ),
-						'text'  => __( 'Every decision flows through you. Every crisis becomes your emergency. You&rsquo;re not building a business &mdash; you&rsquo;re feeding a beast that consumes everything you have while your biggest dreams collect dust.', 'successcircles' ),
+						'text'  => __( 'Decisions, approvals, and emergencies keep returning to your desk. The company stays active while the larger goal you intended to lead keeps waiting.', 'successcircles' ),
 					),
 					array(
 						'title' => __( 'Your freedom is disappearing', 'successcircles' ),
-						'text'  => __( 'Your family gets the leftover version of you. The more successful you become, the more trapped you feel. Your revenue grows, but your freedom shrinks. You&rsquo;re building a prison instead of an empire.', 'successcircles' ),
+						'text'  => __( 'Revenue may be growing while your calendar becomes less flexible. Work expands into the time that should belong to leadership, family, and life outside the business.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'You&rsquo;re being left behind', 'successcircles' ),
-						'text'  => __( 'While you&rsquo;re bleeding cash on expensive teams, smart entrepreneurs are leveraging communities to get better results at a fraction of the cost. They&rsquo;re using AI to compress months of work into hours while you remain the bottleneck.', 'successcircles' ),
+					'title' => __( 'Systems keep getting postponed', 'successcircles' ),
+					'text'  => __( 'You know delegation, documented processes, and practical AI could remove routine work. Urgent demands make it difficult to design and implement those changes consistently.', 'successcircles' ),
 					),
 				),
 			),
 
 			'scene'    => array(
 				'title'  => __( 'Ninety days from now.', 'successcircles' ),
-				'lede'   => __( 'You walk into your office and check your dashboard. Revenue is up 40%. Your team is executing flawlessly on three major initiatives you designed but don&rsquo;t need to manage. Your AI-powered systems have handled 80% of what used to consume your days.', 'successcircles' ),
-				'turn'   => __( 'But here&rsquo;s the real breakthrough.', 'successcircles' ),
+				'lede'   => __( 'Your team knows what to do without waiting for every answer. Routine work follows documented systems. Your calendar has room for the major initiative you chose at the start of the cohort.', 'successcircles' ),
+				'turn'   => __( 'The practical difference:', 'successcircles' ),
 				'shifts' => array(
 					array(
-						'title' => __( 'Work becomes play', 'successcircles' ),
-						'text'  => __( 'You&rsquo;ve discovered that business breakthrough is actually a game. And games are meant to be fun.', 'successcircles' ),
+						'title' => __( 'Work becomes more intentional', 'successcircles' ),
+						'text'  => __( 'Your attention moves from reacting to whatever is loudest toward designing what the business needs next.', 'successcircles' ),
 					),
 					array(
 						'title' => __( 'Strategic over reactive', 'successcircles' ),
@@ -1330,7 +1387,7 @@ function successcircles_content_tree() {
 					),
 					array(
 						'title' => __( 'True leadership fulfilment', 'successcircles' ),
-						'text'  => __( 'You&rsquo;ve become the leader your business has been desperately waiting for, and you&rsquo;re having the time of your life doing it.', 'successcircles' ),
+						'text'  => __( 'You spend more time making high-value decisions and less time carrying work the team or a system can handle.', 'successcircles' ),
 					),
 				),
 				'image'  => array(
@@ -1339,7 +1396,7 @@ function successcircles_content_tree() {
 					'width'  => 825,
 					'height' => 1100,
 				),
-				'quote'  => __( 'You&rsquo;re no longer in your business. You&rsquo;re leading from it &mdash; and it feels like play.', 'successcircles' ),
+				'quote'  => __( 'The business no longer needs your attention everywhere, so you can apply it where it matters most.', 'successcircles' ),
 				'proof'  => array(
 					__( 'Your family sees you present, energized, fulfilled and actually enjoying your work again.', 'successcircles' ),
 					__( 'Your competitors wonder how you&rsquo;re moving so fast while seeming so relaxed.', 'successcircles' ),
@@ -1355,7 +1412,7 @@ function successcircles_content_tree() {
 
 			'method'   => array(
 				'title'  => __( 'The Momentum Team method', 'successcircles' ),
-				'lede'   => __( 'Your proven roadmap to visionary leadership, in three phases.', 'successcircles' ),
+				'lede'   => __( 'Three focused phases move one major goal from intention to implementation while reducing the work that depends on you.', 'successcircles' ),
 				'image'  => array(
 					'file'   => 'huddle-screen.jpg',
 					'alt'    => __( 'A weekly Momentum huddle on screen, nine members on the call', 'successcircles' ),
@@ -1367,10 +1424,10 @@ function successcircles_content_tree() {
 						'phase'  => __( 'Phase 1', 'successcircles' ),
 						'days'   => __( 'Days 1&ndash;30', 'successcircles' ),
 						'title'  => __( 'Vision, clarity &amp; foundation', 'successcircles' ),
-						'intent' => __( 'Eliminate scattered focus and build your breakthrough foundation.', 'successcircles' ),
+						'intent' => __( 'Choose the goal, establish a clear baseline, and protect time for the work.', 'successcircles' ),
 						'items'  => array(
-							array( 'title' => __( 'Goal crystallization', 'successcircles' ), 'text' => __( 'Define your one breakthrough goal that elevates everything.', 'successcircles' ) ),
-							array( 'title' => __( 'Accountability', 'successcircles' ), 'text' => __( 'Join Momentum Labs weekly huddles, and get matched with your Momentum Braintrust Buddy.', 'successcircles' ) ),
+							array( 'title' => __( 'Goal definition', 'successcircles' ), 'text' => __( 'Define one measurable goal with the greatest value to the business.', 'successcircles' ) ),
+							array( 'title' => __( 'Accountability', 'successcircles' ), 'text' => __( 'Join Momentum Labs weekly huddles, and get matched with your Momentum Braintrust Buddy&trade;.', 'successcircles' ) ),
 							array( 'title' => __( 'AI coach activation', 'successcircles' ), 'text' => __( 'Your personalized AI coach begins optimizing your business decisions.', 'successcircles' ) ),
 							array( 'title' => __( 'AI system audit', 'successcircles' ), 'text' => __( 'Map your current workflows and identify automation opportunities.', 'successcircles' ) ),
 							array( 'title' => __( 'Community integration', 'successcircles' ), 'text' => __( 'Access the Momentum.Community platform and connect with your advisory network.', 'successcircles' ) ),
@@ -1388,7 +1445,7 @@ function successcircles_content_tree() {
 						'phase'  => __( 'Phase 2', 'successcircles' ),
 						'days'   => __( 'Days 31&ndash;60', 'successcircles' ),
 						'title'  => __( 'System building &amp; acceleration', 'successcircles' ),
-						'intent' => __( 'Build scalable systems and multiply your execution capacity.', 'successcircles' ),
+						'intent' => __( 'Remove recurring bottlenecks and build systems the team can run consistently.', 'successcircles' ),
 						'items'  => array(
 							array( 'title' => __( 'AI workflow integration', 'successcircles' ), 'text' => __( 'Deploy automated systems that handle routine operations.', 'successcircles' ) ),
 							array( 'title' => __( 'Network leverage', 'successcircles' ), 'text' => __( 'Your advisory circle provides feedback, referrals, and solutions.', 'successcircles' ) ),
@@ -1400,7 +1457,7 @@ function successcircles_content_tree() {
 						'key'    => array(
 							__( 'Continued Weekly Pivot Calls and Week-in-Celebration Reviews.', 'successcircles' ),
 							__( 'Advanced AI Implementation Sessions.', 'successcircles' ),
-							__( 'A second 1-on-1 Momentum Coach call for personalized breakthrough strategies.', 'successcircles' ),
+							__( 'A second one-to-one Momentum Coach call to remove obstacles and adjust the plan.', 'successcircles' ),
 							__( 'Hello2Yes: a 5-day gamified challenge to overcome fear of rejection through bold requests, with tracking and rewards.', 'successcircles' ),
 						),
 					),
@@ -1408,10 +1465,10 @@ function successcircles_content_tree() {
 						'phase'  => __( 'Phase 3', 'successcircles' ),
 						'days'   => __( 'Days 61&ndash;90', 'successcircles' ),
 						'title'  => __( 'Momentum multiplication &amp; mastery', 'successcircles' ),
-						'intent' => __( 'Lock in your new identity as a visionary leader and scale your impact.', 'successcircles' ),
+						'intent' => __( 'Refine what works, document the new operating rhythm, and plan the next major goal.', 'successcircles' ),
 						'items'  => array(
 							array( 'title' => __( 'Visionary identity', 'successcircles' ), 'text' => __( 'Operate consistently from your new leadership level.', 'successcircles' ) ),
-							array( 'title' => __( 'Network expansion', 'successcircles' ), 'text' => __( 'Leverage relationships for exponential growth opportunities.', 'successcircles' ) ),
+							array( 'title' => __( 'Network expansion', 'successcircles' ), 'text' => __( 'Build useful relationships that create relevant introductions and opportunities.', 'successcircles' ) ),
 							array( 'title' => __( 'Next steps', 'successcircles' ), 'text' => __( 'Design your next level of visionary challenges.', 'successcircles' ) ),
 							array( 'title' => __( 'System optimization', 'successcircles' ), 'text' => __( 'Refine and scale your AI-powered workflows.', 'successcircles' ) ),
 							array( 'title' => __( 'Legacy foundation', 'successcircles' ), 'text' => __( 'Build sustainable systems that continue growing without you.', 'successcircles' ) ),
@@ -1428,35 +1485,35 @@ function successcircles_content_tree() {
 			),
 
 			'arsenal'  => array(
-				'title'  => __( 'Your complete breakthrough arsenal.', 'successcircles' ),
-				'lede'   => __( 'Everything included with the 90-day accelerator.', 'successcircles' ),
+				'title'  => __( 'What supports the 90-day work.', 'successcircles' ),
+				'lede'   => __( 'The people, sessions, and practical tools included throughout the accelerator.', 'successcircles' ),
 				'groups' => array(
 					array(
 						'name'  => __( 'Strategic foundation', 'successcircles' ),
 						'items' => array(
-							array( 'title' => __( 'Your personal advisory board', 'successcircles' ), 'text' => __( 'Elite network of successful entrepreneurs who crowdsource your success with feedback, referrals, and resources.', 'successcircles' ) ),
-							array( 'title' => __( 'Momentum Labs access', 'successcircles' ), 'text' => __( 'Comprehensive weekly huddle system including Pivot Calls, Week-in-Celebration Reviews, and breakthrough sessions.', 'successcircles' ) ),
+							array( 'title' => __( 'Your advisory group', 'successcircles' ), 'text' => __( 'Experienced entrepreneurs who offer candid feedback, relevant introductions, and practical resources.', 'successcircles' ) ),
+							array( 'title' => __( 'Momentum Labs access', 'successcircles' ), 'text' => __( 'Weekly Pivot Calls, progress reviews, and focused problem-solving sessions.', 'successcircles' ) ),
 							array( 'title' => __( 'Your personalized daily AI coach', 'successcircles' ), 'text' => __( 'Custom AI system that optimizes your decisions, priorities, and daily execution.', 'successcircles' ) ),
-							array( 'title' => __( '90-day goals framework', 'successcircles' ), 'text' => __( 'The proven methodology that&rsquo;s generated over 12,550 successful goal completions.', 'successcircles' ) ),
-							array( 'title' => __( 'Community-first scaling system', 'successcircles' ), 'text' => __( 'Leverage cohorts instead of expensive remote teams, reducing fixed costs while increasing support.', 'successcircles' ) ),
+							array( 'title' => __( '90-day goal system', 'successcircles' ), 'text' => __( 'Turn one important outcome into milestones, weekly commitments, and visible progress.', 'successcircles' ) ),
+							array( 'title' => __( 'Community support', 'successcircles' ), 'text' => __( 'Draw on experienced owners and a focused cohort without adding permanent overhead.', 'successcircles' ) ),
 						),
 					),
 					array(
 						'name'  => __( 'AI-powered leverage', 'successcircles' ),
 						'items' => array(
-							array( 'title' => __( 'AI mastery training', 'successcircles' ), 'text' => __( 'Complete integration system to reclaim 10&ndash;15 hours per week for high-value visionary work.', 'successcircles' ) ),
+							array( 'title' => __( 'Practical AI training', 'successcircles' ), 'text' => __( 'Apply AI to routine work so more of your week can go toward decisions and growth.', 'successcircles' ) ),
 							array( 'title' => __( 'AI implementation sessions', 'successcircles' ), 'text' => __( 'Build automated workflows that handle routine operations without your involvement.', 'successcircles' ) ),
-							array( 'title' => __( 'Productivity multiplication tools', 'successcircles' ), 'text' => __( 'Elevate from manual labor to automated excellence.', 'successcircles' ) ),
+							array( 'title' => __( 'Practical productivity tools', 'successcircles' ), 'text' => __( 'Reduce manual work and protect time for leadership priorities.', 'successcircles' ) ),
 							array( 'title' => __( 'Smart team building', 'successcircles' ), 'text' => __( 'Replace expensive fixed costs with strategic community leverage.', 'successcircles' ) ),
 						),
 					),
 					array(
-						'name'  => __( 'Elite support system', 'successcircles' ),
+						'name'  => __( 'Focused support', 'successcircles' ),
 						'items' => array(
-							array( 'title' => __( '10x Momentum Braintrust Buddy', 'successcircles' ), 'text' => __( 'Two weeks of daily one-to-one accountability calls. Like every sport, you deserve to huddle up, strategize your day, and play to win.', 'successcircles' ) ),
-							array( 'title' => __( '1-on-1 Momentum Coach calls', 'successcircles' ), 'text' => __( 'Personal momentum sessions with top-tier coaches who&rsquo;ve guided hundreds of breakthroughs each month.', 'successcircles' ) ),
+							array( 'title' => __( '10x Momentum Braintrust Buddy&trade;', 'successcircles' ), 'text' => __( 'Two weeks of daily one-to-one accountability calls. Like every sport, you deserve to huddle up, strategize your day, and play to win.', 'successcircles' ) ),
+							array( 'title' => __( 'One-to-one Momentum Coach calls', 'successcircles' ), 'text' => __( 'Focused coaching sessions to clarify priorities, remove obstacles, and adjust the plan.', 'successcircles' ) ),
 							array( 'title' => __( '3+ monthly cohort sessions', 'successcircles' ), 'text' => __( 'Choose from 5+ weekly options that fit your schedule.', 'successcircles' ) ),
-							array( 'title' => __( 'Laser feedback', 'successcircles' ), 'text' => __( 'Get solutions to your biggest challenges from people who&rsquo;ve already solved them.', 'successcircles' ) ),
+							array( 'title' => __( 'Candid feedback', 'successcircles' ), 'text' => __( 'Work through important challenges with people who have solved similar problems.', 'successcircles' ) ),
 						),
 					),
 					array(
@@ -1464,17 +1521,17 @@ function successcircles_content_tree() {
 						'items' => array(
 							array( 'title' => __( 'Momentum.Community platform access', 'successcircles' ), 'text' => __( 'Real-time communication with your network of peak performers, plus the complete member roster.', 'successcircles' ) ),
 							array( 'title' => __( 'MomentumMate&trade; virtual co-working', 'successcircles' ), 'text' => __( 'Three weekly distraction-free productivity sessions with other high achievers.', 'successcircles' ) ),
-							array( 'title' => __( 'Live events &amp; elite networking', 'successcircles' ), 'text' => __( 'In-person dinners and experiences for East Coast members (NY, NJ, PA, CT).', 'successcircles' ) ),
+							array( 'title' => __( 'Live events &amp; owner networking', 'successcircles' ), 'text' => __( 'In-person dinners and experiences for East Coast members (NY, NJ, PA, CT).', 'successcircles' ) ),
 							array( 'title' => __( 'Lifetime network access', 'successcircles' ), 'text' => __( 'Keep the relationships and referrals that compound your success for decades.', 'successcircles' ) ),
 						),
 					),
 					array(
-						'name'  => __( 'Gamified breakthroughs', 'successcircles' ),
+						'name'  => __( 'Focused challenges', 'successcircles' ),
 						'items' => array(
 							array( 'title' => __( 'SimplifySprint mini-event', 'successcircles' ), 'text' => __( 'A 5-day gamified sprint to declutter, remove distractions, and reclaim momentum through clarity, complete with prizes and rewards.', 'successcircles' ) ),
 							array( 'title' => __( 'Hello2Yes mini-event', 'successcircles' ), 'text' => __( 'A 5-day gamified challenge to overcome rejection fear by making bold requests and tracking results, with recognition and rewards for courage.', 'successcircles' ) ),
-							array( 'title' => __( 'Monthly workshops', 'successcircles' ), 'text' => __( 'Free access to high-intensity experiences every month designed for breakthrough moments.', 'successcircles' ) ),
-							array( 'title' => __( 'Achievement system', 'successcircles' ), 'text' => __( 'Progress tracking, badges, and rewards that make transformation feel like winning.', 'successcircles' ) ),
+							array( 'title' => __( 'Monthly workshops', 'successcircles' ), 'text' => __( 'Practical monthly sessions focused on a specific business or leadership challenge.', 'successcircles' ) ),
+							array( 'title' => __( 'Achievement system', 'successcircles' ), 'text' => __( 'Progress tracking, badges, and rewards that make completed work visible.', 'successcircles' ) ),
 						),
 					),
 					array(
@@ -1482,7 +1539,7 @@ function successcircles_content_tree() {
 						'items' => array(
 							array( 'title' => __( 'Tax deductible investment', 'successcircles' ), 'text' => __( 'A professional development expense that improves your bottom line.', 'successcircles' ) ),
 							array( 'title' => __( 'Rated 5/5 on Trustpilot', 'successcircles' ), 'text' => __( 'Verified reviews from accelerated entrepreneurs.', 'successcircles' ) ),
-							array( 'title' => __( '20+ years of proven results', 'successcircles' ), 'text' => __( 'This is our 42nd successful cohort, with documented breakthroughs.', 'successcircles' ) ),
+							array( 'title' => __( '20+ years of experience', 'successcircles' ), 'text' => __( 'The program has evolved through 42 cohorts and two decades of member feedback.', 'successcircles' ) ),
 						),
 					),
 				),
@@ -1491,10 +1548,10 @@ function successcircles_content_tree() {
 			'results'  => array(
 				'title' => __( 'Measurable results.', 'successcircles' ),
 				'items' => array(
-					array( 'title' => __( '10x performance &amp; profitability', 'successcircles' ), 'text' => __( 'Documented increases in profitability and prosperity.', 'successcircles' ) ),
+					array( 'title' => __( 'Progress on the priority that matters', 'successcircles' ), 'text' => __( 'Consistent action toward one measurable 90-day business goal.', 'successcircles' ) ),
 					array( 'title' => __( 'Systematic accountability', 'successcircles' ), 'text' => __( 'Consistent execution on your most important goals.', 'successcircles' ) ),
 					array( 'title' => __( 'Efficiency without burnout', 'successcircles' ), 'text' => __( 'Multiply your impact without increasing workload.', 'successcircles' ) ),
-					array( 'title' => __( 'Compounding daily growth', 'successcircles' ), 'text' => __( 'Make each day better than the last for exponential results over time.', 'successcircles' ) ),
+					array( 'title' => __( 'Sustainable operating improvements', 'successcircles' ), 'text' => __( 'Keep the routines and systems that continue producing value after the cohort.', 'successcircles' ) ),
 				),
 			),
 
@@ -1503,7 +1560,7 @@ function successcircles_content_tree() {
 			// social proof here rather than sitting up top as an explainer.
 			'video'    => array(
 				'id'       => '870306260',
-				'name'     => __( 'What Our Clients Say About Success Circles', 'successcircles' ),
+				'name'     => __( 'What Our Clients Say About Success Circles&trade;', 'successcircles' ),
 				'kind'     => __( 'Film', 'successcircles' ),
 				'poster'   => 'video-poster.jpg',
 				'duration' => '1:58',
@@ -1514,12 +1571,12 @@ function successcircles_content_tree() {
 			'quotes'   => array(
 				array( 'name' => 'Rochelle Lisner', 'role' => __( 'CEO at Dynamic Business Growth', 'successcircles' ), 'image' => 'rochelle-lisner.png', 'text' => __( 'The Momentum Team is a great way to stay focused on the day to day actions needed to deliver on goals. The support and feedback allow me to course-correct so I am constantly moving forward inch by inch. I believe isolation kills success and with the team, I never feel isolated. Many people have my back.', 'successcircles' ) ),
 				array( 'name' => 'Arvin Khamseh', 'role' => __( 'Digital Marketing Strategist, Product Marketer', 'successcircles' ), 'image' => 'arvin-khamseh.png', 'text' => __( 'My team grew from 2 to 14 people, a past VP of a national organization is now mentoring me (this is still hard to believe for myself!!) I had so many spontaneous and courageous actions in the past 3 months. This piece really stretched my reality and I value it highly. Knowing someone else is doing it with me gave me more courage to be spontaneous.', 'successcircles' ) ),
-				array( 'name' => 'Charles Fritschler', 'role' => __( 'COO at Executive Losers', 'successcircles' ), 'image' => 'charles-fritschler.png', 'text' => __( 'Success Circles offers several programs and opportunities for growth and support. Over the last few months since joining Success Circles, I have benefited greatly from receiving terrific feedback and advice, in addition to specific knowledge. I meet many new like minded people who provide different perspectives; and as a bonus have made ongoing friends, including Success Circles Founder, Joseph.', 'successcircles' ) ),
+				array( 'name' => 'Charles Fritschler', 'role' => __( 'COO at Executive Losers', 'successcircles' ), 'image' => 'charles-fritschler.png', 'text' => __( 'Success Circles&trade; offers several programs and opportunities for growth and support. Over the last few months since joining Success Circles&trade;, I have benefited greatly from receiving terrific feedback and advice, in addition to specific knowledge. I meet many new like minded people who provide different perspectives; and as a bonus have made ongoing friends, including Success Circles&trade; Founder, Joseph.', 'successcircles' ) ),
 				array( 'name' => 'Ken Van Liew', 'role' => __( 'Real Estate Developer', 'successcircles' ), 'image' => 'ken-van-liew.png', 'text' => __( 'The Momentum Team is an extraordinary experience that allows you to be held accountable to achieve what&rsquo;s important to you and in the process allows you contribute to others to help them achieve their goals.', 'successcircles' ) ),
 			),
 
 			'pricing'  => array(
-				'title'    => __( 'Your investment in visionary leadership.', 'successcircles' ),
+				'title'    => __( 'Choose how to invest in the 90-day program.', 'successcircles' ),
 				'note'     => __( 'Both options include everything above. Both are tax deductible business investments.', 'successcircles' ),
 				'plans'    => array(
 					array(
@@ -1549,37 +1606,37 @@ function successcircles_content_tree() {
 				),
 				'objection' => array(
 					'title' => __( 'But I don&rsquo;t have time.', 'successcircles' ),
-					'text'  => __( 'Stop. You might think: &ldquo;I don&rsquo;t have time.&rdquo; But if you&rsquo;re on this page, you already have enough time to stay stuck. What you&rsquo;re missing is structure, relentless accountability, and the right tools. That&rsquo;s exactly what we give you. The brutal truth: you don&rsquo;t have time not to do this.', 'successcircles' ),
+					'text'  => __( 'The program is designed for owners whose calendars are already full. The work focuses on removing bottlenecks, reducing routine demands, and protecting time for the goal that matters most.', 'successcircles' ),
 				),
 			),
 
 			'paths'    => array(
-				'title' => __( 'Two paths diverge.', 'successcircles' ),
+				'title' => __( 'What the next 90 days could look like.', 'successcircles' ),
 				'items' => array(
 					array(
 						'label' => __( 'Path A', 'successcircles' ),
 						'name'  => __( 'Stay the course', 'successcircles' ),
-						'text'  => __( 'Close this page and return to your sophisticated prison. Spend the next 90 days handling the same crises, fighting the same fires, making incremental progress while your biggest vision waits. Watch competitors implement AI systems and build scalable operations while you remain the bottleneck.', 'successcircles' ),
+						'text'  => __( 'Continue handling the same approvals and emergencies while the larger goal waits. The business stays busy, but the bottlenecks and demands on your time remain largely unchanged.', 'successcircles' ),
 					),
 					array(
 						'label' => __( 'Path B', 'successcircles' ),
-						'name'  => __( 'Accelerate into the leader you&rsquo;re meant to be', 'successcircles' ),
-						'text'  => __( 'Apply now and use these next 90 days to become the visionary your business needs. Implement AI systems that reclaim your time. Build processes that scale without you. Surround yourself with people who accelerate your success. Most importantly, rediscover that business success can be fun.', 'successcircles' ),
+						'name'  => __( 'Protect the goal and change how the business runs', 'successcircles' ),
+						'text'  => __( 'Use the next 90 days to implement useful systems, strengthen delegation, and complete a major initiative with support from entrepreneurs who understand the work.', 'successcircles' ),
 					),
 				),
-				'close' => __( 'The next 90 days are coming whether you accelerate or not. The only question is whether you&rsquo;ll use them to break through, or stay exactly where you are.', 'successcircles' ),
+				'close' => __( 'The next 90 days will pass either way. The question is whether your most important goal will still be waiting when they do.', 'successcircles' ),
 			),
 
 			'fit'      => array(
 				'title' => __( 'This program is application-only.', 'successcircles' ),
-				'lede'  => __( 'We carefully select who joins our visionary circles. You&rsquo;re the right fit if:', 'successcircles' ),
+				'lede'  => __( 'This is designed for established entrepreneurs who are ready to make one important goal visible, measurable, and accountable.', 'successcircles' ),
 				'items' => array(
 					__( 'You&rsquo;re committed to acceleration, not just information.', 'successcircles' ),
 					__( 'You can commit to 4 huddles per month, minimum.', 'successcircles' ),
-					__( 'You&rsquo;re ready for laser feedback and hot seat coaching.', 'successcircles' ),
-					__( 'You&rsquo;re willing to be unreasonably dedicated to your breakthrough goal.', 'successcircles' ),
-					__( 'You understand that visionary leaders invest in systems that multiply their impact.', 'successcircles' ),
-					__( 'You&rsquo;re ready to dare to play bigger and better, and have fun while you win.', 'successcircles' ),
+					__( 'You&rsquo;re ready for candid feedback and focused coaching.', 'successcircles' ),
+					__( 'You&rsquo;re willing to protect time for one major business goal.', 'successcircles' ),
+					__( 'You want systems that reduce your role as the bottleneck.', 'successcircles' ),
+					__( 'You will participate consistently and contribute to the group.', 'successcircles' ),
 				),
 				'steps' => array(
 					__( 'Apply now and complete the intro questionnaire.', 'successcircles' ),
@@ -1593,8 +1650,8 @@ function successcircles_content_tree() {
 		// visible contact channels above are display copy; these are the machine
 		// readable equivalents, so schema never drifts from a hand-typed literal.
 		'org' => array(
-			'name'          => __( 'SuccessCircles', 'successcircles' ),
-			'legal_name'    => __( 'SuccessCircles', 'successcircles' ),
+			'name'          => __( 'Success Circles', 'successcircles' ),
+			'legal_name'    => __( 'Success Circles', 'successcircles' ),
 			'founding_date' => '2005',
 			'phone'         => '+1-747-224-7253',
 			'map'           => 'https://g.page/successcircles',
@@ -1608,14 +1665,14 @@ function successcircles_content_tree() {
 		),
 
 		'footer' => array(
-			'blurb'   => __( 'A peer execution system and advisory community for established entrepreneurs. Since 2005.', 'successcircles' ),
+			'blurb'   => __( 'An advisory community helping established entrepreneurs protect their priorities, follow through, and grow with greater clarity. Since 2005.', 'successcircles' ),
 			'columns' => array(
 				array(
 					'heading' => __( 'Programs', 'successcircles' ),
 					'menu'    => 'footer_programs',
 					'links'   => array(
 						array(
-							'label' => __( 'Momentum Braintrust Buddy', 'successcircles' ),
+							'label' => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
 							'url'   => '/momentum-buddy/',
 						),
 						array(
@@ -1627,7 +1684,7 @@ function successcircles_content_tree() {
 							'url'   => '/momentum-team/',
 						),
 						array(
-							'label' => __( 'Momentum OS', 'successcircles' ),
+							'label' => __( 'Momentum OS&trade;', 'successcircles' ),
 							'url'   => '#system',
 						),
 					),
@@ -1724,7 +1781,7 @@ function successcircles_content_tree() {
 			'close'        => __( 'Close the test', 'successcircles' ),
 			'back'         => __( 'Back', 'successcircles' ),
 			'form_title'   => __( 'Where should we reach you?', 'successcircles' ),
-			'form_lede'    => __( 'Your answers are in. Tell us who to reach and someone from SuccessCircles will come back to you personally.', 'successcircles' ),
+			'form_lede'    => __( 'Your answers are in. Tell us who to reach and someone from Success Circles&trade; will come back to you personally.', 'successcircles' ),
 			'name'         => __( 'Full name', 'successcircles' ),
 			'email'        => __( 'Email', 'successcircles' ),
 			'phone'        => __( 'Phone', 'successcircles' ),
@@ -1734,7 +1791,7 @@ function successcircles_content_tree() {
 			'error'        => __( 'Something went wrong. Please try again.', 'successcircles' ),
 			'done_eyebrow' => __( 'Done', 'successcircles' ),
 			'done_title'   => __( 'Thank you &mdash; that&rsquo;s the honest version.', 'successcircles' ),
-			'done_lede'    => __( 'Your answers are with us. Someone from SuccessCircles will read them properly and come back to you within one business day.', 'successcircles' ),
+			'done_lede'    => __( 'Your answers are with us. Someone from Success Circles&trade; will read them properly and come back to you within one business day.', 'successcircles' ),
 			'done_cta'     => __( 'Close', 'successcircles' ),
 		),
 

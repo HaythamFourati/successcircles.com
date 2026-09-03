@@ -50,7 +50,7 @@ add_action( 'init', 'successcircles_register_meta' );
 function successcircles_add_meta_boxes() {
 	add_meta_box(
 		'sc_details',
-		__( 'SuccessCircles Details', 'successcircles' ),
+		__( 'Success Circles Details', 'successcircles' ),
 		'successcircles_render_meta_box',
 		'post',
 		'side',

@@ -148,7 +148,7 @@ function successcircles_seo_description() {
 		}
 	} elseif ( is_search() ) {
 		/* translators: %s: search query. */
-		$description = sprintf( __( 'Search results for &ldquo;%s&rdquo; on SuccessCircles.', 'successcircles' ), get_search_query() );
+		$description = sprintf( __( 'Search results for &ldquo;%s&rdquo; on Success Circles.', 'successcircles' ), get_search_query() );
 	} elseif ( is_category() || is_tag() || is_tax() ) {
 		$description = term_description();
 	} else {
@@ -324,7 +324,7 @@ function successcircles_open_graph() {
 	$has_thumb    = is_singular() && has_post_thumbnail();
 	$image        = $has_thumb ? get_the_post_thumbnail_url( null, 'full' ) : SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg';
 	$image_alt    = $has_thumb ? (string) get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ) : successcircles_content( 'hero.image_alt' );
-	$dimensions   = $has_thumb ? wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' ) : array( '', 1267, 713 );
+	$dimensions   = $has_thumb ? wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' ) : array( '', 1170, 780 );
 
 	printf( '<meta property="og:type" content="%s">' . "\n", $is_post ? 'article' : 'website' );
 	printf( '<meta property="og:site_name" content="%s">' . "\n", esc_attr( get_bloginfo( 'name', 'display' ) ) );

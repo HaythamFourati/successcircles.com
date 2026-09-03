@@ -4,7 +4,7 @@
  *
  * The theme ships a working, plugin-free contact form (inc/contact.php). If
  * Contact Form 7 is active, this takes over: the first time the contact page
- * renders it creates a "SuccessCircles Contact" form — fields, labels and mail
+ * renders it creates a "Success Circles Contact" form — fields, labels and mail
  * template included — stores its id in the `sc_cf7_form` option and renders it
  * from then on. Nothing to paste into the page, and moving the theme to a site
  * that already has CF7 provisions itself on the first visit.
@@ -123,7 +123,7 @@ function successcircles_cf7_form_id() {
 		return $id;
 	}
 
-	$form = WPCF7_ContactForm::get_template( array( 'title' => __( 'SuccessCircles Contact', 'successcircles' ) ) );
+	$form = WPCF7_ContactForm::get_template( array( 'title' => __( 'Success Circles Contact', 'successcircles' ) ) );
 
 	if ( ! $form ) {
 		return $id;

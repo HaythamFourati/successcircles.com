@@ -8,8 +8,8 @@
  * inc/cf7.php), the theme's own plugin-free form otherwise.
  *
  * Composition — the direct lines come first, because most people arriving here
- * already know how they want to reach us: an opener split with the heading on
- * the left and a ledger of channels on the right, each one a real link. The
+ * already know how they want to reach us: a direct opener followed by a row of
+ * contact channels, each one a real link. The
  * form sits below on its own shaded band, paired with the three things that
  * happen after you press send, so the page answers "and then what?" without
  * being asked. ContactPage / Organization structured data closes it out.

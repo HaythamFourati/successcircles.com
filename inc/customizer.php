@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Register the SuccessCircles Customizer panel.
+ * Register the Success Circles Customizer panel.
  *
  * @param WP_Customize_Manager $wp_customize Customizer manager.
  * @return void
@@ -18,7 +18,7 @@ function successcircles_customize_register( $wp_customize ) {
 	$wp_customize->add_panel(
 		'sc_panel',
 		array(
-			'title'       => __( 'SuccessCircles', 'successcircles' ),
+			'title'       => __( 'Success Circles', 'successcircles' ),
 			'description' => __( 'Global values used across the homepage. Section copy lives in the theme&rsquo;s inc/content.php.', 'successcircles' ),
 			'priority'    => 20,
 		)
@@ -69,6 +69,35 @@ function successcircles_customize_register( $wp_customize ) {
 			)
 		);
 	}
+
+	/* ----------------------------------------------------------- Experience */
+
+	$wp_customize->add_section(
+		'sc_experience',
+		array(
+			'title' => __( 'Site experience', 'successcircles' ),
+			'panel' => 'sc_panel',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'sc_home_loader_enabled',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'successcircles_sanitize_checkbox',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'sc_home_loader_enabled',
+		array(
+			'label'       => __( 'Show homepage loader', 'successcircles' ),
+			'section'     => 'sc_experience',
+			'type'        => 'checkbox',
+			'description' => __( 'Display the animated brand loader before the homepage appears.', 'successcircles' ),
+		)
+	);
 
 	/* -------------------------------------------------------------- Pricing */
 
@@ -186,6 +215,16 @@ function successcircles_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'successcircles_customize_register' );
 
 /**
+ * Sanitize Customizer checkbox values.
+ *
+ * @param mixed $value Raw checkbox value.
+ * @return bool
+ */
+function successcircles_sanitize_checkbox( $value ) {
+	return (bool) $value;
+}
+
+/**
  * Allow either a URL or an on-page anchor.
  *
  * @param string $value Raw value.
@@ -219,11 +258,20 @@ function successcircles_social_url( $social ) {
  * @return string
  */
 function successcircles_program_price( $index, $default = '' ) {
-	$mods = array( 0 => 'sc_buddy_price', 1 => 'sc_labs_price', 2 => 'sc_team_price' );
+	$mods = array( 0 => 'sc_labs_price', 1 => 'sc_buddy_price', 2 => 'sc_team_price' );
 
 	if ( isset( $mods[ $index ] ) ) {
 		return (string) get_theme_mod( $mods[ $index ], $default );
 	}
 
 	return $default;
+}
+
+/**
+ * Whether the animated homepage loader should be shown.
+ *
+ * @return bool
+ */
+function successcircles_home_loader_enabled() {
+	return (bool) get_theme_mod( 'sc_home_loader_enabled', true );
 }
