@@ -1,6 +1,8 @@
 <?php
 /**
  * Closing call to action.
+ * Render outside page-specific styling wrappers so its shared typography,
+ * spacing, and buttons remain consistent across every template.
  *
  * @package SuccessCircles
  */

@@ -30,7 +30,7 @@ get_header();
 $sc_index = 0;
 ?>
 
-<article <?php post_class( 'sc-faqpage' ); ?>>
+<article <?php post_class( 'sc-faqpage fq-page' ); ?>>
 
 	<header class="sc-faqpage__opener">
 		<?php successcircles_eyebrow( '', $sc_faq['eyebrow'] ); ?>
@@ -55,7 +55,7 @@ $sc_index = 0;
 	<div class="sc-faqpage__body">
 
 		<aside class="sc-faqpage__rail" aria-label="<?php esc_attr_e( 'Question categories', 'successcircles' ); ?>">
-			<p class="sc-faqpage__rail-label"><?php esc_html_e( 'On this page', 'successcircles' ); ?></p>
+			<p class="sc-faqpage__rail-label"><?php esc_html_e( 'Find answers by topic', 'successcircles' ); ?></p>
 			<nav>
 				<ol class="sc-faqpage__rail-list">
 					<?php foreach ( $sc_groups as $sc_g => $sc_group ) : ?>
@@ -69,20 +69,7 @@ $sc_index = 0;
 				</ol>
 			</nav>
 
-			<?php if ( ! empty( $sc_aside ) ) : ?>
-				<div class="sc-faqpage__help">
-					<h2 class="sc-faqpage__help-title"><?php echo esc_html( wp_specialchars_decode( $sc_aside['title'] ) ); ?></h2>
-					<p class="sc-faqpage__help-text"><?php echo esc_html( wp_specialchars_decode( $sc_aside['text'] ) ); ?></p>
-					<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs(); ?>>
-						<?php echo esc_html( wp_specialchars_decode( $sc_aside['link']['label'] ) ); ?>
-					</a>
-					<?php if ( ! empty( $sc_aside['secondary'] ) ) : ?>
-						<a class="sc-faqpage__help-link" href="<?php echo successcircles_url( $sc_aside['secondary']['url'] ); ?>">
-							<?php echo esc_html( wp_specialchars_decode( $sc_aside['secondary']['label'] ) ); ?>
-						</a>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
+
 		</aside>
 
 		<div class="sc-faqpage__groups">
@@ -129,6 +116,20 @@ $sc_index = 0;
 	</div>
 
 
+			<?php if ( ! empty( $sc_aside ) ) : ?>
+				<div class="sc-faqpage__help">
+					<h2 class="sc-faqpage__help-title"><?php echo esc_html( wp_specialchars_decode( $sc_aside['title'] ) ); ?></h2>
+					<p class="sc-faqpage__help-text"><?php echo esc_html( wp_specialchars_decode( $sc_aside['text'] ) ); ?></p>
+					<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs(); ?>>
+						<?php echo esc_html( wp_specialchars_decode( $sc_aside['link']['label'] ) ); ?>
+					</a>
+					<?php if ( ! empty( $sc_aside['secondary'] ) ) : ?>
+						<a class="sc-faqpage__help-link" href="<?php echo successcircles_url( $sc_aside['secondary']['url'] ); ?>">
+							<?php echo esc_html( wp_specialchars_decode( $sc_aside['secondary']['label'] ) ); ?>
+						</a>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
 </article>
 
 <?php

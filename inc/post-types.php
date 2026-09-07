@@ -130,6 +130,7 @@ function successcircles_activate() {
 		'momentum-buddy'         => __( 'Momentum Braintrust Buddy', 'successcircles' ),
 		'momentum-labs'          => __( 'Momentum Labs', 'successcircles' ),
 		'momentum-team'          => __( 'Momentum Team', 'successcircles' ),
+		'momentum-os'            => __( 'Momentum OS', 'successcircles' ),
 	);
 
 	$ids = array();

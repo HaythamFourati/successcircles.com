@@ -28,7 +28,7 @@ while ( have_posts() ) :
 	$sc_blog = (int) get_option( 'page_for_posts' );
 	$sc_mins = successcircles_read_time();
 	?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class( 'sc-article' ); ?> data-sc-article>
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'sc-article rf-article' ); ?> data-sc-article>
 
 		<header class="sc-article__masthead">
 
@@ -36,11 +36,11 @@ while ( have_posts() ) :
 				<div class="sc-article__headline">
 					<?php if ( $sc_blog ) : ?>
 						<a class="sc-link-rule sc-article__back" href="<?php echo esc_url( get_permalink( $sc_blog ) ); ?>">
-							<?php esc_html_e( 'All episodes', 'successcircles' ); ?>
+							<span aria-hidden="true">← </span><?php esc_html_e( 'Rules for Success', 'successcircles' ); ?>
 						</a>
 					<?php endif; ?>
 
-					<h1 class="sc-display sc-display--xl sc-article__title"><?php the_title(); ?></h1>
+					<h1 id="rf-article-title" class="sc-display sc-display--xl sc-article__title"><?php the_title(); ?></h1>
 
 					<?php if ( '' !== $sc_role ) : ?>
 						<p class="sc-article__guest"><?php echo esc_html( $sc_role ); ?></p>
@@ -103,9 +103,14 @@ while ( have_posts() ) :
 
 			<div class="sc-prose sc-prose--article">
 				<?php the_content(); ?>
+				<?php wp_link_pages( array( 'before' => '<nav class="rf-post-pages" aria-label="' . esc_attr__( 'Article pages', 'successcircles' ) . '">', 'after' => '</nav>' ) ); ?>
 			</div>
 
 		</div>
+		<footer class="rf-article__end">
+			<?php if ( $sc_blog ) : ?><a class="sc-link-rule" href="<?php echo esc_url( get_permalink( $sc_blog ) ); ?>"><?php esc_html_e( 'Explore More Conversations', 'successcircles' ); ?> <span aria-hidden="true">↗</span></a><?php endif; ?>
+			<a class="sc-link-rule" href="#rf-article-title"><?php esc_html_e( 'Back to Top', 'successcircles' ); ?> <span aria-hidden="true">↑</span></a>
+		</footer>
 
 	</article>
 
@@ -114,7 +119,7 @@ while ( have_posts() ) :
 
 	if ( ! empty( $sc_more ) ) :
 		?>
-		<section class="sc-band--shade sc-band--hairline" aria-labelledby="sc-more-title">
+		<section class="sc-band--shade sc-band--hairline rf-more" aria-labelledby="sc-more-title">
 			<div class="sc-section sc-section--short">
 				<div class="sc-section-head sc-podcast__head">
 					<h2 id="sc-more-title" class="sc-display sc-display--sm">

@@ -45,6 +45,60 @@ function successcircles_enqueue_assets() {
 		successcircles_asset_version( '/assets/css/main.css' )
 	);
 
+	if ( is_page( 'momentum-buddy' ) || is_page_template( 'page-momentum-buddy.php' ) ) {
+		wp_enqueue_style( 'successcircles-buddy', SUCCESSCIRCLES_URI . '/assets/css/buddy.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/buddy.css' ) );
+	}
+
+	if ( is_page( 'momentum-labs' ) || is_page_template( 'page-momentum-labs.php' ) ) {
+		wp_enqueue_style( 'successcircles-labs', SUCCESSCIRCLES_URI . '/assets/css/labs.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/labs.css' ) );
+	}
+
+	if ( is_page( 'momentum-team' ) || is_page_template( 'page-momentum-team.php' ) ) {
+		wp_enqueue_style( 'successcircles-team', SUCCESSCIRCLES_URI . '/assets/css/team.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/team.css' ) );
+	}
+
+	if ( is_page( 'weekly-wins' ) || is_page_template( 'page-weekly-wins.php' ) ) {
+		wp_enqueue_style( 'successcircles-wins', SUCCESSCIRCLES_URI . '/assets/css/wins.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/wins.css' ) );
+	}
+
+	if ( is_page( 'testimonials' ) || is_page_template( 'page-testimonials.php' ) ) {
+		wp_enqueue_style( 'successcircles-testimonials', SUCCESSCIRCLES_URI . '/assets/css/testimonials.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/testimonials.css' ) );
+	}
+
+	if ( is_home() ) {
+		wp_enqueue_style( 'successcircles-journal', SUCCESSCIRCLES_URI . '/assets/css/journal.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/journal.css' ) );
+	}
+
+	if ( is_singular( 'post' ) ) {
+		wp_enqueue_style( 'successcircles-article', SUCCESSCIRCLES_URI . '/assets/css/article.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/article.css' ) );
+	}
+
+	if ( is_page( 'faq' ) || is_page_template( 'page-faq.php' ) ) {
+		wp_enqueue_style( 'successcircles-faq', SUCCESSCIRCLES_URI . '/assets/css/faq.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/faq.css' ) );
+	}
+
+	if ( is_page( 'contact-us' ) || is_page_template( 'page-contact-us.php' ) ) {
+		wp_enqueue_style( 'successcircles-contact', SUCCESSCIRCLES_URI . '/assets/css/contact.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/contact.css' ) );
+	}
+
+	if ( is_page( 'about' ) || is_page_template( 'page-about.php' ) ) {
+		wp_enqueue_style( 'successcircles-about', SUCCESSCIRCLES_URI . '/assets/css/about.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/about.css' ) );
+	}
+
+	if ( is_page( 'about-joseph-varghese' ) || is_page_template( 'page-about-joseph-varghese.php' ) ) {
+		wp_enqueue_style( 'successcircles-joseph', SUCCESSCIRCLES_URI . '/assets/css/joseph.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/joseph.css' ) );
+	}
+
+	if ( is_front_page() ) {
+		wp_enqueue_style( 'successcircles-home', SUCCESSCIRCLES_URI . '/assets/css/home.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/home.css' ) );
+		wp_enqueue_script( 'successcircles-vimeo', 'https://player.vimeo.com/api/player.js', array(), null, true );
+		wp_enqueue_script( 'successcircles-hero-video', SUCCESSCIRCLES_URI . '/assets/js/hero-video.js', array( 'successcircles-vimeo' ), successcircles_asset_version( '/assets/js/hero-video.js' ), true );
+	}
+
+	if ( is_page( 'momentum-os' ) || is_page_template( 'page-momentum-os.php' ) ) {
+		wp_enqueue_style( 'successcircles-os', SUCCESSCIRCLES_URI . '/assets/css/momentum-os.css', array( 'successcircles' ), successcircles_asset_version( '/assets/css/momentum-os.css' ) );
+	}
+
 	wp_enqueue_script(
 		'successcircles',
 		SUCCESSCIRCLES_URI . '/assets/js/theme.js',

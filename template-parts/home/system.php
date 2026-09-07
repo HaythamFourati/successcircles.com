@@ -40,13 +40,15 @@ $sc_count  = max( 1, count( $sc_steps ) );
 
 				<p class="sc-formula">
 					<?php foreach ( (array) $sc_system['formula'] as $sc_index => $sc_term ) : ?>
+						<span class="sc-formula__term">
 						<?php if ( $sc_index > 0 ) : ?>
 							<span class="sc-formula__op" aria-hidden="true">+</span>
 						<?php endif; ?>
 						<span><?php echo esc_html( $sc_term ); ?></span>
+						</span>
 					<?php endforeach; ?>
-					<span class="sc-formula__arrow" aria-hidden="true">&rarr;</span>
-					<span class="sc-formula__result"><?php echo esc_html( $sc_system['result'] ); ?></span>
+					<span class="sc-formula__term"><span class="sc-formula__arrow" aria-hidden="true">&rarr;</span>
+					<span class="sc-formula__result"><?php echo esc_html( $sc_system['result'] ); ?></span></span>
 				</p>
 			</div>
 

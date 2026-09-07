@@ -1,13 +1,6 @@
 <?php
 /**
- * Hero: the single H1 for the homepage, plus the orbiting portrait.
- *
- * The portrait doubles as a play surface for the same film the Success stories
- * section carries — the video data is read straight from `stories.video`, so the
- * two can never drift apart. Nothing is requested from Vimeo until the visitor
- * presses play; the iframe is built into the dialog on open and removed again on
- * close, which is also what stops playback. With JavaScript off the play control
- * is an ordinary link down to the stories section, where the same film lives.
+ * Homepage hero with an inline Vimeo player inside the orbit.
  *
  * @package SuccessCircles
  */
@@ -15,7 +8,6 @@
 defined( 'ABSPATH' ) || exit;
 
 $sc_hero  = (array) successcircles_content( 'hero', array() );
-$sc_video = (array) successcircles_content( 'stories.video', array() );
 
 ?>
 <section class="sc-hero" aria-labelledby="sc-hero-title">
@@ -63,30 +55,23 @@ $sc_video = (array) successcircles_content( 'stories.video', array() );
 			<span class="sc-orbit__dot sc-orbit__dot--d"></span>
 		</div>
 
-		<figure class="sc-orbit__figure">
-			<img
-				src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-peer-call.jpg?v=' . successcircles_asset_version( '/assets/img/hero-peer-call.jpg' ) ); ?>"
-				alt="<?php echo esc_attr( $sc_hero['image_alt'] ); ?>"
-				width="1170"
-				height="780"
-				fetchpriority="high"
-				decoding="async"
-			>
-
-			<?php if ( ! empty( $sc_video['embed_url'] ) ) : ?>
-				<a
-					class="sc-orbit__play"
-					href="<?php echo successcircles_url( '#stories' ); ?>"
-					data-sc-video="<?php echo esc_url( $sc_video['embed_url'] ); ?>"
-					data-sc-video-title="<?php echo esc_attr( $sc_video['title'] ); ?>"
-					data-sc-video-modal
-					aria-label="<?php echo esc_attr( sprintf( /* translators: %s: video title. */ __( 'Play: %s', 'successcircles' ), $sc_video['title'] ) ); ?>"
-				>
-					<span class="sc-orbit__play-scrim" aria-hidden="true"></span>
-					<span class="sc-orbit__play-ring" aria-hidden="true"></span>
-					<span class="sc-orbit__play-disc" aria-hidden="true"></span>
-				</a>
-			<?php endif; ?>
+		<figure class="sc-orbit__figure sc-orbit__figure--video" data-sc-hero-video>
+			<iframe
+				class="sc-orbit__video"
+				tabindex="-1"
+				src="https://player.vimeo.com/video/1223972706?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;autoplay=0&amp;controls=0&amp;playsinline=1"
+				title="<?php esc_attr_e( 'Success Circles introduction video', 'successcircles' ); ?>"
+				width="640"
+				height="360"
+				allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+				allowfullscreen
+			></iframe>
+			<button class="sc-orbit__toggle" type="button" aria-label="<?php esc_attr_e( 'Play introduction video', 'successcircles' ); ?>" disabled>
+				<svg class="sc-orbit__icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4v16l13-8z" fill="currentColor"/></svg>
+				<svg class="sc-orbit__icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zm8 0h4v16h-4z" fill="currentColor"/></svg>
+			</button>
+			<a class="sc-orbit__video-fallback" href="https://vimeo.com/1223972706" hidden>Watch on Vimeo</a>
+			<noscript><a class="sc-orbit__video-fallback" href="https://vimeo.com/1223972706">Watch on Vimeo</a></noscript>
 		</figure>
 
 		<div class="sc-orbit__badge">
@@ -94,16 +79,3 @@ $sc_video = (array) successcircles_content( 'stories.video', array() );
 		</div>
 	</div>
 </section>
-
-<?php if ( ! empty( $sc_video['embed_url'] ) ) : ?>
-	<dialog class="sc-video-modal" data-sc-video-dialog aria-label="<?php echo esc_attr( $sc_video['title'] ); ?>">
-		<div class="sc-video-modal__panel">
-			<button class="sc-video-modal__close" type="button" data-sc-video-close>
-				<span class="sc-screen-reader-text"><?php esc_html_e( 'Close video', 'successcircles' ); ?></span>
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<div class="sc-video-modal__frame" data-sc-video-mount></div>
-			<p class="sc-video-modal__caption"><?php echo esc_html( $sc_video['title'] ); ?></p>
-		</div>
-	</dialog>
-<?php endif; ?>

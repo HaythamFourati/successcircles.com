@@ -43,11 +43,11 @@ $sc_target  = successcircles_link_target( $sc_team['cta_url'] );
 get_header();
 ?>
 
-<article <?php post_class( 'sc-team' ); ?>>
+<article <?php post_class( 'sc-team mt-page' ); ?>>
 
 	<section class="sc-section sc-team__hero" aria-labelledby="sc-team-title">
 		<div class="sc-team__hero-text">
-			<p class="sc-team__kicker"><?php echo esc_html( wp_specialchars_decode( $sc_team['kicker'] ) ); ?></p>
+			<p class="sc-team__kicker">Momentum Team <span aria-hidden="true">/</span> <?php echo esc_html( wp_specialchars_decode( $sc_team['kicker'] ) ); ?></p>
 
 			<h1 id="sc-team-title" class="sc-display sc-display--hero sc-team__title">
 				<?php echo successcircles_inline( $sc_team['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -59,7 +59,10 @@ get_header();
 				<a class="sc-btn sc-btn--primary" href="<?php echo $sc_apply; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"<?php echo $sc_target; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?php echo esc_html( $sc_team['cta'] ); ?>
 				</a>
-				<p class="sc-team__cta-note"><?php echo esc_html( wp_specialchars_decode( $sc_team['cta_note'] ) ); ?></p>
+				<a class="sc-btn sc-btn--ghost" href="#team-roadmap"><?php esc_html_e( 'Explore the 90 Days', 'successcircles' ); ?></a>
+				<?php if ( ! empty( $sc_team['cta_note'] ) ) : ?>
+					<p class="sc-team__cta-note"><?php echo esc_html( wp_specialchars_decode( $sc_team['cta_note'] ) ); ?></p>
+				<?php endif; ?>
 			</div>
 
 			<dl class="sc-team__facts">
@@ -82,9 +85,17 @@ get_header();
 					fetchpriority="high"
 					decoding="async"
 				>
+				<figcaption class="mt-photo-caption"><?php esc_html_e( 'Real owners. Shared ambition. A stronger next chapter.', 'successcircles' ); ?></figcaption>
 			</figure>
 		<?php endif; ?>
 	</section>
+	<nav class="mt-nav" aria-label="<?php esc_attr_e( 'Momentum Team page sections', 'successcircles' ); ?>">
+		<a href="#team-roadmap"><?php esc_html_e( 'The 90-Day Roadmap', 'successcircles' ); ?></a>
+		<a href="#team-support"><?php esc_html_e( 'What’s Included', 'successcircles' ); ?></a>
+		<a href="#team-stories"><?php esc_html_e( 'Member Stories', 'successcircles' ); ?></a>
+		<a href="#pricing"><?php esc_html_e( 'Program Investment', 'successcircles' ); ?></a>
+		<a href="#team-apply"><?php esc_html_e( 'How to Apply', 'successcircles' ); ?></a>
+	</nav>
 
 	<section class="sc-band--dark" aria-labelledby="sc-team-prison-title">
 		<div class="sc-section">
@@ -150,17 +161,7 @@ get_header();
 		</div>
 	</section>
 
-	<section class="sc-band--shade sc-band--hairline" aria-label="<?php esc_attr_e( 'Results to date', 'successcircles' ); ?>">
-		<div class="sc-section sc-team__stat">
-			<p class="sc-team__stat-figure"><?php echo esc_html( $sc_stat['figure'] ); ?></p>
-			<div>
-				<p class="sc-team__stat-label"><?php echo esc_html( wp_specialchars_decode( $sc_stat['label'] ) ); ?></p>
-				<p class="sc-team__stat-note"><?php echo esc_html( wp_specialchars_decode( $sc_stat['note'] ) ); ?></p>
-			</div>
-		</div>
-	</section>
-
-	<section class="sc-band--sand" aria-labelledby="sc-team-method-title">
+	<section id="team-roadmap" class="sc-band--sand" aria-labelledby="sc-team-method-title">
 		<div class="sc-section">
 			<div class="sc-team__method-top">
 				<div class="sc-team__method-head">
@@ -194,6 +195,8 @@ get_header();
 							<p class="sc-team__phase-intent"><?php echo esc_html( wp_specialchars_decode( $sc_phase['intent'] ) ); ?></p>
 						</div>
 
+						<details class="mt-phase-details">
+							<summary><?php esc_html_e( 'Explore This Phase', 'successcircles' ); ?><span aria-hidden="true">+</span></summary>
 						<div class="sc-team__phase-body">
 							<dl class="sc-team__focus">
 								<?php foreach ( (array) $sc_phase['items'] as $sc_item ) : ?>
@@ -213,13 +216,14 @@ get_header();
 								</ul>
 							</div>
 						</div>
+						</details>
 					</li>
 				<?php endforeach; ?>
 			</ol>
 		</div>
 	</section>
 
-	<section class="sc-band--dark" aria-labelledby="sc-team-arsenal-title">
+	<section id="team-support" class="sc-band--dark" aria-labelledby="sc-team-arsenal-title">
 		<div class="sc-section">
 			<div class="sc-team__arsenal-head">
 				<h2 id="sc-team-arsenal-title" class="sc-display sc-display--lg"><?php echo esc_html( wp_specialchars_decode( $sc_arsenal['title'] ) ); ?></h2>
@@ -228,8 +232,8 @@ get_header();
 
 			<div class="sc-team__arsenal">
 				<?php foreach ( (array) $sc_arsenal['groups'] as $sc_group ) : ?>
-					<section class="sc-team__group">
-						<h3 class="sc-team__group-name"><?php echo esc_html( wp_specialchars_decode( $sc_group['name'] ) ); ?></h3>
+					<details class="sc-team__group">
+						<summary class="sc-team__group-name"><?php echo esc_html( wp_specialchars_decode( $sc_group['name'] ) ); ?><span aria-hidden="true">+</span></summary>
 						<dl class="sc-team__group-items">
 							<?php foreach ( (array) $sc_group['items'] as $sc_item ) : ?>
 								<div>
@@ -238,14 +242,14 @@ get_header();
 								</div>
 							<?php endforeach; ?>
 						</dl>
-					</section>
+					</details>
 				<?php endforeach; ?>
 			</div>
 		</div>
 	</section>
 
 	<?php if ( $sc_quotes ) : ?>
-		<section class="sc-band--sand sc-band--curtain" aria-labelledby="sc-team-quotes-title">
+		<section id="team-stories" class="sc-band--sand sc-band--curtain" aria-labelledby="sc-team-quotes-title">
 			<div class="sc-section">
 				<h2 id="sc-team-quotes-title" class="sc-display sc-display--md sc-team__quotes-title">
 					<?php esc_html_e( 'What members say.', 'successcircles' ); ?>
@@ -363,7 +367,7 @@ get_header();
 		</div>
 	</section>
 
-	<section class="sc-band--sand sc-band--curtain" aria-labelledby="sc-team-fit-title">
+	<section id="team-apply" class="sc-band--sand sc-band--curtain" aria-labelledby="sc-team-fit-title">
 		<div class="sc-section sc-team__fit">
 			<div>
 				<h2 id="sc-team-fit-title" class="sc-display sc-display--lg"><?php echo esc_html( wp_specialchars_decode( $sc_fit['title'] ) ); ?></h2>
@@ -377,6 +381,7 @@ get_header();
 			</div>
 
 			<div class="sc-team__apply">
+				<h3 class="mt-apply-title"><?php esc_html_e( 'Your next chapter starts here.', 'successcircles' ); ?></h3>
 				<ol class="sc-team__steps">
 					<?php foreach ( (array) $sc_fit['steps'] as $sc_step ) : ?>
 						<li><?php echo esc_html( wp_specialchars_decode( $sc_step ) ); ?></li>

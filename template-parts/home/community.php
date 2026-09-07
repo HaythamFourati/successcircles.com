@@ -28,7 +28,7 @@ $sc_community = (array) successcircles_content( 'community', array() );
 						decoding="async"
 					>
 				</figure>
-				<figcaption class="sc-community__caption">Member gathering / Success Circles&trade;</figcaption>
+				<p class="sc-community__caption">Member gathering / Success Circles&trade;</p>
 			</div>
 
 			<div class="sc-community__body">

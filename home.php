@@ -20,7 +20,7 @@ $sc_has_lead = have_posts() && ! is_paged();
 get_header();
 
 ?>
-<section class="sc-section sc-journal" aria-labelledby="sc-journal-title">
+<section class="sc-section sc-journal rf-journal" aria-labelledby="sc-journal-title">
 
 	<header class="sc-journal__head">
 		<?php successcircles_eyebrow( '', $sc_copy['eyebrow'] ); ?>
@@ -30,6 +30,7 @@ get_header();
 		<p class="sc-journal__lede">
 			<?php echo esc_html( wp_specialchars_decode( $sc_copy['lede'] ) ); ?>
 		</p>
+		<?php if ( have_posts() ) : ?><a class="rf-browse" href="#conversations"><?php esc_html_e( 'Explore the Conversations', 'successcircles' ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
 		<?php if ( $sc_intro && '' !== trim( $sc_intro->post_content ) ) : ?>
 			<div class="sc-prose sc-journal__intro">
 				<?php echo wp_kses_post( apply_filters( 'the_content', $sc_intro->post_content ) ); ?>
@@ -43,7 +44,7 @@ get_header();
 
 	<?php else : ?>
 
-		<ol class="sc-journal__list">
+		<ol id="conversations" class="sc-journal__list">
 			<?php
 			$sc_i = 0;
 
@@ -53,6 +54,9 @@ get_header();
 				$sc_role  = (string) get_post_meta( get_the_ID(), '_sc_role', true );
 				$sc_lead  = $sc_has_lead && 0 === $sc_i;
 				$sc_class = $sc_lead ? 'sc-entry sc-entry--lead' : 'sc-entry';
+				if ( ! has_post_thumbnail() ) {
+					$sc_class .= ' rf-entry--text';
+				}
 				++$sc_i;
 				?>
 				<li <?php post_class( $sc_class ); ?>>
@@ -68,6 +72,8 @@ get_header();
 						</a>
 					<?php endif; ?>
 
+					<div class="rf-entry__content">
+					<?php if ( $sc_lead ) : ?><p class="rf-feature-label"><?php esc_html_e( 'Latest conversation', 'successcircles' ); ?></p><?php endif; ?>
 					<p class="sc-entry__meta">
 						<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
 							<?php echo esc_html( get_the_date( 'M j, Y' ) ); ?>
@@ -86,11 +92,11 @@ get_header();
 							<?php echo esc_html( wp_trim_words( get_the_excerpt(), $sc_lead ? 40 : 22 ) ); ?>
 						</p>
 
-						<?php if ( $sc_lead ) : ?>
 							<a class="sc-link-rule" href="<?php the_permalink(); ?>">
 								<?php esc_html_e( 'Read the conversation', 'successcircles' ); ?>
+								<span aria-hidden="true"> ↗</span>
 							</a>
-						<?php endif; ?>
+					</div>
 					</div>
 
 				</li>

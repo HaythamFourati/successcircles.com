@@ -29,16 +29,6 @@ $sc_all_quotes = array_merge( array( $sc_feature ), $sc_quotes );
 				<?php echo successcircles_inline( $sc_stories['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</h2>
 		</div>
-		<div class="sc-section-head__links">
-			<?php foreach ( (array) $sc_stories['links'] as $sc_link ) : ?>
-				<a class="sc-link-rule sc-link-rule--arrow" href="<?php echo successcircles_url( $sc_link['url'] ); ?>">
-					<?php echo esc_html( wp_specialchars_decode( $sc_link['label'] ) ); ?>
-					<svg class="sc-link-rule__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
-						<path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</a>
-			<?php endforeach; ?>
-		</div>
 	</div>
 
 	<div class="sc-stories__feature">
@@ -116,4 +106,14 @@ $sc_all_quotes = array_merge( array( $sc_feature ), $sc_quotes );
 
 	</div>
 
+		<div class="sc-section-head__links">
+			<?php foreach ( (array) $sc_stories['links'] as $sc_link ) : ?>
+				<a class="sc-link-rule sc-link-rule--arrow" href="<?php echo successcircles_url( $sc_link['url'] ); ?>">
+					<?php echo esc_html( wp_specialchars_decode( $sc_link['label'] ) ); ?>
+					<svg class="sc-link-rule__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+						<path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</a>
+			<?php endforeach; ?>
+		</div>
 </section>

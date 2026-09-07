@@ -34,6 +34,9 @@ $sc_values  = (array) successcircles_content( 'about.values', array() );
 $sc_story   = (array) successcircles_content( 'about.story', array() );
 
 get_header();
+?>
+<div class="ab-page">
+<?php
 
 while ( have_posts() ) :
 	the_post();
@@ -41,11 +44,16 @@ while ( have_posts() ) :
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'sc-page' ); ?>>
 
 		<div class="sc-about__opener">
-			<h1 class="sc-display sc-display--xl sc-about__title sc-rise" style="--sc-rise-delay:1s">
-				<?php echo successcircles_inline( $sc_about['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			</h1>
+			<div class="sc-about__opener-left">
+				<div class="sc-rise" style="--sc-rise-delay:0.2s">
+					<?php successcircles_eyebrow( '', __( 'Our Story', 'successcircles' ), 'sc-eyebrow--accent' ); ?>
+				</div>
+				<h1 class="sc-display sc-display--xl sc-about__title sc-rise" style="--sc-rise-delay:0.3s">
+					<?php echo successcircles_inline( $sc_about['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</h1>
+			</div>
 
-			<div class="sc-about__intro sc-rise" style="--sc-rise-delay:1.1s">
+			<div class="sc-about__intro sc-rise" style="--sc-rise-delay:0.4s">
 				<p class="sc-about__statement">
 					<?php echo esc_html( wp_specialchars_decode( $sc_about['lede'] ) ); ?>
 				</p>
@@ -58,13 +66,20 @@ while ( have_posts() ) :
 			</div>
 		</div>
 
+		<nav class="ab-nav" aria-label="<?php esc_attr_e( 'Explore our story', 'successcircles' ); ?>">
+			<a href="#our-approach">Our Approach <span aria-hidden="true">↓</span></a>
+			<a href="#corevalues">Our Values <span aria-hidden="true">↓</span></a>
+			<a href="#our-beginnings">Our Beginnings <span aria-hidden="true">↓</span></a>
+			<a href="#founder">Meet the Founder <span aria-hidden="true">↓</span></a>
+		</nav>
+
 		<?php if ( trim( get_the_content() ) ) : ?>
 			<div class="sc-prose">
 				<?php the_content(); ?>
 			</div>
 		<?php endif; ?>
 
-		<figure class="sc-about__bleed sc-rise" style="--sc-rise-delay:1.2s">
+		<figure class="sc-about__bleed sc-rise" style="--sc-rise-delay:0.5s">
 			<img
 				src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg?v=' . successcircles_asset_version( '/assets/img/hero-huddle.jpg' ) ); ?>"
 				alt="<?php echo esc_attr( $sc_about['bleed_alt'] ); ?>"
@@ -83,19 +98,41 @@ while ( have_posts() ) :
 endwhile;
 ?>
 
-<section class="sc-band--shade sc-band--hairline" aria-labelledby="sc-about-mission-title">
-	<div class="sc-section sc-about__pull">
-		<h2 id="sc-about-mission-title" class="sc-display sc-about__pull-title">
-			<?php echo successcircles_inline( $sc_mission['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</h2>
-
-		<div>
+<section id="our-approach" class="sc-band--shade sc-band--hairline" aria-labelledby="sc-about-mission-title">
+	<div class="sc-section sc-about__pull" data-sc-rhythm>
+		<div class="sc-about__pull-left">
+			<h2 id="sc-about-mission-title" class="sc-display sc-about__pull-title">
+				<?php echo successcircles_inline( $sc_mission['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</h2>
 			<p class="sc-about__pull-body">
 				<?php echo esc_html( wp_specialchars_decode( $sc_mission['lede'] ) ); ?>
 			</p>
-			<p class="sc-about__pull-body" style="margin-top:20px">
+			<p class="sc-about__pull-body">
 				<?php echo esc_html( wp_specialchars_decode( $sc_mission['body'] ) ); ?>
 			</p>
+		</div>
+
+		<div class="sc-about__rhythm" role="list" aria-label="<?php esc_attr_e( 'The rhythm of progress', 'successcircles' ); ?>">
+			<div class="sc-about__rhythm-track" role="listitem">
+				<span class="sc-about__rhythm-node"></span>
+				<span class="sc-about__rhythm-day">Choose</span>
+				<span class="sc-about__rhythm-label">Priority</span>
+			</div>
+			<div class="sc-about__rhythm-track" role="listitem">
+				<span class="sc-about__rhythm-node"></span>
+				<span class="sc-about__rhythm-day">Commit</span>
+				<span class="sc-about__rhythm-label">Accountability</span>
+			</div>
+			<div class="sc-about__rhythm-track" role="listitem">
+				<span class="sc-about__rhythm-node"></span>
+				<span class="sc-about__rhythm-day">Follow through</span>
+				<span class="sc-about__rhythm-label">Action</span>
+			</div>
+			<div class="sc-about__rhythm-track" role="listitem">
+				<span class="sc-about__rhythm-node sc-about__rhythm-node--end"></span>
+				<span class="sc-about__rhythm-day">Build on it</span>
+				<span class="sc-about__rhythm-label">Progress</span>
+			</div>
 		</div>
 	</div>
 </section>
@@ -128,19 +165,9 @@ endwhile;
 	</div>
 </section>
 
-<section id="corevalues" class="sc-band--sand sc-band--curtain" aria-labelledby="sc-about-values-title">
-	<div class="sc-section">
-		<div class="sc-about__values-head">
-			<div class="sc-about__values-intro">
-				<h2 id="sc-about-values-title" class="sc-display sc-display--lg sc-about__values-title">
-					<?php echo successcircles_inline( $sc_values['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</h2>
-
-				<p class="sc-lede sc-about__values-lede">
-					<?php echo esc_html( wp_specialchars_decode( $sc_values['lede'] ) ); ?>
-				</p>
-			</div>
-
+<section id="corevalues" class="sc-band--sand" aria-labelledby="sc-about-values-title">
+	<div class="sc-section sc-about__values">
+		<div class="sc-about__values-intro">
 			<?php if ( ! empty( $sc_values['badge']['file'] ) ) : ?>
 				<?php $sc_badge = (array) $sc_values['badge']; ?>
 				<img
@@ -153,13 +180,20 @@ endwhile;
 					decoding="async"
 				>
 			<?php endif; ?>
+			<h2 id="sc-about-values-title" class="sc-display sc-display--lg sc-about__values-title">
+				<?php echo successcircles_inline( $sc_values['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</h2>
+			<p class="sc-about__values-lede">
+				<?php echo esc_html( wp_specialchars_decode( $sc_values['lede'] ) ); ?>
+			</p>
 		</div>
 
 		<div class="sc-about__vows">
-			<?php foreach ( (array) $sc_values['items'] as $sc_item ) : ?>
+			<?php foreach ( (array) $sc_values['items'] as $sc_vow_index => $sc_item ) : ?>
 				<div class="sc-about__vow">
+					<span class="sc-about__vow-num"><?php echo esc_html( sprintf( '%02d', $sc_vow_index + 1 ) ); ?></span>
 					<h3 class="sc-about__vow-title">
-						<?php echo esc_html( wp_specialchars_decode( $sc_item['title'] ) ); ?>
+						<?php echo successcircles_inline( $sc_item['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</h3>
 					<p class="sc-about__vow-text">
 						<?php echo esc_html( wp_specialchars_decode( $sc_item['text'] ) ); ?>
@@ -170,7 +204,7 @@ endwhile;
 	</div>
 </section>
 
-<section class="sc-band--dark" aria-labelledby="sc-about-story-title">
+<section id="our-beginnings" class="sc-band--dark" aria-labelledby="sc-about-story-title">
 	<div class="sc-section">
 		<div class="sc-about__story-top">
 			<figure class="sc-about__story-media">
@@ -196,21 +230,13 @@ endwhile;
 				</div>
 			</div>
 		</div>
-
-		<div class="sc-about__arc">
-			<?php foreach ( (array) $sc_story['arc'] as $sc_point ) : ?>
-				<div class="sc-about__arc-item">
-					<span class="sc-about__arc-ring" style="--sc-arc-scale:<?php echo esc_attr( $sc_point['scale'] ); ?>" aria-hidden="true"></span>
-					<p class="sc-about__arc-figure"><?php echo esc_html( $sc_point['figure'] ); ?></p>
-					<p class="sc-about__arc-label"><?php echo esc_html( wp_specialchars_decode( $sc_point['label'] ) ); ?></p>
-				</div>
-			<?php endforeach; ?>
-		</div>
 	</div>
 </section>
 
 <?php
 get_template_part( 'template-parts/home/founder' );
+?>
+</div>
+<?php
 get_template_part( 'template-parts/home/cta' );
-
 get_footer();

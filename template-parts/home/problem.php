@@ -1,60 +1,31 @@
 <?php
-/**
- * 01 / The problem.
- *
- * @package SuccessCircles
- */
-
+/** Homepage problem: focused introduction and a compact visual breakdown. */
 defined( 'ABSPATH' ) || exit;
-
-$sc_problem = (array) successcircles_content( 'problem', array() );
-
+$sc_block = (array) successcircles_content( 'problem', array() );
 ?>
-<section class="sc-band--shade sc-band--curtain" aria-labelledby="sc-problem-title">
+<section id="problem" class="hp-problem sc-band--shade sc-band--curtain" aria-labelledby="sc-problem-title">
 	<div class="sc-section">
-		<div class="sc-huddle sc-huddle--reverse">
-
-			<div class="sc-huddle__media">
-				<figure class="sc-huddle__figure">
-					<img
-						src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg?v=' . successcircles_asset_version( '/assets/img/hero-huddle.jpg' ) ); ?>"
-						alt="<?php esc_attr_e( 'An entrepreneur joining a video call from a shared workspace', 'successcircles' ); ?>"
-						width="1170"
-						height="780"
-						loading="lazy"
-						decoding="async"
-					>
-				</figure>
-
-				<blockquote class="sc-huddle__quote">
-					<?php echo esc_html( wp_specialchars_decode( $sc_problem['quote'] ) ); ?>
-				</blockquote>
-			</div>
-
-			<div class="sc-huddle__copy">
-				<?php successcircles_eyebrow( $sc_problem['index'], $sc_problem['eyebrow'] ); ?>
-
-				<h2 id="sc-problem-title" class="sc-display sc-display--lg">
-					<?php echo successcircles_inline( $sc_problem['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</h2>
-
-				<p class="sc-lede"><?php echo esc_html( wp_specialchars_decode( $sc_problem['lede'] ) ); ?></p>
-
-				<ol class="sc-rows">
-					<?php foreach ( (array) $sc_problem['items'] as $sc_index => $sc_item ) : ?>
-						<li class="sc-row">
-							<span class="sc-row__index" aria-hidden="true">
-								<?php echo esc_html( str_pad( (string) ( $sc_index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?>
-							</span>
-							<div>
-								<h3 class="sc-row__title"><?php echo esc_html( wp_specialchars_decode( $sc_item['title'] ) ); ?></h3>
-								<p class="sc-row__text"><?php echo esc_html( wp_specialchars_decode( $sc_item['text'] ) ); ?></p>
-							</div>
-						</li>
-					<?php endforeach; ?>
-				</ol>
-			</div>
-
+		<header class="hp-intro">
+			<?php successcircles_eyebrow( $sc_block['index'], $sc_block['eyebrow'] ); ?>
+			<h2 id="sc-problem-title" class="sc-display sc-display--lg"><?php echo successcircles_inline( $sc_block['title'] ); ?></h2>
+			<p class="sc-lede"><?php echo esc_html( wp_specialchars_decode( $sc_block['lede'] ) ); ?></p>
+		</header>
+		<div class="hp-problem__layout">
+			<figure class="hp-problem__visual">
+				<img src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg' ); ?>" alt="<?php esc_attr_e( 'A laptop set up for a video conversation', 'successcircles' ); ?>" width="1170" height="780" loading="lazy" decoding="async">
+				<figcaption><?php echo esc_html( wp_specialchars_decode( $sc_block['quote'] ) ); ?></figcaption>
+			</figure>
+			<ol class="hp-problem__items">
+				<?php foreach ( (array) $sc_block['items'] as $sc_index => $sc_item ) : ?>
+					<li>
+						<span class="hp-item-number" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $sc_index + 1 ) ); ?></span>
+						<div>
+							<h3><?php echo esc_html( wp_specialchars_decode( $sc_item['title'] ) ); ?></h3>
+							<p><?php echo esc_html( wp_specialchars_decode( $sc_item['text'] ) ); ?></p>
+						</div>
+					</li>
+				<?php endforeach; ?>
+			</ol>
 		</div>
 	</div>
 </section>

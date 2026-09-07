@@ -670,73 +670,469 @@
 
 	function initReviews() {
 		var root = document.querySelector( '[data-sc-reviews]' );
-
-		if ( ! root || ! ( 'IntersectionObserver' in window ) ) {
-			return;
-		}
-
+		if ( ! root ) { return; }
 		var slides = Array.prototype.slice.call( root.querySelectorAll( '[data-sc-reviews-slide]' ) );
 		var prevBtn = root.querySelector( '[data-sc-reviews-prev]' );
 		var nextBtn = root.querySelector( '[data-sc-reviews-next]' );
+		if ( slides.length < 2 ) { return; }
+		var index = 0;
+		root.classList.add( 'is-enhanced' );
+		root.setAttribute( 'aria-label', 'Member reviews' );
+		var track = root.querySelector( '.sc-reviews__track' );
+		if ( track ) { track.setAttribute( 'aria-live', 'polite' ); }
+		function show( next ) {
+			index = ( next + slides.length ) % slides.length;
+			slides.forEach( function ( slide, i ) {
+				slide.classList.toggle( 'is-active', i === index );
+				slide.setAttribute( 'aria-hidden', i === index ? 'false' : 'true' );
+			} );
+		}
+		// Let visitors finish reading; reviews advance only on request.
+		if ( prevBtn ) { prevBtn.addEventListener( 'click', function () { show( index - 1 ); } ); }
+		if ( nextBtn ) { nextBtn.addEventListener( 'click', function () { show( index + 1 ); } ); }
+		show( 0 );
+	}
 
-		if ( slides.length < 2 ) {
+	/**
+	 * Scroll-triggered fade-in for JV page chapters.
+	 * Progressive enhancement — chapters are visible by default without JS.
+	 */
+	function initJvChapters() {
+		if ( reduceMotion || ! ( 'IntersectionObserver' in window ) ) {
 			return;
 		}
 
-		var index = 0;
-		var timer = null;
+		var chapters = document.querySelectorAll( '.sc-jv__chapter' );
 
-		root.classList.add( 'is-enhanced' );
-
-		function show( next ) {
-			index = ( next + slides.length ) % slides.length;
-
-			slides.forEach( function ( slide, i ) {
-				slide.classList.toggle( 'is-active', i === index );
-			} );
+		if ( ! chapters.length ) {
+			return;
 		}
 
-		function start() {
-			if ( timer || reduceMotion ) {
-				return;
-			}
-			timer = window.setInterval( function () {
-				show( index + 1 );
-			}, 6000 );
+		var observer = new IntersectionObserver(
+			function ( entries ) {
+				entries.forEach( function ( entry ) {
+					if ( entry.isIntersecting ) {
+						entry.target.classList.add( 'is-visible' );
+						observer.unobserve( entry.target );
+					}
+				} );
+			},
+			{ threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+		);
+
+		Array.prototype.forEach.call( chapters, function ( chapter ) {
+			observer.observe( chapter );
+		} );
+	}
+
+	/**
+	 * Scroll-triggered reveal for the About page "Our Approach" section.
+	 * Adds .is-visible to trigger CSS staggered animations.
+	 */
+	function initRhythmReveal() {
+		if ( reduceMotion || ! ( 'IntersectionObserver' in window ) ) {
+			return;
 		}
 
-		function stop() {
-			window.clearInterval( timer );
-			timer = null;
-		}
+		var section = document.querySelector( '[data-sc-rhythm]' );
 
-		if ( prevBtn ) {
-			prevBtn.addEventListener( 'click', function () {
-				stop();
-				show( index - 1 );
-			} );
-		}
-
-		if ( nextBtn ) {
-			nextBtn.addEventListener( 'click', function () {
-				stop();
-				show( index + 1 );
-			} );
+		if ( ! section ) {
+			return;
 		}
 
 		new IntersectionObserver(
 			function ( entries ) {
 				entries.forEach( function ( entry ) {
 					if ( entry.isIntersecting ) {
-						start();
-					} else {
-						stop();
+						entry.target.classList.add( 'is-visible' );
 					}
 				} );
 			},
-			{ threshold: 0.3 }
-		).observe( root );
+			{ threshold: 0.2, rootMargin: '0px 0px -60px 0px' }
+		).observe( section );
+	}
 
+	/**
+	 * Expandable testimonials — toggle between excerpt and full text.
+	 */
+	/**
+	 * The testimonials roll call: a cast list on the left driving one stage on
+	 * the right, and the letter wall's expand toggles.
+	 *
+	 * Enhancement only, and only where the CSS actually rearranges anything —
+	 * below 1000px every plate is already a visible gallery, so there is nothing
+	 * to drive and no timer worth running.
+	 */
+	function initRollCall() {
+		var roll = document.querySelector( '[data-sc-roll]' );
+
+		if ( ! roll ) {
+			return;
+		}
+
+		var rows = Array.prototype.slice.call( roll.querySelectorAll( '[data-sc-roll-row]' ) );
+		var picks = Array.prototype.slice.call( roll.querySelectorAll( '[data-sc-roll-pick]' ) );
+		var plates = Array.prototype.slice.call( roll.querySelectorAll( '[data-sc-roll-plate]' ) );
+
+		if ( plates.length < 2 || picks.length !== plates.length ) {
+			return;
+		}
+
+		var wide = window.matchMedia( '(min-width: 1000px)' );
+		var index = -1;
+		var timer = null;
+		var held = false;
+		var playing = false;
+
+		roll.classList.add( 'is-enhanced' );
+
+		var show = function ( next ) {
+			index = ( next + plates.length ) % plates.length;
+
+			rows.forEach( function ( row, i ) {
+				row.classList.toggle( 'is-active', i === index );
+			} );
+
+			plates.forEach( function ( plate, i ) {
+				plate.classList.toggle( 'is-active', i === index );
+			} );
+
+			picks.forEach( function ( pick, i ) {
+				if ( i === index ) {
+					pick.setAttribute( 'aria-current', 'true' );
+				} else {
+					pick.removeAttribute( 'aria-current' );
+				}
+			} );
+		};
+
+		var stop = function () {
+			window.clearInterval( timer );
+			timer = null;
+		};
+
+		var start = function () {
+			if ( timer || held || playing || reduceMotion || ! wide.matches ) {
+				return;
+			}
+
+			timer = window.setInterval( function () {
+				show( index + 1 );
+			}, 4600 );
+		};
+
+		// Detect when a video starts playing inline (iframe replaces the button).
+		roll.addEventListener( 'click', function ( event ) {
+			if ( event.target.closest( '[data-sc-video]' ) ) {
+				playing = true;
+				stop();
+			}
+		} );
+
+		// Also catch the iframe via MutationObserver, since initStoryVideo
+		// replaces the button after the click handler runs.
+		if ( 'MutationObserver' in window ) {
+			new MutationObserver( function ( mutations ) {
+				mutations.forEach( function ( m ) {
+					if ( m.addedNodes.length && m.addedNodes[0].nodeName === 'IFRAME' ) {
+						playing = true;
+						stop();
+					}
+				} );
+			} ).observe( roll, { childList: true, subtree: true } );
+		}
+
+		picks.forEach( function ( pick, i ) {
+			// Pointer over a name previews it; the stage is what plays.
+			pick.addEventListener( 'mouseenter', function () {
+				if ( wide.matches ) {
+					show( i );
+				}
+			} );
+
+			pick.addEventListener( 'focus', function () {
+				if ( wide.matches ) {
+					show( i );
+				}
+			} );
+
+			pick.addEventListener( 'click', function () {
+				held = true;
+				stop();
+				show( i );
+
+				// On a touch screen the stage may be off the fold; bring it in.
+				if ( ! wide.matches ) {
+					plates[ i ].scrollIntoView( { block: 'nearest' } );
+				}
+			} );
+		} );
+
+		// Hovering the stage or the list should not fight the visitor.
+		roll.addEventListener( 'mouseenter', stop );
+		roll.addEventListener( 'mouseleave', start );
+
+		if ( 'IntersectionObserver' in window ) {
+			new IntersectionObserver(
+				function ( entries ) {
+					entries.forEach( function ( entry ) {
+						if ( entry.isIntersecting ) {
+							start();
+						} else {
+							stop();
+						}
+					} );
+				},
+				{ threshold: 0.25 }
+			).observe( roll );
+		}
+
+		if ( typeof wide.addEventListener === 'function' ) {
+			wide.addEventListener( 'change', function () {
+				stop();
+				start();
+			} );
+		}
+
+		show( 0 );
+	}
+
+	/**
+	 * The letters deck: eight testimonials stacked like physical correspondence,
+	 * advanced by arrows, ticks, keyboard or swipe.
+	 *
+	 * Enhancement only — without JavaScript the same markup is an ordinary list
+	 * of every letter, so nothing is locked behind the control.
+	 *
+	 * There is no timer on purpose. These are paragraphs, and sliding one out
+	 * from under a reader mid-sentence is hostile; the motion lives in the
+	 * shuffle rather than in an autoplay.
+	 */
+	function initLetterDeck() {
+		var deck = document.querySelector( '[data-sc-deck]' );
+
+		if ( ! deck ) {
+			return;
+		}
+
+		var stack = deck.querySelector( '.sc-deck__stack' );
+		var cards = Array.prototype.slice.call( deck.querySelectorAll( '[data-sc-deck-card]' ) );
+		var ticks = Array.prototype.slice.call( deck.querySelectorAll( '[data-sc-deck-tick]' ) );
+		var prev = deck.querySelector( '[data-sc-deck-prev]' );
+		var next = deck.querySelector( '[data-sc-deck-next]' );
+		var counter = deck.querySelector( '[data-sc-deck-current]' );
+
+		if ( ! stack || cards.length < 2 || ! prev || ! next ) {
+			return;
+		}
+
+		var index = 0;
+
+		// Once enhanced every card is absolutely positioned and stretched to fill
+		// the stack, so measuring one then just reports the stack's own height
+		// back. Drop out of the enhanced layout for the single reflow it takes to
+		// read the active letter, then restore it. Caching all the heights up
+		// front was fragile: any re-measure after fonts loaded or the window
+		// resized captured the stretched value and pinned every letter to it.
+		var fit = function () {
+			var enhanced = deck.classList.contains( 'is-enhanced' );
+
+			if ( enhanced ) {
+				deck.classList.remove( 'is-enhanced' );
+			}
+
+			var height = cards[ index ] ? cards[ index ].offsetHeight : 0;
+
+			if ( enhanced ) {
+				deck.classList.add( 'is-enhanced' );
+			}
+
+			if ( height ) {
+				stack.style.setProperty( '--sc-deck-height', height + 'px' );
+			}
+		};
+
+		var pad = function ( n ) {
+			return n < 10 ? '0' + n : String( n );
+		};
+
+		var show = function ( to ) {
+			index = ( to + cards.length ) % cards.length;
+
+			cards.forEach( function ( card, i ) {
+				// Distance forward from the front card, wrapping round.
+				var pos = ( i - index + cards.length ) % cards.length;
+
+				card.setAttribute( 'data-sc-deck-pos', pos );
+				card.setAttribute( 'aria-hidden', pos === 0 ? 'false' : 'true' );
+			} );
+
+			ticks.forEach( function ( tick, i ) {
+				if ( i === index ) {
+					tick.setAttribute( 'aria-current', 'true' );
+				} else {
+					tick.removeAttribute( 'aria-current' );
+				}
+			} );
+
+			if ( counter ) {
+				counter.textContent = pad( index + 1 );
+			}
+
+			fit();
+		};
+
+		prev.addEventListener( 'click', function () {
+			show( index - 1 );
+		} );
+
+		next.addEventListener( 'click', function () {
+			show( index + 1 );
+		} );
+
+		ticks.forEach( function ( tick, i ) {
+			tick.addEventListener( 'click', function () {
+				show( i );
+			} );
+		} );
+
+		// Clicking a card that is behind brings it forward.
+		cards.forEach( function ( card, i ) {
+			card.addEventListener( 'click', function () {
+				if ( card.getAttribute( 'data-sc-deck-pos' ) !== '0' ) {
+					show( i );
+				}
+			} );
+		} );
+
+		deck.addEventListener( 'keydown', function ( event ) {
+			if ( event.key === 'ArrowLeft' ) {
+				event.preventDefault();
+				show( index - 1 );
+			} else if ( event.key === 'ArrowRight' ) {
+				event.preventDefault();
+				show( index + 1 );
+			}
+		} );
+
+		// Swipe, for the touch screens where the arrows sit furthest from a thumb.
+		var startX = null;
+
+		stack.addEventListener( 'pointerdown', function ( event ) {
+			startX = event.clientX;
+		} );
+
+		stack.addEventListener( 'pointerup', function ( event ) {
+			if ( null === startX ) {
+				return;
+			}
+
+			var dx = event.clientX - startX;
+
+			startX = null;
+
+			if ( Math.abs( dx ) > 46 ) {
+				show( dx < 0 ? index + 1 : index - 1 );
+			}
+		} );
+
+		window.addEventListener( 'resize', fit );
+
+		// Web fonts land after first paint and change how tall the letters run.
+		if ( document.fonts && document.fonts.ready ) {
+			document.fonts.ready.then( fit );
+		}
+
+		deck.classList.add( 'is-enhanced' );
+		show( 0 );
+	}
+
+	/**
+	 * The Momentum Buzz deck: one win at a time, advanced by arrows, keyboard
+	 * or swipe. No timer — these are paragraphs, and sliding one out from under
+	 * a reader mid-sentence is hostile.
+	 *
+	 * Enhancement only — without JavaScript the same markup is an ordinary list
+	 * of every win, so nothing is locked behind the control.
+	 */
+	function initBuzzDeck() {
+		var deck = document.querySelector( '[data-sc-buzz-deck]' );
+
+		if ( ! deck ) {
+			return;
+		}
+
+		var stage = deck.querySelector( '[data-sc-buzz-stage]' );
+		var slides = Array.prototype.slice.call( deck.querySelectorAll( '[data-sc-buzz-slide]' ) );
+		var prev = deck.querySelector( '[data-sc-buzz-prev]' );
+		var next = deck.querySelector( '[data-sc-buzz-next]' );
+		var counter = deck.querySelector( '[data-sc-buzz-current]' );
+
+		if ( ! stage || slides.length < 2 || ! prev || ! next ) {
+			return;
+		}
+
+		var index = 0;
+
+		var pad = function ( n ) {
+			return n < 10 ? '0' + n : String( n );
+		};
+
+		var show = function ( to ) {
+			index = ( to + slides.length ) % slides.length;
+
+			slides.forEach( function ( slide, i ) {
+				slide.classList.toggle( 'is-active', i === index );
+				slide.setAttribute( 'aria-hidden', i === index ? 'false' : 'true' );
+			} );
+
+			if ( counter ) {
+				counter.textContent = pad( index + 1 );
+			}
+		};
+
+		prev.addEventListener( 'click', function () {
+			show( index - 1 );
+		} );
+
+		next.addEventListener( 'click', function () {
+			show( index + 1 );
+		} );
+
+		deck.setAttribute( 'tabindex', '0' );
+
+		deck.addEventListener( 'keydown', function ( event ) {
+			if ( event.key === 'ArrowLeft' ) {
+				event.preventDefault();
+				show( index - 1 );
+			} else if ( event.key === 'ArrowRight' ) {
+				event.preventDefault();
+				show( index + 1 );
+			}
+		} );
+
+		/* Swipe, for touch screens where the arrows sit furthest from a thumb. */
+		var startX = null;
+
+		stage.addEventListener( 'pointerdown', function ( event ) {
+			startX = event.clientX;
+		} );
+
+		stage.addEventListener( 'pointerup', function ( event ) {
+			if ( null === startX ) {
+				return;
+			}
+
+			var dx = event.clientX - startX;
+
+			startX = null;
+
+			if ( Math.abs( dx ) > 46 ) {
+				show( dx < 0 ? index + 1 : index - 1 );
+			}
+		} );
+
+		deck.classList.add( 'is-enhanced' );
 		show( 0 );
 	}
 
@@ -748,6 +1144,11 @@
 		initReviews();
 		initArticle();
 		initQuiz();
+		initJvChapters();
+		initRhythmReveal();
+		initRollCall();
+		initLetterDeck();
+		initBuzzDeck();
 	}
 
 	if ( document.readyState !== 'loading' ) {

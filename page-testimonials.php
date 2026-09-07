@@ -1,142 +1,81 @@
 <?php
 /**
- * The Testimonials page.
- *
- * Automatically used for a page with the slug "testimonials". Eleven member
- * films and eight written testimonials, all transcribed from
- * successcircles.com/testimonials/ into the `testimonials` block of
- * inc/content.php. Weekly member wins are a different thing entirely and live
- * on their own page — see page-weekly-wins.php.
- *
- * Composition: the opener splits, with the heading holding the left rail while
- * the first film plays at full width on the right. The remaining films fall
- * into a grid on a shade band, then the written testimonials take the quote
- * wall. Every film is a click-to-play facade — no Vimeo request on load.
- *
+ * Testimonials: a featured member film, video gallery and member letters.
+ * Uses the existing content tree and click-to-play video component.
  * @package SuccessCircles
  */
-
 defined( 'ABSPATH' ) || exit;
-
-$sc_copy   = (array) successcircles_content( 'testimonials', array() );
-$sc_link   = (array) $sc_copy['link'];
-$sc_films  = (array) $sc_copy['videos'];
+$sc_copy = (array) successcircles_content( 'testimonials', array() );
+$sc_films = (array) $sc_copy['videos'];
 $sc_quotes = (array) $sc_copy['quotes'];
-
-// The first film leads the page; the rest fall into the grid below.
+$sc_link = (array) $sc_copy['link'];
 $sc_lead = array_shift( $sc_films );
-
 get_header();
-
 ?>
-<section class="sc-section sc-voices" aria-labelledby="sc-voices-title">
-
-	<div class="sc-voices__open sc-voices__open--film">
-
-		<div class="sc-voices__rail">
-			<?php successcircles_eyebrow( '', $sc_copy['eyebrow'] ); ?>
-			<h1 id="sc-voices-title" class="sc-display sc-display--lg">
-				<?php echo successcircles_inline( $sc_copy['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			</h1>
-			<p class="sc-voices__lede">
-				<?php echo esc_html( wp_specialchars_decode( $sc_copy['lede'] ) ); ?>
-			</p>
-			<a class="sc-link-rule" href="<?php echo successcircles_url( $sc_link['url'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-				<?php echo esc_html( wp_specialchars_decode( $sc_link['label'] ) ); ?>
-			</a>
+<article class="tv-page">
+<section class="sc-section tv-hero" aria-labelledby="tv-title">
+	<div class="tv-hero__copy">
+		<p class="tv-label"><?php esc_html_e( 'The people behind the progress', 'successcircles' ); ?></p>
+		<h1 id="tv-title" class="sc-display"><?php echo successcircles_inline( $sc_copy['title'] ); ?></h1>
+		<p class="tv-lede"><?php echo esc_html( wp_specialchars_decode( $sc_copy['lede'] ) ); ?></p>
+		<div class="sc-actions">
+			<?php if ( $sc_films ) : ?><a class="sc-btn sc-btn--primary" href="#member-films"><?php esc_html_e( 'Watch Member Stories', 'successcircles' ); ?></a><?php endif; ?>
+			<?php if ( $sc_quotes ) : ?><a class="tv-text-link" href="#member-letters"><?php esc_html_e( 'Read Their Experiences', 'successcircles' ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
 		</div>
-
-		<?php
-		if ( $sc_lead ) {
-			get_template_part(
-				'template-parts/film',
-				null,
-				array(
-					'film'     => $sc_lead,
-					'play'     => $sc_copy['play_label'],
-					'featured' => true,
-				)
-			);
-		}
-		?>
-
 	</div>
-
-	<?php
-	while ( have_posts() ) :
-		the_post();
-
-		if ( trim( get_the_content() ) ) :
-			?>
-			<div class="sc-prose sc-voices__intro"><?php the_content(); ?></div>
-			<?php
-		endif;
-	endwhile;
-	?>
-
+	<?php if ( $sc_lead ) : ?>
+		<div class="tv-feature">
+			<div class="tv-feature__label"><span><?php echo esc_html( $sc_copy['eyebrow'] ); ?></span><span aria-hidden="true">↗</span></div>
+			<?php get_template_part( 'template-parts/film', null, array( 'film' => $sc_lead, 'featured' => true ) ); ?>
+		</div>
+	<?php endif; ?>
 </section>
-
+<?php while ( have_posts() ) : the_post(); if ( trim( get_the_content() ) ) : ?>
+<div class="sc-section tv-editorial"><div class="sc-prose"><?php the_content(); ?></div></div>
+<?php endif; endwhile; ?>
 <?php if ( $sc_films ) : ?>
-	<section class="sc-band--shade sc-band--hairline" aria-labelledby="sc-films-title">
-		<div class="sc-section">
-			<div class="sc-films__head">
-				<div>
-					<?php successcircles_eyebrow( '', $sc_copy['films_eyebrow'] ); ?>
-					<h2 id="sc-films-title" class="sc-display sc-display--md">
-						<?php echo esc_html( wp_specialchars_decode( $sc_copy['films_title'] ) ); ?>
-					</h2>
-				</div>
-				<p class="sc-films__note"><?php echo esc_html( wp_specialchars_decode( $sc_copy['films_note'] ) ); ?></p>
-			</div>
-
-			<div class="sc-films">
-				<?php
-				foreach ( $sc_films as $sc_film ) {
-					get_template_part(
-						'template-parts/film',
-						null,
-						array(
-							'film' => $sc_film,
-							'play' => $sc_copy['play_label'],
-						)
-					);
-				}
-				?>
-			</div>
+<section id="member-films" class="sc-band--dark" aria-labelledby="tv-films-title">
+	<div class="sc-section">
+		<header class="tv-heading">
+			<p class="tv-label"><?php echo esc_html( $sc_copy['films_eyebrow'] ); ?></p>
+			<h2 id="tv-films-title" class="sc-display"><?php echo successcircles_inline( $sc_copy['films_title'] ); ?></h2>
+			<p class="tv-lede"><?php echo esc_html( $sc_copy['films_note'] ); ?></p>
+		</header>
+		<div class="tv-gallery">
+			<?php foreach ( $sc_films as $sc_film ) : ?>
+				<?php get_template_part( 'template-parts/film', null, array( 'film' => $sc_film ) ); ?>
+			<?php endforeach; ?>
 		</div>
-	</section>
+	</div>
+</section>
 <?php endif; ?>
-
 <?php if ( $sc_quotes ) : ?>
-	<section class="sc-band--sand sc-band--hairline" aria-labelledby="sc-written-title">
-		<div class="sc-section">
-			<?php successcircles_eyebrow( '', $sc_copy['written_eyebrow'] ); ?>
-			<h2 id="sc-written-title" class="sc-display sc-display--md sc-written__title">
-				<?php echo esc_html( wp_specialchars_decode( $sc_copy['written_title'] ) ); ?>
-			</h2>
-
-			<div class="sc-wall sc-wall--long">
-				<?php foreach ( $sc_quotes as $sc_quote ) : ?>
-					<figure class="sc-wall__item">
-						<blockquote class="sc-wall__text">
-							<?php echo esc_html( wp_specialchars_decode( $sc_quote['text'] ) ); ?>
-						</blockquote>
-						<figcaption class="sc-quote__by">
-							<span class="sc-quote__rule" aria-hidden="true"></span>
-							<span class="sc-quote__name"><?php echo esc_html( $sc_quote['name'] ); ?></span>
-							<?php if ( $sc_quote['role'] ) : ?>
-								<span class="sc-quote__role"><?php echo esc_html( wp_specialchars_decode( $sc_quote['role'] ) ); ?></span>
-							<?php endif; ?>
-						</figcaption>
-					</figure>
-				<?php endforeach; ?>
-			</div>
-		</div>
-	</section>
+<section id="member-letters" class="sc-section tv-letters" aria-labelledby="tv-letters-title">
+	<header class="tv-heading">
+		<p class="tv-label"><?php echo esc_html( $sc_copy['written_eyebrow'] ); ?></p>
+		<h2 id="tv-letters-title" class="sc-display"><?php echo successcircles_inline( $sc_copy['written_title'] ); ?></h2>
+	</header>
+	<div class="tv-quotes">
+		<?php foreach ( $sc_quotes as $sc_index => $sc_quote ) : ?>
+			<?php if ( 2 === $sc_index ) : ?>
+				</div><details class="tv-more"><summary><?php esc_html_e( 'Read More Member Experiences', 'successcircles' ); ?><span aria-hidden="true">+</span></summary><div class="tv-quotes">
+			<?php endif; ?>
+			<figure class="tv-letter">
+				<span class="tv-letter__mark" aria-hidden="true">“</span>
+				<blockquote><?php echo esc_html( wp_specialchars_decode( $sc_quote['text'] ) ); ?></blockquote>
+				<figcaption><strong><?php echo esc_html( $sc_quote['name'] ); ?></strong><?php if ( $sc_quote['role'] ) : ?><span><?php echo esc_html( wp_specialchars_decode( $sc_quote['role'] ) ); ?></span><?php endif; ?></figcaption>
+			</figure>
+		<?php endforeach; ?>
+	</div>
+	<?php if ( count( $sc_quotes ) > 2 ) : ?></details><?php endif; ?>
+</section>
 <?php endif; ?>
-
-<?php
-
-get_template_part( 'template-parts/home/cta' );
-
-get_footer();
+<aside class="tv-wins">
+	<div class="sc-section">
+		<div><p class="tv-label"><?php esc_html_e( 'Progress keeps happening', 'successcircles' ); ?></p><h2 class="sc-display"><?php esc_html_e( 'See what moved this week.', 'successcircles' ); ?></h2><p class="tv-lede"><?php esc_html_e( 'Explore the milestones, decisions, and everyday wins our members share along the way.', 'successcircles' ); ?></p></div>
+		<a class="sc-btn sc-btn--ghost" href="<?php echo successcircles_url( $sc_link['url'] ); ?>"><?php echo esc_html( wp_specialchars_decode( $sc_link['label'] ) ); ?> <span aria-hidden="true">↗</span></a>
+	</div>
+</aside>
+</article>
+<?php get_template_part( 'template-parts/home/cta' ); ?>
+<?php get_footer(); ?>

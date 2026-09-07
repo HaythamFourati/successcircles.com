@@ -46,6 +46,7 @@ function successcircles_llms_pages() {
 		'momentum-buddy'        => __( 'Momentum Braintrust Buddy (program)', 'successcircles' ),
 		'momentum-labs'         => __( 'Momentum Labs (program)', 'successcircles' ),
 		'momentum-team'         => __( 'Momentum Team 90-day AI accelerator (program)', 'successcircles' ),
+		'momentum-os'           => __( 'Momentum OS: the six-step weekly execution system', 'successcircles' ),
 		'about'                 => __( 'About Success Circles', 'successcircles' ),
 		'about-joseph-varghese' => __( 'Joseph Varghese, founder', 'successcircles' ),
 		'testimonials'          => __( 'Testimonials', 'successcircles' ),

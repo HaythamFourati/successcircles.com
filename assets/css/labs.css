@@ -1,0 +1,97 @@
+/* Momentum Labs — a shared room for decisions, perspective and progress. */
+.ml-page { --ml-rule: oklch(var(--sc-ink-c) / .15); --ml-muted: oklch(var(--sc-ink-c) / .74); }
+.ml-page .sc-section { padding-block: clamp(64px, 7vw, 104px); }
+.ml-page section[id] { scroll-margin-top: 120px; }
+.ml-page :is(h1, h2, h3) { text-wrap: balance; }
+.ml-page :is(p, li) { text-wrap: pretty; }
+.ml-page .sc-display { letter-spacing: -.03em; line-height: 1.12; }
+.ml-page h2.sc-display { font-size: clamp(32px, 3.8vw, 52px); }
+.ml-page .sc-btn { white-space: normal; text-align: center; justify-content: center; }
+.ml-label { margin: 0 0 22px; font: 11px/1.7 var(--sc-font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--sc-rust); }
+.ml-label > span { padding-inline: 12px; color: var(--ml-muted); }
+.ml-lede { margin: 24px 0 0; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; color: var(--ml-muted); max-width: 64ch; }
+.ml-hero { text-align: center; }
+.ml-hero h1 { font-size: clamp(38px, 4.8vw, 68px); max-width: 23ch; margin: 0 auto; }
+.ml-hero .ml-lede { margin-inline: auto; max-width: 62ch; }
+.ml-hero .sc-actions { margin-top: 32px; gap: 12px; }
+.ml-hero__price { margin: 20px 0 0; font-size: 13px; line-height: 1.8; color: var(--ml-muted); }
+.ml-hero__price strong { color: var(--sc-ink); font-weight: 600; }
+.ml-film { max-width: 980px; margin: 52px auto 0; padding: 24px; background: var(--sc-ink); border-radius: 8px; text-align: left; color: var(--sc-cream); }
+.ml-film__heading { display: flex; justify-content: space-between; gap: 16px; font-size: 13px; margin-bottom: 20px; }
+.ml-film__heading > span:last-child { color: var(--sc-amber); }
+.ml-film .sc-film { margin: 0; }
+.ml-film .sc-film__frame { border-radius: 3px; overflow: hidden; }
+.ml-film .sc-film__caption { padding-top: 16px; margin: 0; gap: 12px; flex-wrap: wrap; }
+.ml-film .sc-film__name { color: var(--sc-cream); font-size: 15px; }
+.ml-film .sc-film__kind { color: oklch(var(--sc-cream-c) / .72); font-size: 11px; }
+.ml-film__caption { display: flex; align-items: center; gap: 20px; padding-top: 20px; margin-top: 20px; border-top: 1px solid oklch(var(--sc-cream-c) / .18); }
+.ml-film__caption img { width: 64px; height: 64px; flex-shrink: 0; }
+.ml-film__caption p { margin: 0; font: clamp(19px, 2vw, 25px)/1.35 var(--sc-font-display); }
+.ml-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 40px; border-block: 1px solid var(--ml-rule); padding: 24px; }
+.ml-nav a { text-decoration: none; color: var(--ml-muted); font-size: 13px; padding: 8px 0; border-bottom: 1px solid transparent; }
+.ml-nav a:hover { color: var(--sc-rust); border-bottom-color: currentColor; }
+.ml-heading { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.ml-heading .ml-lede { margin-inline: auto; }
+.ml-challenge__body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .85fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.ml-question-title { margin: 0 0 24px; font: 26px/1.25 var(--sc-font-display); }
+.ml-questions { margin: 0; padding: 0; list-style: none; }
+.ml-questions li { position: relative; padding: 24px 0 24px 28px; border-top: 1px solid var(--ml-rule); color: var(--ml-muted); font-size: 16px; line-height: 1.65; }
+.ml-questions li::before { content: '?'; position: absolute; left: 0; color: var(--sc-rust); font-family: var(--sc-font-display); font-size: 22px; }
+.ml-shift { padding: clamp(24px, 3vw, 40px); background: var(--sc-sand-shade); border-radius: 6px; }
+.ml-shift h3 { font: 28px/1.2 var(--sc-font-display); margin: 0 0 28px; }
+.ml-shift__before, .ml-shift__after { padding: 20px; border: 1px solid var(--ml-rule); border-radius: 3px; }
+.ml-shift__before > span, .ml-shift__after > span { font-size: 12px; }
+.ml-shift p { font: 24px/1.3 var(--sc-font-display); margin: 8px 0 0; }
+.ml-shift__before { color: var(--ml-muted); }
+.ml-shift__after { background: var(--sc-ink); color: var(--sc-cream); border-color: var(--sc-ink); }
+.ml-shift__after > span { color: var(--sc-amber); }
+.ml-shift__arrow { display: block; margin: 12px 0; color: var(--sc-rust); font-size: 24px; text-align: center; }
+.ml-shift small { display: block; font-size: 11px; line-height: 1.6; margin-top: 20px; color: var(--ml-muted); }
+.ml-takeaway { max-width: 55ch; margin: 40px auto 0; text-align: center; font: clamp(22px, 2.5vw, 30px)/1.4 var(--sc-font-display); color: var(--sc-rust); }
+.ml-page .sc-band--dark .ml-label { color: var(--sc-amber); }
+.ml-support { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 64px; list-style: none; margin: 0; padding: 0; }
+.ml-support li { padding: 32px 0; border-top: 1px solid oklch(var(--sc-cream-c) / .22); }
+.ml-support h3 { font: 27px/1.2 var(--sc-font-display); margin: 0 0 14px; }
+.ml-support p { max-width: 52ch; margin: 0; font-size: 16px; line-height: 1.7; color: oklch(var(--sc-cream-c) / .78); }
+.ml-founder { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: clamp(40px, 6vw, 80px); }
+.ml-founder__copy { min-width: 0; }
+.ml-founder__copy blockquote { padding: 24px 0 0; margin: 28px 0 0; border: 0; border-top: 1px solid var(--ml-rule); font: clamp(22px, 2.3vw, 30px)/1.4 var(--sc-font-display); color: var(--sc-rust); }
+.ml-founder__by { margin: 24px 0 16px; font-size: 14px; }
+.ml-founder__by span { display: block; font-size: 12px; color: var(--ml-muted); margin-top: 6px; }
+.ml-text-link { display: inline-flex; align-items: center; gap: 20px; padding-bottom: 6px; color: var(--sc-ink); font-size: 13px; border-bottom: 1px solid var(--ml-rule); text-decoration: none; }
+.ml-text-link span { color: var(--sc-rust); }
+.ml-founder__portrait { margin: 0; align-self: stretch; display: flex; align-items: flex-end; background: var(--sc-ink); border-radius: 6px; overflow: hidden; }
+.ml-founder__portrait img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: contain; object-position: bottom; }
+.ml-membership-band { background: var(--sc-sand-shade); }
+.ml-membership { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); max-width: 1000px; margin-inline: auto; background: var(--sc-sand); border: 1px solid var(--ml-rule); border-radius: 6px; overflow: hidden; }
+.ml-membership__price, .ml-membership__fit { padding: clamp(28px, 4vw, 48px); }
+.ml-membership__price { background: var(--sc-ink); color: var(--sc-cream); display: flex; flex-direction: column; align-items: flex-start; }
+.ml-membership h3 { margin: 0 0 20px; font: 30px/1.2 var(--sc-font-display); }
+.ml-membership__price > p:not(.ml-price) { color: oklch(var(--sc-cream-c) / .8); font-size: 14px; line-height: 1.7; margin: 8px 0 32px; }
+.ml-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin: 0 0 16px; }
+.ml-price strong { font: 64px/1 var(--sc-font-display); letter-spacing: -.03em; }
+.ml-price span { color: oklch(var(--sc-cream-c) / .8); font-size: 14px; }
+.ml-membership__price .sc-btn { margin-top: auto; width: 100%; }
+.ml-membership__fit > p:not(.ml-label) { color: var(--ml-muted); font-size: 16px; line-height: 1.7; margin: 20px 0 0; }
+.ml-closing { text-align: center; }
+.ml-closing h2 { max-width: 24ch; margin: 0 auto; }
+.ml-closing .ml-lede { margin-inline: auto; max-width: 58ch; }
+.ml-closing .sc-btn { margin-top: 32px; }
+.ml-page a:focus-visible { outline: 2px solid var(--sc-orange); outline-offset: 6px; }
+@media (max-width: 800px) {
+	.ml-challenge__body, .ml-founder, .ml-membership { grid-template-columns: 1fr; }
+	.ml-founder__portrait { max-width: 440px; justify-self: center; width: 100%; }
+	.ml-support { gap: 0 32px; }
+}
+@media (max-width: 560px) {
+	.ml-support { grid-template-columns: 1fr; }
+	.ml-label > span { padding-inline: 4px; }
+	.ml-hero .sc-actions { flex-direction: column; align-items: stretch; }
+	.ml-film { padding: 12px; margin-top: 36px; }
+	.ml-film__heading { padding: 8px 4px 0; font-size: 12px; }
+	.ml-film__caption { gap: 12px; padding: 16px 4px 4px; }
+	.ml-film__caption img { width: 48px; height: 48px; }
+	.ml-nav { gap: 8px 24px; }
+	.ml-nav a { font-size: 12px; }
+	.ml-heading { margin-bottom: 32px; }
+}

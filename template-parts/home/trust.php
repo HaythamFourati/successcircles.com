@@ -29,10 +29,9 @@ foreach ( (array) $sc_trust['names'] as $sc_name ) {
 	<div class="sc-trust__inner">
 		<p class="sc-trust__label"><?php echo esc_html( $sc_trust['label'] ); ?></p>
 
+		<div class="sc-trust__items">
 		<?php foreach ( $sc_parts as $sc_index => $sc_part ) : ?>
-			<?php if ( $sc_index > 0 ) : ?>
-				<span class="sc-trust__sep" aria-hidden="true"></span>
-			<?php endif; ?>
+			<div class="sc-trust__item">
 
 			<?php if ( 'logo' === $sc_part['type'] ) : ?>
 				<?php if ( '' !== $sc_part['data']['note'] ) : ?>
@@ -65,6 +64,8 @@ foreach ( (array) $sc_trust['names'] as $sc_name ) {
 					<span><?php echo esc_html( $sc_part['data']['note'] ); ?></span>
 				</span>
 			<?php endif; ?>
+			</div>
 		<?php endforeach; ?>
+		</div>
 	</div>
 </section>

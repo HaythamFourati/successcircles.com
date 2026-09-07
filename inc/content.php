@@ -53,7 +53,7 @@ function successcircles_content_tree() {
 			),
 			array(
 				'label' => __( 'How It Works', 'successcircles' ),
-				'url'   => '#system',
+				'url'   => '/momentum-os/',
 			),
 			array(
 				'label'    => __( 'Success Stories', 'successcircles' ),
@@ -109,7 +109,7 @@ function successcircles_content_tree() {
 				__( 'Curated membership', 'successcircles' ),
 			),
 			'image_alt'     => __( 'An entrepreneur joining a video call from a shared workspace', 'successcircles' ),
-			'badge_text'    => __( 'One priority. One focused call. Fifteen minutes.', 'successcircles' ),
+			'badge_text'    => __( 'One priority. One focused call. Thirty minutes.', 'successcircles' ),
 		),
 
 		'trust' => array(
@@ -130,10 +130,6 @@ function successcircles_content_tree() {
 				array(
 					'name' => __( 'Michael Gerber,', 'successcircles' ),
 					'note' => __( 'The E-Myth', 'successcircles' ),
-				),
-				array(
-					'name' => __( 'Blair Singer,', 'successcircles' ),
-					'note' => __( 'Rich Dad Advisor', 'successcircles' ),
 				),
 			),
 		),
@@ -291,7 +287,7 @@ function successcircles_content_tree() {
 					'featured' => true,
 					'kind'     => __( 'One-to-one', 'successcircles' ),
 					'price'    => '$194',
-					'title'    => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
+					'title'    => __( 'Momentum Buddy&trade;', 'successcircles' ),
 					'flag'     => __( 'Recommended start', 'successcircles' ),
 					'text'     => __( 'Short weekday accountability calls with an experienced business owner selected around your goals. Partners rotate in focused cycles, giving you fresh perspective and a dependable reason to follow through.', 'successcircles' ),
 					'features' => array(
@@ -354,7 +350,7 @@ function successcircles_content_tree() {
 				),
 				array(
 					'title' => __( 'Meet your accountability partner', 'successcircles' ),
-					'text'  => __( 'A short questionnaire about your business, strengths, and 90-day goal helps us choose the right person. Partners rotate regularly so you gain useful new perspectives.', 'successcircles' ),
+					'text'  => __( 'A short questionnaire about your business, strengths, and 90-day goal helps us match the right partner.', 'successcircles' ),
 					'alpha' => '0.75',
 				),
 				array(
@@ -412,7 +408,7 @@ function successcircles_content_tree() {
 		'test' => array(
 			'index'   => '08',
 			'eyebrow' => __( 'The Entrepreneur Test', 'successcircles' ),
-			'title'   => __( 'Are you running your business&mdash;or is it running you?', 'successcircles' ),
+			'title'   => __( 'Are you running your business, or is it running you?', 'successcircles' ),
 			'lede'    => __( 'Twelve practical questions reveal where urgent demands are crowding out growth, then point you toward the level of support that fits your business.', 'successcircles' ),
 			'cta'     => __( 'Take the Entrepreneur Test', 'successcircles' ),
 			'note'    => __( '5 minutes', 'successcircles' ),
@@ -426,8 +422,8 @@ function successcircles_content_tree() {
 			'portrait_alt'  => __( 'Joseph Varghese, founder of Success Circles&trade;', 'successcircles' ),
 			'signature'     => SUCCESSCIRCLES_URI . '/assets/img/founder-signature.png',
 			'signature_alt' => __( 'Signature of Joseph Varghese', 'successcircles' ),
-			'bio'           => __( 'Joseph started Success Circles&trade; in 2005 after noticing that successful owners followed through more consistently when another owner knew the goal and checked back. His engineering background helped turn that insight into a repeatable structure.', 'successcircles' ),
-			'bio_secondary' => __( 'Two decades later, that structure supports a community of established entrepreneurs who help one another stay focused, make clearer decisions, and keep important work moving.', 'successcircles' ),
+			'bio'           => __( 'Joseph founded Success Circles&trade; in 2005 around a simple observation: business owners made more progress when someone understood their goals and held them to their commitments. Drawing on his engineering background, he turned that insight into a practical rhythm of focused conversations, clear priorities, and consistent follow-through.', 'successcircles' ),
+			'bio_secondary' => __( 'Two decades later, that approach brings together established entrepreneurs who understand the demands of building and leading a business. Through honest conversations, shared experience, and regular accountability, members help one another make clearer decisions, protect time for their biggest goals, and move important work forward &mdash; with support they can count on.', 'successcircles' ),
 			'link'          => array(
 				'label' => __( 'Meet Joseph', 'successcircles' ),
 				'url'   => '/about-joseph-varghese/',
@@ -704,8 +700,11 @@ function successcircles_content_tree() {
 		'buzz' => array(
 			'eyebrow'    => __( 'Momentum Buzz', 'successcircles' ),
 			'title'      => __( 'Wins, <em class="sc-accent">week</em> after week.', 'successcircles' ),
-			'lede'       => __( 'Every week members post what actually moved &mdash; deals closed, habits held, ceilings broken. No case studies and no composite characters: these are the wins exactly as they were written.', 'successcircles' ),
+			'lede'       => __( 'Every week members post what actually moved &mdash; deals closed, habits held, ceilings broken. No case studies, no composite characters: these are the wins exactly as they were written.', 'successcircles' ),
 			'wall_label' => __( 'Member wins', 'successcircles' ),
+			'feed_title' => __( 'Every win, in their <em class="sc-accent">own</em> words.', 'successcircles' ),
+			'feed_lede'  => __( 'Explore the decisions, milestones, and everyday progress shared by our members.', 'successcircles' ),
+			'latest'     => __( 'Latest win', 'successcircles' ),
 			'source'     => __( 'Pulled from successcircles.com', 'successcircles' ),
 			'empty'      => __( 'Member wins are syncing from successcircles.com. Check back shortly.', 'successcircles' ),
 			'link'       => array(
@@ -722,11 +721,10 @@ function successcircles_content_tree() {
 			'roles'    => array(
 				__( 'Founder of Success Circles&trade;', 'successcircles' ),
 				__( 'The Breakthrough Engineer', 'successcircles' ),
-				__( 'Momentum Architect', 'successcircles' ),
 			),
 			'lede'     => __( 'Joseph John Varghese helps experienced entrepreneurs turn ambitious goals into clear priorities, practical systems, and consistent action. His work is built on a simple belief: the right support can save years of trial and error.', 'successcircles' ),
 			'intro'    => array(
-				__( 'That belief shaped his life&rsquo;s work.', 'successcircles' ),
+				__( 'A moment of clarity <em class="sc-accent">changed everything.</em>', 'successcircles' ),
 				__( 'After years as an unfulfilled process engineer, Joseph witnessed the world&rsquo;s resilience and unity after 9/11. Inspired by people stepping up to help one another, he made it his mission to help ambitious people turn meaningful goals into consistent action.', 'successcircles' ),
 			),
 			'portrait' => array(
@@ -772,15 +770,18 @@ function successcircles_content_tree() {
 		// successcircles.com/testimonials/ — see §7f. Weekly member wins are a
 		// separate page and a separate content block ('buzz').
 		'testimonials' => array(
-			'eyebrow'        => __( 'Success stories', 'successcircles' ),
-			'title'          => __( 'In their <em class="sc-accent">own</em> words.', 'successcircles' ),
-			'lede'           => __( 'Members of the Circles on what changed once they stopped deciding alone &mdash; on camera, and in writing.', 'successcircles' ),
-			'films_eyebrow'  => __( 'On camera', 'successcircles' ),
-			'films_title'    => __( 'Eleven members, in their own voice.', 'successcircles' ),
-			'films_note'     => __( 'Nothing loads from Vimeo until you press play.', 'successcircles' ),
+			'eyebrow'        => __( 'Featured Story', 'successcircles' ),
+			'index'          => '01',
+			'title'          => __( 'Success, in their <em class="sc-accent">own</em> words.', 'successcircles' ),
+			'lede'           => __( 'Members of the Circles share what changed when they stopped deciding alone.', 'successcircles' ),
+			'films_eyebrow'  => __( 'On Camera', 'successcircles' ),
+			'films_index'    => '02',
+			'films_title'    => __( 'Eleven members, in their <em class="sc-accent">own</em> voice.', 'successcircles' ),
+			'films_note'     => __( 'Choose a member story to hear what changed, what they learned, and how the community helped.', 'successcircles' ),
 			'play_label'     => __( 'Play', 'successcircles' ),
-			'written_eyebrow' => __( 'In writing', 'successcircles' ),
-			'written_title'  => __( 'What members write to us.', 'successcircles' ),
+			'written_eyebrow' => __( 'In Writing', 'successcircles' ),
+			'written_index'  => '03',
+			'written_title'  => __( 'What members <em class="sc-accent">write</em> to us.', 'successcircles' ),
 			'link'           => array(
 				'label' => __( 'Momentum Buzz &mdash; weekly member wins', 'successcircles' ),
 				'url'   => '/weekly-wins/',
@@ -934,9 +935,9 @@ function successcircles_content_tree() {
 			'title'     => __( 'Twenty years helping owners <em class="sc-accent">follow through</em>.', 'successcircles' ),
 			'lede'      => __( 'Since 2005, Success Circles&trade; has helped established entrepreneurs protect their priorities, make clearer decisions, and keep meaningful goals moving.', 'successcircles' ),
 			'meta'      => array(
-				__( 'Founded 2005', 'successcircles' ),
-				__( 'Started with 8 friends', 'successcircles' ),
-				__( 'Now an international community', 'successcircles' ),
+				__( 'Owner-to-owner accountability', 'successcircles' ),
+				__( 'Built on weekly accountability', 'successcircles' ),
+				__( 'Trusted by owners worldwide', 'successcircles' ),
 			),
 			'bleed_alt' => __( 'Success Circles members in a working huddle', 'successcircles' ),
 
@@ -957,7 +958,7 @@ function successcircles_content_tree() {
 			),
 
 			'values'    => array(
-				'title' => __( 'Two vows, made <br>on the way in.', 'successcircles' ),
+				'title' => __( 'Two vows. <em class="sc-accent">One standard.</em>', 'successcircles' ),
 				'lede'  => __( 'Upon joining, every member of Success Circles&trade; makes a commitment to respect and uphold the community&rsquo;s core founding values:', 'successcircles' ),
 				// The club's own core-values seal, carrying both vows around its
 				// ring — which is why it sits with the section heading rather
@@ -970,11 +971,11 @@ function successcircles_content_tree() {
 				),
 				'items' => array(
 					array(
-						'title' => __( 'Make Others Better Than You Found Them', 'successcircles' ),
+						'title' => __( 'Make <em class="sc-accent">Others Better</em> Than You Found Them', 'successcircles' ),
 						'text'  => __( 'You contribute as much as you receive. Every conversation should leave another owner with greater clarity, confidence, or a practical next step.', 'successcircles' ),
 					),
 					array(
-						'title' => __( 'Be BETTER Today Than Yesterday', 'successcircles' ),
+						'title' => __( 'Be <em class="sc-accent">BETTER Today</em> Than Yesterday', 'successcircles' ),
 						'text'  => __( 'Choose one measurable improvement, complete it, and build on it. Consistency matters more than dramatic promises.', 'successcircles' ),
 					),
 				),
@@ -1017,8 +1018,8 @@ function successcircles_content_tree() {
 			'title'    => __( 'Stop carrying your biggest goals <em class="sc-accent">alone</em>.', 'successcircles' ),
 			'lede'     => __( 'Short weekday calls with another experienced business owner help you choose the right priority, make a clear commitment, and follow through consistently.', 'successcircles' ),
 			'cta'      => __( 'Get Consistent Accountability', 'successcircles' ),
-			'cta_note' => __( 'No commission fee or contract. You can cancel anytime.', 'successcircles' ),
-			'notice'   => __( 'Peak season in full swing. Few spots open.', 'successcircles' ),
+			'cta_note' => '',
+			'notice'   => '',
 			// The source page's hero was a content-free blue/orange gradient — a
 			// coloured block where an image belongs, and off-palette besides.
 			// The programme is peer matching, so the peers are the image: the
@@ -1061,7 +1062,7 @@ function successcircles_content_tree() {
 					'label'  => __( 'years running the program', 'successcircles' ),
 				),
 			),
-			'stats_note' => __( 'Yes, we track this stuff.', 'successcircles' ),
+			'stats_note' => __( 'Cumulative results tracked by Success Circles.', 'successcircles' ),
 
 			'problem'  => array(
 				'title' => __( 'Success does not remove the pressure of <em class="sc-accent">ownership</em>.', 'successcircles' ),
@@ -1191,8 +1192,8 @@ function successcircles_content_tree() {
 					__( 'Achieve goals you never thought possible', 'successcircles' ),
 				),
 				'outro' => array(
-					__( 'Don&rsquo;t let another day pass feeling stuck at the top. Because in the world of business, you&rsquo;re either growing or you&rsquo;re dying &mdash; so why not grow and have fun doing it?', 'successcircles' ),
-					__( 'Remember, success without fulfillment is the ultimate failure. Choose growth. Choose joy.', 'successcircles' ),
+					__( 'Make room for the work you keep meaning to get to, with a business owner who understands the challenge and checks back on your progress.', 'successcircles' ),
+					__( 'Build a business that gives you both meaningful progress and a greater sense of fulfillment.', 'successcircles' ),
 				),
 				'kicker' => __( 'Ready to give your most important goal consistent attention and accountability?', 'successcircles' ),
 			),
@@ -1335,11 +1336,11 @@ function successcircles_content_tree() {
 		// which is why it is the one block on the page that carries numbers.
 		'team_page' => array(
 			'kicker'   => __( '90-day AI accelerator', 'successcircles' ),
-			'title'    => __( 'Stop operating <em class="sc-accent">in</em> your business. Start leading from it.', 'successcircles' ),
+			'title'    => __( 'Stop operating in your business. Start <em class="sc-accent">leading from it.</em>', 'successcircles' ),
 			'lede'     => __( 'A 90-day cohort for established owners who need to protect one major goal, reduce their role as the bottleneck, and build systems that keep the business moving without constant intervention.', 'successcircles' ),
 			'cta'      => __( 'Apply now', 'successcircles' ),
 			'cta_url'  => 'https://www.momentum.team/yes',
-			'cta_note' => __( 'Application only. Reviewed within 24 hours.', 'successcircles' ),
+			'cta_note' => '',
 			'hero'     => array(
 				'file'   => 'members-live.jpg',
 				'alt'    => __( 'Momentum Team members together at a live cohort dinner in New York', 'successcircles' ),
@@ -1685,7 +1686,7 @@ function successcircles_content_tree() {
 						),
 						array(
 							'label' => __( 'Momentum OS&trade;', 'successcircles' ),
-							'url'   => '#system',
+							'url'   => '/momentum-os/',
 						),
 					),
 				),
@@ -1725,7 +1726,7 @@ function successcircles_content_tree() {
 						),
 						array(
 							'label' => __( 'Joseph JV Varghese', 'successcircles' ),
-							'url'   => '/about/',
+							'url'   => '/about-joseph-varghese/',
 						),
 						array(
 							'label' => __( 'Contact', 'successcircles' ),
