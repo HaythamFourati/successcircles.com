@@ -13,7 +13,6 @@ $sc_block = (array) successcircles_content( 'problem', array() );
 		<div class="hp-problem__layout">
 			<figure class="hp-problem__visual">
 				<img src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg' ); ?>" alt="<?php esc_attr_e( 'A laptop set up for a video conversation', 'successcircles' ); ?>" width="1170" height="780" loading="lazy" decoding="async">
-				<figcaption><?php echo esc_html( wp_specialchars_decode( $sc_block['quote'] ) ); ?></figcaption>
 			</figure>
 			<ol class="hp-problem__items">
 				<?php foreach ( (array) $sc_block['items'] as $sc_index => $sc_item ) : ?>

@@ -10,7 +10,7 @@
 .rf-journal .sc-journal__list { scroll-margin-top: 110px; }
 .rf-journal .sc-entry { grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); gap: clamp(24px, 4vw, 56px); padding: 36px 0; align-items: center; }
 .rf-journal .sc-entry:first-child:not(.sc-entry--lead) { border-top: 1px solid var(--rf-rule); padding-top: 36px; }
-.rf-journal .sc-entry__media { grid-area: auto; order: 0; margin: 0; border-radius: 4px; overflow: hidden; }
+.rf-journal .sc-entry__media { grid-area: auto; order: 0; margin: 0; border-radius: var(--sc-corner-lg); overflow: hidden; }
 .rf-journal .sc-entry__media img { aspect-ratio: 16 / 10; background: var(--sc-sand-shade); object-fit: contain; filter: none; }
 .rf-entry__content { min-width: 0; }
 .rf-journal .sc-entry__meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin: 0 0 16px; font: 12px/1.6 var(--sc-font-body); letter-spacing: 0; text-transform: none; color: var(--rf-muted); }
@@ -21,7 +21,7 @@
 .rf-journal .sc-entry__excerpt { margin-top: 16px; font-size: 16px; line-height: 1.7; color: var(--rf-muted); text-wrap: pretty; }
 .rf-journal .sc-entry .sc-link-rule { display: inline-flex; gap: 16px; font-size: 13px; margin-top: 22px; padding-bottom: 8px; }
 .rf-journal .sc-entry .sc-link-rule span { color: var(--sc-rust); }
-.rf-journal .sc-entry--lead { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); padding: clamp(24px, 3vw, 40px); margin-bottom: 40px; border: 0; border-radius: 6px; background: var(--sc-ink); color: var(--sc-cream); gap: clamp(28px, 4vw, 48px); }
+.rf-journal .sc-entry--lead { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); padding: clamp(24px, 3vw, 40px); margin-bottom: 40px; border: 0; border-radius: var(--sc-corner-lg); background: var(--sc-surface-invert); color: var(--sc-cream); gap: clamp(28px, 4vw, 48px); }
 .rf-journal .sc-entry--lead .sc-entry__media { grid-area: auto; margin: 0; }
 .rf-journal .sc-entry--lead .sc-entry__media img { background: oklch(var(--sc-cream-c) / .06); }
 .rf-journal .sc-entry--lead .sc-entry__meta { grid-area: auto; color: oklch(var(--sc-cream-c) / .75); }

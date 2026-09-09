@@ -56,8 +56,8 @@ $sc_count  = max( 1, count( $sc_steps ) );
 				<div class="sc-os__ring">
 
 					<svg class="sc-os__arc" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
-						<circle class="sc-os__arc-track" cx="200" cy="200" r="170" />
-						<circle class="sc-os__arc-run" cx="200" cy="200" r="170" data-sc-os-arc />
+						<circle class="sc-os__arc-track" cx="200" cy="200" r="200" />
+						<circle class="sc-os__arc-run" cx="200" cy="200" r="200" data-sc-os-arc />
 					</svg>
 
 					<ul class="sc-os__dial">

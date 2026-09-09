@@ -154,8 +154,8 @@ function successcircles_content_tree() {
 					'text'  => __( 'You hold everyone else to a standard, while your own commitments are the easiest to move.', 'successcircles' ),
 				),
 				array(
-					'title' => __( 'Urgent work crowds out meaningful growth', 'successcircles' ),
-					'text'  => __( 'A full calendar can still leave the business unchanged.', 'successcircles' ),
+					'title' => __( 'Urgent work drowns real growth', 'successcircles' ),
+					'text'  => __( 'A calendar full of urgent tasks can still leave the business exactly where it was.', 'successcircles' ),
 				),
 			),
 		),

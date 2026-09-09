@@ -10,7 +10,7 @@
 .rf-article .sc-article__facts > div { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0; border: 0; }
 .rf-article .sc-article__facts dt { font: 11px/1.6 var(--sc-font-body); letter-spacing: 0; text-transform: none; color: var(--rf-muted); }
 .rf-article .sc-article__facts dd { font: 13px/1.6 var(--sc-font-body); text-align: center; letter-spacing: 0; }
-.rf-article .sc-article__plate { max-width: 1000px; margin: 40px auto 0; padding: clamp(8px, 1.5vw, 20px); background: var(--sc-ink); border-radius: 6px; overflow: hidden; }
+.rf-article .sc-article__plate { max-width: 1000px; margin: 40px auto 0; padding: clamp(8px, 1.5vw, 20px); background: var(--sc-surface-invert); border-radius: var(--sc-corner-lg); overflow: hidden; }
 .rf-article .sc-article__art { width: 100%; height: auto; max-height: 620px; object-fit: contain; background: none; }
 .rf-article .sc-article__body { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: clamp(40px, 6vw, 72px); }
 .rf-article .sc-article__rail:has(.sc-toc[hidden]) { display: none; }
@@ -21,16 +21,16 @@
 .rf-article .sc-prose--article h3 { font-size: clamp(23px, 2.3vw, 29px); line-height: 1.3; margin-top: 1.7em; }
 .rf-article .sc-prose--article :is(p, li) { text-wrap: pretty; }
 .rf-article .sc-prose--article li + li { margin-top: .6em; }
-.rf-article .sc-prose--article blockquote { border: 0; padding: clamp(24px, 3vw, 36px); margin: 36px 0; border-radius: 4px; background: var(--sc-sand-shade); color: var(--sc-ink); }
+.rf-article .sc-prose--article blockquote { border: 0; padding: clamp(24px, 3vw, 36px); margin: 36px 0; border-radius: var(--sc-corner-md); background: var(--sc-sand-shade); color: var(--sc-ink); }
 .rf-article .sc-prose--article blockquote p { font: clamp(22px, 2.2vw, 28px)/1.55 var(--sc-font-display); }
 .rf-article .sc-prose--article blockquote p:last-child { margin-bottom: 0; }
-.rf-article .sc-prose--article img { max-width: 100%; height: auto; border-radius: 4px; }
+.rf-article .sc-prose--article img { max-width: 100%; height: auto; border-radius: var(--sc-corner-lg); }
 .rf-article .sc-prose--article iframe { max-width: 100%; }
 .rf-article .sc-prose--article .wp-block-table { overflow-x: auto; }
-.rf-article .sc-toc { padding: 20px; border: 1px solid var(--rf-rule); border-radius: 4px; background: var(--sc-sand); }
+.rf-article .sc-toc { padding: 20px; border: 1px solid var(--rf-rule); border-radius: var(--sc-corner-md); background: var(--sc-sand); }
 .rf-article .sc-toc__label { font: 600 13px/1.5 var(--sc-font-body); text-transform: none; letter-spacing: 0; color: var(--sc-ink); cursor: pointer; }
 .rf-article .sc-toc__list { margin-top: 16px; }
-.rf-article .sc-toc__list a { padding: 10px 12px; border: 0; border-radius: 3px; font-size: 12px; line-height: 1.6; color: var(--rf-muted); text-decoration: none; }
+.rf-article .sc-toc__list a { padding: 10px 12px; border: 0; border-radius: var(--sc-corner-sm); font-size: 12px; line-height: 1.6; color: var(--rf-muted); text-decoration: none; }
 .rf-article .sc-toc__list .sc-toc__sub a { padding-left: 24px; font-size: 11.5px; }
 .rf-article .sc-toc__list .is-current > a { color: var(--sc-rust); background: var(--sc-sand-shade); }
 .rf-article .sc-toc__list a:hover { color: var(--sc-ink); background: var(--sc-sand-shade); }
@@ -38,11 +38,11 @@
 .rf-article__end a { font-size: 13px; }
 .rf-article__end span { margin-left: 8px; color: var(--sc-rust); }
 .rf-post-pages { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-.rf-post-pages .post-page-numbers { padding: 8px 16px; background: var(--sc-sand-shade); border-radius: 4px; }
+.rf-post-pages .post-page-numbers { padding: 8px 16px; background: var(--sc-sand-shade); border-radius: var(--sc-corner-sm); }
 .rf-more .sc-podcast__head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; margin-bottom: 40px; }
 .rf-more .sc-podcast__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
 .rf-more .sc-episode { min-width: 0; }
-.rf-more .sc-episode img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: contain; background: var(--sc-sand); border-radius: 4px; }
+.rf-more .sc-episode img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: contain; background: var(--sc-sand); border-radius: var(--sc-corner-lg); }
 .rf-more .sc-episode__title { font-size: clamp(25px, 2.5vw, 34px); line-height: 1.2; text-wrap: balance; }
 .rf-more .sc-episode__role { font: 12px/1.6 var(--sc-font-body); letter-spacing: 0; text-transform: none; }
 .rf-article :is(a, summary):focus-visible, .rf-more a:focus-visible { outline: 2px solid var(--sc-orange); outline-offset: 5px; }

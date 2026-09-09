@@ -14,7 +14,7 @@
 .ww-text-link span { color: var(--sc-rust); }
 .ww-text-link:hover { border-bottom-color: var(--sc-rust); }
 .ww-intro { max-width: 68ch; margin: 40px auto 0; text-align: left; }
-.ww-feature { max-width: 980px; margin: 56px auto 0; padding: clamp(28px, 4.5vw, 64px); border-radius: 6px; background: var(--sc-ink); color: var(--sc-cream); text-align: left; }
+.ww-feature { max-width: 980px; margin: 56px auto 0; padding: clamp(28px, 4.5vw, 64px); border-radius: var(--sc-corner-lg); background: var(--sc-surface-invert); color: var(--sc-cream); text-align: left; }
 .ww-feature__top { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid oklch(var(--sc-cream-c) / .2); padding-bottom: 24px; margin-bottom: 32px; }
 .ww-feature .ww-label { margin: 0; color: var(--sc-amber); }
 .ww-date { display: block; font: 12px/1.6 var(--sc-font-body); color: var(--ww-muted); }
@@ -31,16 +31,16 @@
 .ww-heading h2 { font-size: clamp(32px, 3.8vw, 50px); margin: 0; }
 .ww-archive__meta { display: flex; justify-content: space-between; gap: 16px; color: var(--ww-muted); font-size: 12px; margin-bottom: 24px; }
 .ww-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
-.ww-card { margin: 0; padding: clamp(24px, 3vw, 40px); background: var(--sc-sand); border-radius: 4px; min-width: 0; }
+.ww-card { margin: 0; padding: clamp(24px, 3vw, 40px); background: var(--sc-sand); border-radius: var(--sc-corner-md); min-width: 0; }
 .ww-card figcaption { padding-bottom: 24px; border-bottom: 1px solid var(--ww-rule); margin-bottom: 24px; }
 .ww-card .ww-date { margin-top: 4px; }
 .ww-card blockquote { margin: 0; padding: 0; border: 0; color: var(--ww-muted); font-size: 16px; line-height: 1.8; white-space: pre-line; overflow-wrap: anywhere; }
 .ww-pagination { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
-.ww-pagination .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--ww-rule); border-radius: 4px; font-size: 13px; color: var(--sc-ink); text-decoration: none; }
-.ww-pagination .current { background: var(--sc-ink); color: var(--sc-cream); border-color: var(--sc-ink); }
+.ww-pagination .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--ww-rule); border-radius: var(--sc-corner-sm); font-size: 13px; color: var(--sc-ink); text-decoration: none; }
+.ww-pagination .current { background: var(--sc-surface-invert); color: var(--sc-cream); border-color: var(--sc-surface-invert); }
 .ww-pagination a:hover { border-color: var(--sc-rust); color: var(--sc-rust); }
 .ww-pagination .dots { border: 0; padding-inline: 0; min-width: 24px; }
-.ww-empty { max-width: 640px; margin-inline: auto; padding: 32px; background: var(--sc-sand); text-align: center; border-radius: 4px; }
+.ww-empty { max-width: 640px; margin-inline: auto; padding: 32px; background: var(--sc-sand); text-align: center; border-radius: var(--sc-corner-lg); }
 .ww-empty p { color: var(--ww-muted); line-height: 1.7; margin: 0 0 16px; }
 .ww-page a:focus-visible { outline: 2px solid var(--sc-orange); outline-offset: 5px; }
 @media (max-width: 760px) {

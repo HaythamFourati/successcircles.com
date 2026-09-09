@@ -1136,6 +1136,47 @@
 		show( 0 );
 	}
 
+	/**
+	 * Light/dark theme toggle.
+	 *
+	 * The no-flash script in header.php sets the initial data-sc-theme attribute
+	 * before first paint. Here we sync every toggle button's aria-pressed state
+	 * to the current theme, reveal the buttons (they start hidden so a no-JS
+	 * visitor never sees a dead control), and wire the click handler to flip
+	 * the attribute and persist the choice in localStorage.
+	 */
+	function initThemeToggle() {
+		var root = document.documentElement;
+		var toggles = document.querySelectorAll( '[data-sc-theme-toggle]' );
+
+		if ( ! toggles.length ) {
+			return;
+		}
+
+		function current() {
+			return root.getAttribute( 'data-sc-theme' ) === 'dark' ? 'dark' : 'light';
+		}
+
+		function sync() {
+			var isDark = current() === 'dark';
+			toggles.forEach( function ( btn ) {
+				btn.setAttribute( 'aria-pressed', isDark ? 'true' : 'false' );
+				btn.hidden = false;
+			} );
+		}
+
+		sync();
+
+		toggles.forEach( function ( btn ) {
+			btn.addEventListener( 'click', function () {
+				var next = current() === 'dark' ? 'light' : 'dark';
+				root.setAttribute( 'data-sc-theme', next );
+				try { localStorage.setItem( 'sc-theme', next ); } catch ( e ) {}
+				sync();
+			} );
+		} );
+	}
+
 	function init() {
 		initLoader();
 		initMenu();
@@ -1149,6 +1190,7 @@
 		initRollCall();
 		initLetterDeck();
 		initBuzzDeck();
+		initThemeToggle();
 	}
 
 	if ( document.readyState !== 'loading' ) {

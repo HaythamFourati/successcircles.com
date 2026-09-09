@@ -20,7 +20,7 @@
 .mos-step-copy h3 { font: 38px/1.15 var(--sc-font-display); margin: 0 0 16px; }
 .mos-step-copy p { font-size: 16px; line-height: 1.8; max-width: 60ch; color: oklch(var(--sc-ink-c) / .78); margin: 12px 0 0; }
 .mos-step-copy .mos-step-summary { color: var(--sc-ink); font-weight: 500; }
-.mos-prompt { padding: 28px; background: var(--sc-sand-shade); border-radius: 4px; }
+.mos-prompt { padding: 28px; background: var(--sc-sand-shade); border-radius: var(--sc-corner-md); }
 .mos-prompt span { font-size: 12px; color: var(--sc-rust); }
 .mos-prompt p { font: 26px/1.35 var(--sc-font-display); margin: 16px 0 0; }
 .mos-repeat { text-align: center; padding-top: 28px; border-top: 1px solid var(--mos-rule); color: var(--sc-rust); }

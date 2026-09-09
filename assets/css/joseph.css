@@ -17,7 +17,7 @@
 .jv-text-link span { color: var(--sc-orange); }
 .jv-page a:focus-visible { outline: 2px solid var(--sc-orange); outline-offset: 5px; }
 .jv-page .sc-jv__portrait { width: 100%; max-width: 370px; }
-.jv-page .sc-jv__portrait img { width: 100%; }
+.jv-page .sc-jv__portrait img { width: 100%; border-radius: var(--sc-corner-lg); }
 .jv-page .sc-jv__portrait-ring { background: none; border: 1px solid oklch(var(--sc-cream-c) / .18); width: 100%; bottom: 18%; }
 .jv-page .sc-jv__body { padding-block: clamp(64px, 7vw, 104px); }
 .jv-page .sc-jv__body::before, .jv-page .sc-jv__scroll { display: none; }
@@ -35,9 +35,9 @@
 .jv-page .sc-jv__chapter-prose p + p { padding-top: 0; border: 0; margin-top: 20px; }
 .jv-page .sc-jv__chapter-closing { margin-top: 20px; }
 .jv-page .sc-jv__chapter-img::before { display: none; }
-.jv-page .sc-jv__chapter-img img { height: auto; aspect-ratio: auto; object-fit: contain; filter: none; border-radius: 3px; }
+.jv-page .sc-jv__chapter-img img { height: auto; aspect-ratio: auto; object-fit: contain; filter: none; border-radius: var(--sc-corner-lg); }
 .jv-page .sc-jv__chapter-img:hover img { transform: none; }
-.jv-page .sc-jv__quote { margin: 32px 0 0; padding: clamp(24px, 3vw, 36px); border: 0; background: var(--sc-ink); color: var(--sc-cream); font-size: clamp(24px, 2.6vw, 32px); font-weight: 400; line-height: 1.4; border-radius: 3px; }
+.jv-page .sc-jv__quote { margin: 32px 0 0; padding: clamp(24px, 3vw, 36px); border: 0; background: var(--sc-surface-invert); color: var(--sc-cream); font-size: clamp(24px, 2.6vw, 32px); font-weight: 400; line-height: 1.4; border-radius: var(--sc-corner-md); }
 .jv-page .sc-jv__quote cite { display: block; margin-top: 20px; font: 12px/1.6 var(--sc-font-body); color: var(--sc-amber); letter-spacing: .02em; }
 @media (min-width: 801px) {
 	.jv-page .sc-jv__chapter { align-items: stretch; }

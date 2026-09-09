@@ -29,6 +29,21 @@
 	--sc-rust: oklch(0.485 0.165 47);
 	--sc-amber: oklch(var(--sc-amber-c));
 
+	/* Inverted panel ground — dark bands, featured plans, media frames.
+	   Split out of --sc-ink-c because that token doubles as the foreground
+	   colour: in dark mode the text lightens while these panels must stay
+	   dark. In light mode the two are deliberately identical. */
+	--sc-surface-invert-c: 0.19 0.012 60;
+	--sc-surface-invert: oklch(var(--sc-surface-invert-c));
+
+	/* Card surface — light cards on light sections. Split out of --sc-cream
+	   for the same reason --sc-surface-invert is split out of --sc-ink:
+	   --sc-cream doubles as the text colour on dark panels, so it must
+	   stay light in dark mode while card backgrounds go dark. */
+	--sc-surface-card: var(--sc-cream);
+
+	color-scheme: light;
+
 	/* Typography */
 	--sc-font-display: "Newsreader", Georgia, "Times New Roman", serif;
 	--sc-font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -39,7 +54,10 @@
 	--sc-gutter: clamp(20px, 4vw, 40px);
 	--sc-curtain: clamp(30px, 4vw, 60px);
 	--sc-curtain-pull: clamp(-60px, -4vw, -30px);
-	--sc-radius: 2px;
+	--sc-corner-sm: 8px;
+	--sc-corner-md: 12px;
+	--sc-corner-lg: 20px;
+	--sc-radius: var(--sc-corner-sm);
 	/* Buttons are pills — the name is SuccessCircles, so the controls are round.
 	   Kept separate from --sc-radius on purpose: that one still governs inputs,
 	   cards and notices, which stay near-square. */
@@ -48,6 +66,58 @@
 	/* Motion */
 	--sc-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 	--sc-transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Dark theme
+   Only the palette moves. Because every hairline, tint and muted text is
+   written as oklch(var(--sc-ink-c) / a), lightening that one channel inverts
+   the whole system; the sand family carries the page grounds and
+   --sc-surface-invert keeps inverted panels dark in both themes.
+   --sc-ink-deep-c is deliberately untouched: it is the "on-accent" ink for
+   orange buttons and the scrim over photography, both of which must stay dark.
+   -------------------------------------------------------------------------- */
+
+:root[data-sc-theme="dark"] {
+	color-scheme: dark;
+
+	/* Foreground. Slightly under pure cream so large display type does not
+	   bloom against the dark ground. */
+	--sc-ink-c: 0.935 0.008 85;
+
+	/* Page grounds, keeping the warm hue and the relative steps of the
+	   light-mode sand family. */
+	--sc-sand: oklch(0.185 0.011 62);
+	--sc-sand-shade: oklch(0.215 0.012 62);
+	--sc-sand-warm: oklch(0.222 0.019 66);
+	--sc-sand-warm-deep: oklch(0.252 0.021 68);
+
+	/* Inverted panels now lift off the ground rather than sinking into it. */
+	--sc-surface-invert-c: 0.272 0.014 64;
+
+	/* Card surfaces step one shade lighter than the page ground. */
+	--sc-surface-card: oklch(0.232 0.012 62);
+
+	/* Rust is tuned for light grounds and goes muddy on dark, so links,
+	   eyebrows and icons move up to an amber-leaning tone. */
+	--sc-rust: oklch(0.76 0.145 52);
+
+	/* Primary buttons sit on a dark ground, so hover should brighten. */
+	--sc-orange-dark: oklch(0.79 0.175 50);
+}
+
+/* The sticky header is a translucent cream wash in light mode; on a dark
+   ground it has to wash dark instead. */
+:root[data-sc-theme="dark"] .sc-header {
+	background: oklch(0.185 0.011 62 / 0.72);
+	border-bottom-color: oklch(var(--sc-ink-c) / 0.12);
+}
+
+/* The dotted texture is drawn in cream at 5%, which reads as noise once the
+   panel itself is only a little lighter than the page. Drop it. */
+:root[data-sc-theme="dark"] .sc-band--dark {
+	background-image: none;
+	border-block: 1px solid oklch(var(--sc-cream-c) / 0.08);
 }
 
 /* --------------------------------------------------------------------------
@@ -139,7 +209,7 @@ iframe {
 	left: var(--sc-gutter);
 	z-index: 300;
 	padding: 12px 20px;
-	background: var(--sc-ink);
+	background: var(--sc-surface-invert);
 	color: var(--sc-cream);
 	font-family: var(--sc-font-mono);
 	font-size: 13px;
@@ -162,7 +232,7 @@ iframe {
 
 /* Dark sections: ink ground with the dotted texture from the prototype. */
 .sc-band--dark {
-	background-color: var(--sc-ink);
+	background-color: var(--sc-surface-invert);
 	background-image: radial-gradient(oklch(var(--sc-cream-c) / 0.05) 1px, transparent 1.4px);
 	background-size: 26px 26px;
 	color: var(--sc-cream);
@@ -446,7 +516,7 @@ iframe {
 	display: grid;
 	place-items: center;
 	pointer-events: none;
-	background-color: var(--sc-ink);
+	background-color: var(--sc-surface-invert);
 	background-image: radial-gradient(oklch(var(--sc-cream-c) / 0.05) 1px, transparent 1.4px);
 	background-size: 26px 26px;
 	animation: scCurtain 1.95s cubic-bezier(0.76, 0, 0.24, 1) forwards;
@@ -693,6 +763,47 @@ iframe {
 	margin-left: auto;
 	align-items: center;
 	gap: 14px;
+}
+
+/* Theme toggle. Borrows the burger's control language — same square, same
+   hairline — so the header reads as one set of controls. Shows the icon of the
+   theme it will switch *to*. */
+.sc-theme-toggle {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	padding: 0;
+	background: transparent;
+	border: 1px solid oklch(var(--sc-ink-c) / 0.22);
+	border-radius: var(--sc-radius);
+	color: oklch(var(--sc-ink-c) / 0.78);
+	cursor: pointer;
+	transition: var(--sc-transition);
+}
+
+.sc-theme-toggle[hidden] {
+	display: none;
+}
+
+.sc-theme-toggle:hover {
+	border-color: var(--sc-ink);
+	color: var(--sc-rust);
+}
+
+.sc-theme-toggle__icon {
+	grid-area: 1 / 1;
+	display: block;
+}
+
+.sc-theme-toggle__icon--sun,
+:root[data-sc-theme="dark"] .sc-theme-toggle__icon--moon {
+	display: none;
+}
+
+:root[data-sc-theme="dark"] .sc-theme-toggle__icon--sun {
+	display: block;
 }
 
 .sc-burger {
@@ -1004,7 +1115,7 @@ iframe {
 	position: absolute;
 	inset: 0;
 	border-radius: 50%;
-	background: radial-gradient(circle at 50% 50%, oklch(var(--sc-ink-c) / 0.34), oklch(var(--sc-ink-c) / 0.08) 62%);
+	background: radial-gradient(circle at 50% 50%, oklch(var(--sc-ink-deep-c) / 0.34), oklch(var(--sc-ink-deep-c) / 0.08) 62%);
 	opacity: 0.85;
 	transition: opacity 0.22s ease;
 }
@@ -1066,7 +1177,7 @@ iframe {
 	padding: 11px 16px;
 	transform: translateX(-50%);
 	border-radius: var(--sc-radius);
-	background: var(--sc-ink);
+	background: var(--sc-surface-invert);
 	color: var(--sc-cream);
 	box-shadow: 0 18px 40px -26px oklch(var(--sc-ink-c) / 0.7);
 }
@@ -2445,7 +2556,7 @@ iframe {
 	padding: 0;
 	border-radius: 50%;
 	border: 1px solid oklch(var(--sc-cream-c) / 0.22);
-	background: var(--sc-ink);
+	background: var(--sc-surface-invert);
 	color: oklch(var(--sc-cream-c) / 0.55);
 	font-family: var(--sc-font-mono);
 	font-size: 11.5px;
@@ -2822,7 +2933,7 @@ iframe {
 .sc-story-video__frame {
 	position: relative;
 	aspect-ratio: 16 / 9;
-	background: var(--sc-ink);
+	background: var(--sc-surface-invert);
 }
 
 .sc-story-video__frame iframe {
@@ -2858,7 +2969,7 @@ iframe {
 .sc-story-video__scrim {
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(to top, oklch(var(--sc-ink-c) / 0.42), oklch(var(--sc-ink-c) / 0.04) 55%);
+	background: linear-gradient(to top, oklch(var(--sc-ink-deep-c) / 0.42), oklch(var(--sc-ink-deep-c) / 0.04) 55%);
 }
 
 .sc-story-video__ring {
@@ -3323,7 +3434,7 @@ iframe {
 .sc-founder .sc-founder__ring,
 .sc-founder .sc-founder__ring-dashed,
 .sc-founder .sc-founder__pip { display: none; }
-.sc-founder .sc-founder__frame { border-radius: 3px; }
+.sc-founder .sc-founder__frame { border-radius: var(--sc-corner-lg); }
 .sc-founder .sc-founder__frame::before { display: none; }
 .sc-founder .sc-founder__ring-dashed { left: 0; }
 .sc-founder .sc-founder__pip--b { left: 19px; bottom: 20px; }
@@ -4020,7 +4131,7 @@ iframe {
 	bottom: 0;
 	margin: 0;
 	padding: 56px var(--sc-gutter) 20px;
-	background: linear-gradient(to top, oklch(var(--sc-ink-c) / 0.78), oklch(var(--sc-ink-c) / 0.34) 55%, transparent);
+	background: linear-gradient(to top, oklch(var(--sc-ink-deep-c) / 0.78), oklch(var(--sc-ink-deep-c) / 0.34) 55%, transparent);
 	color: oklch(var(--sc-cream-c) / 0.92);
 	font-family: var(--sc-font-mono);
 	font-size: 12px;
@@ -5138,7 +5249,7 @@ iframe {
 	border: 1px solid oklch(var(--sc-ink-c) / 0.1);
 	border-radius: calc(var(--sc-radius) + 4px);
 	background: var(--sc-sand-warm, oklch(var(--sc-cream-c) / 0.7));
-	box-shadow: 0 1px 0 oklch(var(--sc-cream-c) / 0.6) inset;
+	box-shadow: 0 1px 0 oklch(var(--sc-ink-c) / 0.06) inset;
 }
 
 .sc-deck__mark {
@@ -5238,7 +5349,7 @@ iframe {
 
 .sc-deck.is-enhanced .sc-deck__card[data-sc-deck-pos="1"] .sc-deck__letter,
 .sc-deck.is-enhanced .sc-deck__card[data-sc-deck-pos="2"] .sc-deck__letter {
-	background: oklch(var(--sc-cream-c) / 0.62);
+	background: var(--sc-sand-shade);
 }
 
 .sc-deck.is-enhanced .sc-deck__letter {
@@ -5434,7 +5545,7 @@ iframe {
 	border-radius: calc(var(--sc-radius) + 6px);
 	background: var(--sc-sand-warm, oklch(var(--sc-cream-c) / 0.7));
 	box-shadow:
-		0 1px 0 oklch(var(--sc-cream-c) / 0.6) inset,
+		0 1px 0 oklch(var(--sc-ink-c) / 0.06) inset,
 		0 40px 80px -56px oklch(var(--sc-ink-c) / 0.5);
 }
 
@@ -5538,8 +5649,8 @@ iframe {
 	padding: clamp(34px, 4vw, 60px) clamp(30px, 3.4vw, 56px);
 	border: 1px solid oklch(var(--sc-ink-c) / 0.1);
 	border-radius: calc(var(--sc-radius) + 6px);
-	background: var(--sc-cream);
-	box-shadow: 0 1px 0 oklch(var(--sc-cream-c) / 0.8) inset;
+	background: var(--sc-surface-card);
+	box-shadow: 0 1px 0 oklch(var(--sc-ink-c) / 0.06) inset;
 }
 
 .sc-buzz__slide-mark {
@@ -6211,7 +6322,7 @@ iframe {
 
 .sc-quiz__option:hover {
 	border-color: oklch(var(--sc-ink-c) / 0.45);
-	background: oklch(var(--sc-cream-c) / 0.7);
+	background: oklch(var(--sc-ink-c) / 0.07);
 }
 
 .sc-quiz__option:hover::before {
@@ -6457,7 +6568,7 @@ html:has(.sc-video-modal[open]) {
 	aspect-ratio: 16 / 9;
 	overflow: hidden;
 	border-radius: var(--sc-radius);
-	background: var(--sc-ink);
+	background: var(--sc-surface-invert);
 }
 
 .sc-film__frame iframe,
@@ -7557,7 +7668,7 @@ html:has(.sc-video-modal[open]) {
 	padding: clamp(28px, 3vw, 44px);
 	border: 1px solid oklch(var(--sc-ink-c) / 0.14);
 	border-radius: calc(var(--sc-radius) + 6px);
-	background: var(--sc-cream);
+	background: var(--sc-surface-card);
 	transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
@@ -8239,7 +8350,7 @@ html:has(.sc-video-modal[open]) {
 	margin-inline: auto;
 	padding: clamp(44px, 5.5vw, 76px) clamp(28px, 4vw, 64px);
 	border-radius: var(--sc-radius);
-	background: var(--sc-ink);
+	background: var(--sc-surface-invert);
 	text-align: center;
 	isolation: isolate;
 }
@@ -8439,7 +8550,7 @@ html:has(.sc-video-modal[open]) {
 	gap: 12px;
 	max-width: 76ch;
 	padding: clamp(26px, 3vw, 40px) 0;
-	background: var(--sc-ink);
+	background: var(--sc-surface-invert);
 }
 
 .sc-team__bar-title {
@@ -8494,12 +8605,6 @@ html:has(.sc-video-modal[open]) {
 	width: 100%;
 	max-width: 420px;
 	height: auto;
-}
-
-/* The cohort drawing is ink on paper — a warm multiply blend seats it on the
-   sand instead of leaving a white rectangle floating on the band. */
-.sc-team__scene-media img {
-	mix-blend-mode: multiply;
 }
 
 .sc-team__scene-head {
@@ -9173,3 +9278,16 @@ html:has(.sc-video-modal[open]) {
 	font-size: 12px;
 	color: var(--sc-rust);
 }
+
+/* Shared media and utility templates: includes default pages, archives and posts. */
+.sc-page__media img,
+.sc-prose img:not(.avatar),
+.sc-card__thumb,
+.sc-entry__media,
+.sc-episode img,
+.sc-about__story-media,
+.sc-jv__chapter-img img {
+	border-radius: var(--sc-corner-lg);
+}
+.sc-film__frame { border-radius: var(--sc-corner-md); overflow: hidden; }
+.sc-faq__item { border-radius: var(--sc-corner-sm); }

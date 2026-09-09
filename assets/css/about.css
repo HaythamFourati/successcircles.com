@@ -17,8 +17,8 @@
 .ab-nav a span, .ab-nav a:hover { color: var(--sc-rust); }
 .ab-page a:focus-visible { outline: 2px solid var(--sc-orange); outline-offset: 5px; }
 .ab-page .sc-about__bleed { height: auto; overflow: visible; margin-top: 40px; }
-.ab-page .sc-about__bleed img { height: clamp(260px, 34vw, 440px); object-position: 50% 55%; }
-.ab-page .sc-about__bleed-note { position: static; padding: 16px 20px; background: var(--sc-ink); color: var(--sc-cream); font-size: 11px; line-height: 1.6; text-align: center; letter-spacing: .035em; }
+.ab-page .sc-about__bleed img { height: clamp(260px, 34vw, 440px); object-position: 50% 55%; border-radius: var(--sc-corner-lg); }
+.ab-page .sc-about__bleed-note { position: static; padding: 16px 20px; background: var(--sc-surface-invert); color: var(--sc-cream); font-size: 11px; line-height: 1.6; text-align: center; letter-spacing: .035em; }
 .ab-page .sc-about__pull { grid-template-columns: 1fr; gap: 44px; }
 .ab-page .sc-about__pull-left { align-items: center; text-align: center; max-width: 800px; margin-inline: auto; gap: 20px; }
 .ab-page .sc-about__pull-title { max-width: 23ch; font-size: clamp(34px, 4.4vw, 56px); }
@@ -33,7 +33,7 @@
 .ab-page .sc-about__rhythm-label { font:  clamp(22px, 2.4vw, 30px)/1.2 var(--sc-font-display); }
 .ab-page .sc-about__rhythm-track:not(:last-child)::after { content: '→'; position: absolute; right: 18px; top: 25px; color: var(--sc-rust); }
 .ab-page .sc-about__vision { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 72px); }
-.ab-page .sc-about__vision-media img { aspect-ratio: 4 / 5; border-radius: 3px; }
+.ab-page .sc-about__vision-media img { aspect-ratio: 4 / 5; border-radius: var(--sc-corner-lg); }
 .ab-page .sc-about__vision-ring { display: none; }
 .ab-page .sc-about__vision h2, .ab-page .sc-about__story-title { font-size: clamp(34px, 4vw, 52px); line-height: 1.12; letter-spacing: -.025em; max-width: 24ch; }
 .ab-page .sc-band--dark .sc-prose { color: oklch(var(--sc-cream-c) / .8); font-size: 16px; line-height: 1.8; }
@@ -42,7 +42,7 @@
 .ab-page .sc-about__values-title { font-size: clamp(34px, 4.5vw, 56px); }
 .ab-page .sc-about__values-lede { max-width: 62ch; }
 .ab-page .sc-about__vows { max-width: 1120px; margin: 48px auto 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 0; border: 0; }
-.ab-page .sc-about__vow { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: subgrid; grid-row: span 3; align-items: start; gap: 24px; min-width: 0; text-align: left; padding: clamp(28px, 3.4vw, 44px); border: 1px solid var(--ab-rule); border-top: 3px solid var(--sc-orange); border-radius: 0 0 6px 6px; background: var(--sc-sand-shade); }
+.ab-page .sc-about__vow { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: subgrid; grid-row: span 3; align-items: start; gap: 24px; min-width: 0; text-align: left; padding: clamp(28px, 3.4vw, 44px); border: 1px solid var(--ab-rule); border-top: 3px solid var(--sc-orange); border-radius: var(--sc-corner-md); background: var(--sc-sand-shade); }
 .ab-page .sc-about__vow-num { grid-row: auto; color: var(--sc-rust); font: 400 44px/1 var(--sc-font-display); letter-spacing: -.025em; }
 .ab-page .sc-about__vow-title { max-width: 22ch; font-size: clamp(28px, 2.6vw, 38px); line-height: 1.15; }
 .ab-page .sc-about__vow-text { max-width: 48ch; padding-top: 24px; border-top: 1px solid var(--ab-rule); font-size: 16px; line-height: 1.75; }

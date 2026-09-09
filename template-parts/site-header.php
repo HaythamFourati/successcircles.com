@@ -32,6 +32,7 @@ $sc_login = successcircles_login_url();
 		</nav>
 
 		<div class="sc-header__aside">
+			<?php get_template_part( 'template-parts/theme-toggle' ); ?>
 			<a class="sc-header__login" href="<?php echo esc_url( $sc_login ); ?>">
 				<?php esc_html_e( 'Member Login', 'successcircles' ); ?>
 			</a>
@@ -41,6 +42,7 @@ $sc_login = successcircles_login_url();
 		</div>
 
 		<div class="sc-header__compact">
+			<?php get_template_part( 'template-parts/theme-toggle' ); ?>
 			<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs(); ?>>
 				<?php esc_html_e( 'Take the Test', 'successcircles' ); ?>
 			</a>

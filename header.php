@@ -16,6 +16,25 @@ defined( 'ABSPATH' ) || exit;
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<?php
+	/*
+	 * Theme resolution, inline and blocking on purpose: it must set the
+	 * attribute before the first paint, otherwise a dark-mode visitor gets a
+	 * flash of the light palette. Too small and too early to be worth a file
+	 * request, and it has to run even when the page is served from a cache.
+	 */
+	?>
+	<script>
+	(function () {
+		try {
+			var stored = localStorage.getItem( 'sc-theme' );
+			var theme = ( stored === 'light' || stored === 'dark' )
+				? stored
+				: ( window.matchMedia( '(prefers-color-scheme: dark)' ).matches ? 'dark' : 'light' );
+			document.documentElement.setAttribute( 'data-sc-theme', theme );
+		} catch ( e ) {}
+	})();
+	</script>
 	<?php wp_head(); ?>
 </head>
 
