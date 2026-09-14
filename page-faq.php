@@ -60,7 +60,7 @@ $sc_index = 0;
 				<ol class="sc-faqpage__rail-list">
 					<?php foreach ( $sc_groups as $sc_g => $sc_group ) : ?>
 						<li>
-							<a href="#sc-faq-group-<?php echo esc_attr( (string) $sc_g ); ?>">
+							<a href="<?php echo esc_url( successcircles_page_link( 'faq_group_' . $sc_g ) ); ?>">
 								<span class="sc-faqpage__rail-num"><?php echo esc_html( str_pad( (string) ( $sc_g + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
 								<?php echo esc_html( wp_specialchars_decode( $sc_group['label'] ) ); ?>
 							</a>
@@ -120,7 +120,7 @@ $sc_index = 0;
 				<div class="sc-faqpage__help">
 					<h2 class="sc-faqpage__help-title"><?php echo esc_html( wp_specialchars_decode( $sc_aside['title'] ) ); ?></h2>
 					<p class="sc-faqpage__help-text"><?php echo esc_html( wp_specialchars_decode( $sc_aside['text'] ) ); ?></p>
-					<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs(); ?>>
+					<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs( 'faq_page_faq_test' ); ?>>
 						<?php echo esc_html( wp_specialchars_decode( $sc_aside['link']['label'] ) ); ?>
 					</a>
 					<?php if ( ! empty( $sc_aside['secondary'] ) ) : ?>

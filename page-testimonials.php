@@ -19,8 +19,8 @@ get_header();
 		<h1 id="tv-title" class="sc-display"><?php echo successcircles_inline( $sc_copy['title'] ); ?></h1>
 		<p class="tv-lede"><?php echo esc_html( wp_specialchars_decode( $sc_copy['lede'] ) ); ?></p>
 		<div class="sc-actions">
-			<?php if ( $sc_films ) : ?><a class="sc-btn sc-btn--primary" href="#member-films"><?php esc_html_e( 'Watch Member Stories', 'successcircles' ); ?></a><?php endif; ?>
-			<?php if ( $sc_quotes ) : ?><a class="tv-text-link" href="#member-letters"><?php esc_html_e( 'Read Their Experiences', 'successcircles' ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
+			<?php if ( $sc_films ) : ?><a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'testimonials_member_films' ) ); ?>"><?php esc_html_e( 'Watch Member Stories', 'successcircles' ); ?></a><?php endif; ?>
+			<?php if ( $sc_quotes ) : ?><a class="tv-text-link" href="<?php echo esc_url( successcircles_page_link( 'testimonials_member_letters' ) ); ?>"><?php esc_html_e( 'Read Their Experiences', 'successcircles' ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
 		</div>
 	</div>
 	<?php if ( $sc_lead ) : ?>

@@ -238,11 +238,11 @@ iframe {
 	color: var(--sc-cream);
 }
 
-.sc-band--dark a {
+.sc-band--dark a:not(.sc-btn--primary) {
 	color: var(--sc-cream);
 }
 
-.sc-band--dark a:hover {
+.sc-band--dark a:not(.sc-btn--primary):hover {
 	color: var(--sc-amber);
 }
 
@@ -1949,6 +1949,43 @@ iframe {
 	font-size: 13.5px;
 	letter-spacing: 0.01em;
 	color: oklch(var(--sc-ink-c) / 0.6);
+}
+
+/* Direct-message chips under the phone number — one row, wraps on narrow. */
+.sc-channel__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 14px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sc-channel__chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 7px 13px;
+	border: 1px solid oklch(var(--sc-ink-c) / 0.18);
+	border-radius: 999px;
+	font-family: var(--sc-font-mono);
+	font-size: 12.5px;
+	letter-spacing: 0.04em;
+	color: oklch(var(--sc-ink-c) / 0.78);
+	text-decoration: none;
+	background: oklch(var(--sc-ink-c) / 0.02);
+	transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.sc-channel__chip:hover,
+.sc-channel__chip:focus-visible {
+	color: var(--sc-rust);
+	border-color: currentColor;
+	background: oklch(var(--sc-ink-c) / 0.045);
+}
+
+.sc-channel__chip .sc-social-icon {
+	flex: none;
 }
 
 .sc-channel__note {
@@ -9291,3 +9328,12 @@ html:has(.sc-video-modal[open]) {
 }
 .sc-film__frame { border-radius: var(--sc-corner-md); overflow: hidden; }
 .sc-faq__item { border-radius: var(--sc-corner-sm); }
+
+/* Contrast and immediate first paint: retain orange surfaces, use darker text orange on light backgrounds. */
+:root { --sc-accent-text: #ae4500; }
+:root[data-sc-theme="dark"], .sc-band--dark { --sc-accent-text: var(--sc-orange); }
+.sc-accent, .sc-band--dark .sc-accent, .sc-hero .sc-eyebrow, .sc-eyebrow--accent { color: var(--sc-accent-text); }
+.sc-os__node.is-active .sc-os__dot, .sc-os__node.is-active .sc-os__dot span { color: #1b1712; }
+.sc-band--dark .sc-btn--primary { color: #1b1712; }
+.sc-hero .sc-rise { animation: none; }
+.sc-footer__bottom a { text-decoration: underline; text-underline-offset: .2em; }

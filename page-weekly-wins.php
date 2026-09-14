@@ -22,7 +22,7 @@ get_header();
 	<h1 id="ww-title" class="sc-display"><?php echo successcircles_inline( $sc_copy['title'] ); ?></h1>
 	<p class="ww-lede"><?php echo esc_html( wp_specialchars_decode( $sc_copy['lede'] ) ); ?></p>
 	<div class="sc-actions sc-actions--center">
-		<?php if ( $sc_wins ) : ?><a class="sc-btn sc-btn--primary" href="#wins"><?php esc_html_e( 'Explore Member Wins', 'successcircles' ); ?></a><?php endif; ?>
+		<?php if ( $sc_wins ) : ?><a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'weekly_wins_wins' ) ); ?>"><?php esc_html_e( 'Explore Member Wins', 'successcircles' ); ?></a><?php endif; ?>
 		<a class="ww-text-link" href="<?php echo successcircles_url( $sc_link['url'] ); ?>"><?php echo esc_html( wp_specialchars_decode( $sc_link['label'] ) ); ?><span aria-hidden="true">↗</span></a>
 	</div>
 	<?php while ( have_posts() ) : the_post(); if ( trim( get_the_content() ) ) : ?>

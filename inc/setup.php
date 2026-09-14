@@ -76,7 +76,7 @@ add_action( 'after_setup_theme', 'successcircles_content_width', 0 );
  * @return bool
  */
 function successcircles_seo_plugin_active() {
-	return defined( 'WPSEO_VERSION' ) || class_exists( 'RankMath' ) || defined( 'SEOPRESS_VERSION' );
+	return defined( 'WPSEO_VERSION' ) || class_exists( 'RankMath' ) || defined( 'SEOPRESS_VERSION' ) || defined( 'AIOSEO_VERSION' );
 }
 
 /**
@@ -117,6 +117,7 @@ function successcircles_seo_description_paths() {
 			'momentum-buddy'        => 'buddy_page.lede',
 			'momentum-labs'         => 'labs_page.lede',
 			'momentum-team'         => 'team_page.lede',
+			'momentum-os'           => 'system.lede',
 			'about-joseph-varghese' => 'founder_page.lede',
 			'testimonials'          => 'testimonials.lede',
 			'weekly-wins'           => 'buzz.lede',
@@ -137,15 +138,15 @@ function successcircles_seo_description_paths() {
  * @return string Plain text, entities intact, not yet trimmed to length.
  */
 function successcircles_seo_description() {
+	if ( is_404() || ( is_singular() && post_password_required() ) ) { return ''; }
+	$key = successcircles_seo_key();
+	$override = trim( (string) get_theme_mod( 'sc_seo_' . $key . '_description', '' ) );
+	if ( '' !== $override ) { return wp_strip_all_tags( $override, true ); }
 	$paths       = successcircles_seo_description_paths();
 	$description = '';
 
 	if ( is_front_page() ) {
-		$description = get_bloginfo( 'description', 'display' );
-
-		if ( '' === $description ) {
-			$description = successcircles_content( 'hero.lede' );
-		}
+		$description = successcircles_seo_page_value( 'home', 'description' );
 	} elseif ( is_search() ) {
 		/* translators: %s: search query. */
 		$description = sprintf( __( 'Search results for &ldquo;%s&rdquo; on Success Circles.', 'successcircles' ), get_search_query() );
@@ -159,7 +160,8 @@ function successcircles_seo_description() {
 		$slug = successcircles_seo_slug();
 
 		if ( '' === trim( (string) $description ) && isset( $paths[ $slug ] ) ) {
-			$description = successcircles_content( $paths[ $slug ] );
+			$description = successcircles_seo_page_value( $slug, 'description' );
+			if ( '' === $description ) { $description = successcircles_content( $paths[ $slug ] ); }
 		}
 	}
 
@@ -206,7 +208,7 @@ function successcircles_canonical_url() {
 	} elseif ( is_home() ) {
 		$url = (string) get_permalink( (int) get_option( 'page_for_posts' ) );
 	} elseif ( is_category() || is_tag() || is_tax() ) {
-		$url = (string) get_term_link( get_queried_object() );
+		$url = get_term_link( get_queried_object() );
 	} elseif ( is_search() ) {
 		$url = add_query_arg( 's', get_search_query(), home_url( '/' ) );
 	} elseif ( is_post_type_archive() ) {
@@ -223,14 +225,18 @@ function successcircles_canonical_url() {
 	// of the page — see page-weekly-wins.php. Nothing else is.
 	$wins = isset( $_GET['wins'] ) ? absint( wp_unslash( $_GET['wins'] ) ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-	if ( $wins > 1 ) {
+	if ( is_page( 'weekly-wins' ) && $wins > 1 ) {
 		$url = add_query_arg( 'wins', $wins, $url );
 	}
 
-	$paged = (int) get_query_var( 'paged' );
-
+	$paged = max( 1, (int) get_query_var( 'paged' ) );
 	if ( $paged > 1 && ! is_singular() ) {
-		$url = trailingslashit( $url ) . 'page/' . $paged . '/';
+		$url = get_pagenum_link( $paged, false );
+		$url = remove_query_arg( array( 'sc-contact', 'sc-token', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid' ), $url );
+	}
+	$page = (int) get_query_var( 'page' );
+	if ( is_singular() && $page > 1 ) {
+		$url = get_option( 'permalink_structure' ) ? trailingslashit( $url ) . user_trailingslashit( $page, 'single_paged' ) : add_query_arg( 'page', $page, $url );
 	}
 
 	return $url;
@@ -288,7 +294,7 @@ function successcircles_robots( $robots ) {
 
 	// Search results, form-status round trips and Buzz pages 2+ are all either
 	// thin or a re-cut of content that is indexed elsewhere.
-	if ( is_search() || is_404() || $is_status || $wins > 1 ) {
+	if ( is_search() || is_404() || $is_status || ( is_page( 'weekly-wins' ) && $wins > 1 ) || ( is_singular() && post_password_required() ) ) {
 		$robots['noindex'] = true;
 		$robots['follow']  = true;
 
@@ -317,8 +323,8 @@ function successcircles_open_graph() {
 		return;
 	}
 
-	$is_post      = is_singular() && ! is_front_page();
-	$title        = is_front_page() ? get_bloginfo( 'name', 'display' ) : wp_get_document_title();
+	$is_post      = is_singular( 'post' );
+	$title        = wp_get_document_title();
 	$description  = successcircles_seo_description();
 	$url          = successcircles_canonical_url();
 	$has_thumb    = is_singular() && has_post_thumbnail();
@@ -353,7 +359,7 @@ function successcircles_open_graph() {
 	if ( $is_post && is_singular( 'post' ) ) {
 		printf( '<meta property="article:published_time" content="%s">' . "\n", esc_attr( (string) get_the_date( DATE_W3C ) ) );
 		printf( '<meta property="article:modified_time" content="%s">' . "\n", esc_attr( (string) get_the_modified_date( DATE_W3C ) ) );
-		printf( '<meta property="article:author" content="%s">' . "\n", esc_attr( (string) get_the_author() ) );
+		printf( '<meta property="article:author" content="%s">' . "\n", esc_url( get_author_posts_url( (int) get_post_field( 'post_author', get_the_ID() ) ) ) );
 	}
 
 	echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
@@ -363,6 +369,9 @@ function successcircles_open_graph() {
 		printf( '<meta name="twitter:description" content="%s">' . "\n", esc_attr( wp_html_excerpt( $description, 200, '…' ) ) );
 	}
 
+	if ( '' !== (string) $image_alt ) {
+		printf( '<meta name="twitter:image:alt" content="%s">' . "\n", esc_attr( $image_alt ) );
+	}
 	printf( '<meta name="twitter:image" content="%s">' . "\n", esc_url( $image ) );
 }
 add_action( 'wp_head', 'successcircles_open_graph', 2 );

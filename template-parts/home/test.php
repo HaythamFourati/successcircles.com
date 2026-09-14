@@ -25,7 +25,7 @@ $sc_test = (array) successcircles_content( 'test', array() );
 			<p class="sc-lede sc-test__lede"><?php echo esc_html( wp_specialchars_decode( $sc_test['lede'] ) ); ?></p>
 
 			<div class="sc-actions sc-test__actions">
-				<a class="sc-btn sc-btn--primary" <?php successcircles_test_link_attrs(); ?>>
+				<a class="sc-btn sc-btn--primary" <?php successcircles_test_link_attrs( 'home_test_test' ); ?>>
 					<?php echo esc_html( $sc_test['cta'] ); ?>
 				</a>
 				<span class="sc-test__note"><?php echo esc_html( $sc_test['note'] ); ?></span>

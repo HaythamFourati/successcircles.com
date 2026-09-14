@@ -35,7 +35,7 @@ while ( have_posts() ) :
 			<div class="sc-article__head">
 				<div class="sc-article__headline">
 					<?php if ( $sc_blog ) : ?>
-						<a class="sc-link-rule sc-article__back" href="<?php echo esc_url( get_permalink( $sc_blog ) ); ?>">
+						<a class="sc-link-rule sc-article__back" href="<?php echo esc_url( successcircles_page_link( 'articles_podcast', get_permalink( $sc_blog ) ) ); ?>">
 							<span aria-hidden="true">← </span><?php esc_html_e( 'Rules for Success', 'successcircles' ); ?>
 						</a>
 					<?php endif; ?>
@@ -108,8 +108,8 @@ while ( have_posts() ) :
 
 		</div>
 		<footer class="rf-article__end">
-			<?php if ( $sc_blog ) : ?><a class="sc-link-rule" href="<?php echo esc_url( get_permalink( $sc_blog ) ); ?>"><?php esc_html_e( 'Explore More Conversations', 'successcircles' ); ?> <span aria-hidden="true">↗</span></a><?php endif; ?>
-			<a class="sc-link-rule" href="#rf-article-title"><?php esc_html_e( 'Back to Top', 'successcircles' ); ?> <span aria-hidden="true">↑</span></a>
+			<?php if ( $sc_blog ) : ?><a class="sc-link-rule" href="<?php echo esc_url( successcircles_page_link( 'articles_podcast', get_permalink( $sc_blog ) ) ); ?>"><?php esc_html_e( 'Explore More Conversations', 'successcircles' ); ?> <span aria-hidden="true">↗</span></a><?php endif; ?>
+			<a class="sc-link-rule" href="<?php echo esc_url( successcircles_page_link( 'articles_rf_article_title' ) ); ?>"><?php esc_html_e( 'Back to Top', 'successcircles' ); ?> <span aria-hidden="true">↑</span></a>
 		</footer>
 
 	</article>
@@ -126,7 +126,7 @@ while ( have_posts() ) :
 						<?php esc_html_e( 'Keep listening.', 'successcircles' ); ?>
 					</h2>
 					<?php if ( $sc_blog ) : ?>
-						<a class="sc-link-rule" href="<?php echo esc_url( get_permalink( $sc_blog ) ); ?>">
+						<a class="sc-link-rule" href="<?php echo esc_url( successcircles_page_link( 'articles_podcast', get_permalink( $sc_blog ) ) ); ?>">
 							<?php esc_html_e( 'All episodes', 'successcircles' ); ?>
 						</a>
 					<?php endif; ?>

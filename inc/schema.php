@@ -41,7 +41,8 @@ function successcircles_schema_id( $fragment, $url = '' ) {
 function successcircles_schema_text( $text ) {
 	// html_entity_decode, not wp_specialchars_decode: the content tree is full
 	// of &mdash; and &rsquo;, which the latter leaves untouched.
-	return trim( wp_strip_all_tags( html_entity_decode( (string) $text, ENT_QUOTES, 'UTF-8' ) ) );
+	$text = preg_replace( '/<(?:br\s*\/?|\/(?:p|div|li|h[1-6]))>/i', ' ', (string) $text );
+	return trim( wp_strip_all_tags( html_entity_decode( $text, ENT_QUOTES, 'UTF-8' ) ) );
 }
 
 /**
@@ -82,12 +83,28 @@ function successcircles_schema_organization() {
 		'founder'     => array( '@id' => successcircles_schema_person_id() ),
 	);
 
+	$logo = wp_get_attachment_image_src( (int) get_theme_mod( 'custom_logo' ), 'full' );
+	if ( $logo ) {
+		$node['logo']['url'] = $logo[0];
+		$node['logo']['width'] = (int) $logo[1];
+		$node['logo']['height'] = (int) $logo[2];
+	}
+
 	if ( ! empty( $org['founding_date'] ) ) {
 		$node['foundingDate'] = (string) $org['founding_date'];
 	}
 
 	$phone = successcircles_option( 'sc_phone', '', (string) ( $org['phone'] ?? '' ) );
-	$phone = preg_replace( '/[^0-9+\-]/', '', wp_strip_all_tags( wp_specialchars_decode( $phone, ENT_QUOTES ) ) );
+	// A display line may include a vanity number and a second numeric number.
+	// Select one complete number instead of concatenating unrelated digits.
+	preg_match_all( '/\+?[0-9][0-9() .-]{8,}[0-9]/', wp_strip_all_tags( $phone ), $numbers );
+	$phone = '';
+	foreach ( $numbers[0] as $number ) {
+		$digits = preg_replace( '/[^0-9]/', '', $number );
+		if ( strlen( $digits ) >= 10 && strlen( $digits ) <= 15 ) {
+			$phone = ( str_starts_with( trim( $number ), '+' ) ? '+' : '' ) . $digits;
+		}
+	}
 
 	if ( $phone ) {
 		$node['telephone'] = $phone;
@@ -245,51 +262,18 @@ function successcircles_schema_breadcrumb() {
 	);
 }
 
-/**
- * Written testimonials as Review nodes.
- *
- * Deliberately carry no reviewRating: the source quotes have no ratings, and
- * inventing them would be fabricated markup. That means these will not produce
- * star ratings in search results — they are here so search engines and LLMs can
- * read who says what about the programs. They hang off the Service nodes rather
- * than the Organization, where self-collected reviews are ineligible anyway.
- *
- * @param string $item_id `@id` of the node being reviewed.
- * @param int    $limit   Maximum reviews.
- * @return array<int, array<string, mixed>>
- */
-function successcircles_schema_reviews( $item_id, $limit = 6 ) {
-	$quotes  = (array) successcircles_content( 'testimonials.quotes', array() );
-	$reviews = array();
-
-	foreach ( array_slice( $quotes, 0, $limit ) as $quote ) {
-		$name = successcircles_schema_text( $quote['name'] ?? '' );
-		$text = successcircles_schema_text( $quote['text'] ?? '' );
-
-		if ( '' === $name || '' === $text ) {
-			continue;
-		}
-
-		$author = array(
-			'@type' => 'Person',
-			'name'  => $name,
-		);
-
-		$role = successcircles_schema_text( $quote['role'] ?? '' );
-
-		if ( '' !== $role ) {
-			$author['jobTitle'] = $role;
-		}
-
-		$reviews[] = array(
-			'@type'        => 'Review',
-			'reviewBody'   => $text,
-			'author'       => $author,
-			'itemReviewed' => array( '@id' => $item_id ),
-		);
+/** Only unambiguous USD amounts are eligible for numeric offer markup. */
+function successcircles_schema_price( $text ) {
+	$text = trim( successcircles_schema_text( $text ) );
+	if ( ! preg_match( '/^\$?((?:[0-9]{1,3}(?:,[0-9]{3})+|[0-9]+)(?:\.[0-9]{1,2})?)$/', $text, $match ) ) {
+		return '';
 	}
+	return str_replace( ',', '', $match[1] );
+}
 
-	return $reviews;
+/** The service's permanent identity is independent of editable CTA destinations. */
+function successcircles_schema_service_slugs() {
+	return array( 'momentum-labs', 'momentum-buddy', 'momentum-team' );
 }
 
 /**
@@ -308,14 +292,18 @@ function successcircles_schema_services() {
 			continue;
 		}
 
-		$id    = successcircles_schema_id( 'service-' . sanitize_title( $title ) );
+		$slugs = successcircles_schema_service_slugs();
+		$slug = $slugs[ $index ] ?? '';
+		if ( ! $slug || ( ! is_front_page() && successcircles_seo_slug() !== $slug ) ) { continue; }
+		$id = successcircles_schema_id( 'service', home_url( '/' . $slug . '/' ) );
 		$price = successcircles_program_price( $index, (string) ( $card['price'] ?? '' ) );
-		$price = preg_replace( '/[^0-9.]/', '', $price );
+		$price = successcircles_schema_price( $price );
 
 		$node = array(
 			'@type'       => 'Service',
 			'@id'         => $id,
 			'name'        => $title,
+			'url'         => home_url( '/' . $slug . '/' ),
 			'serviceType' => successcircles_schema_text( $card['kind'] ?? '' ),
 			'description' => successcircles_schema_text( $card['text'] ?? '' ),
 			'provider'    => array( '@id' => successcircles_schema_id( 'organization' ) ),
@@ -326,33 +314,11 @@ function successcircles_schema_services() {
 			),
 		);
 
-		$features = array_filter( array_map( 'successcircles_schema_text', (array) ( $card['features'] ?? array() ) ) );
-
-		if ( $features ) {
-			$node['hasOfferCatalog'] = array(
-				'@type'           => 'OfferCatalog',
-				'name'            => $title,
-				'itemListElement' => array_map(
-					static function ( $feature ) {
-						return array(
-							'@type' => 'Offer',
-							'itemOffered' => array(
-								'@type' => 'Service',
-								'name'  => $feature,
-							),
-						);
-					},
-					$features
-				),
-			);
-		}
-
-		if ( '' !== $price ) {
+		if ( is_front_page() && '' !== $price ) {
 			$node['offers'] = array(
 				'@type'         => 'Offer',
 				'price'         => $price,
 				'priceCurrency' => 'USD',
-				'availability'  => 'https://schema.org/InStock',
 				'url'           => successcircles_link_url( (string) ( $card['cta_url'] ?? '' ) ),
 				'priceSpecification' => array(
 					'@type'         => 'UnitPriceSpecification',
@@ -364,10 +330,23 @@ function successcircles_schema_services() {
 			);
 		}
 
-		$reviews = successcircles_schema_reviews( $id, 0 === $index ? 4 : 4 );
-
-		if ( $reviews ) {
-			$node['review'] = $reviews;
+		// Detail-page offers use the exact plan totals visible on that page.
+		if ( ! is_front_page() ) {
+			$plans = array();
+			if ( 'momentum-labs' === $slug ) {
+				$plans[] = array( 'name' => 'Monthly membership', 'price' => successcircles_program_price( 0, successcircles_content( 'labs_page.price' ) ), 'text' => successcircles_content( 'labs_page.price_note' ) );
+			} else {
+				$plans = (array) successcircles_content( ( 'momentum-buddy' === $slug ? 'buddy_page' : 'team_page' ) . '.pricing.plans', array() );
+			}
+			foreach ( $plans as $plan ) {
+				$amount = successcircles_schema_price( $plan['price'] ?? '' );
+				if ( '' === $amount ) { continue; }
+				$node['offers'][] = array(
+					'@type' => 'Offer', 'name' => successcircles_schema_text( $plan['name'] ?? '' ),
+					'price' => $amount, 'priceCurrency' => 'USD', 'url' => $node['url'],
+					'description' => successcircles_schema_text( implode( '. ', array_filter( array( $plan['cycle'] ?? '', $plan['detail'] ?? '', $plan['text'] ?? '' ) ) ) ),
+				);
+			}
 		}
 
 		$nodes[] = $node;
@@ -474,7 +453,8 @@ function successcircles_schema_blogposting() {
 		'publisher'        => array( '@id' => successcircles_schema_id( 'organization' ) ),
 		'author'           => array(
 			'@type' => 'Person',
-			'name'  => successcircles_schema_text( get_the_author() ),
+			'name'  => successcircles_schema_text( get_the_author_meta( 'display_name', (int) get_post_field( 'post_author', $post_id ) ) ),
+			'url'   => get_author_posts_url( (int) get_post_field( 'post_author', $post_id ) ),
 		),
 		'inLanguage'       => get_bloginfo( 'language' ),
 		'wordCount'        => str_word_count( wp_strip_all_tags( (string) get_the_content() ) ),
@@ -521,6 +501,7 @@ function successcircles_schema_webpage() {
 		'momentum-buddy'        => 'ItemPage',
 		'momentum-labs'         => 'ItemPage',
 		'momentum-team'         => 'ItemPage',
+		'momentum-os'           => 'WebPage',
 		'about'                 => 'AboutPage',
 		'about-joseph-varghese' => 'AboutPage',
 		'contact-us'            => 'ContactPage',
@@ -544,7 +525,7 @@ function successcircles_schema_webpage() {
 		'@type'       => $type,
 		'@id'         => successcircles_schema_id( 'webpage', $url ),
 		'url'         => $url,
-		'name'        => successcircles_schema_text( is_front_page() ? get_bloginfo( 'name' ) : wp_get_document_title() ),
+		'name'        => successcircles_schema_text( wp_get_document_title() ),
 		'description' => successcircles_seo_description(),
 		'isPartOf'    => array( '@id' => successcircles_schema_id( 'website' ) ),
 		'about'       => array( '@id' => successcircles_schema_id( 'organization' ) ),
@@ -568,6 +549,10 @@ function successcircles_schema_webpage() {
 
 	if ( 'about-joseph-varghese' === $slug ) {
 		$node['mainEntity'] = array( '@id' => successcircles_schema_person_id() );
+	}
+
+	if ( in_array( $slug, successcircles_schema_service_slugs(), true ) ) {
+		$node['mainEntity'] = array( '@id' => successcircles_schema_id( 'service', home_url( '/' . $slug . '/' ) ) );
 	}
 
 	if ( 'contact-us' === $slug ) {
@@ -614,7 +599,7 @@ function successcircles_schema_graph() {
 		$graph[] = $breadcrumb;
 	}
 
-	if ( is_front_page() ) {
+	if ( is_front_page() || in_array( successcircles_seo_slug(), successcircles_schema_service_slugs(), true ) ) {
 		$graph = array_merge( $graph, successcircles_schema_services() );
 	}
 
@@ -665,7 +650,7 @@ function successcircles_schema_graph() {
  * @return void
  */
 function successcircles_schema() {
-	if ( successcircles_seo_plugin_active() || is_404() ) {
+	if ( successcircles_seo_plugin_active() || is_404() || '' === successcircles_canonical_url() || ( is_singular() && post_password_required() ) ) {
 		return;
 	}
 
@@ -682,7 +667,7 @@ function successcircles_schema() {
 				'@context' => 'https://schema.org',
 				'@graph'   => array_values( $graph ),
 			),
-			JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+			JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
 		)
 	);
 }

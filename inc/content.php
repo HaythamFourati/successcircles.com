@@ -19,11 +19,11 @@ defined( 'ABSPATH' ) || exit;
  *
  * @return array<string, mixed>
  */
-function successcircles_content_tree() {
+function successcircles_content_tree( $customized = true ) {
 	static $tree = null;
 
 	if ( null !== $tree ) {
-		return $tree;
+		return $customized ? successcircles_customize_link_tree( $tree ) : $tree;
 	}
 
 	$tree = array(
@@ -116,12 +116,12 @@ function successcircles_content_tree() {
 			'label' => __( 'As seen in', 'successcircles' ),
 			'logos' => array(
 				array(
-					'src'  => 'https://commons.wikimedia.org/wiki/Special:FilePath/Inc._(business_magazine)_logo.svg',
+					'src'  => SUCCESSCIRCLES_URI . '/assets/img/inc.svg',
 					'alt'  => __( 'Inc.', 'successcircles' ),
 					'note' => '',
 				),
 				array(
-					'src'  => 'https://commons.wikimedia.org/wiki/Special:FilePath/Trustpilot_Logo_(2022).svg',
+					'src'  => SUCCESSCIRCLES_URI . '/assets/img/trustpilot.svg',
 					'alt'  => __( 'Trustpilot', 'successcircles' ),
 					'note' => __( 'Rated Excellent', 'successcircles' ),
 				),
@@ -627,10 +627,20 @@ function successcircles_content_tree() {
 					'detail' => __( '+1 (747) 224-7253', 'successcircles' ),
 					'url'    => 'tel:+17472247253',
 					'note'   => __( 'One number for calls and WhatsApp Business.', 'successcircles' ),
+					'links'  => array(
+						array(
+							'label' => __( 'WhatsApp', 'successcircles' ),
+							'url'   => 'https://wa.me/successcircles',
+						),
+						array(
+							'label' => __( 'Telegram', 'successcircles' ),
+							'url'   => 'http://t.me/successcircles',
+						),
+					),
 				),
 				array(
 					'label'  => __( 'Book a call', 'successcircles' ),
-					'value'  => __( 'jv.zone', 'successcircles' ),
+					'value'  => __( 'Calendly', 'successcircles' ),
 					'detail' => '',
 					'url'    => 'http://jv.zone',
 					'note'   => __( 'Twenty minutes with a facilitator. Pick any open slot.', 'successcircles' ),
@@ -1027,6 +1037,7 @@ function successcircles_content_tree() {
 			// set around the theme's own orbit ring.
 			'ring'     => array(
 				'centre' => __( 'A new buddy every two weeks', 'successcircles' ),
+				'hero_faces' => array( 'garth-sandiford.jpg', 'steve-zhou.jpg', 'elaine-williams.png', 'tanya-straker.jpg' ),
 				'faces'  => array(
 					'susan-hum.jpg',
 					'aj-mihrzad.jpg',
@@ -1339,7 +1350,7 @@ function successcircles_content_tree() {
 			'title'    => __( 'Stop operating in your business. Start <em class="sc-accent">leading from it.</em>', 'successcircles' ),
 			'lede'     => __( 'A 90-day cohort for established owners who need to protect one major goal, reduce their role as the bottleneck, and build systems that keep the business moving without constant intervention.', 'successcircles' ),
 			'cta'      => __( 'Apply now', 'successcircles' ),
-			'cta_url'  => 'https://www.momentum.team/yes',
+			'cta_url'  => 'https://www.successcircles.net/signupmomentumteam',
 			'cta_note' => '',
 			'hero'     => array(
 				'file'   => 'members-live.jpg',
@@ -1734,7 +1745,7 @@ function successcircles_content_tree() {
 						),
 						array(
 							'label' => __( 'Member Login', 'successcircles' ),
-							'url'   => 'https://www.successcircles.com/member-resources/',
+							'url'   => 'https://www.momentum.network/',
 						),
 						array(
 							'label' => __( 'Affiliates', 'successcircles' ),
@@ -1797,7 +1808,7 @@ function successcircles_content_tree() {
 		),
 
 		'links' => array(
-			'member_login' => 'https://www.successcircles.com/member-resources/',
+			'member_login' => 'https://www.momentum.network/',
 			'apply'        => 'https://peersc.com/applyscsite',
 			'test'         => '#test',
 		),
@@ -1810,7 +1821,7 @@ function successcircles_content_tree() {
 	 */
 	$tree = apply_filters( 'successcircles_content_tree', $tree );
 
-	return $tree;
+	return $customized ? successcircles_customize_link_tree( $tree ) : $tree;
 }
 
 /**

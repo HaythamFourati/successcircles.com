@@ -100,7 +100,7 @@ function successcircles_option( $mod, $path = '', $default = '' ) {
  * @return string
  */
 function successcircles_test_url() {
-	return successcircles_link_url( successcircles_option( 'sc_test_url', 'links.test', '#test' ) );
+	return successcircles_link_url( successcircles_shared_link( successcircles_content( 'links.test' ) ) );
 }
 
 /**
@@ -109,7 +109,7 @@ function successcircles_test_url() {
  * @return string
  */
 function successcircles_apply_url() {
-	return successcircles_link_url( successcircles_option( 'sc_apply_url', 'links.apply' ) );
+	return successcircles_link_url( successcircles_shared_link( successcircles_content( 'links.apply' ) ) );
 }
 
 /**
@@ -118,7 +118,7 @@ function successcircles_apply_url() {
  * @return string
  */
 function successcircles_login_url() {
-	return successcircles_link_url( successcircles_option( 'sc_login_url', 'links.member_login' ) );
+	return successcircles_link_url( successcircles_shared_link( successcircles_content( 'links.member_login' ) ) );
 }
 
 /**
@@ -159,7 +159,7 @@ function successcircles_logo( $class = 'sc-header__brand' ) {
 	printf(
 		'<a class="%1$s" href="%2$s" rel="home">',
 		esc_attr( $class ),
-		esc_url( home_url( '/' ) )
+		esc_url( successcircles_page_link( 'shared_logo' ) )
 	);
 
 	if ( $custom_logo_id ) {
@@ -171,8 +171,8 @@ function successcircles_logo( $class = 'sc-header__brand' ) {
 		);
 	} else {
 		printf(
-			'<img src="%1$s" alt="%2$s" width="195" height="78" decoding="async">',
-			esc_url( SUCCESSCIRCLES_URI . '/assets/img/successcircles-logo.png' ),
+			'<img %1$s alt="%2$s" width="195" height="78" decoding="async" fetchpriority="high">',
+			successcircles_responsive_source( 'successcircles-logo.png', array( 195 ), '195px' ),
 			esc_attr( get_bloginfo( 'name', 'display' ) )
 		);
 	}
@@ -190,7 +190,7 @@ function successcircles_logo( $class = 'sc-header__brand' ) {
  * @return string Attribute string, empty for internal links.
  */
 function successcircles_link_target( $url ) {
-	return 0 === strpos( (string) $url, 'http' ) ? ' target="_blank" rel="noopener noreferrer"' : '';
+	return successcircles_is_outbound( successcircles_link_url( $url ) ) ? ' target="_blank" rel="noopener noreferrer"' : '';
 }
 
 /**
@@ -296,6 +296,8 @@ function successcircles_episodes( $limit = 3 ) {
 	$query = new WP_Query(
 		array(
 			'post_type'              => 'post',
+			'post_status'            => 'publish',
+			'has_password'           => false,
 			'posts_per_page'         => $limit,
 			'no_found_rows'          => true,
 			'update_post_term_cache' => false,

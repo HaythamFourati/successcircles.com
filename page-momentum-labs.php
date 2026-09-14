@@ -23,9 +23,9 @@ get_header();
 	<p class="ml-lede"><?php echo esc_html( wp_specialchars_decode( $sc_labs['lede'] ) ); ?></p>
 	<div class="sc-actions sc-actions--center">
 		<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $sc_cta_url ); ?>"<?php echo successcircles_link_target( $sc_labs['cta_url'] ); ?>><?php echo esc_html( $sc_labs['cta'] ); ?></a>
-		<a class="sc-btn sc-btn--ghost" href="#labs-membership"><?php esc_html_e( 'Explore Membership', 'successcircles' ); ?></a>
+		<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( successcircles_page_link( 'momentum_labs_labs_membership' ) ); ?>"><?php esc_html_e( 'Explore Membership', 'successcircles' ); ?></a>
 	</div>
-	<p class="ml-hero__price"><strong><?php echo esc_html( successcircles_program_price( 1, $sc_labs['price'] ) ); ?></strong> <?php echo esc_html( $sc_labs['price_note'] ); ?> · <?php esc_html_e( 'Weekly group huddles', 'successcircles' ); ?></p>
+	<p class="ml-hero__price"><strong><?php echo esc_html( successcircles_program_price( 0, $sc_labs['price'] ) ); ?></strong> <?php echo esc_html( $sc_labs['price_note'] ); ?> · <?php esc_html_e( 'Weekly group huddles', 'successcircles' ); ?></p>
 	<?php if ( ! empty( $sc_labs['video']['id'] ) ) : ?>
 	<div class="ml-film">
 		<div class="ml-film__heading"><span><?php esc_html_e( 'Inside Momentum Labs', 'successcircles' ); ?></span><span><?php echo esc_html( $sc_labs['video']['duration'] ); ?> ↗</span></div>
@@ -38,9 +38,9 @@ get_header();
 	<?php endif; ?>
 </section>
 <nav class="ml-nav" aria-label="<?php esc_attr_e( 'Momentum Labs page sections', 'successcircles' ); ?>">
-	<a href="#labs-support"><?php esc_html_e( 'Your Support System', 'successcircles' ); ?></a>
-	<a href="#labs-founder"><?php esc_html_e( 'Meet the Founder', 'successcircles' ); ?></a>
-	<a href="#labs-membership"><?php esc_html_e( 'Membership', 'successcircles' ); ?></a>
+	<a href="<?php echo esc_url( successcircles_page_link( 'momentum_labs_labs_support' ) ); ?>"><?php esc_html_e( 'Your Support System', 'successcircles' ); ?></a>
+	<a href="<?php echo esc_url( successcircles_page_link( 'momentum_labs_labs_founder' ) ); ?>"><?php esc_html_e( 'Meet the Founder', 'successcircles' ); ?></a>
+	<a href="<?php echo esc_url( successcircles_page_link( 'momentum_labs_labs_membership' ) ); ?>"><?php esc_html_e( 'Membership', 'successcircles' ); ?></a>
 </nav>
 <section class="sc-section" aria-labelledby="ml-challenge-title">
 	<header class="ml-heading">
@@ -89,7 +89,7 @@ get_header();
 		<div class="ml-membership">
 			<div class="ml-membership__price">
 				<h3>Momentum Labs</h3>
-				<p class="ml-price"><strong><?php echo esc_html( successcircles_program_price( 1, $sc_labs['price'] ) ); ?></strong><span><?php echo esc_html( $sc_labs['price_note'] ); ?></span></p>
+				<p class="ml-price"><strong><?php echo esc_html( successcircles_program_price( 0, $sc_labs['price'] ) ); ?></strong><span><?php echo esc_html( $sc_labs['price_note'] ); ?></span></p>
 				<p><?php echo esc_html( $sc_closing['note'] ); ?></p>
 				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $sc_cta_url ); ?>"<?php echo successcircles_link_target( $sc_labs['cta_url'] ); ?>><?php echo esc_html( $sc_labs['cta'] ); ?></a>
 			</div>

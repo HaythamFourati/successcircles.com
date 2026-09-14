@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $sc_nav   = (array) successcircles_content( 'nav', array() );
-$sc_login = successcircles_login_url();
+$sc_login = successcircles_page_link( 'header_login' );
 
 ?>
 <header class="sc-header">
@@ -36,14 +36,14 @@ $sc_login = successcircles_login_url();
 			<a class="sc-header__login" href="<?php echo esc_url( $sc_login ); ?>">
 				<?php esc_html_e( 'Member Login', 'successcircles' ); ?>
 			</a>
-			<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs(); ?>>
+			<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs( 'header_site_header_test' ); ?>>
 				<?php esc_html_e( 'Take the Entrepreneur Test', 'successcircles' ); ?>
 			</a>
 		</div>
 
 		<div class="sc-header__compact">
 			<?php get_template_part( 'template-parts/theme-toggle' ); ?>
-			<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs(); ?>>
+			<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs( 'header_site_header_test' ); ?>>
 				<?php esc_html_e( 'Take the Test', 'successcircles' ); ?>
 			</a>
 			<button

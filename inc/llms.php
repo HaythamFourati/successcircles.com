@@ -5,8 +5,8 @@
  * /llms.txt is an index of the site written for language models: what this
  * business is, the programs and their prices, every page worth reading and
  * every published episode, as Markdown links with one line of context each.
- * /llms-full.txt is the same header followed by the actual prose, so a crawler
- * can take the whole site in a single request instead of walking it.
+ * /llms-full.txt contains curated public copy and up to 50 recent articles.
+ * The linked HTML pages remain the authoritative, complete sources.
  *
  * Both are generated from inc/content.php and the published posts, so a new
  * episode appears in them the moment it is published — there is no file to
@@ -33,6 +33,12 @@ function successcircles_llms_text( $text ) {
 	return successcircles_schema_text( $text );
 }
 
+/** Public pages only: publication does not remove password protection. */
+function successcircles_llms_public_page( $slug ) {
+	$page = get_page_by_path( $slug );
+	return $page instanceof WP_Post && 'publish' === $page->post_status && '' === $page->post_password;
+}
+
 /**
  * The pages worth pointing a model at, in reading order.
  *
@@ -55,20 +61,19 @@ function successcircles_llms_pages() {
 		'contact-us'            => __( 'Contact', 'successcircles' ),
 	);
 
-	$paths = successcircles_seo_description_paths();
 	$pages = array();
 
 	foreach ( $order as $slug => $title ) {
 		$page = get_page_by_path( $slug );
 
-		if ( ! $page instanceof WP_Post || 'publish' !== $page->post_status ) {
+		if ( ! successcircles_llms_public_page( $slug ) ) {
 			continue;
 		}
 
 		$pages[] = array(
 			'title'       => $title,
 			'url'         => (string) get_permalink( $page ),
-			'description' => isset( $paths[ $slug ] ) ? successcircles_llms_text( successcircles_content( $paths[ $slug ] ) ) : '',
+			'description' => successcircles_llms_text( successcircles_seo_page_value( $slug, 'description' ) ),
 		);
 	}
 
@@ -194,7 +199,7 @@ function successcircles_llms_index() {
 	$lines[] = '';
 	$lines   = array_merge( $lines, successcircles_llms_episodes() );
 
-	$faq = successcircles_faq_page_items();
+	$faq = successcircles_llms_public_page( 'faq' ) ? successcircles_faq_page_items() : array();
 
 	if ( $faq ) {
 		$lines[] = '## ' . __( 'Frequently asked questions', 'successcircles' );
@@ -227,8 +232,11 @@ function successcircles_llms_index() {
 	$lines[] = '';
 	$lines[] = '## ' . __( 'Optional', 'successcircles' );
 	$lines[] = '';
-	$lines[] = successcircles_llms_line( __( 'Full site text', 'successcircles' ), home_url( '/llms-full.txt' ), __( 'every page above as plain text, in one file', 'successcircles' ) );
-	$lines[] = successcircles_llms_line( __( 'Sitemap', 'successcircles' ), home_url( '/wp-sitemap.xml' ), __( 'machine-readable index of every URL', 'successcircles' ) );
+	$lines[] = successcircles_llms_line( __( 'Full site text', 'successcircles' ), home_url( '/llms-full.txt' ), __( 'curated site copy, program summaries, FAQs, and up to 50 recent published articles', 'successcircles' ) );
+	$sitemap = function_exists( 'get_sitemap_url' ) ? get_sitemap_url( 'index' ) : home_url( '/wp-sitemap.xml' );
+	if ( $sitemap ) {
+		$lines[] = successcircles_llms_line( __( 'Sitemap', 'successcircles' ), $sitemap, __( 'machine-readable index of public URLs', 'successcircles' ) );
+	}
 
 	return implode( "\n", $lines ) . "\n";
 }
@@ -268,27 +276,50 @@ function successcircles_llms_block( $heading, $body ) {
 function successcircles_llms_full() {
 	$lines = successcircles_llms_header();
 
-	$about = (array) successcircles_content( 'about', array() );
-
-	$lines[] = '## ' . __( 'About', 'successcircles' );
+	$lines[] = 'Source: ' . home_url( '/' );
 	$lines[] = '';
-	$lines   = array_merge( $lines, successcircles_llms_block( '', array( $about['lede'] ?? '' ) ) );
-	$lines   = array_merge( $lines, successcircles_llms_block( __( 'Mission', 'successcircles' ), array( $about['mission']['lede'] ?? '', $about['mission']['body'] ?? '' ) ) );
-	$lines   = array_merge( $lines, successcircles_llms_block( __( 'Vision', 'successcircles' ), (array) ( $about['vision']['body'] ?? array() ) ) );
-
-	$values = (array) ( $about['values']['items'] ?? array() );
-
-	if ( $values ) {
-		$lines[] = '### ' . __( 'Core values', 'successcircles' );
+	$lines = array_merge( $lines, successcircles_llms_block( 'What is a huddle?', array( successcircles_content( 'huddle.lede' ) ) ) );
+	foreach ( (array) successcircles_content( 'huddle.items', array() ) as $step ) {
+		$lines = array_merge( $lines, successcircles_llms_block( $step['title'], array( $step['text'] ) ) );
+	}
+	$lines[] = '## Page summaries and sources';
+	$lines[] = '';
+	foreach ( successcircles_llms_pages() as $page ) {
+		$lines[] = successcircles_llms_line( $page['title'], $page['url'], $page['description'] );
+	}
+	$lines[] = '';
+	if ( successcircles_llms_public_page( 'momentum-os' ) ) {
+		$lines = array_merge( $lines, successcircles_llms_block( 'Momentum OS', array( successcircles_content( 'system.lede' ) ) ) );
+		$lines[] = 'Source: ' . home_url( '/momentum-os/' );
 		$lines[] = '';
-
-		foreach ( $values as $value ) {
-			$lines[] = sprintf( '- **%s** %s', successcircles_llms_text( $value['title'] ?? '' ), successcircles_llms_text( $value['text'] ?? '' ) );
+		foreach ( (array) successcircles_content( 'system.steps', array() ) as $step ) {
+			$lines = array_merge( $lines, successcircles_llms_block( $step['title'], array( $step['text'] ) ) );
 		}
-
-		$lines[] = '';
 	}
 
+	$about = (array) successcircles_content( 'about', array() );
+
+	if ( successcircles_llms_public_page( 'about' ) ) {
+		$lines[] = '## ' . __( 'About', 'successcircles' );
+		$lines[] = '';
+		$lines   = array_merge( $lines, successcircles_llms_block( '', array( $about['lede'] ?? '' ) ) );
+		$lines   = array_merge( $lines, successcircles_llms_block( __( 'Mission', 'successcircles' ), array( $about['mission']['lede'] ?? '', $about['mission']['body'] ?? '' ) ) );
+		$lines   = array_merge( $lines, successcircles_llms_block( __( 'Vision', 'successcircles' ), (array) ( $about['vision']['body'] ?? array() ) ) );
+
+		$values = (array) ( $about['values']['items'] ?? array() );
+
+		if ( $values ) {
+			$lines[] = '### ' . __( 'Core values', 'successcircles' );
+			$lines[] = '';
+
+			foreach ( $values as $value ) {
+				$lines[] = sprintf( '- **%s** %s', successcircles_llms_text( $value['title'] ?? '' ), successcircles_llms_text( $value['text'] ?? '' ) );
+			}
+
+			$lines[] = '';
+		}
+
+	}
 	$lines[] = '## ' . __( 'Programs', 'successcircles' );
 	$lines[] = '';
 
@@ -310,21 +341,24 @@ function successcircles_llms_full() {
 		}
 
 		$lines[] = '';
-		$lines[] = sprintf( __( 'Sign up: %s', 'successcircles' ), successcircles_link_url( (string) ( $card['cta_url'] ?? '' ) ) );
+		$lines[] = sprintf( __( 'Program details: %s', 'successcircles' ), successcircles_link_url( (string) ( $card['cta_url'] ?? '' ) ) );
 		$lines[] = '';
 	}
 
 	$founder = (array) successcircles_content( 'founder_page', array() );
 
-	$lines[] = '## ' . __( 'Joseph Varghese, founder', 'successcircles' );
-	$lines[] = '';
-	$lines   = array_merge( $lines, successcircles_llms_block( '', array_merge( array( $founder['lede'] ?? '' ), (array) ( $founder['intro'] ?? array() ) ) ) );
+	if ( successcircles_llms_public_page( 'about-joseph-varghese' ) ) {
+		$lines[] = '## ' . __( 'Joseph Varghese, founder', 'successcircles' );
+		$lines[] = '';
+		$lines   = array_merge( $lines, successcircles_llms_block( '', array_merge( array( $founder['lede'] ?? '' ), (array) ( $founder['intro'] ?? array() ) ) ) );
 
-	foreach ( (array) ( $founder['sections'] ?? array() ) as $section ) {
-		$lines = array_merge( $lines, successcircles_llms_block( $section['title'] ?? '', (array) ( $section['body'] ?? array() ) ) );
+		foreach ( (array) ( $founder['sections'] ?? array() ) as $section ) {
+			$lines = array_merge( $lines, successcircles_llms_block( $section['title'] ?? '', (array) ( $section['body'] ?? array() ) ) );
+		}
+
 	}
 
-	$faq = successcircles_faq_page_items();
+	$faq = successcircles_llms_public_page( 'faq' ) ? successcircles_faq_page_items() : array();
 
 	if ( $faq ) {
 		$lines[] = '## ' . __( 'Frequently asked questions', 'successcircles' );
@@ -340,7 +374,7 @@ function successcircles_llms_full() {
 
 	$quotes = (array) successcircles_content( 'testimonials.quotes', array() );
 
-	if ( $quotes ) {
+	if ( $quotes && successcircles_llms_public_page( 'testimonials' ) ) {
 		$lines[] = '## ' . __( 'What members say', 'successcircles' );
 		$lines[] = '';
 
@@ -361,6 +395,8 @@ function successcircles_llms_full() {
 	$posts = get_posts(
 		array(
 			'post_type'              => 'post',
+			'post_status'            => 'publish',
+			'has_password'           => false,
 			'posts_per_page'         => 50,
 			'no_found_rows'          => true,
 			'update_post_term_cache' => false,
@@ -369,7 +405,7 @@ function successcircles_llms_full() {
 	);
 
 	if ( $posts ) {
-		$lines[] = '## ' . __( 'Rules for Success — full episode transcripts', 'successcircles' );
+		$lines[] = '## ' . __( 'Rules for Success — published article text', 'successcircles' );
 		$lines[] = '';
 
 		foreach ( $posts as $post ) {
@@ -383,7 +419,7 @@ function successcircles_llms_full() {
 				(string) get_permalink( $post )
 			);
 			$lines[] = '';
-			$lines[] = successcircles_llms_text( wpautop( (string) $post->post_content ) );
+			$lines[] = successcircles_llms_text( wpautop( strip_shortcodes( (string) $post->post_content ) ) );
 			$lines[] = '';
 		}
 	}
@@ -420,13 +456,13 @@ function successcircles_llms_route() {
 
 	status_header( 200 );
 	header( 'Content-Type: text/plain; charset=utf-8' );
-	header( 'Content-Length: ' . strlen( $body ) );
-	header( 'X-Robots-Tag: index, follow' );
+	// These are discovery aids; index the original HTML pages instead.
+	header( 'X-Robots-Tag: noindex, follow' );
 
 	echo $body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	exit;
 }
-add_action( 'template_redirect', 'successcircles_llms_route' );
+add_action( 'template_redirect', 'successcircles_llms_route', 0 );
 
 /**
  * Advertise llms.txt in the document head.
@@ -441,10 +477,8 @@ add_action( 'wp_head', 'successcircles_llms_link', 3 );
 /**
  * Extend robots.txt.
  *
- * The AI crawlers are named explicitly rather than left to the wildcard: the
- * point of llms.txt is to be read by them, and an explicit Allow states that
- * intent. Note this is a public statement that the content may be used for
- * training as well as for answering.
+ * Discovery pointers only. AI crawlers inherit the site's existing policy.
+ * No special Allow group should bypass WordPress or a plugin's restrictions.
  *
  * @param string $output Robots.txt body.
  * @param string $public Whether the site is set to be indexed.
@@ -456,32 +490,10 @@ function successcircles_robots_txt( $output, $public ) {
 		return $output;
 	}
 
-	$bots = array(
-		'GPTBot',
-		'OAI-SearchBot',
-		'ChatGPT-User',
-		'ClaudeBot',
-		'Claude-User',
-		'Claude-SearchBot',
-		'PerplexityBot',
-		'Perplexity-User',
-		'Google-Extended',
-		'Applebot-Extended',
-		'CCBot',
-		'Meta-ExternalAgent',
-		'Bytespider',
-	);
-
-	$lines = array( '', '# Form round-trips carry no unique content.', 'User-agent: *', 'Disallow: /*?sc-contact=', 'Disallow: /*?sc-token=', '' );
-
-	$lines[] = '# AI crawlers and answer engines are welcome here.';
-
-	foreach ( $bots as $bot ) {
-		$lines[] = 'User-agent: ' . $bot;
-		$lines[] = 'Allow: /';
-		$lines[] = '';
-	}
-
+	// Keep existing wildcard and bot-specific policy intact. Named Allow: /
+	// groups would override the wildcard's admin and other restrictions.
+	// Status-query pages remain crawlable so their noindex can be read.
+	$lines = array( '' );
 	$lines[] = '# Site summary written for language models:';
 	$lines[] = '# ' . home_url( '/llms.txt' );
 	$lines[] = '# ' . home_url( '/llms-full.txt' );

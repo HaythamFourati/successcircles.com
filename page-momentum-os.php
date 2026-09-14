@@ -17,10 +17,10 @@ get_header();
 		<p class="sc-eyebrow sc-eyebrow--accent">Momentum OS™</p>
 		<h1 class="sc-display">Make progress a rhythm.<br><em class="sc-accent">Not a resolution.</em></h1>
 		<p class="mos-lede">You already know how to work hard. Momentum OS helps you keep that work connected to your biggest goals—with clear commitments, experienced support, and a weekly rhythm you can repeat.</p>
-		<div class="sc-actions sc-actions--center"><a class="sc-btn sc-btn--primary" href="#weekly-cycle">Explore the Six Steps</a><a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( successcircles_url( '#programs' ) ); ?>">Check Our Programs</a></div>
+		<div class="sc-actions sc-actions--center"><a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'momentum_os_weekly_cycle' ) ); ?>">Explore the Six Steps</a><a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_programs' ) ) ); ?>">Check Our Programs</a></div>
 		<nav class="mos-cycle" aria-label="The Momentum OS cycle">
 			<?php foreach ( (array) $sc_system['steps'] as $sc_i => $sc_step ) : ?>
-				<a href="#os-step-<?php echo esc_attr( $sc_i + 1 ); ?>"><span><?php echo esc_html( sprintf( '%02d', $sc_i + 1 ) ); ?></span><?php echo esc_html( $sc_step['title'] ); ?><span aria-hidden="true">→</span></a>
+				<a href="<?php echo esc_url( successcircles_page_link( 'os_step_' . ( $sc_i + 1 ) ) ); ?>"><span><?php echo esc_html( sprintf( '%02d', $sc_i + 1 ) ); ?></span><?php echo esc_html( $sc_step['title'] ); ?><span aria-hidden="true">→</span></a>
 			<?php endforeach; ?>
 		</nav>
 	</header>
@@ -48,9 +48,9 @@ get_header();
 		<h2 class="sc-display">The same rhythm.<br>The support that <em class="sc-accent">fits you.</em></h2>
 		<p class="mos-lede">Put Momentum OS into practice with focused one-to-one accountability, group perspective, or an intensive 90-day experience.</p>
 		<div class="mos-programs">
-			<a href="<?php echo esc_url( successcircles_url( '/momentum-buddy/' ) ); ?>"><span>One-to-one accountability</span><div class="mos-programs__row"><strong>Momentum Buddy™</strong><span aria-hidden="true">↗</span></div></a>
-			<a href="<?php echo esc_url( successcircles_url( '/momentum-labs/' ) ); ?>"><span>Group perspective</span><div class="mos-programs__row"><strong>Momentum Labs</strong><span aria-hidden="true">↗</span></div></a>
-			<a href="<?php echo esc_url( successcircles_url( '/momentum-team/' ) ); ?>"><span>90-day AI accelerator</span><div class="mos-programs__row"><strong>Momentum Team</strong><span aria-hidden="true">↗</span></div></a>
+			<a href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_momentum_buddy' ) ) ); ?>"><span>One-to-one accountability</span><div class="mos-programs__row"><strong>Momentum Buddy™</strong><span aria-hidden="true">↗</span></div></a>
+			<a href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_momentum_labs' ) ) ); ?>"><span>Group perspective</span><div class="mos-programs__row"><strong>Momentum Labs</strong><span aria-hidden="true">↗</span></div></a>
+			<a href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_momentum_team' ) ) ); ?>"><span>90-day AI accelerator</span><div class="mos-programs__row"><strong>Momentum Team</strong><span aria-hidden="true">↗</span></div></a>
 		</div>
 	</div></section>
 	<?php while ( have_posts() ) : the_post(); if ( trim( get_the_content() ) ) : ?><div class="sc-section sc-prose"><?php the_content(); ?></div><?php endif; endwhile; ?>

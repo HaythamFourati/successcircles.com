@@ -16,9 +16,8 @@
 error_log
 debug.log
 
-# Never needed here — this theme has no build step on purpose
+# Development dependencies; generated assets are included in the theme
 node_modules/
-package-lock.json
 vendor/
 
 # Local tooling

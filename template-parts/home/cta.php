@@ -24,10 +24,10 @@ $sc_cta = (array) successcircles_content( 'cta', array() );
 		<p class="sc-lede sc-cta__lede"><?php echo esc_html( wp_specialchars_decode( $sc_cta['lede'] ) ); ?></p>
 
 		<div class="sc-actions sc-actions--center sc-cta__actions">
-			<a class="sc-btn sc-btn--primary" <?php successcircles_test_link_attrs(); ?>>
+			<a class="sc-btn sc-btn--primary" <?php successcircles_test_link_attrs( 'home_cta_test' ); ?>>
 				<?php echo esc_html( $sc_cta['primary_cta'] ); ?>
 			</a>
-			<a class="sc-btn sc-btn--ghost" href="<?php echo successcircles_url( '#programs' ); ?>">
+			<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( successcircles_page_link( 'home_cta_programs' ) ); ?>">
 				<?php echo esc_html( $sc_cta['secondary_cta'] ); ?>
 			</a>
 		</div>

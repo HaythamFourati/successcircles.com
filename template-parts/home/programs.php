@@ -86,7 +86,7 @@ $sc_note     = (array) $sc_programs['note'];
 
 		<p class="sc-programs__note">
 			<?php echo esc_html( $sc_note['before'] ); ?>
-			<a class="sc-inline-link" <?php successcircles_test_link_attrs(); ?>><?php echo esc_html( $sc_note['link'] ); ?></a>
+			<a class="sc-inline-link" <?php successcircles_test_link_attrs( 'home_programs_test' ); ?>><?php echo esc_html( $sc_note['link'] ); ?></a>
 			<?php echo esc_html( $sc_note['after'] ); ?>
 		</p>
 

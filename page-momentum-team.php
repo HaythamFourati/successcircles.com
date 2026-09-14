@@ -59,7 +59,7 @@ get_header();
 				<a class="sc-btn sc-btn--primary" href="<?php echo $sc_apply; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"<?php echo $sc_target; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?php echo esc_html( $sc_team['cta'] ); ?>
 				</a>
-				<a class="sc-btn sc-btn--ghost" href="#team-roadmap"><?php esc_html_e( 'Explore the 90 Days', 'successcircles' ); ?></a>
+				<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( successcircles_page_link( 'momentum_team_team_roadmap' ) ); ?>"><?php esc_html_e( 'Explore the 90 Days', 'successcircles' ); ?></a>
 				<?php if ( ! empty( $sc_team['cta_note'] ) ) : ?>
 					<p class="sc-team__cta-note"><?php echo esc_html( wp_specialchars_decode( $sc_team['cta_note'] ) ); ?></p>
 				<?php endif; ?>
@@ -90,11 +90,11 @@ get_header();
 		<?php endif; ?>
 	</section>
 	<nav class="mt-nav" aria-label="<?php esc_attr_e( 'Momentum Team page sections', 'successcircles' ); ?>">
-		<a href="#team-roadmap"><?php esc_html_e( 'The 90-Day Roadmap', 'successcircles' ); ?></a>
-		<a href="#team-support"><?php esc_html_e( 'What’s Included', 'successcircles' ); ?></a>
-		<a href="#team-stories"><?php esc_html_e( 'Member Stories', 'successcircles' ); ?></a>
-		<a href="#pricing"><?php esc_html_e( 'Program Investment', 'successcircles' ); ?></a>
-		<a href="#team-apply"><?php esc_html_e( 'How to Apply', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_team_team_roadmap' ) ); ?>"><?php esc_html_e( 'The 90-Day Roadmap', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_team_team_support' ) ); ?>"><?php esc_html_e( 'What’s Included', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_team_team_stories' ) ); ?>"><?php esc_html_e( 'Member Stories', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_team_pricing' ) ); ?>"><?php esc_html_e( 'Program Investment', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_team_team_apply' ) ); ?>"><?php esc_html_e( 'How to Apply', 'successcircles' ); ?></a>
 	</nav>
 
 	<section class="sc-band--dark" aria-labelledby="sc-team-prison-title">

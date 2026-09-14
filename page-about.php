@@ -67,10 +67,10 @@ while ( have_posts() ) :
 		</div>
 
 		<nav class="ab-nav" aria-label="<?php esc_attr_e( 'Explore our story', 'successcircles' ); ?>">
-			<a href="#our-approach">Our Approach <span aria-hidden="true">↓</span></a>
-			<a href="#corevalues">Our Values <span aria-hidden="true">↓</span></a>
-			<a href="#our-beginnings">Our Beginnings <span aria-hidden="true">↓</span></a>
-			<a href="#founder">Meet the Founder <span aria-hidden="true">↓</span></a>
+			<a href="<?php echo esc_url( successcircles_page_link( 'about_our_approach' ) ); ?>">Our Approach <span aria-hidden="true">↓</span></a>
+			<a href="<?php echo esc_url( successcircles_page_link( 'about_corevalues' ) ); ?>">Our Values <span aria-hidden="true">↓</span></a>
+			<a href="<?php echo esc_url( successcircles_page_link( 'about_our_beginnings' ) ); ?>">Our Beginnings <span aria-hidden="true">↓</span></a>
+			<a href="<?php echo esc_url( successcircles_page_link( 'about_founder' ) ); ?>">Meet the Founder <span aria-hidden="true">↓</span></a>
 		</nav>
 
 		<?php if ( trim( get_the_content() ) ) : ?>

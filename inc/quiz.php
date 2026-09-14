@@ -268,10 +268,11 @@ function successcircles_quiz_questions() {
  *
  * @return void
  */
-function successcircles_test_link_attrs() {
-	printf( 'href="%s"', esc_url( successcircles_test_url() ) );
+function successcircles_test_link_attrs( $location = null ) {
+	$url = $location ? successcircles_page_link( $location ) : successcircles_test_url();
+	printf( 'href="%s"', esc_url( $url ) );
 
-	if ( successcircles_quiz_questions() ) {
+	if ( in_array( $url, array( '#test', home_url( '/' ) . '#test' ), true ) && successcircles_quiz_questions() ) {
 		echo ' data-sc-quiz';
 	}
 }

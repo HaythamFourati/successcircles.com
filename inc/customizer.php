@@ -29,25 +29,14 @@ function successcircles_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'sc_links',
 		array(
-			'title' => __( 'Calls to action', 'successcircles' ),
-			'panel' => 'sc_panel',
+			'title' => __( 'Shared defaults', 'successcircles' ),
+			'panel' => 'sc_links_panel',
+			'priority' => 1,
+			'description' => __( 'Shared destinations used throughout the theme. Page-specific fields take precedence. Social profiles are also available under Footer and Contact. Clear a field to restore its default.', 'successcircles' ),
 		)
 	);
 
-	$links = array(
-		'sc_test_url'  => array(
-			'label'   => __( 'Entrepreneur Test URL', 'successcircles' ),
-			'default' => successcircles_content( 'links.test' ),
-		),
-		'sc_apply_url' => array(
-			'label'   => __( 'Application URL', 'successcircles' ),
-			'default' => successcircles_content( 'links.apply' ),
-		),
-		'sc_login_url' => array(
-			'label'   => __( 'Member Login URL', 'successcircles' ),
-			'default' => successcircles_content( 'links.member_login' ),
-		),
-	);
+	$links = successcircles_important_links();
 
 	foreach ( $links as $id => $link ) {
 		$wp_customize->add_setting(
@@ -83,7 +72,7 @@ function successcircles_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'sc_home_loader_enabled',
 		array(
-			'default'           => true,
+			'default'           => false,
 			'sanitize_callback' => 'successcircles_sanitize_checkbox',
 			'transport'         => 'refresh',
 		)
@@ -112,11 +101,11 @@ function successcircles_customize_register( $wp_customize ) {
 	$prices = array(
 		'sc_buddy_price' => array(
 			'label'   => __( 'Momentum Braintrust Buddy', 'successcircles' ),
-			'default' => successcircles_content( 'programs.cards.0.price', '$194' ),
+			'default' => successcircles_content( 'programs.cards.1.price', '$194' ),
 		),
 		'sc_labs_price'  => array(
 			'label'   => __( 'Momentum Labs', 'successcircles' ),
-			'default' => successcircles_content( 'programs.cards.1.price', '$97' ),
+			'default' => successcircles_content( 'programs.cards.0.price', '$97' ),
 		),
 		'sc_team_price'  => array(
 			'label'   => __( 'Momentum Team', 'successcircles' ),
@@ -130,7 +119,7 @@ function successcircles_customize_register( $wp_customize ) {
 			array(
 				'default'           => $price['default'],
 				'sanitize_callback' => 'sanitize_text_field',
-				'transport'         => 'postMessage',
+				'transport'         => 'refresh',
 			)
 		);
 
@@ -273,5 +262,57 @@ function successcircles_program_price( $index, $default = '' ) {
  * @return bool
  */
 function successcircles_home_loader_enabled() {
-	return (bool) get_theme_mod( 'sc_home_loader_enabled', true );
+	return (bool) get_theme_mod( 'sc_home_loader_enabled', false );
+}
+
+/** Shared link defaults used by the Customizer and URL resolver. */
+function successcircles_important_links() {
+	$defaults = successcircles_content_tree( false )['links'];
+	return array(
+		'sc_test_url'  => array(
+			'label'   => __( 'Entrepreneur Test URL', 'successcircles' ),
+			'default' => $defaults['test'],
+		),
+		'sc_apply_url' => array(
+			'label'   => __( 'Application URL', 'successcircles' ),
+			'default' => $defaults['apply'],
+		),
+		'sc_login_url' => array(
+			'label'   => __( 'Member Login URL', 'successcircles' ),
+			'default' => $defaults['member_login'],
+		),
+		'sc_buddy_signup_url' => array(
+			'label' => __( 'Momentum Buddy checkout URL', 'successcircles' ),
+			'default' => 'https://www.momentumbuddy.com/#_fw4dxl5ri',
+		),
+		'sc_labs_signup_url' => array(
+			'label' => __( 'Momentum Labs signup URL', 'successcircles' ),
+			'default' => 'https://www.successcircles.net/yesMomentumLabs',
+		),
+		'sc_team_signup_url' => array(
+			'label' => __( 'Momentum Team signup URL', 'successcircles' ),
+			'default' => 'https://www.successcircles.net/signupmomentumteam',
+		),
+		'sc_affiliates_url' => array(
+			'label' => __( 'Affiliates URL', 'successcircles' ),
+			'default' => 'https://ilovemomentum.com/',
+		),
+		'sc_privacy_url' => array(
+			'label' => __( 'Privacy policy URL', 'successcircles' ),
+			'default' => 'https://www.successcircles.com/privacy-policy/',
+		),
+		'sc_terms_url' => array(
+			'label' => __( 'Terms and conditions URL', 'successcircles' ),
+			'default' => 'https://www.successcircles.com/terms-conditions/',
+		),
+		'sc_booking_url' => array(
+			'label' => __( 'Book a conversation URL', 'successcircles' ),
+			'default' => 'http://jv.zone',
+		),
+		'sc_map_url' => array(
+			'label' => __( 'Google Maps URL', 'successcircles' ),
+			'default' => 'https://g.page/successcircles',
+		),
+	);
+
 }

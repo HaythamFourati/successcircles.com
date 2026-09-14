@@ -12,7 +12,7 @@ $sc_block = (array) successcircles_content( 'problem', array() );
 		</header>
 		<div class="hp-problem__layout">
 			<figure class="hp-problem__visual">
-				<img src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/hero-huddle.jpg' ); ?>" alt="<?php esc_attr_e( 'A laptop set up for a video conversation', 'successcircles' ); ?>" width="1170" height="780" loading="lazy" decoding="async">
+				<img <?php echo successcircles_responsive_source( 'hero-huddle.jpg', array( 480, 800, 1170 ), '(max-width: 759px) 90vw, 540px' ); ?> alt="<?php esc_attr_e( 'A laptop set up for a video conversation', 'successcircles' ); ?>" width="1170" height="780" loading="lazy" decoding="async">
 			</figure>
 			<ol class="hp-problem__items">
 				<?php foreach ( (array) $sc_block['items'] as $sc_index => $sc_item ) : ?>

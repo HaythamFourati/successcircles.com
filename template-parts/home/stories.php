@@ -40,10 +40,10 @@ $sc_all_quotes = array_merge( array( $sc_feature ), $sc_quotes );
 					type="button"
 					data-sc-video="<?php echo esc_url( $sc_video['embed_url'] ); ?>"
 					data-sc-video-title="<?php echo esc_attr( $sc_video['title'] ); ?>"
-					aria-label="<?php echo esc_attr( sprintf( /* translators: %s: video title. */ __( 'Play: %s', 'successcircles' ), $sc_video['title'] ) ); ?>"
+					aria-label="<?php echo esc_attr( sprintf( /* translators: %s: video title. */ __( 'Watch / %1$s: %2$s', 'successcircles' ), $sc_video['duration'], $sc_video['title'] ) ); ?>"
 				>
 					<img
-						src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/story-poster.png' ); ?>"
+						<?php echo successcircles_responsive_source( 'story-poster.png', array( 480, 800, 1200 ), '(max-width: 759px) 90vw, 600px' ); ?>
 						alt="<?php echo esc_attr( $sc_video['poster_alt'] ); ?>"
 						width="1914"
 						height="1075"

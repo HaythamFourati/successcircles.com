@@ -20,13 +20,16 @@ if ( ! defined( 'SUCCESSCIRCLES_URI' ) ) {
 }
 
 require_once SUCCESSCIRCLES_DIR . '/inc/setup.php';
+require_once SUCCESSCIRCLES_DIR . '/inc/seo.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/schema.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/llms.php';
+require_once SUCCESSCIRCLES_DIR . '/inc/performance.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/enqueue.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/content.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/template-tags.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/post-types.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/customizer.php';
+require_once SUCCESSCIRCLES_DIR . '/inc/links.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/contact.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/cf7.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/quiz.php';

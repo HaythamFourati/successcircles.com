@@ -20,7 +20,7 @@ $sc_community = (array) successcircles_content( 'community', array() );
 			<div class="sc-community__media">
 				<figure class="sc-community__figure">
 					<img
-						src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/team/members-live.jpg?v=' . successcircles_asset_version( '/assets/img/team/members-live.jpg' ) ); ?>"
+						<?php echo successcircles_responsive_source( 'team/members-live.jpg', array( 480, 800, 1200 ), '(max-width: 759px) 90vw, 560px' ); ?>
 						alt="<?php esc_attr_e( 'Success Circles members during a live community session', 'successcircles' ); ?>"
 						width="1120"
 						height="1400"

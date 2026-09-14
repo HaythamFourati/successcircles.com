@@ -55,10 +55,10 @@ get_header();
 			</p>
 
 			<div class="sc-actions sc-buddy__actions">
-				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_apply_url() ); ?>">
+				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_application' ) ); ?>">
 					<?php echo esc_html( wp_specialchars_decode( $sc_buddy['cta'] ) ); ?>
 				</a>
-				<a class="sc-btn sc-btn--ghost" href="#pricing"><?php esc_html_e( 'View Membership Options', 'successcircles' ); ?></a>
+				<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_pricing' ) ); ?>"><?php esc_html_e( 'View Membership Options', 'successcircles' ); ?></a>
 				<?php if ( ! empty( $sc_buddy['cta_note'] ) ) : ?>
 					<p class="sc-buddy__cta-note"><?php echo esc_html( wp_specialchars_decode( $sc_buddy['cta_note'] ) ); ?></p>
 				<?php endif; ?>
@@ -80,13 +80,20 @@ get_header();
 		<?php
 		$sc_ring  = (array) ( $sc_buddy['ring'] ?? array() );
 		$sc_faces = (array) ( $sc_ring['faces'] ?? array() );
+		$sc_people_by_image = array_column( $sc_quotes, null, 'image' );
+		$sc_hero_people = array();
+		foreach ( (array) ( $sc_ring['hero_faces'] ?? array() ) as $sc_portrait ) {
+			if ( isset( $sc_people_by_image[ $sc_portrait ] ) ) {
+				$sc_hero_people[] = $sc_people_by_image[ $sc_portrait ];
+			}
+		}
 
 		if ( $sc_faces ) :
 			?>
 			<aside class="mb-people" aria-label="<?php esc_attr_e( 'Meet the community', 'successcircles' ); ?>">
 				<div class="mb-people__heading"><span><?php esc_html_e( 'Independent owners. Shared ambition.', 'successcircles' ); ?></span><span aria-hidden="true">↗</span></div>
 				<div class="mb-people__portraits">
-					<?php foreach ( array_slice( $sc_quotes, 0, 4 ) as $sc_person ) : ?>
+					<?php foreach ( $sc_hero_people as $sc_person ) : ?>
 						<figure>
 							<img src="<?php echo esc_url( $sc_img . 'people/' . $sc_person['image'] ); ?>" alt="<?php echo esc_attr( $sc_person['name'] ); ?>" width="<?php echo esc_attr( $sc_person['w'] ); ?>" height="<?php echo esc_attr( $sc_person['h'] ); ?>" decoding="async">
 							<figcaption><?php echo esc_html( $sc_person['name'] ); ?></figcaption>
@@ -98,10 +105,10 @@ get_header();
 		<?php endif; ?>
 	</section>
 	<nav class="mb-navigation" aria-label="<?php esc_attr_e( 'Momentum Buddy page sections', 'successcircles' ); ?>">
-		<a href="#buddy-how-it-works"><?php esc_html_e( 'How It Works', 'successcircles' ); ?></a>
-		<a href="#buddy-members"><?php esc_html_e( 'Member Stories', 'successcircles' ); ?></a>
-		<a href="#buddy-included"><?php esc_html_e( 'What’s Included', 'successcircles' ); ?></a>
-		<a href="#pricing"><?php esc_html_e( 'Membership Options', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_buddy_how_it_works' ) ); ?>"><?php esc_html_e( 'How It Works', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_buddy_members' ) ); ?>"><?php esc_html_e( 'Member Stories', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_buddy_included' ) ); ?>"><?php esc_html_e( 'What’s Included', 'successcircles' ); ?></a>
+		<a href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_pricing' ) ); ?>"><?php esc_html_e( 'Membership Options', 'successcircles' ); ?></a>
 	</nav>
 
 	<?php /* STATS — tracked results */ ?>
@@ -305,7 +312,7 @@ get_header();
 						</p>
 						<p class="sc-buddy__plan-detail"><?php echo esc_html( wp_specialchars_decode( $sc_plan['detail'] ) ); ?></p>
 
-						<a class="sc-btn sc-btn--sm <?php echo $sc_plan['featured'] ? 'sc-btn--primary' : 'sc-btn--ghost'; ?>" href="<?php echo esc_url( successcircles_apply_url() ); ?>">
+						<a class="sc-btn sc-btn--sm <?php echo $sc_plan['featured'] ? 'sc-btn--primary' : 'sc-btn--ghost'; ?>" href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_application' ) ); ?>">
 							<?php echo esc_html( wp_specialchars_decode( $sc_buddy['cta'] ) ); ?>
 						</a>
 					</article>
@@ -342,7 +349,7 @@ get_header();
 			<p class="sc-buddy__kicker"><?php echo esc_html( wp_specialchars_decode( $sc_closing['kicker'] ) ); ?></p>
 
 			<div class="sc-actions sc-actions--center">
-				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_apply_url() ); ?>">
+				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'momentum_buddy_application' ) ); ?>">
 					<?php echo esc_html( wp_specialchars_decode( $sc_buddy['cta'] ) ); ?>
 				</a>
 			</div>

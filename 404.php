@@ -22,10 +22,10 @@ get_header();
 	</p>
 
 	<div class="sc-actions sc-actions--center">
-		<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'not_found_home' ) ); ?>">
 			<?php esc_html_e( 'Back to homepage', 'successcircles' ); ?>
 		</a>
-		<a class="sc-btn sc-btn--ghost" <?php successcircles_test_link_attrs(); ?>>
+		<a class="sc-btn sc-btn--ghost" <?php successcircles_test_link_attrs( 'not_found_404_test' ); ?>>
 			<?php esc_html_e( 'Take the Entrepreneur Test', 'successcircles' ); ?>
 		</a>
 	</div>

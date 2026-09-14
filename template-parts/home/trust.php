@@ -42,6 +42,8 @@ foreach ( (array) $sc_trust['names'] as $sc_name ) {
 								'src'   => $sc_part['data']['src'],
 								'alt'   => $sc_part['data']['alt'],
 								'class' => 'sc-trust__logo',
+							'width' => 'Inc.' === $sc_part['data']['alt'] ? 220 : 1133,
+							'height' => 'Inc.' === $sc_part['data']['alt'] ? 76 : 278,
 							)
 						);
 						?>
@@ -54,6 +56,8 @@ foreach ( (array) $sc_trust['names'] as $sc_name ) {
 							'src'   => $sc_part['data']['src'],
 							'alt'   => $sc_part['data']['alt'],
 							'class' => 'sc-trust__logo',
+							'width' => 'Inc.' === $sc_part['data']['alt'] ? 220 : 1133,
+							'height' => 'Inc.' === $sc_part['data']['alt'] ? 76 : 278,
 						)
 					);
 					?>

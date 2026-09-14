@@ -1,6 +1,8 @@
 /* Homepage refinements. Shared founder and closing CTA keep their own styles. */
 /* Crop the widescreen player to the circle; controls are our own overlay. */
 .home .sc-orbit__figure--video { background: #000; isolation: isolate; }
+.home .sc-orbit__figure .sc-orbit__poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 23% center; pointer-events: none; }
+.home .sc-orbit__figure.has-played .sc-orbit__poster { display: none; }
 .home .sc-orbit__video { position: absolute; top: 50%; left: 50%; display: block; width: 177.778%; height: 100%; max-width: none; transform: translate(-50%, -50%); border: 0; pointer-events: none; }
 .home .sc-orbit__toggle { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 76px; height: 76px; padding: 24px; border: 0; border-radius: 50%; color: var(--sc-ink); background: var(--sc-orange); box-shadow: 0 0 0 14px oklch(var(--sc-cream-c) / .18); cursor: pointer; transition: background .2s, opacity .2s; }
 .home .sc-orbit__toggle svg { width: 28px; height: 28px; }
@@ -188,3 +190,44 @@
 .home :is(.sc-faq__item, .sc-orbit__badge, .sc-os__pause) {
 	border-radius: var(--sc-home-radius-sm);
 }
+
+/* The huddle instrument: a solid segmented disc, with readable controls beside it. */
+.sc-call { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: 0 64px; margin-top: 52px; padding: 32px 36px 0; border: 1px solid oklch(var(--sc-ink-c) / .12); border-radius: 24px; background: var(--sc-surface-card); }
+.sc-call__object { min-width: 0; }
+.sc-call__stage { height: 480px; position: relative; perspective: 1100px; }
+.sc-call__world { position: absolute; left: 50%; top: 47%; width: 0; height: 0; transform-style: preserve-3d; transform: scale(var(--call-scale, 1)) rotateX(52deg) rotateZ(-18deg); }
+.sc-call__ground { position: absolute; width: 456px; height: 456px; border: 1px solid oklch(var(--sc-ink-c) / .14); border-radius: 50%; transform: translate(-50%, -50%) translateZ(-25px); box-shadow: 0 28px 40px -10px oklch(0.1 0.01 60 / .25); }
+.sc-call__ground::after { content: ""; position: absolute; inset: -18px; border-radius: inherit; border: 1px dashed oklch(var(--sc-ink-c) / .12); }
+.sc-call__rotor { position: absolute; transform-style: preserve-3d; transform: rotateZ(108deg); }
+.sc-call__segment { position: absolute; transform-style: preserve-3d; transform: rotateZ(calc(var(--position) * 90deg)); }
+.sc-call__slice { position: absolute; max-width: none; width: 460px; height: 460px; overflow: visible; transform: translate(-50%, -50%) translateZ(calc(var(--layer) * 3px)); }
+.sc-call__slice path { fill: oklch(0.28 0.018 60); stroke: oklch(0.39 0.025 60); stroke-width: .7; }
+.sc-call__slice:last-child path { fill: oklch(0.35 0.021 60); stroke: oklch(0.53 0.035 60); stroke-width: 1; }
+.sc-call__slice text { fill: oklch(0.94 0.012 85); font: 36px var(--sc-font-display); }
+.sc-call__segment.is-active .sc-call__slice path { fill: oklch(0.52 0.14 47); stroke: oklch(0.61 0.16 47); }
+.sc-call__segment.is-active .sc-call__slice:last-child path { fill: var(--sc-orange); stroke: oklch(0.83 0.12 55); }
+.sc-call__segment.is-active .sc-call__slice text { fill: oklch(0.19 0.012 60); }
+.sc-call__hub { position: absolute; width: 190px; height: 190px; border-radius: 50%; transform: translate(-50%, -50%) translateZ(12px); transform-style: preserve-3d; background: oklch(0.22 0.015 60); box-shadow: 0 0 0 1px oklch(0.4 0.018 60); }
+.sc-call__hub::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: oklch(0.23 0.015 60); transform: translateZ(-12px); box-shadow: 0 0 0 1px oklch(0.35 0.02 60); }
+.sc-call__hub-face { position: absolute; inset: 0; border-radius: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; background: oklch(0.25 0.015 60); color: oklch(0.96 0.012 85); border: 1px solid oklch(0.48 0.025 60); transform: translateZ(9px) rotateZ(18deg); }
+.sc-call__hub-face span { font: 9px/1.6 var(--sc-font-mono); letter-spacing: .16em; }
+.sc-call__hub-face strong { font: 500 88px/.95 var(--sc-font-display); margin: 6px 0 1px; }
+.sc-call__controls { display: flex; justify-content: center; gap: 8px; margin: -14px 0 30px; }
+.sc-call__controls[hidden] { display: none; }
+.sc-call__controls button { min-width: 42px; min-height: 42px; padding: 9px 13px; border-radius: 999px; border: 1px solid oklch(var(--sc-ink-c) / .22); background: transparent; color: var(--sc-ink); font: 12px var(--sc-font-body); cursor: pointer; }
+.sc-call__controls button:hover { border-color: var(--sc-rust); }
+.sc-call__eyebrow { font: 11px/1.6 var(--sc-font-mono); color: var(--sc-rust); margin: 0 0 14px; }
+.sc-call__steps { margin: 0; padding: 0; list-style: none; }
+.sc-call__steps li + li { border-top: 1px solid oklch(var(--sc-ink-c) / .14); }
+.sc-call__step { display: grid; grid-template-columns: 24px 1fr 18px; align-items: start; gap: 14px; width: 100%; padding: 19px 0; border: 0; background: none; color: var(--sc-ink); text-align: left; cursor: pointer; }
+.sc-call__number { font: 11px/1.8 var(--sc-font-mono); padding-top: 3px; color: var(--sc-rust); }
+.sc-call__step strong { display: block; font: 500 30px/1.1 var(--sc-font-display); margin-bottom: 8px; }
+.sc-call__description { display: block; max-width: 32ch; font: 14px/1.65 var(--sc-font-body); color: oklch(var(--sc-ink-c) / .8); }
+.sc-call__arrow { color: var(--sc-rust); opacity: 0; }
+.sc-call__step[aria-pressed="true"] strong { color: var(--sc-rust); }
+.sc-call__step[aria-pressed="true"] .sc-call__arrow, .sc-call__step:hover .sc-call__arrow { opacity: 1; }
+.sc-call button:focus-visible { outline: 2px solid var(--sc-rust); outline-offset: 4px; border-radius: 5px; }
+.sc-call__caption { grid-column: 1 / -1; margin: 20px 0 0; padding: 24px 0; text-align: center; border-top: 1px solid oklch(var(--sc-ink-c) / .14); font: 15px/1.7 var(--sc-font-body); color: oklch(var(--sc-ink-c) / .8); }
+@media (max-width: 1000px) { .sc-call { gap: 0 28px; padding-inline: 24px; } }
+@media (max-width: 760px) { .sc-call { grid-template-columns: 1fr; padding: 12px 22px 0; margin-top: 32px; } .sc-call__stage { height: 340px; } .sc-call { --call-scale: .6; } .sc-call__content { padding-top: 12px; } .sc-call__controls { margin: 0 0 20px; } .sc-call__caption { text-align: left; margin-top: 10px; } }
+@media (prefers-reduced-motion: reduce) { .sc-call__world { transform: scale(var(--call-scale, 1)) rotateX(52deg) rotateZ(-18deg); } }

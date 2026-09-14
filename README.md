@@ -66,7 +66,13 @@ Internal links are stored relative (`#programs`, `/about/`) and resolved by `suc
 
 ### 3. Globals → the Customizer
 
-Panel **SuccessCircles** → Calls to action, Pricing, Contact & social. Read through `successcircles_option( $mod, $content_path, $default )`, so a Customizer value always wins over the content tree.
+Open **Appearance → Customize → Success Circles — Links**. Links are grouped by their page, with separate Header & navigation, Footer, and Shared defaults sections. Page fields override only that location; clearing one restores the shared value or built-in destination. Repeated buttons are labeled when they share one setting. Existing global and social settings are preserved.
+
+Default header/footer links are editable here. If a WordPress menu is assigned, edit it in the Customizer’s **Menus** panel. Post links, pagination, and links authored inside post/page content remain managed by WordPress and the content editor. The skip-to-content accessibility control and video embeds are not destination overrides.
+
+All outbound HTTP(S) anchors in rendered pages—including editor content—open in a new tab with `noopener noreferrer`. Telephone, email, and internal links keep their normal behavior. This uses WordPress’s HTML tag processor on frontend HTML only; no JavaScript is required.
+
+Pricing and contact details remain in the **Success Circles** panel. Link locations are declared in `inc/link-locations.php` or discovered from URL fields in the raw content tree by `inc/links.php`. Run `php tests/link-settings.php` for link resolution and Customizer registration checks.
 
 ---
 
@@ -199,3 +205,9 @@ Design implemented from the *SuccessCircles 2026 Website Redesign* prototype. Fo
 ## License
 
 GPL-2.0-or-later, matching WordPress. See the header in `style.css`.
+
+### Search metadata and discovery
+
+Use **Appearance → Customize → Success Circles — Search & Sharing** to edit titles and descriptions in 12 page sections. Blank controls restore defaults. When an SEO plugin is active, configure its metadata there; the theme avoids competing head output. Program checkout links live in **Success Circles — Links → Shared defaults**, with page overrides in the individual program sections.
+
+See [the SEO/GEO/AEO implementation report](reports/seo-geo-aeo-report.md) for changes, validation and production follow-up. Regression checks: `php tests/seo.php`, `php tests/link-settings.php`, and `node tests/hero-video.cjs`. With WordPress running, use `python3 tests/seo-audit.py --base http://successcircles.local/` for a read-only sitemap crawl.

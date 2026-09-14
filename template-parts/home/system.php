@@ -75,7 +75,7 @@ $sc_count  = max( 1, count( $sc_steps ) );
 									echo esc_attr(
 										sprintf(
 											/* translators: 1: step number, 2: step name. */
-											__( 'Step %1$s: %2$s', 'successcircles' ),
+											__( 'Step %1$02d: %2$s', 'successcircles' ),
 											$sc_index + 1,
 											$sc_step['title']
 										)

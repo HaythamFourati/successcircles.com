@@ -52,8 +52,8 @@ get_header();
 				<?php echo esc_html( wp_specialchars_decode( $sc_jv['lede'] ) ); ?>
 			</p>
 			<div class="jv-actions">
-				<a class="sc-btn sc-btn--primary" href="#joseph-story"><?php esc_html_e( 'Discover His Story', 'successcircles' ); ?></a>
-				<a class="jv-text-link" href="<?php echo esc_url( successcircles_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Get in Touch', 'successcircles' ); ?> <span aria-hidden="true">↗</span></a>
+				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'about_joseph_varghese_joseph_story' ) ); ?>"><?php esc_html_e( 'Discover His Story', 'successcircles' ); ?></a>
+				<a class="jv-text-link" href="<?php echo esc_url( esc_url( successcircles_page_link( 'about_joseph_varghese_contact_us' ) ) ); ?>"><?php esc_html_e( 'Get in Touch', 'successcircles' ); ?> <span aria-hidden="true">↗</span></a>
 			</div>
 		</div>
 

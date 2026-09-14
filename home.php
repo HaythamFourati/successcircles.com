@@ -30,7 +30,7 @@ get_header();
 		<p class="sc-journal__lede">
 			<?php echo esc_html( wp_specialchars_decode( $sc_copy['lede'] ) ); ?>
 		</p>
-		<?php if ( have_posts() ) : ?><a class="rf-browse" href="#conversations"><?php esc_html_e( 'Explore the Conversations', 'successcircles' ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
+		<?php if ( have_posts() ) : ?><a class="rf-browse" href="<?php echo esc_url( successcircles_page_link( 'podcast_conversations' ) ); ?>"><?php esc_html_e( 'Explore the Conversations', 'successcircles' ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
 		<?php if ( $sc_intro && '' !== trim( $sc_intro->post_content ) ) : ?>
 			<div class="sc-prose sc-journal__intro">
 				<?php echo wp_kses_post( apply_filters( 'the_content', $sc_intro->post_content ) ); ?>
