@@ -90,92 +90,30 @@
 
 	/**
 	 * Click-to-play facade for the member story video. Keeps the Vimeo player
-	 * (and its cookies) off the page until the visitor asks for it.
-	 *
-	 * Two shapes, one contract: a trigger normally swaps itself for the iframe
-	 * in place, but one carrying data-sc-video-modal opens the shared <dialog>
-	 * instead — that is the hero, whose photo has no 16/9 frame to fill.
+	 * (and its cookies) off the page until the visitor asks for it: the trigger
+	 * swaps itself for the iframe in place.
 	 */
 	function initStoryVideo() {
-		var triggers = document.querySelectorAll( '[data-sc-video]' );
-		var dialog = document.querySelector( '[data-sc-video-dialog]' );
-		var mount = dialog ? dialog.querySelector( '[data-sc-video-mount]' ) : null;
-		var modal = !! mount && typeof dialog.showModal === 'function';
-
-		var build = function ( src, title ) {
-			var iframe = document.createElement( 'iframe' );
-			iframe.setAttribute( 'src', src );
-			iframe.setAttribute( 'title', title );
-			iframe.setAttribute( 'allow', 'autoplay; fullscreen; picture-in-picture' );
-			iframe.setAttribute( 'allowfullscreen', 'allowfullscreen' );
-			iframe.setAttribute( 'loading', 'lazy' );
-
-			return iframe;
-		};
-
-		Array.prototype.forEach.call( triggers, function ( trigger ) {
+		Array.prototype.forEach.call( document.querySelectorAll( '[data-sc-video]' ), function ( trigger ) {
 			trigger.addEventListener( 'click', function ( event ) {
-				var frame = trigger.parentNode;
 				var src = trigger.getAttribute( 'data-sc-video' );
-				var title = trigger.getAttribute( 'data-sc-video-title' ) || '';
-				var popup = trigger.hasAttribute( 'data-sc-video-modal' );
 
 				if ( ! src ) {
 					return;
 				}
 
-				// No <dialog> support: leave the href alone so the click still
-				// lands on the section carrying the same film inline.
-				if ( popup && ! modal ) {
-					return;
-				}
-
 				event.preventDefault();
 
-				if ( popup ) {
-					mount.appendChild( build( src, title ) );
-					dialog.showModal();
-					return;
-				}
+				var iframe = document.createElement( 'iframe' );
+				iframe.setAttribute( 'src', src );
+				iframe.setAttribute( 'title', trigger.getAttribute( 'data-sc-video-title' ) || '' );
+				iframe.setAttribute( 'allow', 'autoplay; fullscreen; picture-in-picture' );
+				iframe.setAttribute( 'allowfullscreen', 'allowfullscreen' );
+				iframe.setAttribute( 'loading', 'lazy' );
 
-				var iframe = build( src, title );
-
-				frame.replaceChild( iframe, trigger );
+				trigger.parentNode.replaceChild( iframe, trigger );
 				iframe.focus();
 			} );
-		} );
-
-		if ( ! modal ) {
-			return;
-		}
-
-		// Emptying the mount is what stops playback: there is no player API to
-		// call here, and an iframe left in the DOM keeps talking to Vimeo.
-		//
-		// Watch the open attribute rather than listening for the close event.
-		// Once the visitor has clicked into the player, focus sits inside the
-		// cross-origin Vimeo iframe, and an Escape from there closes the dialog
-		// without the close event ever reaching us — the video would go on
-		// playing behind the page. The attribute is reflected state, so this
-		// catches every close: Escape, the button, the backdrop, or script.
-		new MutationObserver( function () {
-			if ( ! dialog.open ) {
-				mount.textContent = '';
-			}
-		} ).observe( dialog, { attributes: true, attributeFilter: [ 'open' ] } );
-
-		Array.prototype.forEach.call( dialog.querySelectorAll( '[data-sc-video-close]' ), function ( button ) {
-			button.addEventListener( 'click', function () {
-				dialog.close();
-			} );
-		} );
-
-		// The panel is the only child, so a click landing on the dialog itself
-		// landed on the backdrop.
-		dialog.addEventListener( 'click', function ( event ) {
-			if ( event.target === dialog ) {
-				dialog.close();
-			}
 		} );
 	}
 
@@ -1177,6 +1115,38 @@
 		} );
 	}
 
+	/**
+	 * Render every ™ as a small raised mark, and give bare "Momentum OS" one.
+	 * ponytail: done in one DOM pass instead of editing ~80 content strings;
+	 * with JS off the ™ still shows, just full size.
+	 */
+	function initTrademarks() {
+		var skip = /^(SCRIPT|STYLE|TEXTAREA|CODE|PRE)$/;
+		var walker = document.createTreeWalker( document.body, NodeFilter.SHOW_TEXT, {
+			acceptNode: function ( node ) {
+				if ( node.parentNode.closest( '.sc-tm' ) || skip.test( node.parentNode.nodeName ) ) {
+					return NodeFilter.FILTER_REJECT;
+				}
+				return /\u2122|Momentum OS/.test( node.nodeValue ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+			}
+		} );
+		var nodes = [];
+		while ( walker.nextNode() ) {
+			nodes.push( walker.currentNode );
+		}
+		nodes.forEach( function ( node ) {
+			var html = node.nodeValue
+				.replace( /[&<>]/g, function ( c ) {
+					return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ c ];
+				} )
+				.replace( /Momentum OS(?!\u2122)/g, 'Momentum OS\u2122' )
+				.replace( /\u2122/g, '<sup class="sc-tm">\u2122</sup>' );
+			var span = document.createElement( 'span' );
+			span.innerHTML = html;
+			node.parentNode.replaceChild( span, node );
+		} );
+	}
+
 	function init() {
 		initLoader();
 		initMenu();
@@ -1191,6 +1161,7 @@
 		initLetterDeck();
 		initBuzzDeck();
 		initThemeToggle();
+		initTrademarks();
 	}
 
 	if ( document.readyState !== 'loading' ) {

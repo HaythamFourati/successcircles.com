@@ -55,8 +55,11 @@ $sc_social  = (array) successcircles_content( 'footer.social', array() );
 		<ul class="sc-footer__social">
 			<?php foreach ( $sc_social as $sc_item ) : ?>
 				<li>
-					<a href="<?php echo esc_url( successcircles_social_url( $sc_item ) ); ?>" rel="noopener noreferrer" target="_blank">
-						<?php echo esc_html( $sc_item['label'] ); ?>
+					<a href="<?php echo esc_url( successcircles_social_url( $sc_item ) ); ?>" rel="noopener noreferrer" target="_blank" aria-label="<?php echo esc_attr( $sc_item['label'] ); ?>" title="<?php echo esc_attr( $sc_item['label'] ); ?>">
+						<?php
+						$sc_glyph = successcircles_social_icon( $sc_item['label'], 18 );
+						echo $sc_glyph ? $sc_glyph : esc_html( $sc_item['label'] ); // phpcs:ignore WordPress.Security.EscapeOutput
+						?>
 					</a>
 				</li>
 			<?php endforeach; ?>

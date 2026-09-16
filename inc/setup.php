@@ -398,3 +398,23 @@ function successcircles_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'successcircles_body_classes' );
+
+/**
+ * Theme favicon. Skipped when the client sets a Site Icon in the Customizer,
+ * which WordPress renders itself.
+ */
+function successcircles_favicon() {
+	if ( has_site_icon() ) {
+		return;
+	}
+
+	$img = get_template_directory_uri() . '/assets/img/';
+
+	printf(
+		'<link rel="icon" href="%1$sfavicon.svg" type="image/svg+xml">' . "\n" .
+		'<link rel="icon" href="%1$sfavicon-32.png" sizes="32x32">' . "\n" .
+		'<link rel="apple-touch-icon" href="%1$sfavicon-180.png">' . "\n",
+		esc_url( $img )
+	);
+}
+add_action( 'wp_head', 'successcircles_favicon', 2 );

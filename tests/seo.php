@@ -84,9 +84,9 @@ check(str_contains(successcircles_robots_txt($robots,'1'),'Allow: /'),false,'No 
 $page=new WP_Post('faq');$page->post_password='secret';$GLOBALS['pages']['faq']=$page;
 check(successcircles_llms_public_page('faq'),false,'Protected pages excluded from AI index');
 $GLOBALS['mods']=array();
-check(successcircles_page_link('momentum_buddy_application'),'https://www.momentumbuddy.com/#_fw4dxl5ri','Buddy checkout');
-check(successcircles_content('labs_page.cta_url'),'https://www.successcircles.net/yesMomentumLabs','Labs checkout');
-check(successcircles_content('team_page.cta_url'),'https://www.successcircles.net/signupmomentumteam','Team checkout');
+check(successcircles_page_link('momentum_buddy_application'),'https://www.successcircles.net/yesmomentum','Buddy checkout');
+check(successcircles_content('labs_page.cta_url'),'https://www.successcircles.net/mlabs','Labs checkout');
+check(successcircles_content('team_page.cta_url'),'https://www.successcircles.net/yesmomentumteam','Team checkout');
 $GLOBALS['mods']['sc_buddy_signup_url']='https://checkout.example.test/new';
 check(successcircles_page_link('momentum_buddy_application'),'https://checkout.example.test/new','Buddy shared control');
 class Manager {public $settings=array();public $controls=array();function add_panel(...$a){} function add_section(...$a){} function add_setting($id,$args){$this->settings[$id]=$args;}function add_control($id,$args){$this->controls[$id]=$args;}}

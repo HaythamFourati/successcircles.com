@@ -191,43 +191,172 @@
 	border-radius: var(--sc-home-radius-sm);
 }
 
-/* The huddle instrument: a solid segmented disc, with readable controls beside it. */
-.sc-call { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: 0 64px; margin-top: 52px; padding: 32px 36px 0; border: 1px solid oklch(var(--sc-ink-c) / .12); border-radius: 24px; background: var(--sc-surface-card); }
-.sc-call__object { min-width: 0; }
-.sc-call__stage { height: 480px; position: relative; perspective: 1100px; }
-.sc-call__world { position: absolute; left: 50%; top: 47%; width: 0; height: 0; transform-style: preserve-3d; transform: scale(var(--call-scale, 1)) rotateX(52deg) rotateZ(-18deg); }
-.sc-call__ground { position: absolute; width: 456px; height: 456px; border: 1px solid oklch(var(--sc-ink-c) / .14); border-radius: 50%; transform: translate(-50%, -50%) translateZ(-25px); box-shadow: 0 28px 40px -10px oklch(0.1 0.01 60 / .25); }
-.sc-call__ground::after { content: ""; position: absolute; inset: -18px; border-radius: inherit; border: 1px dashed oklch(var(--sc-ink-c) / .12); }
-.sc-call__rotor { position: absolute; transform-style: preserve-3d; transform: rotateZ(108deg); }
-.sc-call__segment { position: absolute; transform-style: preserve-3d; transform: rotateZ(calc(var(--position) * 90deg)); }
-.sc-call__slice { position: absolute; max-width: none; width: 460px; height: 460px; overflow: visible; transform: translate(-50%, -50%) translateZ(calc(var(--layer) * 3px)); }
-.sc-call__slice path { fill: oklch(0.28 0.018 60); stroke: oklch(0.39 0.025 60); stroke-width: .7; }
-.sc-call__slice:last-child path { fill: oklch(0.35 0.021 60); stroke: oklch(0.53 0.035 60); stroke-width: 1; }
-.sc-call__slice text { fill: oklch(0.94 0.012 85); font: 36px var(--sc-font-display); }
-.sc-call__segment.is-active .sc-call__slice path { fill: oklch(0.52 0.14 47); stroke: oklch(0.61 0.16 47); }
-.sc-call__segment.is-active .sc-call__slice:last-child path { fill: var(--sc-orange); stroke: oklch(0.83 0.12 55); }
-.sc-call__segment.is-active .sc-call__slice text { fill: oklch(0.19 0.012 60); }
-.sc-call__hub { position: absolute; width: 190px; height: 190px; border-radius: 50%; transform: translate(-50%, -50%) translateZ(12px); transform-style: preserve-3d; background: oklch(0.22 0.015 60); box-shadow: 0 0 0 1px oklch(0.4 0.018 60); }
-.sc-call__hub::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: oklch(0.23 0.015 60); transform: translateZ(-12px); box-shadow: 0 0 0 1px oklch(0.35 0.02 60); }
-.sc-call__hub-face { position: absolute; inset: 0; border-radius: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; background: oklch(0.25 0.015 60); color: oklch(0.96 0.012 85); border: 1px solid oklch(0.48 0.025 60); transform: translateZ(9px) rotateZ(18deg); }
-.sc-call__hub-face span { font: 9px/1.6 var(--sc-font-mono); letter-spacing: .16em; }
-.sc-call__hub-face strong { font: 500 88px/.95 var(--sc-font-display); margin: 6px 0 1px; }
-.sc-call__controls { display: flex; justify-content: center; gap: 8px; margin: -14px 0 30px; }
-.sc-call__controls[hidden] { display: none; }
-.sc-call__controls button { min-width: 42px; min-height: 42px; padding: 9px 13px; border-radius: 999px; border: 1px solid oklch(var(--sc-ink-c) / .22); background: transparent; color: var(--sc-ink); font: 12px var(--sc-font-body); cursor: pointer; }
-.sc-call__controls button:hover { border-color: var(--sc-rust); }
-.sc-call__eyebrow { font: 11px/1.6 var(--sc-font-mono); color: var(--sc-rust); margin: 0 0 14px; }
-.sc-call__steps { margin: 0; padding: 0; list-style: none; }
-.sc-call__steps li + li { border-top: 1px solid oklch(var(--sc-ink-c) / .14); }
-.sc-call__step { display: grid; grid-template-columns: 24px 1fr 18px; align-items: start; gap: 14px; width: 100%; padding: 19px 0; border: 0; background: none; color: var(--sc-ink); text-align: left; cursor: pointer; }
-.sc-call__number { font: 11px/1.8 var(--sc-font-mono); padding-top: 3px; color: var(--sc-rust); }
-.sc-call__step strong { display: block; font: 500 30px/1.1 var(--sc-font-display); margin-bottom: 8px; }
-.sc-call__description { display: block; max-width: 32ch; font: 14px/1.65 var(--sc-font-body); color: oklch(var(--sc-ink-c) / .8); }
-.sc-call__arrow { color: var(--sc-rust); opacity: 0; }
-.sc-call__step[aria-pressed="true"] strong { color: var(--sc-rust); }
-.sc-call__step[aria-pressed="true"] .sc-call__arrow, .sc-call__step:hover .sc-call__arrow { opacity: 1; }
-.sc-call button:focus-visible { outline: 2px solid var(--sc-rust); outline-offset: 4px; border-radius: 5px; }
-.sc-call__caption { grid-column: 1 / -1; margin: 20px 0 0; padding: 24px 0; text-align: center; border-top: 1px solid oklch(var(--sc-ink-c) / .14); font: 15px/1.7 var(--sc-font-body); color: oklch(var(--sc-ink-c) / .8); }
-@media (max-width: 1000px) { .sc-call { gap: 0 28px; padding-inline: 24px; } }
-@media (max-width: 760px) { .sc-call { grid-template-columns: 1fr; padding: 12px 22px 0; margin-top: 32px; } .sc-call__stage { height: 340px; } .sc-call { --call-scale: .6; } .sc-call__content { padding-top: 12px; } .sc-call__controls { margin: 0 0 20px; } .sc-call__caption { text-align: left; margin-top: 10px; } }
-@media (prefers-reduced-motion: reduce) { .sc-call__world { transform: scale(var(--call-scale, 1)) rotateX(52deg) rotateZ(-18deg); } }
+
+/* The huddle flywheel: the five steps ride a turntable, the active one facing the
+   reader and its neighbours angled away on either side. Every card is the same
+   box — distance, rotation and dimming carry the depth, never the type size.
+   --sc-fly-active is unwrapped (0,1,2,3,4,5,…) so the ring only ever turns
+   forward; sin()/cos() are periodic, so no modulo is needed anywhere. */
+@property --sc-fly-active { syntax: "<number>"; inherits: true; initial-value: 0; }
+
+.sc-fly {
+	--sc-fly-card-w: 330px;
+	--sc-fly-card-h: 236px;
+	--sc-fly-radius: 360px;
+	position: relative;
+	margin-top: 56px;
+	padding: 40px clamp(20px, 4vw, 48px) 0;
+	border: 1px solid oklch(var(--sc-ink-c) / .12);
+	border-radius: 28px;
+	background:
+		radial-gradient(64% 50% at 50% 42%, oklch(var(--sc-orange-c) / .07), transparent 72%),
+		var(--sc-surface-card);
+	overflow: hidden;
+}
+.sc-fly__ring {
+	position: relative;
+	height: 480px;
+	perspective: 1400px;
+	perspective-origin: 50% 42%;
+	transition: --sc-fly-active 720ms cubic-bezier(.34, .01, .2, 1);
+}
+
+/* The floor: the same loop the cards travel, laid flat under them. */
+.sc-fly__path {
+	position: absolute;
+	left: 50%;
+	top: 46%;
+	width: min(760px, 100%);
+	height: 380px;
+	overflow: visible;
+	transform: translate(-50%, 0) rotateX(74deg);
+	pointer-events: none;
+}
+.sc-fly__path ellipse { fill: none; stroke: oklch(var(--sc-ink-c) / .22); stroke-width: 1.4; stroke-dasharray: 2 10; stroke-linecap: round; }
+.sc-fly__tip { fill: none; stroke: var(--sc-rust); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.sc-fly__hub {
+	position: absolute;
+	left: 50%;
+	bottom: 4px;
+	z-index: 1;
+	transform: translateX(-50%);
+	margin: 0;
+	padding: 7px 18px;
+	border-radius: 999px;
+	border: 1px solid oklch(var(--sc-ink-c) / .14);
+	background: var(--sc-surface-card);
+	pointer-events: none;
+	font: 11px/1.6 var(--sc-font-mono);
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: oklch(var(--sc-ink-c) / .5);
+}
+
+.sc-fly__nodes {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	transform-style: preserve-3d;
+}
+
+/* Turntable seat. The active step sits at 0deg, square to the reader. */
+.sc-fly__slot {
+	--sc-fly-raw: calc((var(--sc-fly-i) - var(--sc-fly-active)) * (360deg / var(--sc-fly-count)));
+	/* The turn counter is unwrapped, so --sc-fly-raw runs well past a full circle.
+	   atan2 folds it back into (-180deg, 180deg]; without that the counter-turn
+	   below overshoots 90deg and the card shows its mirrored backface. */
+	--sc-fly-a: atan2(sin(var(--sc-fly-raw)), cos(var(--sc-fly-raw)));
+	--sc-fly-depth: calc((1 + cos(var(--sc-fly-a))) / 2);
+	position: absolute;
+	left: 50%;
+	top: 42%;
+	width: var(--sc-fly-card-w);
+	height: var(--sc-fly-card-h);
+	margin: calc(var(--sc-fly-card-h) / -2) 0 0 calc(var(--sc-fly-card-w) / -2);
+	/* Seat on the circle, then give the card back most of its turn so the
+	   neighbours stay legible instead of standing edge-on. */
+	transform: rotateY(var(--sc-fly-a)) translateZ(var(--sc-fly-radius)) rotateY(calc(var(--sc-fly-a) * -0.58));
+	transform-style: preserve-3d;
+	/* The counter-turn means a card behind the axis still faces us, so fade the
+	   back pair out by hand — three cards on screen, never five. */
+	/* A card past the axis still faces us because of the counter-turn, and mid-turn
+	   it reads as a mirrored ghost between the others. Fade it out before it gets
+	   there: gone by ~95deg, full weight by the time it reaches a side seat. */
+	opacity: clamp(0, calc((var(--sc-fly-depth) - 0.4) * 7), 1);
+}
+.sc-fly__node {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 22px 24px;
+	border: 1px solid oklch(var(--sc-ink-c) / calc(.09 + .14 * var(--sc-fly-depth)));
+	border-radius: 18px;
+	background: var(--sc-surface-card);
+	box-shadow: 0 calc(8px + 26px * var(--sc-fly-depth)) calc(18px + 48px * var(--sc-fly-depth)) -16px oklch(0.1 0.01 60 / calc(.14 + .32 * var(--sc-fly-depth)));
+	color: var(--sc-ink);
+	text-align: left;
+	cursor: pointer;
+	overflow: hidden;
+	transition: border-color 320ms ease, background-color 320ms ease;
+}
+/* Distance reads as haze, not as smaller type. */
+.sc-fly__node::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	background: var(--sc-surface-card);
+	opacity: calc(.42 - .42 * var(--sc-fly-depth));
+}
+.sc-fly__node:hover { border-color: oklch(var(--sc-orange-c) / .45); }
+.sc-fly__num {
+	align-self: start;
+	padding: 3px 10px;
+	border-radius: 999px;
+	background: oklch(var(--sc-orange-c) / .12);
+	font: 11px/1.6 var(--sc-font-mono);
+	letter-spacing: .1em;
+	color: var(--sc-rust);
+}
+.sc-fly__title { display: block; margin-top: 12px; font: 500 31px/1.1 var(--sc-font-display); letter-spacing: -.01em; }
+.sc-fly__text { display: block; margin-top: 10px; font: 15px/1.6 var(--sc-font-body); color: oklch(var(--sc-ink-c) / .78); }
+.sc-fly__node[aria-pressed="true"] {
+	border-color: oklch(var(--sc-orange-c) / .5);
+	background: linear-gradient(oklch(var(--sc-orange-c) / .08), transparent 62%), var(--sc-surface-card);
+}
+.sc-fly__node[aria-pressed="true"] .sc-fly__num { background: var(--sc-orange); color: var(--sc-ink-deep); }
+.sc-fly__node:focus-visible { outline: 2px solid var(--sc-rust); outline-offset: 5px; }
+
+.sc-fly__controls { display: flex; justify-content: center; gap: 10px; margin-top: 4px; }
+.sc-fly__controls[hidden] { display: none; }
+.sc-fly__controls button { min-width: 46px; min-height: 46px; border-radius: 999px; border: 1px solid oklch(var(--sc-ink-c) / .22); background: var(--sc-surface-card); color: var(--sc-ink); font: 15px var(--sc-font-body); cursor: pointer; transition: border-color 200ms ease, color 200ms ease; }
+.sc-fly__controls button:hover { border-color: var(--sc-rust); color: var(--sc-rust); }
+.sc-fly__caption { margin: 26px 0 0; padding: 24px 0; text-align: center; border-top: 1px solid oklch(var(--sc-ink-c) / .14); font: 16px/1.7 var(--sc-font-body); color: oklch(var(--sc-ink-c) / .8); }
+
+@media (max-width: 1000px) {
+	.sc-fly { --sc-fly-card-w: 286px; --sc-fly-card-h: 230px; --sc-fly-radius: 300px; }
+	.sc-fly__ring { height: 430px; }
+}
+
+/* Narrow screens: the turntable cannot stay readable, so the loop becomes a list. */
+@media (max-width: 760px) {
+	.sc-fly { margin-top: 32px; padding: 20px 20px 0; border-radius: 20px; }
+	.sc-fly__ring { height: auto; perspective: none; }
+	.sc-fly__path, .sc-fly__hub { display: none; }
+	.sc-fly__nodes { position: static; display: grid; gap: 12px; transform-style: flat; }
+	.sc-fly__slot { position: static; width: auto; height: auto; margin: 0; transform: none; }
+	.sc-fly__node { height: auto; box-shadow: none; padding: 16px 18px; }
+	.sc-fly__node::after { display: none; }
+	.sc-fly__title { font-size: 26px; }
+	.sc-fly__caption { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sc-fly__ring, .sc-fly__node { transition: none; }
+}

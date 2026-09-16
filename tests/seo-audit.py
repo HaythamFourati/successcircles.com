@@ -72,7 +72,7 @@ with ThreadPoolExecutor(max_workers=3) as pool: results=list(pool.map(inspect,so
 checks=[]
 def check(label, ok): checks.append({'check':label,'passed':bool(ok)})
 by_url={r[0]['url']:r for r in results}
-for slug,checkout in [('momentum-labs','https://www.successcircles.net/yesMomentumLabs'),('momentum-team','https://www.successcircles.net/signupmomentumteam'),('momentum-buddy','https://www.momentumbuddy.com/#_fw4dxl5ri')]:
+for slug,checkout in [('momentum-labs','https://www.successcircles.net/mlabs'),('momentum-team','https://www.successcircles.net/yesmomentumteam'),('momentum-buddy','https://www.successcircles.net/yesmomentum')]:
     row,p,graph=by_url[base+slug+'/']; found=[a for a in p.links if a.get('href')==checkout]
     check(slug+' checkout buttons', len(found)>=3 and all(a.get('target')=='_blank' for a in found))
     check(slug+' service entity',any(n.get('@type')=='Service' for n in graph))

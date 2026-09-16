@@ -38,7 +38,7 @@ function successcircles_content_tree( $customized = true ) {
 				'url'      => '#programs',
 				'children' => array(
 					array(
-						'label' => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
+						'label' => __( 'Momentum Buddy&trade;', 'successcircles' ),
 						'url'   => '/momentum-buddy/',
 					),
 					array(
@@ -228,7 +228,12 @@ function successcircles_content_tree( $customized = true ) {
 					'title' => __( 'Challenge', 'successcircles' ),
 					'text'  => __( 'Test assumptions before they become expensive decisions.', 'successcircles' ),
 				),
+				array(
+					'title' => __( 'Execute', 'successcircles' ),
+					'text'  => __( 'Do the work between huddles, with the deadline already public.', 'successcircles' ),
+				),
 			),
+			'hub'     => __( 'The daily loop', 'successcircles' ),
 			'quote'   => __( 'Every call turns an important goal into one clear decision and one next commitment.', 'successcircles' ),
 		),
 
@@ -388,19 +393,19 @@ function successcircles_content_tree( $customized = true ) {
 			),
 			'feature_quote' => array(
 				'text' => __( 'I just had my breakthrough VIP session with Joseph. Learning about Success Circles&trade; was very exciting to me. They have created something unique and affordable that brings tremendous value to business owners. Joseph was so generous and giving of his time that I signed up without him ever asking me to join. This was exactly what I was looking for.', 'successcircles' ),
-				'name' => __( 'H. William Song', 'successcircles' ),
-				'role' => __( 'Member', 'successcircles' ),
+				'name' => __( 'Dr. William Song', 'successcircles' ),
+				'role' => __( 'Owner &amp; CEO, Omni Aesthetics &middot; Co-founder of GUBUM &middot; Investor &middot; Inventor', 'successcircles' ),
 			),
 			'quotes'        => array(
 				array(
 					'text' => __( 'Success Circles&trade; is an amazing experience like no other. I found out things about myself that I did not know, by simply talking my self to my buddy. Having an accountability buddy gets you in the right momentum to succeed. What an incredible program and experience.', 'successcircles' ),
 					'name' => __( 'Andy Zapata', 'successcircles' ),
-					'role' => __( 'Member', 'successcircles' ),
+					'role' => __( 'Founder &amp; CEO, IKON EMR &middot; Serial Entrepreneur &middot; Top 500 Entrepreneur Magazine Franchise Winner &middot; 50+ Franchises and growing &middot; Miami, Florida', 'successcircles' ),
 				),
 				array(
 					'text' => __( 'Being a part of the Success Circles&trade; community is sooo amazing! I am so appreciative of what Joseph and the Success Circles&trade; Team are doing! As a subject matter expert in the small business space, it is critical that I have someone to hold me accountable in MY daily activities. I am honored and blessed to be connected with such a dynamic community!!!', 'successcircles' ),
-					'name' => __( 'Robin Haynes', 'successcircles' ),
-					'role' => __( 'Small business expert', 'successcircles' ),
+					'name' => __( 'Robin Haynes, MBA', 'successcircles' ),
+					'role' => __( 'Business Advisor at Goldman Sachs 10,000 Small Businesses', 'successcircles' ),
 				),
 			),
 		),
@@ -490,7 +495,7 @@ function successcircles_content_tree( $customized = true ) {
 										__( 'Build habits that continue working after motivation fades.', 'successcircles' ),
 										__( 'Lead without carrying every difficult decision alone.', 'successcircles' ),
 										__( 'Gain confidence from visible, measurable progress.', 'successcircles' ),
-										__( 'Get immediate access to $10,000 in resources for peak performance, energy management, delegation, focus, and automation on joining the Momentum Braintrust Buddy&trade; Action program.', 'successcircles' ),
+										__( 'Get immediate access to $10,000 in resources for peak performance, energy management, delegation, focus, and automation on joining the Momentum Buddy&trade; Action program.', 'successcircles' ),
 									),
 								),
 							),
@@ -542,9 +547,9 @@ function successcircles_content_tree( $customized = true ) {
 					'label' => __( 'Your Momentum Buddy&trade;', 'successcircles' ),
 					'items' => array(
 						array(
-							'question' => __( 'What is a Momentum (Braintrust) Buddy?', 'successcircles' ),
+							'question' => __( 'What is a Momentum Buddy?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'Your Momentum Braintrust Buddy&trade; is another business owner selected around your goals, experience, and strengths. They help you:', 'successcircles' ) ),
+								array( 'p' => __( 'Your Momentum Buddy&trade; is another business owner selected around your goals, experience, and strengths. They help you:', 'successcircles' ) ),
 								array(
 									'list' => array(
 										__( 'Choose the priority that matters most.', 'successcircles' ),
@@ -566,7 +571,7 @@ function successcircles_content_tree( $customized = true ) {
 						array(
 							'question' => __( 'How will I know my buddy can hold me accountable?', 'successcircles' ),
 							'answer'   => array(
-								array( 'p' => __( 'We use a unique process to connect members as Momentum Braintrust Buddies. If another member is strong in an area you want to grow, we&rsquo;ll do our best to connect you. If someone has already reached a goal you&rsquo;re aiming for, you&rsquo;ll have the chance to learn their winning strategies. You&rsquo;ll also connect virtually with members around the world and can choose your own buddy &mdash; perspective goes a long way.', 'successcircles' ) ),
+								array( 'p' => __( 'We use a unique process to connect members as Momentum Buddies. If another member is strong in an area you want to grow, we&rsquo;ll do our best to connect you. If someone has already reached a goal you&rsquo;re aiming for, you&rsquo;ll have the chance to learn their winning strategies. You&rsquo;ll also connect virtually with members around the world and can choose your own buddy &mdash; perspective goes a long way.', 'successcircles' ) ),
 							),
 						),
 						array(
@@ -576,7 +581,7 @@ function successcircles_content_tree( $customized = true ) {
 								array(
 									'list' => array(
 										__( 'Momentum Team 90-Day AI Incubator &mdash; our program where we play the 90-Day Year.', 'successcircles' ),
-										__( 'Momentum Braintrust Buddy&trade; Action &mdash; daily accountability calls, generally one-on-one with a member a step ahead of you in an area you&rsquo;re committed to progressing.', 'successcircles' ),
+										__( 'Momentum Buddy&trade; Action &mdash; daily accountability calls, generally one-on-one with a member a step ahead of you in an area you&rsquo;re committed to progressing.', 'successcircles' ),
 									),
 								),
 								array( 'p' => __( 'As you move through different buddies within the huddle calls, you&rsquo;ll eventually select the ones who impacted you most &mdash; your first draft picks. If they select you too, we create a quarterly Dream Team to support your top five outcomes each month. The Circle of Five is an optional component for members seeking further feedback.', 'successcircles' ) ),
@@ -1019,12 +1024,12 @@ function successcircles_content_tree( $customized = true ) {
 			),
 		),
 
-		// The Momentum Braintrust Buddy program page. Transcribed from the live
+		// The Momentum Buddy program page. Transcribed from the live
 		// Kartra landing page at momentumbuddy.com (2026-08-28) so the program
 		// lives on this site instead of sending visitors off to a funnel.
 		// Testimonials, prices and the stat line are the client's own copy.
 		'buddy_page' => array(
-			'eyebrow'  => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
+			'eyebrow'  => __( 'Momentum Buddy&trade;', 'successcircles' ),
 			'title'    => __( 'Stop carrying your biggest goals <em class="sc-accent">alone</em>.', 'successcircles' ),
 			'lede'     => __( 'Short weekday calls with another experienced business owner help you choose the right priority, make a clear commitment, and follow through consistently.', 'successcircles' ),
 			'cta'      => __( 'Get Consistent Accountability', 'successcircles' ),
@@ -1124,7 +1129,7 @@ function successcircles_content_tree( $customized = true ) {
 					__( 'Use practical resources for delegation, time management, and stronger operating habits', 'successcircles' ),
 					__( 'Ask experienced entrepreneurs to challenge your thinking and decisions', 'successcircles' ),
 				),
-				'statement' => __( 'Momentum Braintrust Buddy&trade; helps you spend less time reacting and more time leading the business forward.', 'successcircles' ),
+				'statement' => __( 'Momentum Buddy&trade; helps you spend less time reacting and more time leading the business forward.', 'successcircles' ),
 			),
 
 			'community' => array(
@@ -1191,7 +1196,7 @@ function successcircles_content_tree( $customized = true ) {
 			'closing'  => array(
 				'title' => __( 'Give your biggest goals a place on the calendar.', 'successcircles' ),
 				'body'  => array(
-					__( 'You have already built something valuable. Momentum Braintrust Buddy&trade; helps you protect the next important goal from daily demands and complete the work that moves it forward.', 'successcircles' ),
+					__( 'You have already built something valuable. Momentum Buddy&trade; helps you protect the next important goal from daily demands and complete the work that moves it forward.', 'successcircles' ),
 					__( 'Join experienced entrepreneurs from different industries who bring honest perspective, practical support, and consistent accountability.', 'successcircles' ),
 				),
 				'items' => array(
@@ -1234,7 +1239,7 @@ function successcircles_content_tree( $customized = true ) {
 			'title'    => __( 'Solve important problems with owners who have been <em class="sc-accent">there before</em>.', 'successcircles' ),
 			'lede'     => __( 'Weekly group huddles give established entrepreneurs a place to protect priorities, challenge decisions, and turn experienced feedback into practical action.', 'successcircles' ),
 			'cta'      => __( 'Join Momentum Labs', 'successcircles' ),
-			'cta_url'  => 'https://www.successcircles.net/yesMomentumLabs',
+			'cta_url'  => 'https://www.successcircles.net/mlabs',
 			'price'    => '$97',
 			'price_note' => __( 'per month', 'successcircles' ),
 			'seal'     => array(
@@ -1350,7 +1355,7 @@ function successcircles_content_tree( $customized = true ) {
 			'title'    => __( 'Stop operating in your business. Start <em class="sc-accent">leading from it.</em>', 'successcircles' ),
 			'lede'     => __( 'A 90-day cohort for established owners who need to protect one major goal, reduce their role as the bottleneck, and build systems that keep the business moving without constant intervention.', 'successcircles' ),
 			'cta'      => __( 'Apply now', 'successcircles' ),
-			'cta_url'  => 'https://www.successcircles.net/signupmomentumteam',
+			'cta_url'  => 'https://www.successcircles.net/yesmomentumteam',
 			'cta_note' => '',
 			'hero'     => array(
 				'file'   => 'members-live.jpg',
@@ -1439,7 +1444,7 @@ function successcircles_content_tree( $customized = true ) {
 						'intent' => __( 'Choose the goal, establish a clear baseline, and protect time for the work.', 'successcircles' ),
 						'items'  => array(
 							array( 'title' => __( 'Goal definition', 'successcircles' ), 'text' => __( 'Define one measurable goal with the greatest value to the business.', 'successcircles' ) ),
-							array( 'title' => __( 'Accountability', 'successcircles' ), 'text' => __( 'Join Momentum Labs weekly huddles, and get matched with your Momentum Braintrust Buddy&trade;.', 'successcircles' ) ),
+							array( 'title' => __( 'Accountability', 'successcircles' ), 'text' => __( 'Join Momentum Labs weekly huddles, and get matched with your Momentum Buddy&trade;.', 'successcircles' ) ),
 							array( 'title' => __( 'AI coach activation', 'successcircles' ), 'text' => __( 'Your personalized AI coach begins optimizing your business decisions.', 'successcircles' ) ),
 							array( 'title' => __( 'AI system audit', 'successcircles' ), 'text' => __( 'Map your current workflows and identify automation opportunities.', 'successcircles' ) ),
 							array( 'title' => __( 'Community integration', 'successcircles' ), 'text' => __( 'Access the Momentum.Community platform and connect with your advisory network.', 'successcircles' ) ),
@@ -1522,7 +1527,7 @@ function successcircles_content_tree( $customized = true ) {
 					array(
 						'name'  => __( 'Focused support', 'successcircles' ),
 						'items' => array(
-							array( 'title' => __( '10x Momentum Braintrust Buddy&trade;', 'successcircles' ), 'text' => __( 'Two weeks of daily one-to-one accountability calls. Like every sport, you deserve to huddle up, strategize your day, and play to win.', 'successcircles' ) ),
+							array( 'title' => __( '10x Momentum Buddy&trade;', 'successcircles' ), 'text' => __( 'Two weeks of daily one-to-one accountability calls. Like every sport, you deserve to huddle up, strategize your day, and play to win.', 'successcircles' ) ),
 							array( 'title' => __( 'One-to-one Momentum Coach calls', 'successcircles' ), 'text' => __( 'Focused coaching sessions to clarify priorities, remove obstacles, and adjust the plan.', 'successcircles' ) ),
 							array( 'title' => __( '3+ monthly cohort sessions', 'successcircles' ), 'text' => __( 'Choose from 5+ weekly options that fit your schedule.', 'successcircles' ) ),
 							array( 'title' => __( 'Candid feedback', 'successcircles' ), 'text' => __( 'Work through important challenges with people who have solved similar problems.', 'successcircles' ) ),
@@ -1684,7 +1689,7 @@ function successcircles_content_tree( $customized = true ) {
 					'menu'    => 'footer_programs',
 					'links'   => array(
 						array(
-							'label' => __( 'Momentum Braintrust Buddy&trade;', 'successcircles' ),
+							'label' => __( 'Momentum Buddy&trade;', 'successcircles' ),
 							'url'   => '/momentum-buddy/',
 						),
 						array(
@@ -1780,6 +1785,14 @@ function successcircles_content_tree( $customized = true ) {
 				array(
 					'label' => __( 'X', 'successcircles' ),
 					'url'   => 'https://twitter.com/successcircles',
+				),
+				array(
+					'label' => __( 'Instagram', 'successcircles' ),
+					'url'   => 'https://www.instagram.com/success.circles',
+				),
+				array(
+					'label' => __( 'TikTok', 'successcircles' ),
+					'url'   => 'https://www.tiktok.com/@successcircles',
 				),
 			),
 			'phone'   => __( 'Tel +1 (747) 2CIRCLE &nbsp;/&nbsp; +1 (747) 224-7253', 'successcircles' ),

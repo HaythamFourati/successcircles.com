@@ -9,7 +9,7 @@ return array(
 		'momentum_buddy_buddy_included' => array( 'group' => 'momentum_buddy', 'default' => '#buddy-included', 'label' => 'What’s Included' ),
 		'momentum_buddy_buddy_members' => array( 'group' => 'momentum_buddy', 'default' => '#buddy-members', 'label' => 'Member Stories' ),
 		'momentum_buddy_pricing' => array( 'group' => 'momentum_buddy', 'default' => '#pricing', 'label' => 'View Membership Options' ),
-		'momentum_buddy_application' => array( 'group' => 'momentum_buddy', 'default' => 'https://www.momentumbuddy.com/#_fw4dxl5ri', 'label' => 'Apply — hero, pricing and closing buttons' ),
+		'momentum_buddy_application' => array( 'group' => 'momentum_buddy', 'default' => 'https://www.successcircles.net/yesmomentum', 'label' => 'Apply — hero, pricing and closing buttons' ),
 		'momentum_os_programs' => array( 'group' => 'momentum_os', 'default' => '#programs', 'label' => 'Programs' ),
 		'momentum_os_weekly_cycle' => array( 'group' => 'momentum_os', 'default' => '#weekly-cycle', 'label' => 'Explore the Six Steps' ),
 		'momentum_os_momentum_buddy' => array( 'group' => 'momentum_os', 'default' => '/momentum-buddy/', 'label' => 'Momentum Buddy' ),

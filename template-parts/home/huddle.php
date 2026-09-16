@@ -1,7 +1,22 @@
 <?php
-/** Homepage huddle: focused introduction and a compact visual breakdown. */
+/** Homepage huddle: the daily loop as an interactive flywheel. */
 defined( 'ABSPATH' ) || exit;
 $sc_block = (array) successcircles_content( 'huddle', array() );
+$sc_items = array_values( (array) $sc_block['items'] );
+$sc_count = count( $sc_items );
+
+// Arrowheads sit between the step slots on the ellipse, pointing the way round.
+$sc_rx  = 232;
+$sc_ry  = 118;
+$sc_arrows = array();
+for ( $sc_i = 0; $sc_i < $sc_count; $sc_i++ ) {
+	$sc_a = deg2rad( 90 + ( $sc_i + 0.5 ) * ( 360 / $sc_count ) );
+	$sc_x = 300 + $sc_rx * cos( $sc_a );
+	$sc_y = 150 + $sc_ry * sin( $sc_a );
+	// Tangent of the ellipse at that angle, in the direction of travel.
+	$sc_r = rad2deg( atan2( $sc_ry * cos( $sc_a ), -$sc_rx * sin( $sc_a ) ) );
+	$sc_arrows[] = sprintf( 'translate(%.1f %.1f) rotate(%.1f)', $sc_x, $sc_y, $sc_r );
+}
 ?>
 <section id="huddle" class="hp-huddle sc-band--hairline" aria-labelledby="sc-huddle-title">
 	<div class="sc-section">
@@ -10,37 +25,37 @@ $sc_block = (array) successcircles_content( 'huddle', array() );
 			<h2 id="sc-huddle-title" class="sc-display sc-display--lg"><?php echo successcircles_inline( $sc_block['title'] ); ?></h2>
 			<p class="sc-lede"><?php echo esc_html( wp_specialchars_decode( $sc_block['lede'] ) ); ?></p>
 		</header>
-		<div class="sc-call" data-sc-call>
-			<div class="sc-call__object">
-				<div class="sc-call__stage" aria-hidden="true">
-					<div class="sc-call__world">
-						<div class="sc-call__ground"></div>
-						<div class="sc-call__rotor">
-							<?php foreach ( (array) $sc_block['items'] as $sc_index => $sc_item ) : ?>
-								<div class="sc-call__segment<?php echo 0 === $sc_index ? ' is-active' : ''; ?>" style="--position:<?php echo esc_attr( $sc_index ); ?>">
-									<?php for ( $sc_layer = 0; $sc_layer < 6; $sc_layer++ ) : ?>
-										<svg class="sc-call__slice" style="--layer:<?php echo esc_attr( $sc_layer ); ?>" viewBox="-230 -230 460 460"><path d="M172.02 -120.45 A210 210 0 0 1 172.02 120.45 L95.02 66.53 A116 116 0 0 0 95.02 -66.53 Z"/><?php if ( 5 === $sc_layer ) : ?><text x="163" y="10" text-anchor="middle"><?php echo esc_html( sprintf( '%02d', $sc_index + 1 ) ); ?></text><?php endif; ?></svg>
-									<?php endfor; ?>
-								</div>
-							<?php endforeach; ?>
-						</div>
-						<div class="sc-call__hub"><div class="sc-call__hub-face"><span>FOCUSED CALL</span><strong>30</strong><span>MINUTES</span></div></div>
-					</div>
-				</div>
-				<div class="sc-call__controls" hidden>
-					<button type="button" data-call-prev aria-label="Previous huddle step">←</button>
-					<button type="button" data-call-next aria-label="Next huddle step">→</button>
-				</div>
-			</div>
-			<div class="sc-call__content">
-				<p class="sc-call__eyebrow">One conversation. Four moves.</p>
-				<ol class="sc-call__steps">
-					<?php foreach ( (array) $sc_block['items'] as $sc_index => $sc_item ) : ?>
-						<li><button class="sc-call__step" type="button" aria-pressed="<?php echo 0 === $sc_index ? 'true' : 'false'; ?>" data-call-step="<?php echo esc_attr( $sc_index ); ?>"><span class="sc-call__number"><?php echo esc_html( sprintf( '%02d', $sc_index + 1 ) ); ?></span><span><strong><?php echo esc_html( wp_specialchars_decode( $sc_item['title'] ) ); ?></strong><span class="sc-call__description"><?php echo esc_html( wp_specialchars_decode( $sc_item['text'] ) ); ?></span></span><span class="sc-call__arrow" aria-hidden="true">↗</span></button></li>
+
+		<div class="sc-fly" data-sc-fly style="--sc-fly-count:<?php echo esc_attr( (string) $sc_count ); ?>">
+			<div class="sc-fly__ring">
+				<svg class="sc-fly__path" viewBox="0 0 600 300" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet">
+					<ellipse cx="300" cy="150" rx="<?php echo esc_attr( (string) $sc_rx ); ?>" ry="<?php echo esc_attr( (string) $sc_ry ); ?>"/>
+					<?php foreach ( $sc_arrows as $sc_transform ) : ?>
+						<path class="sc-fly__tip" d="M -7 -7 L 1 0 L -7 7" transform="<?php echo esc_attr( $sc_transform ); ?>"/>
+					<?php endforeach; ?>
+				</svg>
+
+				<p class="sc-fly__hub" aria-hidden="true"><?php echo esc_html( wp_specialchars_decode( $sc_block['hub'] ) ); ?></p>
+
+				<ol class="sc-fly__nodes">
+					<?php foreach ( $sc_items as $sc_index => $sc_item ) : ?>
+						<li class="sc-fly__slot" style="--sc-fly-i:<?php echo esc_attr( (string) $sc_index ); ?>">
+							<button class="sc-fly__node" type="button" data-sc-fly-step="<?php echo esc_attr( (string) $sc_index ); ?>" aria-pressed="<?php echo 0 === $sc_index ? 'true' : 'false'; ?>">
+								<span class="sc-fly__num"><?php echo esc_html( sprintf( '%02d', $sc_index + 1 ) ); ?></span>
+								<span class="sc-fly__title"><?php echo esc_html( wp_specialchars_decode( $sc_item['title'] ) ); ?></span>
+								<span class="sc-fly__text"><?php echo esc_html( wp_specialchars_decode( $sc_item['text'] ) ); ?></span>
+							</button>
+						</li>
 					<?php endforeach; ?>
 				</ol>
 			</div>
-			<p class="sc-call__caption"><?php echo esc_html( wp_specialchars_decode( $sc_block['quote'] ) ); ?></p>
+
+			<div class="sc-fly__controls" hidden>
+				<button type="button" data-sc-fly-prev aria-label="<?php esc_attr_e( 'Previous step', 'successcircles' ); ?>">&#8592;</button>
+				<button type="button" data-sc-fly-next aria-label="<?php esc_attr_e( 'Next step', 'successcircles' ); ?>">&#8594;</button>
+			</div>
+
+			<p class="sc-fly__caption"><?php echo esc_html( wp_specialchars_decode( $sc_block['quote'] ) ); ?></p>
 		</div>
 	</div>
 </section>

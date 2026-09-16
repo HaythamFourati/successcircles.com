@@ -1,6 +1,6 @@
 <?php
 /**
- * The Momentum Braintrust Buddy program page.
+ * The Momentum Buddy program page.
  *
  * Automatically used for a page with the slug "momentum-buddy". Copy lives in
  * the `buddy_page` block of inc/content.php, transcribed from the live Kartra

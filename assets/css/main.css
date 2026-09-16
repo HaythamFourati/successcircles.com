@@ -3698,11 +3698,34 @@ iframe {
 
 .sc-footer__social {
 	display: flex;
-	gap: 20px;
+	gap: 10px;
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+.sc-footer__social a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border: 1px solid oklch(var(--sc-cream-c) / 0.2);
+	border-radius: 50%;
+	color: inherit;
+	transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.sc-footer__social a:hover,
+.sc-footer__social a:focus-visible {
+	color: var(--sc-amber);
+	border-color: currentColor;
+	background: oklch(var(--sc-cream-c) / 0.06);
+}
+
+.sc-footer__social .sc-social-icon {
+	color: inherit;
 }
 
 /* --------------------------------------------------------------------------
@@ -6490,96 +6513,12 @@ iframe {
 }
 
 /* Keep the page behind the modal from scrolling under the backdrop. */
-html:has(.sc-quiz[open]),
-html:has(.sc-video-modal[open]) {
+html:has(.sc-quiz[open]) {
 	overflow: hidden;
-}
-
-/* --------------------------------------------------------------------------
-   Video lightbox — the hero's play control
-   A second native <dialog>, on the same terms as the test modal: the iframe is
-   mounted on open and removed on close, so nothing reaches Vimeo until asked.
-   -------------------------------------------------------------------------- */
-
-.sc-video-modal {
-	width: min(1100px, calc(100vw - 2 * var(--sc-gutter)));
-	max-width: none;
-	max-height: none;
-	margin: auto;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	overflow: visible;
-}
-
-.sc-video-modal::backdrop {
-	background: oklch(var(--sc-ink-deep-c) / 0.82);
-	backdrop-filter: blur(4px);
-}
-
-.sc-video-modal[open] {
-	animation: scQuizIn 0.32s var(--sc-ease) both;
-}
-
-.sc-video-modal__panel {
-	position: relative;
-}
-
-.sc-video-modal__frame {
-	position: relative;
-	aspect-ratio: 16 / 9;
-	border-radius: clamp(6px, 0.8vw, 12px);
-	background: var(--sc-ink-deep);
-	overflow: hidden;
-	box-shadow: 0 50px 110px -40px oklch(0 0 0 / 0.8);
-}
-
-.sc-video-modal__frame iframe {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	border: 0;
-	display: block;
-}
-
-.sc-video-modal__caption {
-	margin-top: 14px;
-	font-family: var(--sc-font-mono);
-	font-size: 11px;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: oklch(var(--sc-cream-c) / 0.7);
-}
-
-.sc-video-modal__close {
-	position: absolute;
-	top: -46px;
-	right: 0;
-	width: 36px;
-	height: 36px;
-	padding: 0;
-	border: 1px solid oklch(var(--sc-cream-c) / 0.28);
-	border-radius: 50%;
-	background: transparent;
-	color: var(--sc-cream);
-	font-size: 22px;
-	line-height: 1;
-	cursor: pointer;
-	display: grid;
-	place-items: center;
-	transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.sc-video-modal__close:hover,
-.sc-video-modal__close:focus-visible {
-	border-color: var(--sc-amber);
-	background: oklch(var(--sc-cream-c) / 0.08);
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.sc-quiz[open],
-	.sc-video-modal[open],
 	.sc-quiz__step {
 		animation: none;
 	}
@@ -7166,7 +7105,7 @@ html:has(.sc-video-modal[open]) {
 }
 
 /* --------------------------------------------------------------------------
-   Momentum Braintrust Buddy page (page-momentum-buddy.php)
+   Momentum Buddy page (page-momentum-buddy.php)
 
    The program's own page, replacing the outbound Kartra funnel. Every section
    is a different layout family so the long argument stays scannable: hero split
@@ -9337,3 +9276,12 @@ html:has(.sc-video-modal[open]) {
 .sc-band--dark .sc-btn--primary { color: #1b1712; }
 .sc-hero .sc-rise { animation: none; }
 .sc-footer__bottom a { text-decoration: underline; text-underline-offset: .2em; }
+
+/* Trademark mark — small and raised, set by initTrademarks() in theme.js. */
+.sc-tm {
+	font-size: 0.62em;
+	line-height: 0;
+	vertical-align: super;
+	letter-spacing: 0;
+	font-feature-settings: normal;
+}

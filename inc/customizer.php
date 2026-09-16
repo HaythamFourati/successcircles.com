@@ -100,7 +100,7 @@ function successcircles_customize_register( $wp_customize ) {
 
 	$prices = array(
 		'sc_buddy_price' => array(
-			'label'   => __( 'Momentum Braintrust Buddy', 'successcircles' ),
+			'label'   => __( 'Momentum Buddy', 'successcircles' ),
 			'default' => successcircles_content( 'programs.cards.1.price', '$194' ),
 		),
 		'sc_labs_price'  => array(
@@ -283,15 +283,15 @@ function successcircles_important_links() {
 		),
 		'sc_buddy_signup_url' => array(
 			'label' => __( 'Momentum Buddy checkout URL', 'successcircles' ),
-			'default' => 'https://www.momentumbuddy.com/#_fw4dxl5ri',
+			'default' => 'https://www.successcircles.net/yesmomentum',
 		),
 		'sc_labs_signup_url' => array(
 			'label' => __( 'Momentum Labs signup URL', 'successcircles' ),
-			'default' => 'https://www.successcircles.net/yesMomentumLabs',
+			'default' => 'https://www.successcircles.net/mlabs',
 		),
 		'sc_team_signup_url' => array(
 			'label' => __( 'Momentum Team signup URL', 'successcircles' ),
-			'default' => 'https://www.successcircles.net/signupmomentumteam',
+			'default' => 'https://www.successcircles.net/yesmomentumteam',
 		),
 		'sc_affiliates_url' => array(
 			'label' => __( 'Affiliates URL', 'successcircles' ),
