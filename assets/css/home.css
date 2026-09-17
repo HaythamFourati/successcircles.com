@@ -350,10 +350,11 @@
 	.sc-fly__ring { height: auto; perspective: none; }
 	.sc-fly__path, .sc-fly__hub { display: none; }
 	.sc-fly__nodes { position: static; display: grid; gap: 12px; transform-style: flat; }
-	.sc-fly__slot { position: static; width: auto; height: auto; margin: 0; transform: none; }
+	.sc-fly__slot { --sc-fly-depth: 1; position: static; width: auto; height: auto; margin: 0; transform: none; opacity: 1; }
 	.sc-fly__node { height: auto; box-shadow: none; padding: 16px 18px; }
 	.sc-fly__node::after { display: none; }
 	.sc-fly__title { font-size: 26px; }
+	.sc-fly__controls { display: none; }
 	.sc-fly__caption { text-align: left; }
 }
 

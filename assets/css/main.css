@@ -892,6 +892,17 @@ iframe {
 	}
 }
 
+/* Let the logo use the space left by the mobile controls, without overflow. */
+@media (max-width: 760px) {
+	.sc-header__bar { gap: 12px; padding-inline: 16px; }
+	.sc-header__brand { flex: 1 1 auto; min-width: 0; }
+	.sc-header__brand img { width: 170px; max-width: 100%; }
+	.sc-header__compact { flex-shrink: 0; gap: 8px; }
+	.sc-header__compact .sc-btn { min-height: 44px; padding-inline: 12px; font-size: 13px; }
+	.sc-header__compact .sc-theme-toggle { width: 44px; height: 44px; }
+	.sc-header__compact .sc-burger { flex-shrink: 0; }
+}
+
 /* --------------------------------------------------------------------------
    Hero
    -------------------------------------------------------------------------- */

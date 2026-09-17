@@ -16,6 +16,7 @@
 	var turn = 0;
 	var timer = 0;
 	var reduced = window.matchMedia( '(prefers-reduced-motion: reduce)' );
+	var mobile = window.matchMedia( '(max-width: 760px)' );
 
 	function wrap( value ) { return ( ( value % count ) + count ) % count; }
 
@@ -37,7 +38,7 @@
 
 	function play() {
 		pause();
-		if ( reduced.matches || document.hidden ) { return; }
+		if ( mobile.matches || reduced.matches || document.hidden ) { return; }
 		timer = setInterval( function () { turn += 1; render(); }, 2000 );
 	}
 
@@ -55,6 +56,7 @@
 	root.addEventListener( 'focusin', pause );
 	root.addEventListener( 'focusout', play );
 	document.addEventListener( 'visibilitychange', play );
+	mobile.addEventListener( 'change', play );
 
 	new IntersectionObserver( function ( entries ) {
 		if ( entries[ 0 ].isIntersecting ) { play(); } else { pause(); }
