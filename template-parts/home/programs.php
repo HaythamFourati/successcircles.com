@@ -49,13 +49,7 @@ $sc_note     = (array) $sc_programs['note'];
 							<?php endif; ?>
 						</span>
 						<span class="sc-program__price">
-							<?php
-							printf(
-								/* translators: %s: monthly price. */
-								esc_html__( '%s/mo', 'successcircles' ),
-								esc_html( successcircles_program_price( $sc_index, $sc_card['price'] ) )
-							);
-							?>
+							<?php echo esc_html( successcircles_program_price( $sc_index, $sc_card['price'] ) ); ?><small>/mo</small>
 						</span>
 					</div>
 

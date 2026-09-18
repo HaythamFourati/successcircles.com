@@ -23,6 +23,7 @@ get_template_part( 'template-parts/home/process' );
 get_template_part( 'template-parts/home/stories' );
 get_template_part( 'template-parts/home/test' );
 get_template_part( 'template-parts/home/founder' );
+get_template_part( 'template-parts/home/podcast' );
 get_template_part( 'template-parts/home/faq' );
 get_template_part( 'template-parts/home/cta' );
 

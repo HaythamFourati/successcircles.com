@@ -1,6 +1,6 @@
 /* Rules for Success — a featured conversation and a readable article index. */
 .rf-journal { --rf-muted: oklch(var(--sc-ink-c) / .74); --rf-rule: oklch(var(--sc-ink-c) / .15); }
-.rf-journal .sc-journal__head { max-width: 820px; margin: 0 auto clamp(48px, 6vw, 72px); text-align: center; }
+.rf-journal .sc-journal__head { max-width: none; margin: 0 auto clamp(48px, 6vw, 72px); text-align: left; }
 .rf-journal .sc-journal__head .sc-eyebrow { color: var(--sc-rust); font-size: 11px; letter-spacing: .1em; margin-bottom: 24px; }
 .rf-journal h1 { font-size: clamp(42px, 5.2vw, 74px); line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
 .rf-journal .sc-journal__lede { max-width: 60ch; margin: 24px auto 0; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; color: var(--rf-muted); text-wrap: pretty; }

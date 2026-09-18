@@ -1116,7 +1116,7 @@
 	}
 
 	/**
-	 * Render every ™ as a small raised mark, and give bare "Momentum OS" one.
+	 * Render every ™ as a small raised mark, and mark the four protected product names consistently.
 	 * ponytail: done in one DOM pass instead of editing ~80 content strings;
 	 * with JS off the ™ still shows, just full size.
 	 */
@@ -1127,7 +1127,7 @@
 				if ( node.parentNode.closest( '.sc-tm' ) || skip.test( node.parentNode.nodeName ) ) {
 					return NodeFilter.FILTER_REJECT;
 				}
-				return /\u2122|Momentum OS/.test( node.nodeValue ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+				return /\u2122|Success Circles|Momentum (?:Labs|Buddy|OS)/.test( node.nodeValue ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
 			}
 		} );
 		var nodes = [];
@@ -1139,7 +1139,7 @@
 				.replace( /[&<>]/g, function ( c ) {
 					return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ c ];
 				} )
-				.replace( /Momentum OS(?!\u2122)/g, 'Momentum OS\u2122' )
+				.replace( /\b(Success Circles|Momentum Labs|Momentum Buddy|Momentum OS)\b(?!\s*\u2122)/g, '$1\u2122' )
 				.replace( /\u2122/g, '<sup class="sc-tm">\u2122</sup>' );
 			var span = document.createElement( 'span' );
 			span.innerHTML = html;
@@ -1147,7 +1147,62 @@
 		} );
 	}
 
+	// Progressive enhancement keeps native playback available without JavaScript.
+	function initPodcastLibrary() {
+		function clock(seconds) {
+			seconds = Math.max(0, Math.floor(seconds || 0));
+			return Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+		}
+		document.querySelectorAll('.sc-podcast-episode').forEach(function (card) {
+			var audio = card.querySelector('audio');
+			var controls = card.querySelector('.sc-audio');
+			if (!audio || !controls) { return; }
+			var toggle = controls.querySelector('button');
+			var seek = controls.querySelector('input');
+			var elapsed = controls.querySelector('.sc-audio__elapsed');
+			var duration = controls.querySelector('.sc-audio__duration');
+			var status = controls.querySelector('.sc-audio__status');
+			var title = audio.getAttribute('aria-label');
+			var parts = duration.textContent.trim().split(':');
+			var total = parts.reduce(function (sum, part) { return sum * 60 + Number(part); }, 0);
+			if (Number.isFinite(total) && total > 0) { duration.textContent = clock(total); }
+			controls.hidden = false;
+			audio.hidden = true;
+			audio.controls = false;
+			function update() {
+				var playing = !audio.paused && !audio.ended;
+				card.classList.toggle('is-playing', playing);
+				toggle.setAttribute('aria-label', (playing ? 'Pause ' : 'Play ') + title);
+				toggle.setAttribute('aria-pressed', String(playing));
+				elapsed.textContent = clock(audio.currentTime);
+				if (Number.isFinite(audio.duration) && audio.duration > 0) {
+					seek.disabled = false;
+					seek.value = audio.currentTime / audio.duration * 100;
+					seek.style.setProperty('--progress', seek.value + '%');
+					seek.setAttribute('aria-valuetext', clock(audio.currentTime) + ' of ' + clock(audio.duration));
+					duration.textContent = clock(audio.duration);
+				}
+			}
+			toggle.addEventListener('click', function () {
+				if (!audio.paused) { audio.pause(); return; }
+				status.textContent = 'Loading episode…';
+				audio.play().catch(function () { status.textContent = 'Unable to play. Try again or listen on Spotify.'; update(); });
+			});
+			seek.addEventListener('input', function () {
+				if (Number.isFinite(audio.duration)) { audio.currentTime = seek.value / 100 * audio.duration; update(); }
+			});
+			audio.addEventListener('play', function () {
+				document.querySelectorAll('.sc-podcast-episode audio').forEach(function (other) { if (other !== audio) { other.pause(); } });
+				update();
+			});
+			audio.addEventListener('playing', function () { status.textContent = ''; });
+			audio.addEventListener('error', function () { status.textContent = 'Unable to play. Try again or listen on Spotify.'; });
+			['pause', 'ended', 'timeupdate', 'loadedmetadata'].forEach(function (event) { audio.addEventListener(event, update); });
+		});
+	}
+
 	function init() {
+		initPodcastLibrary();
 		initLoader();
 		initMenu();
 		initStoryVideo();

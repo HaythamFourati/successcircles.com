@@ -106,7 +106,7 @@ function successcircles_customize_page_links( $manager ) {
 	foreach ( successcircles_page_links() as $key => $link ) {
 		successcircles_add_link_control( $manager, $key, $link['group'], $link['label'], $link['default'] );
 	}
-	$groups = array( 'nav' => 'header', 'footer' => 'footer', 'faq_page' => 'faq', 'contact' => 'contact_us', 'buzz' => 'weekly_wins', 'testimonials' => 'testimonials', 'founder_page' => 'about_joseph_varghese', 'buddy_page' => 'momentum_buddy', 'labs_page' => 'momentum_labs', 'team_page' => 'momentum_team', 'about' => 'about', 'episodes' => 'podcast' );
+	$groups = array( 'nav' => 'header', 'footer' => 'footer', 'faq_page' => 'faq', 'contact' => 'contact_us', 'buzz' => 'weekly_wins', 'testimonials' => 'testimonials', 'founder_page' => 'about_joseph_varghese', 'buddy_page' => 'momentum_buddy', 'labs_page' => 'momentum_labs', 'team_page' => 'momentum_team', 'about' => 'about', 'episodes' => 'podcast', 'article_links' => 'articles' );
 	successcircles_walk_links( successcircles_content_tree( false ), function ( $default, $path, $node ) use ( $manager, $groups ) {
 		$parts = explode( '.', $path );
 		if ( 'faq_page.aside.link.url' === $path ) { return $default; }

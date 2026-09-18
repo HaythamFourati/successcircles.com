@@ -6,13 +6,12 @@
  * is built as a document rather than a text dump:
  *
  *   masthead   asymmetric — title left, mono facts right, artwork plate under
- *   body       sticky contents rail + prose held to a reading measure
+ *   body       readable prose + podcast links sidebar
  *   more       two neighbouring interviews, using the shared episode card
  *
  * The contents rail is built by theme.js from the headings the editor actually
- * wrote, and is absent without JavaScript — the prose then takes the full
- * measure on its own. Read the "Article" block in main.css before changing the
- * grid; the rail and the masthead share a column edge on purpose.
+ * wrote, and is absent without JavaScript. Podcast links remain available
+ * without scripting and stack below the article on smaller screens.
  *
  * @package SuccessCircles
  */
@@ -94,18 +93,23 @@ while ( have_posts() ) :
 
 		<div class="sc-article__body">
 
-			<aside class="sc-article__rail">
+			<div class="rf-article__reading">
 				<details class="sc-toc" data-sc-toc hidden>
-					<summary class="sc-toc__label"><?php esc_html_e( 'In this conversation', 'successcircles' ); ?></summary>
+					<summary class="sc-toc__label">
+						<svg class="rf-toc__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M8 6h13M8 12h13M8 18h13M3 6h1M3 12h1M3 18h1" stroke-linecap="round"/></svg>
+						<span><?php esc_html_e( 'In this conversation', 'successcircles' ); ?></span>
+						<svg class="rf-toc__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</summary>
 					<ol class="sc-toc__list" data-sc-toc-list></ol>
 				</details>
-			</aside>
 
-			<div class="sc-prose sc-prose--article">
-				<?php the_content(); ?>
-				<?php wp_link_pages( array( 'before' => '<nav class="rf-post-pages" aria-label="' . esc_attr__( 'Article pages', 'successcircles' ) . '">', 'after' => '</nav>' ) ); ?>
+				<div class="sc-prose sc-prose--article">
+					<?php the_content(); ?>
+					<?php wp_link_pages( array( 'before' => '<nav class="rf-post-pages" aria-label="' . esc_attr__( 'Article pages', 'successcircles' ) . '">', 'after' => '</nav>' ) ); ?>
+				</div>
+
 			</div>
-
+			<?php get_template_part( 'template-parts/article-sidebar' ); ?>
 		</div>
 		<footer class="rf-article__end">
 			<?php if ( $sc_blog ) : ?><a class="sc-link-rule" href="<?php echo esc_url( successcircles_page_link( 'articles_podcast', get_permalink( $sc_blog ) ) ); ?>"><?php esc_html_e( 'Explore More Conversations', 'successcircles' ); ?> <span aria-hidden="true">↗</span></a><?php endif; ?>

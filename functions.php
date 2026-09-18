@@ -34,3 +34,5 @@ require_once SUCCESSCIRCLES_DIR . '/inc/contact.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/cf7.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/quiz.php';
 require_once SUCCESSCIRCLES_DIR . '/inc/wins.php';
+
+require_once SUCCESSCIRCLES_DIR . '/inc/podcast.php';

@@ -23,18 +23,10 @@ get_header();
 <section class="sc-section sc-journal rf-journal" aria-labelledby="sc-journal-title">
 
 	<header class="sc-journal__head">
-		<?php successcircles_eyebrow( '', $sc_copy['eyebrow'] ); ?>
-		<h1 id="sc-journal-title" class="sc-display sc-display--xl">
-			<?php echo successcircles_inline( $sc_copy['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</h1>
-		<p class="sc-journal__lede">
-			<?php echo esc_html( wp_specialchars_decode( $sc_copy['lede'] ) ); ?>
-		</p>
-		<?php if ( have_posts() ) : ?><a class="rf-browse" href="<?php echo esc_url( successcircles_page_link( 'podcast_conversations' ) ); ?>"><?php esc_html_e( 'Explore the Conversations', 'successcircles' ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
+		<h1 id="sc-journal-title" class="screen-reader-text"><?php esc_html_e( 'RulesForSuccess.com podcast and articles', 'successcircles' ); ?></h1>
+		<?php get_template_part( 'template-parts/podcast-player' ); ?>
 		<?php if ( $sc_intro && '' !== trim( $sc_intro->post_content ) ) : ?>
-			<div class="sc-prose sc-journal__intro">
-				<?php echo wp_kses_post( apply_filters( 'the_content', $sc_intro->post_content ) ); ?>
-			</div>
+			<div class="sc-prose sc-journal__intro"><?php echo wp_kses_post( apply_filters( 'the_content', $sc_intro->post_content ) ); ?></div>
 		<?php endif; ?>
 	</header>
 
