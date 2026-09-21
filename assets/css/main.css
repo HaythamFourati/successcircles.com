@@ -659,11 +659,11 @@ iframe {
 
 /* Dropdown — no JavaScript. :focus-within keeps it open for keyboard users,
    and below 1180px the drawer renders the same markup as an indented list. */
-.sc-header__nav .sc-nav__parent {
+.sc-header__nav :is(.sc-nav__parent, .menu-item-has-children) {
 	position: relative;
 }
 
-.sc-header__nav .sc-subnav {
+.sc-header__nav :is(.sc-subnav, .sub-menu) {
 	position: absolute;
 	top: 100%;
 	left: -18px;
@@ -685,8 +685,8 @@ iframe {
 }
 
 /* Caret so a parent item reads as a dropdown before it is hovered. */
-.sc-header__nav .sc-nav__parent > a::after,
-.sc-header__drawer .sc-nav__parent > a::after {
+.sc-header__nav :is(.sc-nav__parent, .menu-item-has-children) > a::after,
+.sc-header__drawer :is(.sc-nav__parent, .menu-item-has-children) > a::after {
 	content: "";
 	display: inline-block;
 	width: 5px;
@@ -700,14 +700,14 @@ iframe {
 	transition: transform 0.18s var(--sc-ease), opacity 0.18s ease;
 }
 
-.sc-header__nav .sc-nav__parent:hover > a::after,
-.sc-header__nav .sc-nav__parent:focus-within > a::after {
+.sc-header__nav :is(.sc-nav__parent, .menu-item-has-children):hover > a::after,
+.sc-header__nav :is(.sc-nav__parent, .menu-item-has-children):focus-within > a::after {
 	transform: rotate(-135deg) translate(-2px, -2px);
 	opacity: 1;
 }
 
 /* A gap between the trigger and the panel would drop the hover — bridge it. */
-.sc-header__nav .sc-nav__parent::after {
+.sc-header__nav :is(.sc-nav__parent, .menu-item-has-children)::after {
 	content: "";
 	position: absolute;
 	top: 100%;
@@ -716,26 +716,26 @@ iframe {
 	height: 14px;
 }
 
-.sc-header__nav .sc-nav__parent:hover .sc-subnav,
-.sc-header__nav .sc-nav__parent:focus-within .sc-subnav {
+.sc-header__nav :is(.sc-nav__parent, .menu-item-has-children):hover :is(.sc-subnav, .sub-menu),
+.sc-header__nav :is(.sc-nav__parent, .menu-item-has-children):focus-within :is(.sc-subnav, .sub-menu) {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
 }
 
-.sc-header__nav .sc-subnav a {
+.sc-header__nav :is(.sc-subnav, .sub-menu) a {
 	display: block;
 	padding: 9px 18px;
 	font-size: 14px;
 	white-space: nowrap;
 }
 
-.sc-header__nav .sc-subnav a:hover {
+.sc-header__nav :is(.sc-subnav, .sub-menu) a:hover {
 	background: var(--sc-sand-shade);
 }
 
 /* In the drawer the children are simply indented — nothing to open. */
-.sc-header__drawer .sc-subnav {
+.sc-header__drawer :is(.sc-subnav, .sub-menu) {
 	margin: 0;
 	padding: 0 0 0 18px;
 	list-style: none;
@@ -743,7 +743,7 @@ iframe {
 	gap: 2px;
 }
 
-.sc-header__drawer .sc-subnav a {
+.sc-header__drawer :is(.sc-subnav, .sub-menu) a {
 	font-size: 16px;
 	color: oklch(var(--sc-ink-c) / 0.72);
 }
