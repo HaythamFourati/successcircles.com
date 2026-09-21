@@ -94,3 +94,14 @@
 @media (prefers-reduced-motion: reduce) {
 	.rf-article *, .rf-more * { transition: none !important; animation: none !important; }
 }
+
+/* Legacy posts contain editor-pasted inline black text. Keep article copy
+   readable in either theme without changing the saved post or embedded players. */
+.rf-article .sc-prose--article,
+.rf-article .sc-prose--article :is(p, li, blockquote, .markdown) {
+	color: var(--sc-ink);
+}
+.rf-article .sc-prose--article :is(span, p, li, strong, em, b, i, font)[style*="color"],
+.rf-article .sc-prose--article font[color] {
+	color: inherit !important;
+}

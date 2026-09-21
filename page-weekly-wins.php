@@ -1,7 +1,7 @@
 <?php
 /**
  * Weekly Wins: latest member dispatch and a paginated archive.
- * Reads the existing locally cached feed; never fetches during page rendering.
+ * Reads local posts in production or the cached remote feed on staging.
  * @package SuccessCircles
  */
 defined( 'ABSPATH' ) || exit;

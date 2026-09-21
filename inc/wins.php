@@ -1,15 +1,10 @@
 <?php
 /**
- * Weekly Wins — pulled from the live successcircles.com REST API.
+ * Weekly Wins — local posts in production, cached REST feed on staging.
  *
- * The testimonials page runs on the live site's "Weekly Wins" category (Momentum
- * Buzz / member BRAGs) rather than on local editorial content, so there is no
- * testimonials screen in the admin at all.
- *
- * Nothing is ever fetched while rendering a page. A daily cron job pulls every
- * page of the category into one non-autoloaded option; the template only ever
- * reads that option. If the live site is slow, moved or down, the last good copy
- * keeps serving and the page never notices.
+ * On the source site, read the published category directly so deployment does
+ * not depend on a migrated cache, WP-Cron or a loopback HTTP request. Elsewhere,
+ * a daily job caches the remote category and preserves the last good copy.
  *
  * @package SuccessCircles
  */
@@ -44,6 +39,10 @@ function successcircles_wins_category() {
  * @return array<int, array{id:int, name:string, text:string, date:string, stamp:string}>
  */
 function successcircles_wins() {
+	if ( successcircles_wins_is_local() ) {
+		return successcircles_wins_from_posts();
+	}
+
 	$wins = get_option( 'sc_wins', array() );
 
 	if ( ! is_array( $wins ) || ! $wins ) {
@@ -55,6 +54,41 @@ function successcircles_wins() {
 		return array();
 	}
 
+	return $wins;
+}
+
+/** The production site already owns these posts; do not request its own REST API. */
+function successcircles_wins_is_local() {
+	$source = strtolower( (string) wp_parse_url( successcircles_wins_source(), PHP_URL_HOST ) );
+	$home = strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) );
+	return $source && preg_replace( '/^www\./', '', $source ) === preg_replace( '/^www\./', '', $home );
+}
+
+/** Read the complete published archive directly, including category descendants. */
+function successcircles_wins_from_posts() {
+	$category = get_category_by_slug( successcircles_wins_category() );
+	if ( ! $category ) { return array(); }
+	$posts = get_posts( array(
+		'post_type' => 'post',
+		'post_status' => 'publish',
+		'has_password' => false,
+		'posts_per_page' => -1,
+		'cat' => $category->term_id,
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
+	) );
+	$wins = array();
+	foreach ( $posts as $post ) {
+		$win = successcircles_wins_parse( array(
+			'id' => $post->ID,
+			'title' => array( 'rendered' => $post->post_title ),
+			'content' => array( 'rendered' => strip_shortcodes( $post->post_content ) ),
+			'date_gmt' => $post->post_date_gmt,
+		) );
+		if ( $win ) { $wins[] = $win; }
+	}
 	return $wins;
 }
 
@@ -177,6 +211,13 @@ function successcircles_wins_category_id() {
  * @return int|WP_Error Number of wins stored, or the failure.
  */
 function successcircles_refresh_wins() {
+	if ( successcircles_wins_is_local() ) {
+		$wins = successcircles_wins_from_posts();
+		update_option( 'sc_wins', $wins, false );
+		update_option( 'sc_wins_synced', time(), false );
+		return count( $wins );
+	}
+
 	$category = successcircles_wins_category_id();
 
 	if ( is_wp_error( $category ) ) {
@@ -256,6 +297,7 @@ add_action( 'sc_refresh_wins', 'successcircles_refresh_wins' );
  * @return void
  */
 function successcircles_schedule_wins() {
+	if ( successcircles_wins_is_local() ) { return; }
 	if ( ! wp_next_scheduled( 'sc_refresh_wins' ) ) {
 		wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'sc_refresh_wins' );
 	}
