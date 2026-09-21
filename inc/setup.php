@@ -418,3 +418,16 @@ function successcircles_favicon() {
 	);
 }
 add_action( 'wp_head', 'successcircles_favicon', 2 );
+
+/** Keep member wins in Momentum Buzz, outside the public blog listing. */
+function successcircles_exclude_wins_from_blog( $query ) {
+	if ( is_admin() || ! $query->is_main_query() || ! $query->is_home() ) {
+		return;
+	}
+	$category = get_category_by_slug( 'weekly-wins' );
+	if ( ! $category ) { return; }
+	$excluded = (array) $query->get( 'category__not_in' );
+	$excluded[] = (int) $category->term_id;
+	$query->set( 'category__not_in', array_values( array_unique( array_map( 'intval', $excluded ) ) ) );
+}
+add_action( 'pre_get_posts', 'successcircles_exclude_wins_from_blog' );

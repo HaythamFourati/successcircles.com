@@ -52,10 +52,6 @@ function successcircles_content_tree( $customized = true ) {
 				),
 			),
 			array(
-				'label' => __( 'How It Works', 'successcircles' ),
-				'url'   => '/momentum-os/',
-			),
-			array(
 				'label'    => __( 'Success Stories', 'successcircles' ),
 				'url'      => '/testimonials/',
 				'children' => array(
@@ -82,12 +78,16 @@ function successcircles_content_tree( $customized = true ) {
 						'url'   => '/about/',
 					),
 					array(
-						'label' => __( 'Joseph Varghese', 'successcircles' ),
-						'url'   => '/about-joseph-varghese/',
+						'label' => __( 'How It Works', 'successcircles' ),
+						'url'   => '/momentum-os/',
 					),
 					array(
 						'label' => __( 'FAQ', 'successcircles' ),
 						'url'   => '/faq/',
+					),
+					array(
+						'label' => __( 'About Joseph', 'successcircles' ),
+						'url'   => '/about-joseph-varghese/',
 					),
 				),
 			),
