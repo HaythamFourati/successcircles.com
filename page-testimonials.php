@@ -57,17 +57,21 @@ get_header();
 	</header>
 	<div class="tv-quotes">
 		<?php foreach ( $sc_quotes as $sc_index => $sc_quote ) : ?>
-			<?php if ( 2 === $sc_index ) : ?>
+			<?php if ( 4 === $sc_index ) : ?>
 				</div><details class="tv-more"><summary><?php esc_html_e( 'Read More Member Experiences', 'successcircles' ); ?><span aria-hidden="true">+</span></summary><div class="tv-quotes">
 			<?php endif; ?>
 			<figure class="tv-letter">
 				<span class="tv-letter__mark" aria-hidden="true">“</span>
 				<blockquote><?php echo esc_html( wp_specialchars_decode( $sc_quote['text'] ) ); ?></blockquote>
-				<figcaption><strong><?php echo esc_html( $sc_quote['name'] ); ?></strong><?php if ( $sc_quote['role'] ) : ?><span><?php echo esc_html( wp_specialchars_decode( $sc_quote['role'] ) ); ?></span><?php endif; ?></figcaption>
+				<figcaption>
+                    <?php if ( ! empty( $sc_quote['image'] ) ) : ?><img class="tv-letter__portrait" src="<?php echo esc_url( SUCCESSCIRCLES_URI . '/assets/img/testimonials/members/' . $sc_quote['image'] ); ?>" alt="" width="72" height="72" loading="lazy" decoding="async"><?php endif; ?>
+                    <div class="tv-letter__person"><strong><?php echo esc_html( $sc_quote['name'] ); ?></strong><?php if ( $sc_quote['role'] ) : ?><span><?php echo esc_html( wp_specialchars_decode( $sc_quote['role'] ) ); ?></span><?php endif; ?>
+                    <?php if ( ! empty( $sc_quote['source'] ) ) : ?><span class="tv-letter__source"><?php echo esc_html( $sc_quote['source'] ); ?></span><?php endif; ?></div>
+                </figcaption>
 			</figure>
 		<?php endforeach; ?>
 	</div>
-	<?php if ( count( $sc_quotes ) > 2 ) : ?></details><?php endif; ?>
+	<?php if ( count( $sc_quotes ) > 4 ) : ?></details><?php endif; ?>
 </section>
 <?php endif; ?>
 <aside class="tv-wins">

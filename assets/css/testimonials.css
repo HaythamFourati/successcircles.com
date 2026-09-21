@@ -68,3 +68,10 @@
 @media (prefers-reduced-motion: reduce) {
 	.tv-page *, .tv-page *::before, .tv-page *::after { animation: none !important; transition: none !important; }
 }
+
+/* Member portraits and source attribution accompany their own words. */
+.tv-letter figcaption { flex-direction: row; align-items: center; gap: 16px; }
+.tv-letter__portrait { width: 72px; height: 72px; object-fit: cover; border-radius: 50%; flex: 0 0 72px; }
+.tv-letter__person { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.tv-letter__source { font-size: 11px; }
+.tv-page .sc-film__role { flex-basis: 100%; font-size: 12px; line-height: 1.6; color: oklch(var(--sc-cream-c) / .8); }

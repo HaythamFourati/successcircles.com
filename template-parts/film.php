@@ -58,12 +58,13 @@ $sc_label = sprintf( __( 'Play: %s', 'successcircles' ), $sc_film['name'] );
 			>
 			<span class="sc-film__scrim" aria-hidden="true"></span>
 			<span class="sc-film__disc" aria-hidden="true"></span>
-			<span class="sc-film__time" aria-hidden="true"><?php echo esc_html( $sc_film['duration'] ); ?></span>
+			<?php if ( ! empty( $sc_film['duration'] ) ) : ?><span class="sc-film__time" aria-hidden="true"><?php echo esc_html( $sc_film['duration'] ); ?></span><?php endif; ?>
 		</button>
 	</div>
 
 	<figcaption class="sc-film__caption">
 		<span class="sc-film__name"><?php echo esc_html( $sc_film['name'] ); ?></span>
 		<span class="sc-film__kind"><?php echo esc_html( $sc_film['kind'] ); ?></span>
+	<?php if ( ! empty( $sc_film['role'] ) ) : ?><span class="sc-film__role"><?php echo esc_html( $sc_film['role'] ); ?></span><?php endif; ?>
 	</figcaption>
 </figure>

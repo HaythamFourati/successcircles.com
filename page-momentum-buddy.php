@@ -80,15 +80,9 @@ get_header();
 		<?php
 		$sc_ring  = (array) ( $sc_buddy['ring'] ?? array() );
 		$sc_faces = (array) ( $sc_ring['faces'] ?? array() );
-		$sc_people_by_image = array_column( $sc_quotes, null, 'image' );
-		$sc_hero_people = array();
-		foreach ( (array) ( $sc_ring['hero_faces'] ?? array() ) as $sc_portrait ) {
-			if ( isset( $sc_people_by_image[ $sc_portrait ] ) ) {
-				$sc_hero_people[] = $sc_people_by_image[ $sc_portrait ];
-			}
-		}
+		$sc_hero_people = (array) ( $sc_ring['hero_faces'] ?? array() );
 
-		if ( $sc_faces ) :
+		if ( $sc_hero_people ) :
 			?>
 			<aside class="mb-people" aria-label="<?php esc_attr_e( 'Meet the community', 'successcircles' ); ?>">
 				<div class="mb-people__heading"><span><?php esc_html_e( 'Independent owners. Shared ambition.', 'successcircles' ); ?></span><span aria-hidden="true">↗</span></div>
