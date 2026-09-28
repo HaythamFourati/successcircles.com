@@ -45,8 +45,8 @@
 	color-scheme: light;
 
 	/* Typography */
-	--sc-font-display: "Newsreader", Georgia, "Times New Roman", serif;
-	--sc-font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+	--sc-font-display: "Newsreader", "Newsreader Fallback", "Newsreader Fallback Times", Georgia, "Times New Roman", serif;
+	--sc-font-body: "Public Sans", "Public Sans Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
 	--sc-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
 	/* Layout */
@@ -1251,6 +1251,17 @@ iframe {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+}
+
+.sc-trust__group--link {
+	color: inherit;
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+}
+
+.sc-trust__group--link:hover,
+.sc-trust__group--link:focus-visible {
+	opacity: 0.75;
 }
 
 .sc-trust__note {
@@ -9334,7 +9345,7 @@ html:has(.sc-quiz[open]) {
 .sc-podcast-episode > img { width: 96px; height: 96px; grid-column: 1; grid-row: 1 / 3; align-self: center; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
 .sc-podcast-episode__info { min-width: 0; grid-column: 2; }
 .sc-podcast-episode h4 { margin: 0; font: 600 14px/1.4 var(--sc-font-body); }
-.sc-podcast-episode h4 a { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-decoration: none; }
+.sc-podcast-episode h4 a { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-decoration: none; }
 .sc-podcast-episode h4 a:hover { color: var(--sc-rust); }
 .sc-podcast-episode__info p { margin: 6px 0 0; font-size: 11px; line-height: 1.4; color: oklch(var(--sc-ink-c) / .72); }
 .sc-podcast-episode audio { grid-column: 2; min-width: 0; display: block; width: 100%; height: 40px; flex-shrink: 0; }

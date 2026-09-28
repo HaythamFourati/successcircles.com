@@ -86,7 +86,7 @@ inc/
 ├── post-types.php              # _sc_role meta, activation setup (no CPTs left)
 ├── customizer.php              # sc_panel: CTA URLs, prices, phone, socials, form recipient
 ├── contact.php                 # contact form: admin-post handler, validation, wp_mail()
-├── quiz.php                    # ★ Entrepreneur Test: sc_question + sc_lead CPTs,
+├── quiz.php                    # ★ Owner Quiz: sc_question + sc_lead CPTs,
 │                               #   admin-ajax handler, modal render, seed questions
 └── wins.php                    # ★ live Weekly Wins pull from successcircles.com REST,
                                 #   daily cron into one option; drives the testimonials page
@@ -123,7 +123,7 @@ template-parts/
 ├── site-footer.php            # brand, 3 link columns, legal bar
 ├── content-card.php           # archive listing card
 ├── film.php                   # click-to-play Vimeo facade (testimonials page)
-├── quiz-modal.php             # Entrepreneur Test <dialog>: every step, server-rendered
+├── quiz-modal.php             # Owner Quiz <dialog>: every step, server-rendered
 ├── episode-grid.php           # shared .sc-episode card grid (home + blog + article)
 └── home/
     ├── hero.php     trust.php     problem.php   system.php
@@ -148,7 +148,7 @@ Defined in `front-page.php`. Numbering matches the design's eyebrow labels.
 | 03 | `programs` | sand + curtain | 2 cards (Buddy $194, Labs $97) + 3-col includes strip. |
 | 04 | `process` | shade + hairline | 4 timeline steps. |
 | 05 | `stories` | sand | Vimeo facade + large pull-quote + 2 testimonials. |
-| 06 | `test` | **dark** | Entrepreneur Test CTA band. |
+| 06 | `test` | **dark** | Owner Quiz CTA band. |
 | 07 | `founder` | sand + curtain | Joseph JV Varghese, portrait + signature. |
 | 08 | `faq` | **shade + hairline** | 4 Q&A + FAQPage JSON-LD. |
 | — | `cta` | sand + hairline | "Dare to play a bigger game." `id="contact"`. Primary button opens the test. |
@@ -247,7 +247,7 @@ Filter hook: `successcircles_content_tree`.
 | Type | Menu label | Fields |
 | --- | --- | --- |
 | `post` | Posts | ordinary blog post + `_sc_role` (guest role on the card) |
-| `sc_question` | Entrepreneur Test | title = question, `_sc_options` (one answer per line), Order |
+| `sc_question` | Owner Quiz | title = question, `_sc_options` (one answer per line), Order |
 | `sc_lead` | ↳ Test Leads | title = name, content = answer transcript, `_sc_email`, `_sc_phone` |
 
 **The blog is the podcast.** Rules for Success episodes are ordinary WordPress `post`s —
@@ -529,6 +529,15 @@ interviews run 3,000–6,000 words with a dozen numbered sub-sections:
 - Closes with two neighbouring interviews via the shared episode grid, then the CTA band.
 
 - One stylesheet, one script. Script is deferred via `script_loader_tag` filter.
+- **PageSpeed pass (2026-09-28).** `home.css` is folded into `main-home.min.css` by the
+  build, so the front page makes one render-blocking CSS request; `inc/enqueue.php` only
+  enqueues `home.css` separately if the bundle is older than it. `fonts.css` carries
+  **metric-matched fallback faces** (`Newsreader Fallback`, `Public Sans Fallback`) so the
+  web-font swap no longer shifts the hero — the percentages were measured from the woff2
+  files; re-measure if the fonts change. `successcircles_trim_plugin_assets()` dequeues
+  WP-PageNavi and Recent Posts Widget CSS (unused by this theme) and defers the Trustpilot
+  plugin's header script. What's left in the report is third-party: Plerdy, GTM/MonsterInsights,
+  and the HFCM snippets (Endorsal, Visitor Tracking) — site config, not theme code.
 - `successcircles_asset_version()` uses `filemtime()` so cache-busting is automatic.
 - Google Fonts preconnected in `header.php`; `fonts.gstatic.com` also added via
   `wp_resource_hints`.
@@ -689,10 +698,10 @@ Testimonials page: 11 films (all posters 200), 8 quotes.
 
 ---
 
-## 12b. The Entrepreneur Test (`inc/quiz.php`)
+## 12b. The Owner Quiz (`inc/quiz.php`)
 
 No plugin, no separate database. Questions are `sc_question` posts — add, reorder
-(page-attributes **Order**) and delete them under **Entrepreneur Test** in the admin.
+(page-attributes **Order**) and delete them under **Owner Quiz** in the admin.
 A question needs at least two answer options, one per line in the *Answer options*
 box; one with fewer is dropped rather than stalling the modal.
 
@@ -713,7 +722,7 @@ copy is mailed to the same recipient as the contact form.
 
 The buttons are wired by `successcircles_test_link_attrs()`, which prints the ordinary
 `href` **plus** `data-sc-quiz` when questions exist — so with JavaScript off every
-"Take the Entrepreneur Test" button still goes to `sc_test_url`. Call sites: header
+"Take the Owner Quiz" button still goes to `sc_test_url`. Call sites: header
 (×2), hero, section 06, programs, the closing CTA band, FAQ page, 404. Never hand-write
 the `href` on those buttons again; use the helper.
 
@@ -722,7 +731,7 @@ The closing CTA's primary button was labelled "Take the Entrepreneur Test" but l
 transcribed it faithfully. It now opens the test. The application funnel is still reached
 from the Momentum Buddy program card.
 
-The footer's "Entrepreneur Test" nav link is **deliberately not** wired to the modal: it
+The footer's "Owner Quiz" nav link is **deliberately not** wired to the modal: it
 scrolls to section 06, whose own button opens it. Wiring it would mean threading the
 attribute through `successcircles_nav_list()`, which also has to keep working for
 admin-assigned menus.

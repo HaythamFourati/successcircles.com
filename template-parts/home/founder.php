@@ -19,14 +19,14 @@ $sc_link    = (array) $sc_founder['link'];
 			<span class="sc-founder__ring-dashed" aria-hidden="true"></span>
 
 			<figure class="sc-founder__frame">
-				<?php
-				successcircles_image(
-					array(
-						'src' => $sc_founder['portrait'],
-						'alt' => $sc_founder['portrait_alt'],
-					)
-				);
-				?>
+				<img
+					<?php echo successcircles_responsive_source( 'founder-portrait.png', array( 480, 800, 1024 ), '(max-width: 999px) min(90vw, 480px), 520px' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					alt="<?php echo esc_attr( $sc_founder['portrait_alt'] ); ?>"
+					width="1024"
+					height="1536"
+					loading="lazy"
+					decoding="async"
+				>
 			</figure>
 
 			<span class="sc-founder__pip sc-founder__pip--a" aria-hidden="true"></span>

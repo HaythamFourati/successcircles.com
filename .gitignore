@@ -23,3 +23,6 @@ vendor/
 # Local tooling
 .phpunit.result.cache
 .php-cs-fixer.cache
+
+# Local Claude Code settings (trust boundaries, machine-specific)
+.claude/settings.local.json

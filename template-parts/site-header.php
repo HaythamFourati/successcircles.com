@@ -37,7 +37,7 @@ $sc_login = successcircles_page_link( 'header_login' );
 				<?php esc_html_e( 'Member Login', 'successcircles' ); ?>
 			</a>
 			<a class="sc-btn sc-btn--primary sc-btn--compact" <?php successcircles_test_link_attrs( 'header_site_header_test' ); ?>>
-				<?php esc_html_e( 'Take the Entrepreneur Test', 'successcircles' ); ?>
+				<?php esc_html_e( 'Take the Owner Quiz', 'successcircles' ); ?>
 			</a>
 		</div>
 

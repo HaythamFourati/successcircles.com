@@ -17,7 +17,7 @@
 .ab-nav a span, .ab-nav a:hover { color: var(--sc-rust); }
 .ab-page a:focus-visible { outline: 2px solid var(--sc-orange); outline-offset: 5px; }
 .ab-page .sc-about__bleed { height: auto; overflow: visible; margin-top: 40px; }
-.ab-page .sc-about__bleed img { height: clamp(260px, 34vw, 440px); object-position: 50% 55%; border-radius: var(--sc-corner-lg); }
+.ab-page .sc-about__bleed img { height: auto; border-radius: var(--sc-corner-lg); }
 .ab-page .sc-about__bleed-note { position: static; padding: 16px 20px; background: var(--sc-surface-invert); color: var(--sc-cream); font-size: 11px; line-height: 1.6; text-align: center; letter-spacing: .035em; }
 .ab-page .sc-about__pull { grid-template-columns: 1fr; gap: 44px; }
 .ab-page .sc-about__pull-left { align-items: center; text-align: center; max-width: 800px; margin-inline: auto; gap: 20px; }

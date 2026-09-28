@@ -250,7 +250,7 @@
 	font: 11px/1.6 var(--sc-font-mono);
 	letter-spacing: .18em;
 	text-transform: uppercase;
-	color: oklch(var(--sc-ink-c) / .5);
+	color: oklch(var(--sc-ink-c) / .72);
 }
 
 .sc-fly__nodes {

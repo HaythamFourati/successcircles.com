@@ -35,7 +35,12 @@ foreach ( (array) $sc_trust['names'] as $sc_name ) {
 
 			<?php if ( 'logo' === $sc_part['type'] ) : ?>
 				<?php if ( '' !== $sc_part['data']['note'] ) : ?>
+					<?php $sc_url = $sc_part['data']['url'] ?? ''; ?>
+					<?php if ( $sc_url ) : ?>
+					<a class="sc-trust__group sc-trust__group--link" href="<?php echo esc_url( $sc_url ); ?>" target="_blank" rel="noopener">
+					<?php else : ?>
 					<span class="sc-trust__group">
+					<?php endif; ?>
 						<?php
 						successcircles_image(
 							array(
@@ -48,7 +53,7 @@ foreach ( (array) $sc_trust['names'] as $sc_name ) {
 						);
 						?>
 						<span class="sc-trust__note"><?php echo esc_html( $sc_part['data']['note'] ); ?></span>
-					</span>
+					<?php echo $sc_url ? '</a>' : '</span>'; ?>
 				<?php else : ?>
 					<?php
 					successcircles_image(

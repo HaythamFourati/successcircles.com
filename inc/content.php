@@ -66,10 +66,6 @@ function successcircles_content_tree( $customized = true ) {
 				),
 			),
 			array(
-				'label' => __( 'Podcast', 'successcircles' ),
-				'url'   => '/rules-for-success/',
-			),
-			array(
 				'label'    => __( 'About', 'successcircles' ),
 				'url'      => '/about/',
 				'children' => array(
@@ -92,6 +88,10 @@ function successcircles_content_tree( $customized = true ) {
 				),
 			),
 			array(
+				'label' => __( 'Podcast', 'successcircles' ),
+				'url'   => '/rules-for-success/',
+			),
+			array(
 				'label' => __( 'Contact', 'successcircles' ),
 				'url'   => '/contact-us/',
 			),
@@ -101,7 +101,7 @@ function successcircles_content_tree( $customized = true ) {
 			'eyebrow'       => __( 'Advisory Community for Established Entrepreneurs', 'successcircles' ),
 			'title'         => __( '<span class="sc-hero__title-line">We help business owners</span><span class="sc-hero__title-line">Turn vision into <em class="sc-accent">momentum</em></span>', 'successcircles' ),
 			'lede'          => __( 'Urgent demands can push your biggest goals aside. Success&nbsp;Circles&trade; gives you the focus, accountability, and support to follow through and make consistent progress.', 'successcircles' ),
-			'primary_cta'   => __( 'Take the Entrepreneur Test', 'successcircles' ),
+			'primary_cta'   => __( 'Take the Owner Quiz', 'successcircles' ),
 			'secondary_cta' => __( 'Check Our Programs', 'successcircles' ),
 			'meta'          => array(
 				__( 'Founded in 2005', 'successcircles' ),
@@ -124,6 +124,7 @@ function successcircles_content_tree( $customized = true ) {
 					'src'  => SUCCESSCIRCLES_URI . '/assets/img/trustpilot.svg',
 					'alt'  => __( 'Trustpilot', 'successcircles' ),
 					'note' => __( 'Rated Excellent', 'successcircles' ),
+					'url'  => 'https://www.trustpilot.com/review/successcircles.com',
 				),
 			),
 			'names' => array(
@@ -285,7 +286,7 @@ function successcircles_content_tree( $customized = true ) {
 						__( 'Collaborative problem solving', 'successcircles' ),
 						__( 'Community and shared resources', 'successcircles' ),
 					),
-					'cta'      => __( 'Apply to Join Momentum Labs™', 'successcircles' ),
+					'cta'      => __( 'Join Momentum Labs™', 'successcircles' ),
 					'cta_url'  => '/momentum-labs/',
 				),
 				array(
@@ -325,7 +326,7 @@ function successcircles_content_tree( $customized = true ) {
 			),
 			'note'     => array(
 				'before' => __( 'Not sure which fits?', 'successcircles' ),
-				'link'   => __( 'The Entrepreneur Test', 'successcircles' ),
+				'link'   => __( 'The Owner Quiz', 'successcircles' ),
 				'after'  => __( 'points you to one in about five minutes.', 'successcircles' ),
 			),
 			'includes_eyebrow' => __( 'Included with every program', 'successcircles' ),
@@ -414,10 +415,10 @@ function successcircles_content_tree( $customized = true ) {
 
 		'test' => array(
 			'index'   => '08',
-			'eyebrow' => __( 'The Entrepreneur Test', 'successcircles' ),
+			'eyebrow' => __( 'The Owner Quiz', 'successcircles' ),
 			'title'   => __( 'Are you running your business, or is it running you?', 'successcircles' ),
 			'lede'    => __( 'Twelve practical questions reveal where urgent demands are crowding out growth, then point you toward the level of support that fits your business.', 'successcircles' ),
-			'cta'     => __( 'Take the Entrepreneur Test', 'successcircles' ),
+			'cta'     => __( 'Take the Owner Quiz', 'successcircles' ),
 			'note'    => __( '5 minutes', 'successcircles' ),
 		),
 
@@ -637,7 +638,7 @@ function successcircles_content_tree( $customized = true ) {
 				'title' => __( 'Still have a question?', 'successcircles' ),
 				'text'  => __( 'Talk to a facilitator and we&rsquo;ll help you figure out whether Success Circles&trade; is the right room for you.', 'successcircles' ),
 				'link'  => array(
-					'label' => __( 'Take the Entrepreneur Test', 'successcircles' ),
+					'label' => __( 'Take the Owner Quiz', 'successcircles' ),
 					'url'   => '#test',
 				),
 				'secondary' => array(
@@ -725,7 +726,7 @@ function successcircles_content_tree( $customized = true ) {
 		'cta' => array(
 			'title'         => __( 'Dare to play a <em class="sc-accent">bigger</em> game.', 'successcircles' ),
 			'lede'          => __( 'Take five minutes to identify what is blocking progress and which level of support can help you move your biggest goal forward.', 'successcircles' ),
-			'primary_cta'   => __( 'Take the Entrepreneur Test', 'successcircles' ),
+			'primary_cta'   => __( 'Take the Owner Quiz', 'successcircles' ),
 			'secondary_cta' => __( 'Check Our Programs', 'successcircles' ),
 		),
 
@@ -758,7 +759,7 @@ function successcircles_content_tree( $customized = true ) {
 		// successcircles.com/about-joseph-varghese/ — see §7g.
 		'founder_page' => array(
 			'eyebrow'  => __( 'Founder', 'successcircles' ),
-			'title'    => __( 'About Joseph <em class="sc-accent">Varghese</em>.', 'successcircles' ),
+			'title'    => __( 'About <em class="sc-accent">Joseph Varghese</em>.', 'successcircles' ),
 			'roles'    => array(
 				__( 'Founder of Success Circles&trade;', 'successcircles' ),
 				__( 'The Breakthrough Engineer', 'successcircles' ),
@@ -1761,7 +1762,7 @@ function successcircles_content_tree( $customized = true ) {
 					'menu'    => 'footer_explore',
 					'links'   => array(
 						array(
-							'label' => __( 'Entrepreneur Test', 'successcircles' ),
+							'label' => __( 'Owner Quiz', 'successcircles' ),
 							'url'   => '#test',
 						),
 						array(
@@ -1848,10 +1849,10 @@ function successcircles_content_tree( $customized = true ) {
 			'phone'   => __( 'Tel +1 (747) 2CIRCLE &nbsp;/&nbsp; +1 (747) 224-7253', 'successcircles' ),
 		),
 
-		// The Entrepreneur Test modal. The questions themselves are `sc_question`
-		// posts — Entrepreneur Test in the admin menu, not this file.
+		// The Owner Quiz modal. The questions themselves are `sc_question`
+		// posts — Owner Quiz in the admin menu, not this file.
 		'quiz'  => array(
-			'eyebrow'      => __( 'The Entrepreneur Test', 'successcircles' ),
+			'eyebrow'      => __( 'The Owner Quiz', 'successcircles' ),
 			'intro'        => __( 'One question at a time. No wrong answers &mdash; just an honest read.', 'successcircles' ),
 			'close'        => __( 'Close the test', 'successcircles' ),
 			'back'         => __( 'Back', 'successcircles' ),

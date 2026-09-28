@@ -26,7 +26,7 @@ get_header();
 			<?php esc_html_e( 'Back to homepage', 'successcircles' ); ?>
 		</a>
 		<a class="sc-btn sc-btn--ghost" <?php successcircles_test_link_attrs( 'not_found_404_test' ); ?>>
-			<?php esc_html_e( 'Take the Entrepreneur Test', 'successcircles' ); ?>
+			<?php esc_html_e( 'Take the Owner Quiz', 'successcircles' ); ?>
 		</a>
 	</div>
 </div>

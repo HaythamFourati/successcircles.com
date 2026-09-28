@@ -82,9 +82,14 @@ function successcircles_enqueue_assets() {
 	}
 
 	if ( is_front_page() ) {
-		wp_enqueue_style( 'successcircles-home', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/css/home.css' ), array( 'successcircles' ), successcircles_asset_version( '/assets/css/home.css' ) );
-		wp_enqueue_script( 'successcircles-huddle-orbit', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/js/huddle-orbit.js' ), array(), successcircles_asset_version( '/assets/js/huddle-orbit.js' ), true );
-		wp_enqueue_script( 'successcircles-hero-video', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/js/hero-video.js' ), array(), successcircles_asset_version( '/assets/js/hero-video.js' ), true );
+		// The build folds home.css into main-home.min.css: one render-blocking request, not two.
+		$sc_bundle = SUCCESSCIRCLES_DIR . '/assets/css/main-home.min.css';
+		$sc_bundled = '/assets/css/main-home.min.css' === successcircles_asset_path( '/assets/css/main.css' ) && filemtime( $sc_bundle ) >= filemtime( SUCCESSCIRCLES_DIR . '/assets/css/home.css' );
+		if ( ! $sc_bundled ) {
+			wp_enqueue_style( 'successcircles-home', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/css/home.css' ), array( 'successcircles' ), successcircles_asset_version( '/assets/css/home.css' ) );
+		}
+		wp_enqueue_script( 'successcircles-huddle-orbit', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/js/huddle-orbit.js' ), array(), successcircles_asset_version( '/assets/js/huddle-orbit.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+		wp_enqueue_script( 'successcircles-hero-video', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/js/hero-video.js' ), array(), successcircles_asset_version( '/assets/js/hero-video.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	}
 
 	if ( is_page( 'momentum-os' ) || is_page_template( 'page-momentum-os.php' ) ) {
@@ -120,3 +125,20 @@ function successcircles_defer_script( $tag, $handle ) {
 	return $tag;
 }
 add_filter( 'script_loader_tag', 'successcircles_defer_script', 10, 2 );
+
+/**
+ * Plugin assets PageSpeed flagged as render-blocking.
+ *
+ * WP-PageNavi and Recent Posts Widget With Thumbnails style markup this theme never
+ * prints (it paginates with successcircles_pagination() and registers no widget
+ * area), so their stylesheets only delay first paint. The Trustpilot plugin's
+ * header script sits in the head without defer; nothing inline depends on it.
+ *
+ * @return void
+ */
+function successcircles_trim_plugin_assets() {
+	wp_dequeue_style( 'wp-pagenavi' );
+	wp_dequeue_style( 'recent-posts-widget-with-thumbnails-public-style' );
+	wp_script_add_data( 'tp-js', 'strategy', 'defer' );
+}
+add_action( 'wp_enqueue_scripts', 'successcircles_trim_plugin_assets', 100 );

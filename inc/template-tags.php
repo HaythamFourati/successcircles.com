@@ -95,7 +95,7 @@ function successcircles_option( $mod, $path = '', $default = '' ) {
 }
 
 /**
- * The URL the "Take the Entrepreneur Test" buttons point at.
+ * The URL the "Take the Owner Quiz" buttons point at.
  *
  * @return string
  */

@@ -270,7 +270,7 @@ function successcircles_important_links() {
 	$defaults = successcircles_content_tree( false )['links'];
 	return array(
 		'sc_test_url'  => array(
-			'label'   => __( 'Entrepreneur Test URL', 'successcircles' ),
+			'label'   => __( 'Owner Quiz URL', 'successcircles' ),
 			'default' => $defaults['test'],
 		),
 		'sc_apply_url' => array(

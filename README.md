@@ -14,7 +14,7 @@ PHP 7.4+  ·  WordPress 6.0+  ·  GPL-2.0-or-later  ·  zero npm dependencies
 
 The design is bespoke and hand-tuned — `oklch()` colour, orbit keyframes, curtain radii, a clamp-based type scale. That maps poorly onto utility classes, so there is **deliberately no build pipeline**: no `package.json`, no Tailwind, no `node_modules`. One stylesheet, one script, both versioned with `filemtime()` so cache-busting is automatic.
 
-Everything degrades without JavaScript. The FAQ accordions are native `<details>`. The nav dropdowns open on `:hover` / `:focus-within` with no JS. The Entrepreneur Test modal is a native `<dialog>` rendered server-side. The contact form posts to `admin-post.php`. Videos are click-to-play facades that load nothing from Vimeo until pressed.
+Everything degrades without JavaScript. The FAQ accordions are native `<details>`. The nav dropdowns open on `:hover` / `:focus-within` with no JS. The Owner Quiz modal is a native `<dialog>` rendered server-side. The contact form posts to `admin-post.php`. Videos are click-to-play facades that load nothing from Vimeo until pressed.
 
 ---
 
@@ -31,7 +31,7 @@ Everything degrades without JavaScript. The FAQ accordions are native `<details>
 ## Installation
 
 1. Copy this directory into `wp-content/themes/` and activate it.
-2. On activation the theme creates any missing `home`, `rules-for-success`, `testimonials` and `about` page, wires up **Settings → Reading** if no Posts page is set, and seeds six demo Entrepreneur Test questions. It only ever fills in blanks — nothing existing is overwritten.
+2. On activation the theme creates any missing `home`, `rules-for-success`, `testimonials` and `about` page, wires up **Settings → Reading** if no Posts page is set, and seeds six demo Owner Quiz questions. It only ever fills in blanks — nothing existing is overwritten.
 3. Set your globals in **Appearance → Customize → SuccessCircles**: CTA URLs, program prices, phone, socials, contact-form recipient.
 
 > **Note on the folder name.** During development this directory carried a trailing space (`SuccessCirclesWP `). That artifact does not survive a `git clone`, so nothing needs doing — but if you copy the theme around by hand, make sure the folder name has no trailing whitespace.
@@ -61,7 +61,7 @@ Internal links are stored relative (`#programs`, `/about/`) and resolved by `suc
 | Type | Admin label | What it is |
 | --- | --- | --- |
 | `post` | Posts | **The podcast.** "Rules for Success" episodes are ordinary posts — there is no separate episode type. Extra field: `_sc_role` (the guest's role). |
-| `sc_question` | Entrepreneur Test | One question per post; answer options one per line; ordered by page-attributes **Order**. |
+| `sc_question` | Owner Quiz | One question per post; answer options one per line; ordered by page-attributes **Order**. |
 | `sc_lead` | ↳ Test Leads | Test submissions — name, answer transcript, email, phone. |
 
 ### 3. Globals → the Customizer
@@ -78,11 +78,11 @@ Pricing and contact details remain in the **Success Circles** panel. Link locati
 
 ## What's in it
 
-### The Entrepreneur Test — `inc/quiz.php`
+### The Owner Quiz — `inc/quiz.php`
 
 A multi-step quiz in a native `<dialog>`, **every step rendered server-side** (there are no template strings in the JavaScript — `initQuiz()` only toggles `hidden`). Submits over `admin-ajax.php` with a nonce, a honeypot, and a one-per-minute throttle. **Answers are only trusted as far as the published question list** — anything that isn't one of that question's own options is discarded, never stored. Leads are saved as `sc_lead` posts and mailed to the site owner.
 
-Every "Take the Entrepreneur Test" button is wired by `successcircles_test_link_attrs()`, which prints a real `href` *plus* the modal hook — so with JavaScript off the buttons still go somewhere useful.
+Every "Take the Owner Quiz" button is wired by `successcircles_test_link_attrs()`, which prints a real `href` *plus* the modal hook — so with JavaScript off the buttons still go somewhere useful.
 
 ### Contact form — `inc/contact.php`, `inc/cf7.php`
 
@@ -132,7 +132,7 @@ inc/
   customizer.php           CTA URLs, prices, phone, socials, form recipient
   contact.php              built-in contact form handler
   cf7.php                  Contact Form 7 detection + auto-provisioning
-  quiz.php               ★ the Entrepreneur Test
+  quiz.php               ★ the Owner Quiz
   wins.php               ★ live Weekly Wins pull + daily cron
   post-types.php           _sc_role meta, activation setup
 

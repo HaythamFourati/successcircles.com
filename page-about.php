@@ -81,10 +81,10 @@ while ( have_posts() ) :
 
 		<figure class="sc-about__bleed sc-rise" style="--sc-rise-delay:0.5s">
 			<img
-				<?php echo successcircles_responsive_source( 'hero-huddle.jpg', array( 480, 800, 1170 ), '100vw' ); ?>
+				<?php echo successcircles_responsive_source( 'about/owners-since-2005.jpg', array( 480, 800, 1272 ), '100vw' ); ?>
 				alt="<?php echo esc_attr( $sc_about['bleed_alt'] ); ?>"
-				width="1170"
-				height="780"
+				width="1272"
+				height="716"
 				fetchpriority="high"
 				decoding="async"
 			>

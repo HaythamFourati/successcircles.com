@@ -18,10 +18,10 @@ const postcss = require('postcss');
   const otherPages=/\.sc-(?:about|voices|joseph|buddy|labs|team|contactpage|faqpage|journal|article)(?:__|--|[\s.:#>+~\[]|$)/;
   root.walkRules(rule=>{if(rule.selectors.every(selector=>otherPages.test(selector)))rule.remove();});
   root.walkAtRules(rule=>{if(rule.nodes && !rule.nodes.length)rule.remove();});
-  const homepage=await esbuild.transform(root.toString(),{loader:'css',minify:true,legalComments:'none'});
+  const homepage=await esbuild.transform(root.toString()+'\n'+fs.readFileSync('assets/css/home.css','utf8'),{loader:'css',minify:true,legalComments:'none'});
   fs.writeFileSync('assets/css/main-home.min.css',homepage.code);
   fs.mkdirSync('assets/img/optimized',{recursive:true});
-  for(const [name,widths] of Object.entries({'story-poster.png':[480,800,1200],'hero-huddle.jpg':[480,800,1170],'team/members-live.jpg':[480,800,1200],'successcircles-logo.png':[195,390]})) {
+  for(const [name,widths] of Object.entries({'story-poster.png':[480,800,1200],'hero-huddle.jpg':[480,800,1170],'team/members-live.jpg':[480,800,1200],'about/owners-since-2005.jpg':[480,800,1272],'founder-portrait.png':[480,800,1024],'successcircles-logo.png':[195,390]})) {
     const stem=name.replace(/\.[^.]+$/,'').replaceAll('/','-');
     for(const width of widths) await sharp('assets/img/'+name).resize({width,withoutEnlargement:true}).webp({quality:82,effort:6}).toFile(`assets/img/optimized/${stem}-${width}.webp`);
   }

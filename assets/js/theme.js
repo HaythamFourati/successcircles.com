@@ -425,7 +425,7 @@
 
 
 	/**
-	 * The Entrepreneur Test: one question at a time in a native <dialog>, then
+	 * The Owner Quiz: one question at a time in a native <dialog>, then
 	 * a contact step, then the thank-you screen.
 	 *
 	 * Enhancement only — with JavaScript off the buttons keep their href and the

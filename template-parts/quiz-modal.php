@@ -1,6 +1,6 @@
 <?php
 /**
- * The Entrepreneur Test modal.
+ * The Owner Quiz modal.
  *
  * Rendered once in the footer by successcircles_quiz_modal(). Every step is in
  * the markup already; theme.js only ever toggles `hidden`, so there are no

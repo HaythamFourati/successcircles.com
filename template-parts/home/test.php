@@ -1,6 +1,6 @@
 <?php
 /**
- * 06 / The Entrepreneur Test.
+ * 06 / The Owner Quiz.
  *
  * @package SuccessCircles
  */

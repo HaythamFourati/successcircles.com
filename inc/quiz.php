@@ -1,6 +1,6 @@
 <?php
 /**
- * The Entrepreneur Test.
+ * The Owner Quiz.
  *
  * A small, plugin-free quiz: questions are `sc_question` posts (add, reorder and
  * delete them in the admin), the modal asks one at a time, and the closing step
@@ -8,7 +8,7 @@
  * own tables are the database, so there is nothing to migrate or back up twice.
  *
  * Progressive enhancement, like the rest of the theme: with JavaScript off the
- * "Take the Entrepreneur Test" buttons keep their ordinary href.
+ * "Take the Owner Quiz" buttons keep their ordinary href.
  *
  * @package SuccessCircles
  */
@@ -31,7 +31,7 @@ function successcircles_register_quiz_types() {
 				'singular_name'      => __( 'Test Question', 'successcircles' ),
 				'add_new_item'       => __( 'Add New Question', 'successcircles' ),
 				'edit_item'          => __( 'Edit Question', 'successcircles' ),
-				'menu_name'          => __( 'Entrepreneur Test', 'successcircles' ),
+				'menu_name'          => __( 'Owner Quiz', 'successcircles' ),
 				'search_items'       => __( 'Search Questions', 'successcircles' ),
 				'not_found'          => __( 'No questions yet.', 'successcircles' ),
 				'not_found_in_trash' => __( 'No questions in trash.', 'successcircles' ),
@@ -261,7 +261,7 @@ function successcircles_quiz_questions() {
 }
 
 /**
- * Print the href and hook attribute for a "Take the Entrepreneur Test" button.
+ * Print the href and hook attribute for a "Take the Owner Quiz" button.
  *
  * The href stays a real destination so the button works without JavaScript; the
  * data attribute is what theme.js binds the modal to.
@@ -365,7 +365,7 @@ function successcircles_handle_quiz() {
 	wp_mail(
 		successcircles_contact_email(),
 		/* translators: %s: person's name. */
-		sprintf( __( 'Entrepreneur Test completed — %s', 'successcircles' ), $name ),
+		sprintf( __( 'Owner Quiz completed — %s', 'successcircles' ), $name ),
 		implode(
 			"\n",
 			array(
@@ -432,7 +432,7 @@ add_action( 'wp_footer', 'successcircles_quiz_modal' );
 /**
  * Seed a starter set of questions the first time the theme is activated.
  *
- * Demo copy — the client should rewrite these in Entrepreneur Test → Test
+ * Demo copy — the client should rewrite these in Owner Quiz → Test
  * Questions before launch.
  *
  * @return void
