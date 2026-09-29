@@ -16,7 +16,7 @@ $sc_test = (array) successcircles_content( 'test', array() );
 
 	<div class="sc-test__inner">
 		<div class="sc-test__col">
-			<?php successcircles_eyebrow( $sc_test['index'], $sc_test['eyebrow'] ); ?>
+			<?php successcircles_eyebrow( '', $sc_test['eyebrow'] ); ?>
 
 			<h2 id="sc-test-title" class="sc-display sc-test__title">
 				<?php echo successcircles_inline( $sc_test['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

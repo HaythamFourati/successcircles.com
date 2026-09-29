@@ -24,7 +24,7 @@ $sc_all_quotes = array_merge( array( $sc_feature ), $sc_quotes );
 
 	<div class="sc-section-head">
 		<div>
-			<?php successcircles_eyebrow( $sc_stories['index'], $sc_stories['eyebrow'] ); ?>
+			<?php successcircles_eyebrow( '', $sc_stories['eyebrow'] ); ?>
 			<h2 id="sc-stories-title" class="sc-display sc-display--lg">
 				<?php echo successcircles_inline( $sc_stories['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</h2>

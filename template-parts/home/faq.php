@@ -22,7 +22,7 @@ $sc_link = (array) $sc_faq['link'];
 <section class="sc-band--shade sc-band--hairline" aria-labelledby="sc-faq-title">
 	<div id="faq" class="sc-section sc-faq__layout">
 		<header class="sc-faq__head">
-			<?php successcircles_eyebrow( $sc_faq['index'], $sc_faq['eyebrow'] ); ?>
+			<?php successcircles_eyebrow( '', $sc_faq['eyebrow'] ); ?>
 
 			<h2 id="sc-faq-title" class="sc-display sc-display--md sc-faq__title">
 				<?php echo successcircles_inline( $sc_faq['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

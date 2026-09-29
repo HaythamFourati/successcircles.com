@@ -37,7 +37,7 @@ $sc_link    = (array) $sc_founder['link'];
 			<?php
 			// The index belongs to the homepage's 01-09 sequence; on About it
 			// would point at a run of sections that isn't there.
-			successcircles_eyebrow( is_front_page() ? $sc_founder['index'] : '', $sc_founder['eyebrow'] );
+			successcircles_eyebrow( '', $sc_founder['eyebrow'] );
 			?>
 
 			<h2 id="sc-founder-title" class="sc-display sc-display--md sc-founder__title">

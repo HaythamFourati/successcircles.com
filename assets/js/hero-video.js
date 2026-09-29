@@ -1,4 +1,6 @@
-/* Load the video and its SDK only when requested; the poster paints immediately. */
+/* The poster paints immediately. Once the page has loaded, the video starts as a
+   muted, looping preview — browsers only allow autoplay without sound. The big play
+   button stays up over it and restarts the film from the top with sound. */
 ( function () {
 	'use strict';
 	var frame = document.querySelector( '[data-sc-hero-video]' );
@@ -7,6 +9,7 @@
 	var iframe = frame.querySelector( 'iframe' );
 	var fallback = frame.querySelector( '.sc-orbit__video-fallback' );
 	var playing = false;
+	var previewing = false;
 	var player;
 	function fail() {
 		button.disabled = false;
@@ -32,18 +35,37 @@
 			document.head.appendChild( script );
 		} );
 	}
+	function attach() {
+		player = new window.Vimeo.Player( iframe );
+		// During the muted preview the poster goes, but the button keeps offering sound.
+		player.on( 'play', function () { frame.classList.add( 'has-played' ); if ( ! previewing ) { sync( true ); } } );
+		player.on( 'pause', function () { if ( ! previewing ) { sync( false ); } } );
+		player.on( 'ended', function () { if ( ! previewing ) { sync( false ); } } );
+		player.on( 'error', fail );
+		return player.ready();
+	}
+	function preview() {
+		previewing = true;
+		iframe.src = iframe.dataset.src.replace( 'autoplay=0', 'autoplay=1&muted=1&loop=1' );
+		loadSDK().then( attach ).catch( function () { previewing = false; player = null; } );
+	}
 	function start() {
+		if ( player && previewing ) {
+			previewing = false;
+			// The preview is already running: rewind and unmute it rather than calling
+			// play() mid-seek, which Vimeo rejects and which left the button stuck centred.
+			return player.setCurrentTime( 0 )
+				.then( function () { return Promise.all( [ player.setMuted( false ), player.setVolume( 1 ), player.setLoop( false ) ] ); } )
+				.then( function () { return player.getPaused(); } )
+				.then( function ( paused ) { return paused ? player.play() : null; } )
+				.then( function () { sync( true ); } );
+		}
 		if ( player ) { return playing ? player.pause() : player.play(); }
+		// Clicked before the preview's player was ready: play with sound instead.
+		previewing = false;
 		// The user's requested playback may autoplay once the deferred player loads.
 		iframe.src = iframe.dataset.src.replace( 'autoplay=0', 'autoplay=1' );
-		return loadSDK().then( function () {
-			player = new window.Vimeo.Player( iframe );
-			player.on( 'play', function () { sync( true ); } );
-			player.on( 'pause', function () { sync( false ); } );
-			player.on( 'ended', function () { sync( false ); } );
-			player.on( 'error', fail );
-			return player.ready().then( function () { return player.play(); } );
-		} );
+		return loadSDK().then( attach ).then( function () { return player.play(); } );
 	}
 	button.addEventListener( 'click', function () {
 		button.disabled = true;
@@ -51,4 +73,10 @@
 		var timer = setTimeout( fail, 15000 );
 		start().then( function () { clearTimeout( timer ); button.disabled = false; button.removeAttribute( 'aria-busy' ); } ).catch( function () { clearTimeout( timer ); fail(); } );
 	} );
+	// ponytail: after `load`, so the player never competes with first paint. Skipped for
+	// reduced motion and Save-Data; the button still plays it on request.
+	var saveData = navigator.connection && navigator.connection.saveData;
+	if ( ! window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches && ! saveData ) {
+		if ( document.readyState === 'complete' ) { preview(); } else { window.addEventListener( 'load', preview ); }
+	}
 }() );

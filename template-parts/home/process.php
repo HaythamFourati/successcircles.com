@@ -12,7 +12,7 @@ $sc_process = (array) successcircles_content( 'process', array() );
 ?>
 <section class="sc-band--shade sc-band--hairline" aria-labelledby="sc-process-title">
 	<div class="sc-section sc-section--short">
-		<?php successcircles_eyebrow( $sc_process['index'], $sc_process['eyebrow'] ); ?>
+		<?php successcircles_eyebrow( '', $sc_process['eyebrow'] ); ?>
 		<h2 id="sc-process-title" class="sc-display sc-display--lg sc-process__title">
 			<?php echo successcircles_inline( $sc_process['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</h2>

@@ -21,7 +21,7 @@ for ( $sc_i = 0; $sc_i < $sc_count; $sc_i++ ) {
 <section id="huddle" class="hp-huddle sc-band--hairline" aria-labelledby="sc-huddle-title">
 	<div class="sc-section">
 		<header class="hp-intro">
-			<?php successcircles_eyebrow( $sc_block['index'], $sc_block['eyebrow'] ); ?>
+			<?php successcircles_eyebrow( '', $sc_block['eyebrow'] ); ?>
 			<h2 id="sc-huddle-title" class="sc-display sc-display--lg"><?php echo successcircles_inline( $sc_block['title'] ); ?></h2>
 			<p class="sc-lede"><?php echo esc_html( wp_specialchars_decode( $sc_block['lede'] ) ); ?></p>
 		</header>

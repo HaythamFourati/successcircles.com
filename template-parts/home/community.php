@@ -32,7 +32,7 @@ $sc_community = (array) successcircles_content( 'community', array() );
 			</div>
 
 			<div class="sc-community__body">
-				<?php successcircles_eyebrow( $sc_community['index'], $sc_community['eyebrow'] ); ?>
+				<?php successcircles_eyebrow( '', $sc_community['eyebrow'] ); ?>
 
 				<h2 id="sc-community-title" class="sc-display sc-display--lg">
 					<?php echo successcircles_inline( $sc_community['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

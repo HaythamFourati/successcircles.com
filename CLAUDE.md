@@ -137,7 +137,7 @@ template-parts/
 
 ## 5. Homepage section order
 
-Defined in `front-page.php`. Numbering matches the design's eyebrow labels.
+Defined in `front-page.php`. The `#` column is the old eyebrow numbering — **the numbers were taken off the page on 2026-09-29** at the client's request (they read as AI-generated); the `index` values in `inc/content.php` are no longer printed. Don't put them back.
 
 | # | Part | Band | Notes |
 | --- | --- | --- | --- |
@@ -153,7 +153,7 @@ Defined in `front-page.php`. Numbering matches the design's eyebrow labels.
 | 08 | `faq` | **shade + hairline** | 4 Q&A + FAQPage JSON-LD. |
 | — | `cta` | sand + hairline | "Dare to play a bigger game." `id="contact"`. Primary button opens the test. |
 
-**The podcast section was removed from the homepage on 2026-08-31** (`template-parts/home/podcast.php`
+**The podcast section was removed from the homepage on 2026-08-31**, crept back in, and was removed again on 2026-09-29 at the client's request (it pulled attention from the main call to action) — keep it off (`template-parts/home/podcast.php`
 is still in the tree, just no longer included by `front-page.php`; the blog itself is
 untouched at `/rules-for-success/`). Two things had to move with it: the FAQ was renumbered
 09 → 08 so the eyebrow sequence has no gap, and the FAQ took over the **shade + hairline**

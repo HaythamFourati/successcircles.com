@@ -30,7 +30,7 @@ $sc_count  = max( 1, count( $sc_steps ) );
 		<div class="sc-os">
 
 			<div class="sc-os__copy">
-				<?php successcircles_eyebrow( $sc_system['index'], $sc_system['eyebrow'] ); ?>
+				<?php successcircles_eyebrow( '', $sc_system['eyebrow'] ); ?>
 
 				<h2 id="sc-system-title" class="sc-display sc-display--lg">
 					<?php echo successcircles_inline( $sc_system['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

@@ -16,7 +16,7 @@ $sc_note     = (array) $sc_programs['note'];
 
 		<div class="sc-programs__intro">
 			<div class="sc-programs__intro-left">
-				<?php successcircles_eyebrow( $sc_programs['index'], $sc_programs['eyebrow'] ); ?>
+				<?php successcircles_eyebrow( '', $sc_programs['eyebrow'] ); ?>
 				<h2 id="sc-programs-title" class="sc-display sc-display--xl sc-programs__title">
 					<?php echo successcircles_inline( $sc_programs['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</h2>
