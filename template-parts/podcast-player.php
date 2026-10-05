@@ -40,6 +40,9 @@ $sc_episodes = successcircles_podcast_episodes();
 			</ul>
 		</div>
 		<p class="sc-podcast-player__scroll-hint"><?php esc_html_e( 'Scroll for more episodes', 'successcircles' ); ?> <span aria-hidden="true">↓</span></p>
-		<a class="sc-btn sc-btn--ghost sc-podcast-player__spotify" href="https://open.spotify.com/show/64eUCSg7BqAo0EJf8cOp97" target="_blank" rel="noopener noreferrer">Check on Spotify <span aria-hidden="true">↗</span></a>
+		<div class="sc-podcast-player__listen">
+			<a class="sc-btn sc-btn--ghost" href="https://open.spotify.com/show/64eUCSg7BqAo0EJf8cOp97" target="_blank" rel="noopener noreferrer">Check on Spotify <span aria-hidden="true">↗</span></a>
+			<a class="sc-btn sc-btn--ghost" href="https://linktr.ee/rulesforsuccess" target="_blank" rel="noopener noreferrer">Check on Apple, YouTube and iHeart Radio <span aria-hidden="true">↗</span></a>
+		</div>
 	</div>
 </div>

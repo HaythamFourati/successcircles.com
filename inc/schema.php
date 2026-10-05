@@ -502,6 +502,7 @@ function successcircles_schema_webpage() {
 		'momentum-labs'         => 'ItemPage',
 		'momentum-team'         => 'ItemPage',
 		'momentum-os'           => 'WebPage',
+		'organizations'         => 'WebPage',
 		'about'                 => 'AboutPage',
 		'about-joseph-varghese' => 'AboutPage',
 		'contact-us'            => 'ContactPage',

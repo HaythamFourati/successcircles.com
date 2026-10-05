@@ -250,10 +250,11 @@ function successcircles_nav_list( $location, $fallback, $args = array() ) {
 
 			foreach ( $children as $child ) {
 				printf(
-					'<li><a href="%1$s"%2$s>%3$s</a></li>',
+					'<li%4$s><a href="%1$s"%2$s>%3$s</a></li>',
 					successcircles_url( $child['url'] ),
 					successcircles_link_target( $child['url'] ),
-					esc_html( wp_specialchars_decode( $child['label'] ) )
+					esc_html( wp_specialchars_decode( $child['label'] ) ),
+					empty( $child['class'] ) ? '' : ' class="' . esc_attr( $child['class'] ) . '"'
 				);
 			}
 

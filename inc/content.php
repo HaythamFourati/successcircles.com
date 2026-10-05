@@ -29,7 +29,7 @@ function successcircles_content_tree( $customized = true ) {
 	$tree = array(
 
 		'loader' => array(
-			'label' => __( 'Powered by Momentum OS&trade;', 'successcircles' ),
+			'label' => __( 'Powered by MomentumOS&trade;', 'successcircles' ),
 		),
 
 		'nav' => array(
@@ -46,8 +46,13 @@ function successcircles_content_tree( $customized = true ) {
 						'url'   => '/momentum-labs/',
 					),
 					array(
-						'label' => __( 'Momentum Team', 'successcircles' ),
+						'label' => __( 'Momentum Team™', 'successcircles' ),
 						'url'   => '/momentum-team/',
+					),
+					array(
+						'label' => __( 'For Organizations & Communities →', 'successcircles' ),
+						'url'   => '/momentum-os/organizations/',
+						'class' => 'sc-subnav__split',
 					),
 				),
 			),
@@ -56,34 +61,34 @@ function successcircles_content_tree( $customized = true ) {
 				'url'      => '/testimonials/',
 				'children' => array(
 					array(
-						'label' => __( 'Testimonials', 'successcircles' ),
-						'url'   => '/testimonials/',
-					),
-					array(
 						'label' => __( 'Momentum Buzz', 'successcircles' ),
 						'url'   => '/weekly-wins/',
 					),
+					array(
+						'label' => __( 'Testimonials', 'successcircles' ),
+						'url'   => '/testimonials/',
+					),
 				),
+			),
+			array(
+				'label' => __( 'How It Works', 'successcircles' ),
+				'url'   => '/momentum-os/',
 			),
 			array(
 				'label'    => __( 'About', 'successcircles' ),
 				'url'      => '/about/',
 				'children' => array(
 					array(
+						'label' => __( 'Meet Joseph', 'successcircles' ),
+						'url'   => '/about-joseph-varghese/',
+					),
+					array(
 						'label' => __( 'Core Values', 'successcircles' ),
 						'url'   => '/about/',
 					),
 					array(
-						'label' => __( 'How It Works', 'successcircles' ),
-						'url'   => '/momentum-os/',
-					),
-					array(
 						'label' => __( 'FAQ', 'successcircles' ),
 						'url'   => '/faq/',
-					),
-					array(
-						'label' => __( 'About Joseph', 'successcircles' ),
-						'url'   => '/about-joseph-varghese/',
 					),
 				),
 			),
@@ -164,8 +169,8 @@ function successcircles_content_tree( $customized = true ) {
 		'system' => array(
 			'index'   => '03',
 			'eyebrow' => __( 'The system', 'successcircles' ),
-			'title'   => __( 'Powered by <br><span class="sc-accent">Momentum OS™</span>', 'successcircles' ),
-			'lede'    => __( 'Momentum OS™ is the repeatable weekly operating rhythm behind Success Circles&trade;. It helps you choose the priority, commit to it, get focused feedback, take action, and review what changed. So important work keeps moving when daily demands compete for your attention.', 'successcircles' ),
+			'title'   => __( 'Powered by <br><span class="sc-accent">MomentumOS™</span>', 'successcircles' ),
+			'lede'    => __( 'MomentumOS™ is the repeatable weekly operating rhythm behind Success Circles&trade;. It helps you choose the priority, commit to it, get focused feedback, take action, and review what changed. So important work keeps moving when daily demands compete for your attention.', 'successcircles' ),
 			'formula' => array(
 				__( 'Experienced owners', 'successcircles' ),
 				__( 'Clear priorities', 'successcircles' ),
@@ -204,6 +209,13 @@ function successcircles_content_tree( $customized = true ) {
 					'text'  => __( 'Repeat the cycle until steady progress becomes how you operate.', 'successcircles' ),
 					'alpha' => '0.2',
 				),
+			),
+			// The homepage's one understated B2B pathway — it explains, the assessment comes later.
+			'orgs'    => array(
+				'title' => __( 'Want to bring this rhythm to your organization or community?', 'successcircles' ),
+				'text'  => __( 'MomentumOS&trade; can be adapted to help members turn connection, learning, and intention into consistent progress.', 'successcircles' ),
+				'label' => __( 'MomentumOS&trade; for Organizations', 'successcircles' ),
+				'url'   => '/momentum-os/organizations/',
 			),
 		),
 
@@ -1714,6 +1726,150 @@ function successcircles_content_tree( $customized = true ) {
 			),
 		),
 
+		// /momentum-os/organizations/ — the B2B/B2Community offering. Copy is the
+		// client's "MomentumOS Website Expansion" brief (2026-10-05), verbatim.
+		'orgs_page' => array(
+			'anchor'      => __( 'Your community. Your identity. Powered by MomentumOS&trade;.', 'successcircles' ),
+			'assessment'  => array(
+				'label' => __( 'Take the Partnership Assessment', 'successcircles' ),
+				// ponytail: placeholder until the client sends the assessment form URL.
+				'url'   => '/contact-us/',
+			),
+			'hero'        => array(
+				'eyebrow' => __( 'For Organizations &amp; Communities', 'successcircles' ),
+				'title'   => __( 'Bring the rhythm of progress to <em class="sc-accent">your community.</em>', 'successcircles' ),
+				'lede'    => __( 'Your members don&rsquo;t need more information. They need a consistent way to turn what they already know into meaningful action.', 'successcircles' ),
+				'text'    => __( 'MomentumOS&trade; gives organizations and communities a repeatable framework for helping people clarify what matters, make meaningful commitments, support one another, take action, reflect on what happened, and build on what works.', 'successcircles' ),
+				'cta'     => __( 'Explore a MomentumOS&trade; Partnership', 'successcircles' ),
+			),
+			'opportunity' => array(
+				'eyebrow' => __( 'The opportunity', 'successcircles' ),
+				'title'   => __( 'Great communities create connection.<br>MomentumOS&trade; turns connection <em class="sc-accent">into progress.</em>', 'successcircles' ),
+				'paras'   => array(
+					__( 'Your organization may already provide extraordinary education, relationships, resources, inspiration, and opportunities.', 'successcircles' ),
+					__( 'But what happens between the meetings, events, programs, and conversations?', 'successcircles' ),
+					__( 'MomentumOS&trade; creates a simple rhythm that helps members turn intention into action&mdash;and action into consistent progress.', 'successcircles' ),
+				),
+				'flow'    => array( 'Connection', 'Commitment', 'Action', 'Reflection', 'Progress' ),
+				'cards'   => array(
+					array(
+						'title' => __( 'Turn learning into action', 'successcircles' ),
+						'text'  => __( 'Help members move beyond consuming great ideas to identifying what matters and putting it into practice.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Deepen member-to-member connection', 'successcircles' ),
+						'text'  => __( 'Structured huddles create meaningful conversations around real goals, challenges, commitments, and progress.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Create a rhythm of follow-through', 'successcircles' ),
+						'text'  => __( 'Instead of relying on motivation, members return to a repeatable cycle of clarity, commitment, action, reflection, and course correction.', 'successcircles' ),
+					),
+				),
+			),
+			'yours'       => array(
+				'eyebrow' => __( 'Built around your community', 'successcircles' ),
+				'title'   => __( 'We don&rsquo;t replace your ecosystem.<br><em class="sc-accent">We strengthen it.</em>', 'successcircles' ),
+				'paras'   => array(
+					__( 'MomentumOS&trade; isn&rsquo;t about asking your members to leave your community and join ours.', 'successcircles' ),
+					__( 'We work with you to bring a proven rhythm of accountability, peer support, reflection, and follow-through into the community you&rsquo;ve already built.', 'successcircles' ),
+					__( 'The experience can be adapted around your members, your language, your goals, your meeting cadence, and your culture&mdash;while preserving the core principles that make the MomentumOS&trade; rhythm work.', 'successcircles' ),
+				),
+				'equation' => array(
+					array(
+						'title' => __( 'Your community', 'successcircles' ),
+						'text'  => __( 'The relationships, mission, identity, and culture you&rsquo;ve already built.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Our framework', 'successcircles' ),
+						'text'  => __( 'A repeatable structure for clarity, commitment, peer support, execution, reflection, and continued progress.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Consistent progress', 'successcircles' ),
+						'text'  => __( 'Members who are more engaged with one another&mdash;and more consistent about moving what matters forward.', 'successcircles' ),
+					),
+				),
+				'motto'   => __( 'You bring the community. We bring the framework. Together, we create the rhythm.', 'successcircles' ),
+			),
+			'who'         => array(
+				'eyebrow' => __( 'Who it&rsquo;s for', 'successcircles' ),
+				'title'   => __( 'Built for communities where <em class="sc-accent">progress matters.</em>', 'successcircles' ),
+				'lede'    => __( 'MomentumOS&trade; can be adapted for organizations that want their members to do more than simply attend, learn, or connect.', 'successcircles' ),
+				'items'   => array(
+					array(
+						'title' => __( 'Entrepreneur Communities', 'successcircles' ),
+						'text'  => __( 'Help founders and business owners turn peer relationships, education, and opportunities into focused execution.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Membership Organizations', 'successcircles' ),
+						'text'  => __( 'Add a structured layer of peer accountability and follow-through that creates value between events and meetings.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Leadership &amp; Professional Communities', 'successcircles' ),
+						'text'  => __( 'Give members a repeatable way to turn development goals and commitments into action.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Faith &amp; Purpose-Driven Communities', 'successcircles' ),
+						'text'  => __( 'Create structured peer support around meaningful personal, professional, leadership, or service commitments&mdash;adapted to the values and culture of the community.', 'successcircles' ),
+					),
+				),
+			),
+			'process'     => array(
+				'eyebrow' => __( 'A MomentumOS&trade; partnership', 'successcircles' ),
+				'title'   => __( 'Your goals shape <em class="sc-accent">the experience.</em>', 'successcircles' ),
+				'paras'   => array(
+					__( 'No two communities are exactly alike.', 'successcircles' ),
+					__( 'We start by understanding what your organization wants its members to experience and accomplish. From there, we explore how MomentumOS&trade; could fit within your existing ecosystem.', 'successcircles' ),
+				),
+				'steps'   => array(
+					array(
+						'title' => __( 'Understand', 'successcircles' ),
+						'text'  => __( 'We learn about your community, members, goals, current programs, and where greater follow-through could make the biggest difference.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Design', 'successcircles' ),
+						'text'  => __( 'Together, we determine how the MomentumOS&trade; rhythm could be adapted to your community and existing member experience.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Pilot', 'successcircles' ),
+						'text'  => __( 'Where appropriate, start with a focused group or defined period so both sides can experience the model and learn from real participation.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Measure &amp; Refine', 'successcircles' ),
+						'text'  => __( 'Look at engagement, participation, member feedback, commitments, and progress to understand what&rsquo;s working and what should evolve.', 'successcircles' ),
+					),
+					array(
+						'title' => __( 'Expand', 'successcircles' ),
+						'text'  => __( 'If the model creates meaningful value, explore bringing the rhythm to more members, programs, chapters, cohorts, or teams.', 'successcircles' ),
+					),
+				),
+			),
+			'cta'         => array(
+				'eyebrow' => __( 'Let&rsquo;s explore the possibilities', 'successcircles' ),
+				'title'   => __( 'Could MomentumOS&trade; work inside <em class="sc-accent">your community?</em>', 'successcircles' ),
+				'paras'   => array(
+					__( 'Every community is different.', 'successcircles' ),
+					__( 'Tell us a little about who you serve, how your members currently connect, and where you&rsquo;d like to see greater engagement, accountability, or follow-through.', 'successcircles' ),
+					__( 'We&rsquo;ll review your answers and explore whether a customized MomentumOS&trade; experience could add value to your ecosystem.', 'successcircles' ),
+				),
+				'note'    => __( 'No pitch. No obligation. Just a starting point for a conversation about what&rsquo;s possible.', 'successcircles' ),
+			),
+			'paths'       => array(
+				array(
+					'title' => __( 'For Organizations &amp; Communities', 'successcircles' ),
+					'text'  => __( 'Bring the framework into an existing ecosystem.', 'successcircles' ),
+				),
+				array(
+					'title' => __( 'For Entrepreneurs &amp; Owners', 'successcircles' ),
+					'text'  => __( 'Experience the framework through a Success Circles program.', 'successcircles' ),
+				),
+			),
+			// The shorter teaser that sits on /momentum-os/ after the Six Steps.
+			'teaser'      => array(
+				'label' => __( 'MomentumOS&trade; for Organizations', 'successcircles' ),
+				'url'   => '/momentum-os/organizations/',
+			),
+		),
+
 		// Canonical organisation facts, for structured data and llms.txt. The
 		// visible contact channels above are display copy; these are the machine
 		// readable equivalents, so schema never drifts from a hand-typed literal.
@@ -1752,8 +1908,12 @@ function successcircles_content_tree( $customized = true ) {
 							'url'   => '/momentum-team/',
 						),
 						array(
-							'label' => __( 'Momentum OS&trade;', 'successcircles' ),
+							'label' => __( 'MomentumOS&trade;', 'successcircles' ),
 							'url'   => '/momentum-os/',
+						),
+						array(
+							'label' => __( 'For Organizations & Communities', 'successcircles' ),
+							'url'   => '/momentum-os/organizations/',
 						),
 					),
 				),

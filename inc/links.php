@@ -7,7 +7,7 @@ function successcircles_link_groups() {
 	return array(
 		'header' => 'Header & navigation', 'home' => 'Home page',
 		'momentum_buddy' => 'Momentum Buddy', 'momentum_labs' => 'Momentum Labs',
-		'momentum_team' => 'Momentum Team', 'momentum_os' => 'Momentum OS',
+		'momentum_team' => 'Momentum Team', 'momentum_os' => 'MomentumOS',
 		'testimonials' => 'Testimonials', 'weekly_wins' => 'Weekly Wins',
 		'podcast' => 'Podcast', 'articles' => 'Podcast articles',
 		'about' => 'About', 'about_joseph_varghese' => 'About Joseph',
@@ -106,7 +106,7 @@ function successcircles_customize_page_links( $manager ) {
 	foreach ( successcircles_page_links() as $key => $link ) {
 		successcircles_add_link_control( $manager, $key, $link['group'], $link['label'], $link['default'] );
 	}
-	$groups = array( 'nav' => 'header', 'footer' => 'footer', 'faq_page' => 'faq', 'contact' => 'contact_us', 'buzz' => 'weekly_wins', 'testimonials' => 'testimonials', 'founder_page' => 'about_joseph_varghese', 'buddy_page' => 'momentum_buddy', 'labs_page' => 'momentum_labs', 'team_page' => 'momentum_team', 'about' => 'about', 'episodes' => 'podcast', 'article_links' => 'articles' );
+	$groups = array( 'nav' => 'header', 'footer' => 'footer', 'faq_page' => 'faq', 'contact' => 'contact_us', 'buzz' => 'weekly_wins', 'testimonials' => 'testimonials', 'founder_page' => 'about_joseph_varghese', 'buddy_page' => 'momentum_buddy', 'labs_page' => 'momentum_labs', 'team_page' => 'momentum_team', 'orgs_page' => 'momentum_os', 'about' => 'about', 'episodes' => 'podcast', 'article_links' => 'articles' );
 	successcircles_walk_links( successcircles_content_tree( false ), function ( $default, $path, $node ) use ( $manager, $groups ) {
 		$parts = explode( '.', $path );
 		if ( 'faq_page.aside.link.url' === $path ) { return $default; }

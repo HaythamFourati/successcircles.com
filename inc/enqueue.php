@@ -92,7 +92,7 @@ function successcircles_enqueue_assets() {
 		wp_enqueue_script( 'successcircles-hero-video', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/js/hero-video.js' ), array(), successcircles_asset_version( '/assets/js/hero-video.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	}
 
-	if ( is_page( 'momentum-os' ) || is_page_template( 'page-momentum-os.php' ) ) {
+	if ( is_page( array( 'momentum-os', 'organizations' ) ) || is_page_template( 'page-momentum-os.php' ) ) {
 		wp_enqueue_style( 'successcircles-os', SUCCESSCIRCLES_URI . successcircles_asset_path( '/assets/css/momentum-os.css' ), array( 'successcircles' ), successcircles_asset_version( '/assets/css/momentum-os.css' ) );
 	}
 

@@ -353,14 +353,35 @@ The portrait is a **transparent cut-out PNG**, which is why the opener sits on a
 band with a radial glow ring behind the figure and no frame or radius on the image. Drop
 it onto a light band and the cut-out stops working.
 
+### h) MomentumOS for Organizations (`page-organizations.php`)
+
+`/momentum-os/organizations/` — WP page id 94, slug `organizations`, **child of
+`momentum-os`** (the only nested page; `successcircles_activate()` creates it). The
+B2B/B2Community offering from the client's 2026-10-05 expansion brief; copy is the
+`orgs_page` block of `inc/content.php`, verbatim. Styles live at the end of
+`momentum-os.css` (`org-` prefix), which is enqueued on both pages.
+
+- **Brand is `MomentumOS™`, one word** — never "Momentum OS". `theme.js` auto-appends
+  ™ to `MomentumOS`, so the regex there has to change with any future rename.
+- Both "Partnership Assessment" buttons share **one** destination,
+  `orgs_page.assessment.url` (Customizer → Success Circles — Links → MomentumOS).
+  It is `/contact-us/` **as a placeholder** until the client sends the form URL.
+- Entry points: Programs dropdown (ruled off via `'class' => 'sc-subnav__split'` on a
+  nav child), footer Programs column, a teaser band on `/momentum-os/` after the Six
+  Steps, and one understated line under the homepage system section (`system.orgs`).
+  Per the brief none of these go straight to the assessment — the visitor reads the
+  page first.
+- The brief's nav line drops "How It Works"; the user chose to keep it.
+
 ### Nav dropdowns
 
-Two nav items are dropdowns, both matching the live site's own menu:
+Three nav items are dropdowns:
 
 | Parent | Children |
 | --- | --- |
-| Success Stories | Testimonials `/testimonials/` · Momentum Buzz `/weekly-wins/` |
-| About | Core Values `/about/` · Joseph Varghese `/about-joseph-varghese/` · FAQ `/faq/` |
+| Programs | Momentum Buddy™ · Labs™ · Team™ · ─── · For Organizations & Communities → `/momentum-os/organizations/` |
+| Success Stories | Momentum Buzz `/weekly-wins/` · Testimonials `/testimonials/` |
+| About | Meet Joseph `/about-joseph-varghese/` · Core Values `/about/` · FAQ `/faq/` |
 
 **FAQ is no longer a top-level nav item** — it folded under About, as it is on the live
 site. `/faq/` itself is unchanged.

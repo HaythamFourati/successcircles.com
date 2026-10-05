@@ -94,9 +94,9 @@ $m=new Manager;successcircles_customize_seo($m);check(count($m->controls),24,'12
 foreach ( array_keys( successcircles_seo_pages() ) as $slug ) { $GLOBALS['pages'][$slug] = new WP_Post($slug); }
 $index = successcircles_llms_index();
 $full = successcircles_llms_full();
-check(str_contains($index,'Momentum OS'),true,'AI index includes OS');
+check(str_contains($index,'MomentumOS'),true,'AI index includes OS');
 check(str_contains($full,'What is a huddle?'),true,'AI copy includes visible huddle explanation');
-check(str_contains($full,'Momentum OS'),true,'AI copy includes weekly system');
+check(str_contains($full,'MomentumOS'),true,'AI copy includes weekly system');
 check($GLOBALS['episode_query']['has_password'],false,'Episode discovery excludes passwords');
 check($GLOBALS['full_query']['has_password'],false,'Full text excludes passwords');
 check($GLOBALS['full_query']['post_status'],'publish','Full text only public posts');

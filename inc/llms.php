@@ -52,7 +52,8 @@ function successcircles_llms_pages() {
 		'momentum-buddy'        => __( 'Momentum Buddy (program)', 'successcircles' ),
 		'momentum-labs'         => __( 'Momentum Labs (program)', 'successcircles' ),
 		'momentum-team'         => __( 'Momentum Team 90-day AI accelerator (program)', 'successcircles' ),
-		'momentum-os'           => __( 'Momentum OS: the six-step weekly execution system', 'successcircles' ),
+		'momentum-os'           => __( 'MomentumOS: the six-step weekly execution system', 'successcircles' ),
+		'momentum-os/organizations' => __( 'MomentumOS for Organizations & Communities (partnerships)', 'successcircles' ),
 		'about'                 => __( 'About Success Circles', 'successcircles' ),
 		'about-joseph-varghese' => __( 'Joseph Varghese, founder', 'successcircles' ),
 		'testimonials'          => __( 'Testimonials', 'successcircles' ),
@@ -73,7 +74,7 @@ function successcircles_llms_pages() {
 		$pages[] = array(
 			'title'       => $title,
 			'url'         => (string) get_permalink( $page ),
-			'description' => successcircles_llms_text( successcircles_seo_page_value( $slug, 'description' ) ),
+			'description' => successcircles_llms_text( successcircles_seo_page_value( basename( $slug ), 'description' ) ),
 		);
 	}
 
@@ -289,11 +290,20 @@ function successcircles_llms_full() {
 	}
 	$lines[] = '';
 	if ( successcircles_llms_public_page( 'momentum-os' ) ) {
-		$lines = array_merge( $lines, successcircles_llms_block( 'Momentum OS', array( successcircles_content( 'system.lede' ) ) ) );
+		$lines = array_merge( $lines, successcircles_llms_block( 'MomentumOS', array( successcircles_content( 'system.lede' ) ) ) );
 		$lines[] = 'Source: ' . home_url( '/momentum-os/' );
 		$lines[] = '';
 		foreach ( (array) successcircles_content( 'system.steps', array() ) as $step ) {
 			$lines = array_merge( $lines, successcircles_llms_block( $step['title'], array( $step['text'] ) ) );
+		}
+	}
+	if ( successcircles_llms_public_page( 'momentum-os/organizations' ) ) {
+		$orgs = (array) successcircles_content( 'orgs_page', array() );
+		$lines = array_merge( $lines, successcircles_llms_block( 'MomentumOS for Organizations & Communities', array_merge( array( $orgs['hero']['lede'], $orgs['hero']['text'], $orgs['anchor'] ), $orgs['opportunity']['paras'], $orgs['yours']['paras'] ) ) );
+		$lines[] = 'Source: ' . home_url( '/momentum-os/organizations/' );
+		$lines[] = '';
+		foreach ( array_merge( $orgs['who']['items'], $orgs['process']['steps'] ) as $item ) {
+			$lines = array_merge( $lines, successcircles_llms_block( $item['title'], array( $item['text'] ) ) );
 		}
 	}
 

@@ -136,7 +136,7 @@
 	}
 
 	/**
-	 * Momentum OS as a cycle: six nodes on a ring, one step in the middle, the
+	 * MomentumOS as a cycle: six nodes on a ring, one step in the middle, the
 	 * amber arc tracking how far round the loop we are.
 	 *
 	 * Enhancement only. Without JavaScript — and under prefers-reduced-motion,
@@ -1127,7 +1127,7 @@
 				if ( node.parentNode.closest( '.sc-tm' ) || skip.test( node.parentNode.nodeName ) ) {
 					return NodeFilter.FILTER_REJECT;
 				}
-				return /\u2122|Success Circles|Momentum (?:Labs|Buddy|OS)/.test( node.nodeValue ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+				return /\u2122|Success Circles|Momentum(?: Labs| Buddy|OS)/.test( node.nodeValue ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
 			}
 		} );
 		var nodes = [];
@@ -1139,7 +1139,7 @@
 				.replace( /[&<>]/g, function ( c ) {
 					return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ c ];
 				} )
-				.replace( /\b(Success Circles|Momentum Labs|Momentum Buddy|Momentum OS)\b(?!\s*\u2122)/g, '$1\u2122' )
+				.replace( /\b(Success Circles|Momentum Labs|Momentum Buddy|MomentumOS)\b(?!\s*\u2122)/g, '$1\u2122' )
 				.replace( /\u2122/g, '<sup class="sc-tm">\u2122</sup>' );
 			var span = document.createElement( 'span' );
 			span.innerHTML = html;

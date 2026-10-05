@@ -86,7 +86,7 @@ for endpoint in ['robots.txt','llms.txt','llms-full.txt']:
         check('No blanket AI allow overrides','Allow: /\n' not in body)
     else:
         check(endpoint+' noindex header', 'noindex' in h.get('X-Robots-Tag',h.get('x-robots-tag','')))
-        check(endpoint+' Momentum OS coverage','Momentum OS' in body)
+        check(endpoint+' MomentumOS coverage','MomentumOS' in body)
 for suffix in ['?s=accountability','?sc-contact=sent','weekly-wins/?wins=2','seo-audit-nonexistent-404/']:
     status,h,body,final=fetch(base+suffix);p=Page();p.feed(body)
     check(suffix+' noindex', 'noindex' in ','.join(p.meta.get('robots',[])))

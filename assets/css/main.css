@@ -351,7 +351,7 @@ iframe {
 	line-height: 1.1;
 }
 
-/* Accent word inside a display heading (e.g. "Momentum OS"). Always the palette
+/* Accent word inside a display heading (e.g. "MomentumOS"). Always the palette
    orange, on both light and dark bands. */
 .sc-accent,
 .sc-band--dark .sc-accent {
@@ -732,6 +732,17 @@ iframe {
 
 .sc-header__nav :is(.sc-subnav, .sub-menu) a:hover {
 	background: var(--sc-sand-shade);
+}
+
+/* A ruled-off pathway at the foot of a dropdown (Programs → For Organizations). */
+.sc-subnav__split {
+	margin-top: 8px;
+	padding-top: 8px;
+	border-top: 1px solid oklch(var(--sc-ink-c) / 0.12);
+}
+
+.sc-header__nav .sc-subnav__split a {
+	color: var(--sc-rust);
 }
 
 /* In the drawer the children are simply indented — nothing to open. */
@@ -2435,7 +2446,7 @@ iframe {
 }
 
 /* --------------------------------------------------------------------------
-   Momentum OS
+   MomentumOS
    -------------------------------------------------------------------------- */
 
 .sc-os {
@@ -2690,6 +2701,32 @@ iframe {
 .sc-os-repeat span {
 	font-size: 22px;
 	line-height: 1;
+}
+
+/* One understated B2B pathway under the cycle — a ruled line, not a second CTA band. */
+.sc-os-orgs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px 40px;
+	margin-top: clamp(48px, 5vw, 72px);
+	padding-top: 28px;
+	border-top: 1px solid oklch(var(--sc-cream-c) / 0.16);
+}
+
+.sc-os-orgs p {
+	flex: 1 1 420px;
+	max-width: 72ch;
+	margin: 0;
+	font-size: 15.5px;
+	line-height: 1.7;
+	color: oklch(var(--sc-cream-c) / 0.72);
+}
+
+.sc-os-orgs strong {
+	font-weight: 600;
+	color: var(--sc-cream);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -8178,7 +8215,7 @@ html:has(.sc-quiz[open]) {
 	max-width: 46ch;
 }
 
-/* Six inclusions as a bordered cell grid — the same device as the Momentum OS
+/* Six inclusions as a bordered cell grid — the same device as the MomentumOS
    section on the homepage, so the two read as one system. */
 .sc-labs__grid {
 	display: grid;
@@ -9380,7 +9417,8 @@ html:has(.sc-quiz[open]) {
 .sc-audio__seek::-webkit-slider-thumb { appearance: none; height: 12px; width: 12px; margin-top: -4px; border-radius: 50%; background: var(--sc-orange); }
 .sc-audio__seek::-moz-range-thumb { height: 12px; width: 12px; border: 0; border-radius: 50%; background: var(--sc-orange); }
 .sc-audio__times { display: flex; justify-content: space-between; font-size: 10px; font-variant-numeric: tabular-nums; color: oklch(var(--sc-ink-c) / .76); }
-.sc-podcast-player__spotify { display: flex; justify-content: center; margin: 0 20px 20px; gap: 16px; }
+.sc-podcast-player__listen { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 20px 20px; }
+.sc-podcast-player__listen .sc-btn { flex: 1 1 180px; padding-inline: 20px; }
 .sc-podcast-episode.is-playing { border-color: var(--sc-orange); }
 @media (max-width: 480px) {
 	.sc-podcast-episode { grid-template-columns: 80px minmax(0, 1fr); column-gap: 12px; }

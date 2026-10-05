@@ -1,5 +1,5 @@
 <?php
-/** Momentum OS — the weekly rhythm behind the community. */
+/** MomentumOS — the weekly rhythm behind the community. */
 defined( 'ABSPATH' ) || exit;
 $sc_system = (array) successcircles_content( 'system', array() );
 $sc_prompts = array(
@@ -14,11 +14,11 @@ get_header();
 ?>
 <article class="mos-page">
 	<header class="sc-section mos-hero">
-		<p class="sc-eyebrow sc-eyebrow--accent">Momentum OS™</p>
+		<p class="sc-eyebrow sc-eyebrow--accent">MomentumOS™</p>
 		<h1 class="sc-display">Make progress a rhythm.<br><em class="sc-accent">Not a resolution.</em></h1>
-		<p class="mos-lede">You already know how to work hard. Momentum OS helps you keep that work connected to your biggest goals—with clear commitments, experienced support, and a weekly rhythm you can repeat.</p>
+		<p class="mos-lede">You already know how to work hard. MomentumOS helps you keep that work connected to your biggest goals—with clear commitments, experienced support, and a weekly rhythm you can repeat.</p>
 		<div class="sc-actions sc-actions--center"><a class="sc-btn sc-btn--primary" href="<?php echo esc_url( successcircles_page_link( 'momentum_os_weekly_cycle' ) ); ?>">Explore the Six Steps</a><a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_programs' ) ) ); ?>">Check Our Programs</a></div>
-		<nav class="mos-cycle" aria-label="The Momentum OS cycle">
+		<nav class="mos-cycle" aria-label="The MomentumOS cycle">
 			<?php foreach ( (array) $sc_system['steps'] as $sc_i => $sc_step ) : ?>
 				<a href="<?php echo esc_url( successcircles_page_link( 'os_step_' . ( $sc_i + 1 ) ) ); ?>"><span><?php echo esc_html( sprintf( '%02d', $sc_i + 1 ) ); ?></span><?php echo esc_html( $sc_step['title'] ); ?><span aria-hidden="true">→</span></a>
 			<?php endforeach; ?>
@@ -28,7 +28,7 @@ get_header();
 		<div class="sc-section">
 			<h2 class="sc-display">A system you practice.<br>A community that <em class="sc-accent">keeps you going.</em></h2>
 			<p class="mos-lede"><?php echo esc_html( wp_specialchars_decode( $sc_system['lede'] ) ); ?></p>
-			<p class="mos-context-note">Momentum OS is the operating rhythm behind Success Circles—not a separate software product or another course to finish.</p>
+			<p class="mos-context-note">MomentumOS is the operating rhythm behind Success Circles—not a separate software product or another course to finish.</p>
 		</div>
 	</section>
 	<section id="weekly-cycle" class="sc-section mos-steps" aria-labelledby="mos-steps-title">
@@ -44,15 +44,17 @@ get_header();
 		</ol>
 		<p class="mos-repeat">↻ Take what you learned into the next week. Repeat.</p>
 	</section>
-	<section class="sc-band--shade"><div class="sc-section mos-fit">
-		<h2 class="sc-display">The same rhythm.<br>The support that <em class="sc-accent">fits you.</em></h2>
-		<p class="mos-lede">Put Momentum OS into practice with focused one-to-one accountability, group perspective, or an intensive 90-day experience.</p>
-		<div class="mos-programs">
-			<a href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_momentum_buddy' ) ) ); ?>"><span>One-to-one accountability</span><div class="mos-programs__row"><strong>Momentum Buddy™</strong><span aria-hidden="true">↗</span></div></a>
-			<a href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_momentum_labs' ) ) ); ?>"><span>Group perspective</span><div class="mos-programs__row"><strong>Momentum Labs</strong><span aria-hidden="true">↗</span></div></a>
-			<a href="<?php echo esc_url( esc_url( successcircles_page_link( 'momentum_os_momentum_team' ) ) ); ?>"><span>90-day AI accelerator</span><div class="mos-programs__row"><strong>Momentum Team</strong><span aria-hidden="true">↗</span></div></a>
+	<?php $sc_orgs = (array) successcircles_content( 'orgs_page', array() ); ?>
+	<section class="sc-band--dark mos-context" aria-labelledby="mos-orgs-title">
+		<div class="sc-section">
+			<p class="sc-eyebrow sc-eyebrow--accent"><?php echo esc_html( wp_specialchars_decode( $sc_orgs['hero']['eyebrow'] ) ); ?></p>
+			<h2 id="mos-orgs-title" class="sc-display"><?php echo successcircles_inline( $sc_orgs['hero']['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
+			<p class="mos-lede"><?php echo esc_html( wp_specialchars_decode( $sc_orgs['hero']['lede'] ) ); ?></p>
+			<p class="mos-context-note"><?php echo esc_html( wp_specialchars_decode( $sc_orgs['anchor'] ) ); ?></p>
+			<div class="sc-actions sc-actions--center"><a class="sc-btn sc-btn--primary" href="<?php echo successcircles_url( $sc_orgs['teaser']['url'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php echo esc_html( wp_specialchars_decode( $sc_orgs['teaser']['label'] ) ); ?> <span aria-hidden="true">→</span></a></div>
 		</div>
-	</div></section>
+	</section>
+	<?php get_template_part( 'template-parts/mos-programs' ); ?>
 	<?php while ( have_posts() ) : the_post(); if ( trim( get_the_content() ) ) : ?><div class="sc-section sc-prose"><?php the_content(); ?></div><?php endif; endwhile; ?>
 </article>
 <?php get_template_part( 'template-parts/home/cta' ); get_footer(); ?>

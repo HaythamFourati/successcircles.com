@@ -118,6 +118,7 @@ function successcircles_seo_description_paths() {
 			'momentum-labs'         => 'labs_page.lede',
 			'momentum-team'         => 'team_page.lede',
 			'momentum-os'           => 'system.lede',
+			'organizations'         => 'orgs_page.hero.text',
 			'about-joseph-varghese' => 'founder_page.lede',
 			'testimonials'          => 'testimonials.lede',
 			'weekly-wins'           => 'buzz.lede',

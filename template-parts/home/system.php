@@ -1,11 +1,11 @@
 <?php
 /**
- * 03 / The system — Momentum OS.
+ * 03 / The system — MomentumOS.
  *
  * Two columns: the copy and the formula on the left, the cycle on the right.
  *
  * The cycle is a ring of numbered nodes with the active step's detail in the
- * middle. Momentum OS is a weekly loop, so it is drawn as one — the previous
+ * middle. MomentumOS is a weekly loop, so it is drawn as one — the previous
  * top-to-bottom timeline read as a journey with an end, and ran to 1990px for
  * six short steps.
  *
@@ -109,5 +109,12 @@ $sc_count  = max( 1, count( $sc_steps ) );
 			</div>
 
 		</div>
+
+		<?php if ( ! empty( $sc_system['orgs'] ) ) : ?>
+			<div class="sc-os-orgs">
+				<p><strong><?php echo esc_html( wp_specialchars_decode( $sc_system['orgs']['title'] ) ); ?></strong> <?php echo esc_html( wp_specialchars_decode( $sc_system['orgs']['text'] ) ); ?></p>
+				<a class="sc-link-rule sc-link-rule--arrow" href="<?php echo successcircles_url( $sc_system['orgs']['url'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php echo esc_html( wp_specialchars_decode( $sc_system['orgs']['label'] ) ); ?> <span class="sc-link-rule__arrow" aria-hidden="true">&rarr;</span></a>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>

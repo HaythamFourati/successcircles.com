@@ -130,7 +130,7 @@ function successcircles_activate() {
 		'momentum-buddy'         => __( 'Momentum Buddy', 'successcircles' ),
 		'momentum-labs'          => __( 'Momentum Labs', 'successcircles' ),
 		'momentum-team'          => __( 'Momentum Team', 'successcircles' ),
-		'momentum-os'            => __( 'Momentum OS', 'successcircles' ),
+		'momentum-os'            => __( 'MomentumOS', 'successcircles' ),
 	);
 
 	$ids = array();
@@ -144,6 +144,19 @@ function successcircles_activate() {
 				'post_status' => 'publish',
 				'post_title'  => $title,
 				'post_name'   => $slug,
+			)
+		);
+	}
+
+	// The one nested page: /momentum-os/organizations/ (rendered by page-organizations.php).
+	if ( ! get_page_by_path( 'momentum-os/organizations' ) && ! is_wp_error( $ids['momentum-os'] ) ) {
+		wp_insert_post(
+			array(
+				'post_type'   => 'page',
+				'post_status' => 'publish',
+				'post_title'  => __( 'MomentumOS for Organizations & Communities', 'successcircles' ),
+				'post_name'   => 'organizations',
+				'post_parent' => $ids['momentum-os'],
 			)
 		);
 	}
