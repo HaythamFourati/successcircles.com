@@ -24,17 +24,14 @@ $sc_episodes = successcircles_podcast_episodes();
 			<ul class="sc-podcast-player__episodes">
 				<?php foreach ( $sc_episodes as $sc_episode ) : ?>
 					<li class="sc-podcast-episode">
+						<a class="sc-podcast-episode__link" href="<?php echo esc_url( $sc_episode['url'] ); ?>" target="_blank" rel="noopener noreferrer">
 							<?php if ( $sc_episode['image'] ) : ?><img src="<?php echo esc_url( $sc_episode['image'] ); ?>" alt="" width="96" height="96" loading="lazy"><?php endif; ?>
-							<div class="sc-podcast-episode__info">
-								<h4><a href="<?php echo esc_url( $sc_episode['url'] ); ?>" title="<?php echo esc_attr( $sc_episode['title'] ); ?>"><?php echo esc_html( $sc_episode['title'] ); ?></a></h4>
-								<p><?php echo esc_html( wp_date( 'M j, Y', strtotime( $sc_episode['date'] ) ) ); ?></p>
-							</div>
-                        <div class="sc-audio" hidden>
-                            <button class="sc-audio__toggle" type="button" aria-label="<?php echo esc_attr( 'Play ' . $sc_episode['title'] ); ?>" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path class="sc-audio__play" d="m8 5 11 7-11 7z"/><path class="sc-audio__pause" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
-                            <div class="sc-audio__track"><input class="sc-audio__seek" type="range" min="0" max="100" value="0" step="0.1" disabled aria-label="<?php echo esc_attr( 'Seek in ' . $sc_episode['title'] ); ?>"><div class="sc-audio__times"><span class="sc-audio__elapsed">0:00</span><span class="sc-audio__duration"><?php echo esc_html( $sc_episode['duration'] ); ?></span></div></div>
-                            <span class="sc-audio__status screen-reader-text" role="status"></span>
-                        </div>
-                        <audio controls preload="none" src="<?php echo esc_url( $sc_episode['audio'] ); ?>" aria-label="<?php echo esc_attr( $sc_episode['title'] ); ?>"><a href="<?php echo esc_url( $sc_episode['audio'] ); ?>"><?php esc_html_e( 'Listen to this episode', 'successcircles' ); ?></a></audio>
+							<span class="sc-podcast-episode__info">
+								<h4 title="<?php echo esc_attr( $sc_episode['title'] ); ?>"><?php echo esc_html( $sc_episode['title'] ); ?></h4>
+								<span class="sc-podcast-episode__meta"><?php echo esc_html( implode( ' · ', array_filter( array( wp_date( 'M j, Y', strtotime( $sc_episode['date'] ) ), successcircles_podcast_minutes( $sc_episode['duration'] ) ) ) ) ); ?></span>
+							</span>
+							<span class="sc-podcast-episode__cue"><?php esc_html_e( 'Listen on Spotify', 'successcircles' ); ?> <span aria-hidden="true">↗</span><span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'successcircles' ); ?></span></span>
+						</a>
 					</li>
 				<?php endforeach; ?>
 			</ul>

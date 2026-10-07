@@ -432,3 +432,20 @@ function successcircles_exclude_wins_from_blog( $query ) {
 	$query->set( 'category__not_in', array_values( array_unique( array_map( 'intval', $excluded ) ) ) );
 }
 add_action( 'pre_get_posts', 'successcircles_exclude_wins_from_blog' );
+
+/**
+ * VisitorTracking.com tracer, last thing in <head> as the vendor asks. The callback is
+ * defined before the async loader so it exists whenever tracer.js runs.
+ * If the live site also has this in a header/footer snippet plugin, remove one of them.
+ */
+function successcircles_visitor_tracking() {
+	?>
+<script>
+	function init_tracer() {
+		var tracer = new Tracer( { websiteId: '785b55f7-46b6-4411-84a7-3b0142818af8', async: true, debug: false } );
+	}
+</script>
+<script async defer src="https://app.visitortracking.com/assets/js/tracer.js"></script>
+	<?php
+}
+add_action( 'wp_head', 'successcircles_visitor_tracking', 99 );

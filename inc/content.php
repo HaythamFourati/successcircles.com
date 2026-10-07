@@ -1732,8 +1732,7 @@ function successcircles_content_tree( $customized = true ) {
 			'anchor'      => __( 'Your community. Your identity. Powered by MomentumOS&trade;.', 'successcircles' ),
 			'assessment'  => array(
 				'label' => __( 'Take the Partnership Assessment', 'successcircles' ),
-				// ponytail: placeholder until the client sends the assessment form URL.
-				'url'   => '/contact-us/',
+				'url'   => 'https://peersc.com/momentumos-partnership',
 			),
 			'hero'        => array(
 				'eyebrow' => __( 'For Organizations &amp; Communities', 'successcircles' ),

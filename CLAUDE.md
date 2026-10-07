@@ -365,7 +365,7 @@ B2B/B2Community offering from the client's 2026-10-05 expansion brief; copy is t
   ™ to `MomentumOS`, so the regex there has to change with any future rename.
 - Both "Partnership Assessment" buttons share **one** destination,
   `orgs_page.assessment.url` (Customizer → Success Circles — Links → MomentumOS).
-  It is `/contact-us/` **as a placeholder** until the client sends the form URL.
+  Default: the Typeform at `https://peersc.com/momentumos-partnership`.
 - Entry points: Programs dropdown (ruled off via `'class' => 'sc-subnav__split'` on a
   nav child), footer Programs column, a teaser band on `/momentum-os/` after the Six
   Steps, and one understated line under the homepage system section (`system.orgs`).
@@ -528,6 +528,20 @@ discourage crawlers stays discouraged.
 - Hero image is `fetchpriority="high"`, everything else `loading="lazy"`.
 - `wp-sitemap.xml` is core's, untouched — it already excludes `sc_question` / `sc_lead`
   (both `public => false`).
+
+### Podcast library (`inc/podcast.php`)
+
+The episode list comes from the **Spotify Web API** (client-credentials, show
+`64eUCSg7BqAo0EJf8cOp97`), because the Anchor RSS missed the Sep 29 2026 episode while
+Spotify had it. Spotify gives no audio file (and its terms forbid extracting one), so
+there is **no on-site playback**: each card is a single link out to the episode on
+Spotify (artwork, title, date · minutes, "Listen on Spotify ↗"). The client chose this
+on 2026-10-07 over a native player or Spotify embeds; the old `.sc-audio` player and
+`initPodcastLibrary()` were deleted. The RSS feed is only the fallback list.
+Credentials are entered
+in **Customizer → Success Circles → Podcast (Spotify)** (`manage_options` only) and
+never live in code — this repo is public. Without them it runs on RSS alone. Cache:
+`sc_podcast_library_v3`, 1h, cleared on every Customizer save.
 
 ## 10. Performance implementation
 

@@ -200,8 +200,47 @@ function successcircles_customize_register( $wp_customize ) {
 			)
 		);
 	}
+
+	/* -------------------------------------------------------------- Podcast */
+
+	$wp_customize->add_section(
+		'sc_spotify',
+		array(
+			'title'       => __( 'Podcast (Spotify)', 'successcircles' ),
+			'panel'       => 'sc_panel',
+			'description' => __( 'Credentials from developer.spotify.com/dashboard. With them the podcast list follows Spotify; without them it runs on the RSS feed.', 'successcircles' ),
+		)
+	);
+
+	foreach (
+		array(
+			'sc_spotify_client_id'     => array( __( 'Client ID', 'successcircles' ), 'text' ),
+			'sc_spotify_client_secret' => array( __( 'Client Secret', 'successcircles' ), 'password' ),
+		) as $id => $field
+	) {
+		$wp_customize->add_setting(
+			$id,
+			array(
+				'default'           => '',
+				'capability'        => 'manage_options',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			$id,
+			array(
+				'label'   => $field[0],
+				'section' => 'sc_spotify',
+				'type'    => $field[1],
+			)
+		);
+	}
 }
 add_action( 'customize_register', 'successcircles_customize_register' );
+
+// New credentials should show on the next page view, not after the hour-long podcast cache.
+add_action( 'customize_save_after', static function () { delete_transient( 'sc_podcast_library_v3' ); } );
 
 /**
  * Sanitize Customizer checkbox values.
