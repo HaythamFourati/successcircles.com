@@ -1147,12 +1147,37 @@
 		} );
 	}
 
+	/**
+	 * Trustpilot band arrows. The track is a native scroll-snap row, so it
+	 * swipes and scrolls without JS; the arrows only page it by one view.
+	 */
+	function initTrustpilot() {
+		var root = document.querySelector( '[data-sc-tpw]' );
+		var track = root && root.querySelector( '.sc-tpw__track' );
+		if ( ! track ) { return; }
+		var arrows = root.querySelectorAll( '[data-sc-tpw-step]' );
+		function sync() {
+			var max = track.scrollWidth - track.clientWidth - 2;
+			arrows[ 0 ].disabled = track.scrollLeft <= 2;
+			arrows[ 1 ].disabled = track.scrollLeft >= max;
+		}
+		Array.prototype.forEach.call( arrows, function ( arrow ) {
+			arrow.hidden = false;
+			arrow.addEventListener( 'click', function () {
+				track.scrollBy( { left: track.clientWidth * Number( arrow.getAttribute( 'data-sc-tpw-step' ) ), behavior: reduceMotion ? 'auto' : 'smooth' } );
+			} );
+		} );
+		track.addEventListener( 'scroll', sync, { passive: true } );
+		sync();
+	}
+
 	function init() {
 		initLoader();
 		initMenu();
 		initStoryVideo();
 		initMomentumOs();
 		initReviews();
+		initTrustpilot();
 		initArticle();
 		initQuiz();
 		initJvChapters();

@@ -88,6 +88,8 @@ inc/
 ├── contact.php                 # contact form: admin-post handler, validation, wp_mail()
 ├── quiz.php                    # ★ Owner Quiz: sc_question + sc_lead CPTs,
 │                               #   admin-ajax handler, modal render, seed questions
+├── trustpilot.php              # live Trustpilot rating/count (hourly cron) + star helper
+├── trustpilot-reviews.json     # every Trustpilot review, pasted from the profile
 └── wins.php                    # ★ live Weekly Wins pull from successcircles.com REST,
                                 #   daily cron into one option; drives the testimonials page
 
@@ -143,6 +145,7 @@ Defined in `front-page.php`. The `#` column is the old eyebrow numbering — **t
 | --- | --- | --- | --- |
 | — | `hero` | sand | The page's **only `h1`**. Orbit rings + circular photo + "Today's huddle" badge. Staggered `scRise` entrance. |
 | — | `trust` | **dark** | "As seen in": Inc., Trustpilot, Michael Gerber, Blair Singer. |
+| — | `trustpilot` | **dark** | Trustpilot-carousel lookalike (2026-10-13). Takes over the curtain allowance from `trust` via `:has()`. See §7i. |
 | 01 | `problem` | shade + curtain | 4 numbered rows. |
 | 02 | `system` | **dark** | Momentum OS. Formula strip + 6-cell bordered grid (Clarify → Compound). |
 | 03 | `programs` | sand + curtain | 2 cards (Buddy $194, Labs $97) + 3-col includes strip. |
@@ -372,6 +375,21 @@ B2B/B2Community offering from the client's 2026-10-05 expansion brief; copy is t
   Per the brief none of these go straight to the assessment — the visitor reads the
   page first.
 - The brief's nav line drops "How It Works"; the user chose to keep it.
+
+### i) Trustpilot band (`inc/trustpilot.php`, `template-parts/home/trustpilot.php`)
+
+The client's Trustpilot account (business unit `61671fd2d22652001e3e8d82`) is on the **free
+plan**: every TrustBox except the Review Collector returns "does not have access", so a real
+Carousel widget would render as a bare logo. The band *imitates* the dark Carousel instead.
+The Review Collector's data endpoint (`widget.trustpilot.com/trustbox-data/…`) still carries
+the live TrustScore, stars and review count, so an **hourly cron** (`sc_refresh_trustpilot`)
+stores them in the non-autoloaded `sc_trustpilot` option; a failed fetch keeps the old numbers.
+**Review text is not live** — that needs a paid plan — the cards read
+**`inc/trustpilot-reviews.json`**, the full profile export (all 40 reviews, titles, ratings,
+company replies) the user pasted on 2026-10-13. It is the stored copy of the Trustpilot data:
+when a new review lands, the count rises on its own, and the review itself is added to the top
+of that file's `reviews` array (same shape) — the band re-sorts by date. If the client upgrades, swap the band
+for the real Carousel TrustBox.
 
 ### Nav dropdowns
 

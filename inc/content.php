@@ -117,6 +117,21 @@ function successcircles_content_tree( $customized = true ) {
 			'badge_text'    => __( 'One priority. One focused call. Thirty minutes.', 'successcircles' ),
 		),
 
+		// Trustpilot band (template-parts/home/trustpilot.php). The numbers are
+		// refreshed hourly by inc/trustpilot.php; `fallback` is only used until
+		// the first refresh lands. Review cards come from inc/trustpilot-reviews.json.
+		'trustpilot' => array(
+			'business_unit' => '61671fd2d22652001e3e8d82',
+			'template'      => '56278e9abfbbba0bdcd568bc', // Review Collector: the free plan's only box.
+			'profile_url'   => 'https://www.trustpilot.com/review/successcircles.com',
+			'fallback'      => array(
+				'score' => 4.8,
+				'stars' => 5.0,
+				'total' => 40,
+				'label' => 'Excellent',
+			),
+		),
+
 		'trust' => array(
 			'label' => __( 'As seen in', 'successcircles' ),
 			'logos' => array(

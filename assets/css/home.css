@@ -361,3 +361,125 @@
 @media (prefers-reduced-motion: reduce) {
 	.sc-fly__ring, .sc-fly__node { transition: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Trustpilot band — modelled on Trustpilot's dark Carousel TrustBox.
+   The trust bar hands its curtain allowance down to this band.
+   -------------------------------------------------------------------------- */
+
+.sc-trust:has(+ .sc-tpw) .sc-trust__inner { padding-bottom: 22px; }
+
+.sc-tpw {
+	--sc-tp-green: #00b67a; /* Trustpilot's brand green, kept exact */
+	--sc-tp-empty: oklch(var(--sc-cream-c) / 0.18);
+	border-top: 1px solid oklch(var(--sc-cream-c) / 0.1);
+}
+
+.sc-tpw__inner {
+	max-width: var(--sc-wrap);
+	margin-inline: auto;
+	padding: 34px var(--sc-gutter) calc(34px + var(--sc-curtain));
+	display: grid;
+	grid-template-columns: 190px minmax(0, 1fr);
+	align-items: center;
+	gap: 28px 40px;
+}
+
+.sc-tpw__summary {
+	display: grid;
+	justify-items: center;
+	gap: 8px;
+	color: inherit;
+	text-align: center;
+	text-decoration: none;
+}
+
+.sc-tpw__label { font-size: 22px; font-weight: 700; }
+.sc-tpw__count { font-size: 13px; color: oklch(var(--sc-cream-c) / 0.8); }
+.sc-tpw__summary:hover .sc-tpw__count,
+.sc-tpw__summary:focus-visible .sc-tpw__count { text-decoration: underline; }
+.sc-tpw__logo { width: 104px; height: auto; color: var(--sc-cream); margin-top: 2px; }
+
+.sc-tpw__stars { display: inline-flex; gap: 2px; }
+.sc-tpw__star {
+	display: grid;
+	place-items: center;
+	width: 18px;
+	aspect-ratio: 1;
+	background: linear-gradient(90deg, var(--sc-tp-green) var(--sc-tp-fill), var(--sc-tp-empty) 0);
+}
+.sc-tpw__star svg { width: 78%; fill: #fff; }
+.sc-tpw__stars--lg { gap: 3px; }
+.sc-tpw__stars--lg .sc-tpw__star { width: 30px; }
+
+.sc-tpw__carousel {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 8px;
+}
+
+.sc-tpw__track {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: calc((100% - 2 * 24px) / 3);
+	gap: 24px;
+	margin: 0;
+	padding: 4px 2px;
+	list-style: none;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+}
+.sc-tpw__track::-webkit-scrollbar { display: none; }
+.sc-tpw__card { scroll-snap-align: start; min-width: 0; }
+.sc-tpw__card figure { display: grid; gap: 10px; margin: 0; }
+
+.sc-tpw__text { display: grid; gap: 4px; margin: 0; }
+.sc-tpw__text .sc-tpw__title {
+	font-size: 14.5px;
+	font-weight: 700;
+	-webkit-line-clamp: 1;
+}
+.sc-tpw__text p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.sc-tpw__meta { font-size: 12.5px; color: oklch(var(--sc-cream-c) / 0.7); }
+.sc-tpw__meta strong { font-weight: 600; color: oklch(var(--sc-cream-c) / 0.9); }
+
+.sc-tpw__arrow {
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 1px solid oklch(var(--sc-cream-c) / 0.25);
+	border-radius: 50%;
+	background: none;
+	color: inherit;
+	font-size: 22px;
+	line-height: 1;
+	cursor: pointer;
+}
+.sc-tpw__arrow:hover,
+.sc-tpw__arrow:focus-visible { border-color: var(--sc-tp-green); color: var(--sc-tp-green); }
+.sc-tpw__arrow:disabled { opacity: 0.3; cursor: default; border-color: oklch(var(--sc-cream-c) / 0.25); color: inherit; }
+
+@media (max-width: 1000px) {
+	.sc-tpw__track { grid-auto-columns: calc((100% - 24px) / 2); }
+}
+
+@media (max-width: 760px) {
+	.sc-tpw__inner { grid-template-columns: minmax(0, 1fr); }
+	.sc-tpw__track { grid-auto-columns: 85%; }
+	.sc-tpw__arrow { display: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.sc-tpw__track { scroll-behavior: smooth; }
+}

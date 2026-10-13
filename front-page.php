@@ -14,6 +14,7 @@ get_header();
 
 get_template_part( 'template-parts/home/hero' );
 get_template_part( 'template-parts/home/trust' );
+get_template_part( 'template-parts/home/trustpilot' );
 get_template_part( 'template-parts/home/problem' );
 get_template_part( 'template-parts/home/huddle' );
 get_template_part( 'template-parts/home/system' );
