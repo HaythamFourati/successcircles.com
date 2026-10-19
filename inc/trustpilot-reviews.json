@@ -53,6 +53,7 @@
     },
     {
       "reviewer": "Charles Fritschler",
+      "role": "COO at Executive Losers",
       "country": "US",
       "reviewer_total_reviews": 1,
       "date": "2023-08-17",
@@ -177,6 +178,7 @@
     },
     {
       "reviewer": "Jonathan Baillie Strong",
+      "role": "Local SEO & Visibility Consultant at Spotlight Signal",
       "country": "US",
       "reviewer_total_reviews": 6,
       "date": "2022-09-30",
@@ -201,6 +203,7 @@
     },
     {
       "reviewer": "George Arroyo",
+      "role": "CEO at Arroyo Construction",
       "country": "US",
       "reviewer_total_reviews": 1,
       "date": "2022-05-06",
@@ -297,6 +300,7 @@
     },
     {
       "reviewer": "Ruth Dorsainville",
+      "role": "CEO at DNA Legacy Group",
       "country": "CA",
       "reviewer_total_reviews": 1,
       "date": "2022-02-09",
@@ -425,6 +429,7 @@
     },
     {
       "reviewer": "Robert Grant",
+      "role": "Facebook Marketing Strategist | Author | Professional Speaker",
       "country": "IL",
       "reviewer_total_reviews": 2,
       "date": "2022-01-20",
@@ -441,6 +446,7 @@
     },
     {
       "reviewer": "David Vogel",
+      "role": "Founder | Customer Proof & Video Testimonial Strategist",
       "country": "US",
       "reviewer_total_reviews": 1,
       "date": "2022-01-11",
@@ -505,6 +511,7 @@
     },
     {
       "reviewer": "AJ Mihrzad",
+      "role": "The Online Super Coach",
       "country": "US",
       "reviewer_total_reviews": 1,
       "date": "2022-01-06",
@@ -521,6 +528,7 @@
     },
     {
       "reviewer": "Elaine Williams",
+      "role": "Video & Visibility Coach, Speaker, Author",
       "country": "US",
       "reviewer_total_reviews": 1,
       "date": "2022-01-26",
@@ -537,6 +545,7 @@
     },
     {
       "reviewer": "Robin Haynes",
+      "role": "Business Advisor at Goldman Sachs 10,000 Small Businesses",
       "country": "US",
       "reviewer_total_reviews": 1,
       "date": "2021-12-08",
@@ -549,6 +558,7 @@
     },
     {
       "reviewer": "Christopher oldfield",
+      "role": "Founder & CEO, Producer Advantage AI™",
       "country": "US",
       "reviewer_total_reviews": 1,
       "date": "2021-12-02",
@@ -573,6 +583,7 @@
     },
     {
       "reviewer": "Kabir Wolf",
+      "role": "Co-Founder of Wolf Automation | Co-Founder of Ballot Access Pros",
       "country": "IN",
       "reviewer_total_reviews": 2,
       "date": "2021-11-15",

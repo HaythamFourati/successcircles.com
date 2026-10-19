@@ -26,3 +26,6 @@ vendor/
 
 # Local Claude Code settings (trust boundaries, machine-specific)
 .claude/settings.local.json
+
+# Client source sheets (private, not part of the theme)
+/Testimonials*.xlsx

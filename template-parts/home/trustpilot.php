@@ -48,8 +48,7 @@ $sc_logo = str_replace( '<svg ', '<svg class="sc-tpw__logo" role="img" aria-labe
 							<?php endif; ?>
 						</blockquote>
 						<figcaption class="sc-tpw__meta">
-							<strong><?php echo esc_html( $sc_review['name'] ); ?></strong>,
-							<time datetime="<?php echo esc_attr( gmdate( 'Y-m-d', $sc_review['date'] ) ); ?>"><?php echo esc_html( date_i18n( 'M j, Y', $sc_review['date'] ) ); ?></time>
+							<strong><?php echo esc_html( $sc_review['name'] ); ?></strong><?php if ( '' !== $sc_review['role'] ) : ?>, <?php echo esc_html( $sc_review['role'] ); ?><?php endif; ?>
 						</figcaption>
 					</figure>
 				</li>

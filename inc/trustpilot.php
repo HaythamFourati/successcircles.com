@@ -83,7 +83,7 @@ add_action( 'switch_theme', 'successcircles_unschedule_trustpilot' );
  * paste of the profile (review text is not available on the free plan). Add a
  * new review to the top of that file's `reviews` array.
  *
- * @return array<int, array{name: string, title: string, text: string, rating: int, date: int}>
+ * @return array<int, array{name: string, role: string, title: string, text: string, rating: int, date: int}>
  */
 function successcircles_trustpilot_reviews() {
 	$sc_data    = json_decode( (string) file_get_contents( __DIR__ . '/trustpilot-reviews.json' ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions
@@ -92,6 +92,7 @@ function successcircles_trustpilot_reviews() {
 	foreach ( (array) ( $sc_data['reviews'] ?? array() ) as $sc_review ) {
 		$sc_reviews[] = array(
 			'name'   => (string) $sc_review['reviewer'],
+			'role'   => (string) ( $sc_review['role'] ?? '' ),
 			'title'  => (string) $sc_review['title'],
 			'text'   => (string) $sc_review['text'],
 			'rating' => (int) $sc_review['rating'],

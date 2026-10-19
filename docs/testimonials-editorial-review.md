@@ -9,3 +9,7 @@ Written testimonials retain the supplied wording. Vanessa's duplicate Google ver
 Review dates and roles come from the client's document. No independent verification badges or aggregate ratings have been added. Videos use the client's selected URLs; their spoken content has not been independently transcribed or audited. No video has been edited.
 
 Scope is the Testimonials page and its content. Other program pages have separate copy and testimonials.
+
+## Update — October 19, 2026
+
+Source: client's approved list `Testimonials.xlsx` (kept out of git). The 12 rows highlighted yellow now lead the written section, in sheet order, with the sheet's text and titles: Kabir Wolf, Andy Zapata, George Arroyo, Croix Sather, James Rohrbach, Nikhil Bon, Jay Levine, Jonathan Baillie Strong, Todd King, Ruth Dorsainville, Robert Grant, Robin R. Haynes. The client's highlight overrides the earlier coaching-language exclusion for Kabir, Nikhil and Todd. Each person appears once; the highlighted text replaced their earlier quote. The remaining nine follow, with titles updated from the sheet where it has one. Review dates were removed from the source labels. Film titles for David Vogel, Robert Grant and Ruth Dorsainville were updated from the sheet.

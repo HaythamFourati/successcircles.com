@@ -388,7 +388,7 @@ stores them in the non-autoloaded `sc_trustpilot` option; a failed fetch keeps t
 **`inc/trustpilot-reviews.json`**, the full profile export (all 40 reviews, titles, ratings,
 company replies) the user pasted on 2026-10-13. It is the stored copy of the Trustpilot data:
 when a new review lands, the count rises on its own, and the review itself is added to the top
-of that file's `reviews` array (same shape) — the band re-sorts by date. If the client upgrades, swap the band
+of that file's `reviews` array (same shape) — the band re-sorts by date. **No dates are shown** (client, 2026-10-14: the 2022 ones read stale); the caption is name + an optional `role` (title / company). Trustpilot doesn't supply roles — the 11 present were matched from the client's own testimonial copy in `inc/content.php`; never invent one. If the client upgrades, swap the band
 for the real Carousel TrustBox.
 
 ### Nav dropdowns
