@@ -104,7 +104,7 @@ function successcircles_content_tree( $customized = true ) {
 
 		'hero' => array(
 			'eyebrow'       => __( 'Advisory Community for Established Entrepreneurs', 'successcircles' ),
-			'title'         => __( '<span class="sc-hero__title-line">We help business owners</span><span class="sc-hero__title-line">Turn vision into <em class="sc-accent">momentum</em></span>', 'successcircles' ),
+			'title'         => __( 'Turn vision into <em class="sc-accent">momentum</em>', 'successcircles' ),
 			'lede'          => __( 'Urgent demands can push your biggest goals aside. Success&nbsp;Circles&trade; gives you the focus, accountability, and support to follow through and make consistent progress.', 'successcircles' ),
 			'primary_cta'   => __( 'Take the Owner Quiz', 'successcircles' ),
 			'secondary_cta' => __( 'Check Our Programs', 'successcircles' ),

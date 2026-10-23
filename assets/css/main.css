@@ -958,6 +958,13 @@ iframe {
 .sc-hero__title {
 	margin: 0 0 28px;
 	max-width: 20ch;
+	font-size: clamp(41px, 5.04vw, 70px);
+}
+
+@supports (container-type: inline-size) {
+	.sc-hero__title {
+		font-size: clamp(41px, 10.2cqi, 70px);
+	}
 }
 
 .sc-hero__title .sc-accent {
